@@ -5,7 +5,7 @@ public class ImageManipulatorModel {
   int width;
   int maxValue;
 
-  //List<Layer> Layer;
+  List<Layer> Layer;
 
 
 }
