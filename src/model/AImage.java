@@ -1,8 +1,7 @@
 package model;
 
 /**
- * Represents an abstract class for Image typed
- *
+ * Represents an abstract class for Image types.
  */
-public class AImage implements IImage{
+public class AImage implements IImage {
 }

@@ -11,6 +11,8 @@ public class PPMImage extends AImage {
     this.width = width;
   }
 
+  void addImage(int x, int y, IImage image) {
 
+  }
 
 }

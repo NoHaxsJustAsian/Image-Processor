@@ -1,12 +1,8 @@
 package model;
 
-<<<<<<< Updated upstream
-import java.util.List;
-=======
 import java.util.ArrayList;
 
 import controller.ImageManipulatorController;
->>>>>>> Stashed changes
 
 public class ImageManipulatorModel {
   int height;
@@ -14,8 +10,8 @@ public class ImageManipulatorModel {
   int maxValue;
   ArrayList<Layer> Layer;
 
-  ImageManipulatorModel() {
-
+  ImageManipulatorModel(file) {
+    this.file = file;
   }
 
   ImageManipulatorModel(int height, int width) {
@@ -32,7 +28,9 @@ public class ImageManipulatorModel {
 
   }
 
-  void addImageLayer
+  void addImageLayer(Layer name, Image name, int x, int y) {
+    new Image(name )
+  }
 
   void saveImage(file) {
     file.write

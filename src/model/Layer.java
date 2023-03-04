@@ -22,5 +22,19 @@ public class Layer {
     this.y = y;
   }
 
+  public void setFilter(IFilter filter) {
+
+  }
+
+  public void addImage(int x, int y, IImage image) {
+    content.addImage(x, y, image);
+  }
+
+  public void getImage() {
+
+  }
+
+
+
 
 }
