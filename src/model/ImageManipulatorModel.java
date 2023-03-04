@@ -21,6 +21,7 @@ public class ImageManipulatorModel {
 
 
   void addLayer(Layer name) {
+    // we need to make multiple different types of addLayer methods, where there is a default value set.
     new Layer(String name, IFilter filter, IImage content, int height, int width, int x, int y);
   }
 
