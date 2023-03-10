@@ -1,4 +1,5 @@
 package controller;
 
-public interface IImageProcessorController \{
-        }
+public interface IImageProcessorController {
+
+}

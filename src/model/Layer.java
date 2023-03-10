@@ -7,35 +7,45 @@ package model;
  * The canvas, now holds each pixel from the image on its on canvas, and can be fed more images.
  * If a pixel is overridden on the canvas, it will show the last placed image's pixel.
  */
+
 public class Layer {
+  Colors[][] canvas;
   String name;
   IFilter filter;
-  IImage content;
   int height;
   int width;
-  int x;
-  int y;
 
-  Layer(String name, IFilter filter, IImage content, int height, int width, int x, int y) {
+
+  public Layer(String name, IFilter filter, int height, int width) {
     this.name = name;
     this.filter = filter;
-    this.content = content;
     this.height = height;
     this.width = width;
-    this.x = x;
-    this.y = y;
   }
 
+  /**
+   * Sets the filter for the layer.
+   * @param filter to be set
+   */
   public void setFilter(IFilter filter) {
 
   }
 
+  /**
+   * Adds an image to the layer.
+   * @param x offset
+   * @param y offset
+   * @param image to be added
+   */
   public void addImage(int x, int y, IImage image) {
-    content.addImage(x, y, image);
+
   }
 
-  public void getImage() {
-
+  /**
+   * returns the canvas from the layer.
+   */
+  public Colors[][] getCanvas() {
+    return this.canvas;
   }
 
 
@@ -53,6 +63,7 @@ public class Layer {
 //make methods that take in images, and their location (offset), and apply it to the canvas of the layer
 // (make sure to check if the image is within the bounds of the canvas) (this will have to iterate thought
 // the image's arraylist, and then apply the offsets to add to the arraylist index, to apply the shift.
-//make method that applies layer.
+//make method that applies filter.
+
 
 

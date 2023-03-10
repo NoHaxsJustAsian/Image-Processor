@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class ImageProcessorModel {
-  int height;
-  int width;
-  int maxValue;
-  ArrayList<Layer> Layer;
+  private int height;
+  private int width;
+  private int maxValue;
+  private ArrayList<Layer> Layer;
 
   ImageProcessorModel(file) {
     this.file = file;
@@ -17,31 +17,47 @@ public class ImageProcessorModel {
     this.width = width;
   }
 
+  public int getHeight() {
+    return this.height;
+  }
 
-  void addLayer(Layer name) {
+  public int getWidth() {
+    return this.width;
+  }
+
+  /**
+   * This method will be used to add a layer to the project, with a filter.
+   */
+  public void addLayer(String name, IFilter filter) {
     // we need to make multiple different types of addLayer methods, where there is a default value set.
-    new Layer(String name, IFilter filter, IImage content, int height, int width, int x, int y);
+    new Layer(name, filter, this.height, this.width);
   }
 
-  void setFilter(Layer name, Filter name) {
+  /*
+   * This method will be used to add a layer to the project, without a filter.
+   */
+  public void addLayer(String name) {
+    new Layer(name, null, this.height, this.width);
+  }
+
+  /**
+   * This method will set a filter to a layer.
+   */
+  public void setFilter(Layer name, IFilter filter) {
 
   }
 
-  void addImageLayer(Layer name, Image name, int x, int y) {
-    new Image(name )
+  public void addImage(int x, int y, IImage image, ILayer layer) {
+    layer.addImage(x, y, image);
   }
 
-  void saveImage(file) {
+  public void saveImage(file) {
     file.write
   }
 
-  void saveProject(file) {
-    file write("")
+  public void saveProject(file) {
+    file write ("")
   }
-
-
-
-
 
 
 }
