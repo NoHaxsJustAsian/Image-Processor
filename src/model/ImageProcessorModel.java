@@ -2,19 +2,17 @@ package model;
 
 import java.util.ArrayList;
 
-import controller.ImageManipulatorController;
-
-public class ImageManipulatorModel {
+public class ImageProcessorModel {
   int height;
   int width;
   int maxValue;
   ArrayList<Layer> Layer;
 
-  ImageManipulatorModel(file) {
+  ImageProcessorModel(file) {
     this.file = file;
   }
 
-  ImageManipulatorModel(int height, int width) {
+  ImageProcessorModel(int height, int width) {
     this.height = this.height;
     this.width = width;
   }
