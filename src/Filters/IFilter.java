@@ -1,4 +1,6 @@
-package model;
+package Filters;
+
+import model.IImage;
 
 public interface IFilter {
 

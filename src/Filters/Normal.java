@@ -1,6 +1,8 @@
-package model;
+package Filters;
 
-public class EmptyFilter implements IFilter{
+import model.IImage;
+
+public class Normal implements IFilter {
 
   /**
    *

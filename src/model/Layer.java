@@ -1,5 +1,7 @@
 package model;
 
+import Filters.IFilter;
+
 /**
  * Represents a Layer on the Image.
  * A layer can accept an image and location, in which, the image is placed onto the layer's canvas

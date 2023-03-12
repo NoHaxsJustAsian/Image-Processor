@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import Filters.IFilter;
+import Filters.Normal;
+
 public class ImageProcessorModel {
   private int height;
   private int width;
@@ -36,9 +39,10 @@ public class ImageProcessorModel {
 
   /**
    * This method will be used to add a layer to the project, without a filter.
+   * This would be the background canvas.
    */
   public void addLayer(String name) {
-    new Layer(name, IFilter EmptyFilter, this.height, this.width);
+   this.addLayer(name, new Normal());
   }
 
   /**
@@ -48,8 +52,19 @@ public class ImageProcessorModel {
 
   }
 
+  /**
+   * This method will add an Image to a Layer.
+   * @param x
+   * @param y
+   * @param image
+   * @param layer
+   */
   public void addImage(int x, int y, IImage image, ILayer layer) {
     layer.addImage(x, y, image);
+  }
+
+  public void removeImage(IImage image, ILayer layer) {
+    layer.removeImage(image);
   }
 
   public void saveImage(file) {
@@ -59,6 +74,7 @@ public class ImageProcessorModel {
   public void saveProject(file) {
     file write ("")
   }
+
 
 
 }

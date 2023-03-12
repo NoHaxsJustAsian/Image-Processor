@@ -15,4 +15,18 @@ public class AImage implements IImage {
     this.width = width;
   }
 
+  @Override
+  public IPixel[][] getPixels() {
+    return new IPixel[0][];
+  }
+
+  @Override
+  public int getHeight() {
+    return this.height;
+  }
+
+  @Override
+  public int getWidth() {
+    return this.width;
+  }
 }

@@ -3,7 +3,7 @@ package model;
 /**
  * Represents a class for a pixel's values.
  */
-public class Pixel {
+public class Pixel implements IPixel{
   int red;
   int blue;
   int green;
@@ -29,4 +29,23 @@ public class Pixel {
     }
 
 
+  @Override
+  public int getRed() {
+    return this.red;
+  }
+
+  @Override
+  public int getBlue() {
+    return this.blue;
+  }
+
+  @Override
+  public int getGreen() {
+    return this.green;
+  }
+
+  @Override
+  public int getAlpha() {
+    return this.alpha;
+  }
 }

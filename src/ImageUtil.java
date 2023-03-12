@@ -72,5 +72,8 @@ public class ImageUtil {
       
       ImageUtil.readPPM(filename);
   }
+
+  //Handles what happens when there is a bottom pixel and a top pixel. Compute the pixel of that layer
+
 }
 
