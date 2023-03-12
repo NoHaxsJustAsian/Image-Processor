@@ -6,15 +6,16 @@ public class ImageProcessorModel {
   private int height;
   private int width;
   private int maxValue;
-  private ArrayList<Layer> Layer;
+  private ArrayList<Layer> layers;
 
-  ImageProcessorModel(file) {
-    this.file = file;
+  ImageProcessorModel(int height, int width, ArrayList<Layer> layers) {
+    this.height = height;
+    this.width = width;
+    this.layers = layers;
   }
 
   ImageProcessorModel(int height, int width) {
-    this.height = this.height;
-    this.width = width;
+    this(height, width, new ArrayList<Layer>());
   }
 
   public int getHeight() {
@@ -33,11 +34,11 @@ public class ImageProcessorModel {
     new Layer(name, filter, this.height, this.width);
   }
 
-  /*
+  /**
    * This method will be used to add a layer to the project, without a filter.
    */
   public void addLayer(String name) {
-    new Layer(name, null, this.height, this.width);
+    new Layer(name, IFilter EmptyFilter, this.height, this.width);
   }
 
   /**
@@ -61,3 +62,5 @@ public class ImageProcessorModel {
 
 
 }
+
+arraylist.map

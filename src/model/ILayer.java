@@ -22,5 +22,5 @@ public interface ILayer {
   /**
    * returns the canvas from the layer.
    */
-  public void getCanvas();
+  public Layer getCanvas();
 }

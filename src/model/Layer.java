@@ -9,7 +9,7 @@ package model;
  */
 
 public class Layer {
-  Colors[][] canvas;
+  IPixel[][] canvas;
   String name;
   IFilter filter;
   int height;
@@ -44,7 +44,8 @@ public class Layer {
   /**
    * returns the canvas from the layer.
    */
-  public Colors[][] getCanvas() {
+  public IPixel[][] getCanvas() {
+
     return this.canvas;
   }
 

@@ -3,13 +3,13 @@ package model;
 /**
  * Represents a class for a pixel's values.
  */
-public class Colors {
+public class Pixel {
   int red;
   int blue;
   int green;
   int alpha;
 
-  public Colors(int red, int blue, int green, int alpha) throws IllegalArgumentException {
+  public Pixel(int red, int blue, int green, int alpha) throws IllegalArgumentException {
     if (red > 255 || red < 0) {
       throw new IllegalArgumentException("Red value is out of range");
     }
