@@ -18,7 +18,7 @@ public interface IImage {
   public int getHeight();
 
   /**
-   * 
+   *
    * @return
    */
   public int getWidth();
