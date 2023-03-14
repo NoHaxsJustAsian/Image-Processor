@@ -9,7 +9,7 @@ public interface ILayer {
 
   /**
    * Sets the filter for the layer.
-   * @param filter
+   * @param filter to be set.
    */
   public void setFilter(IFilter filter);
 
