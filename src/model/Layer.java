@@ -23,12 +23,10 @@ public class Layer {
     this.filter = filter;
     this.height = height;
     this.width = width;
-    this.canvas = new IPixel[height][width];
   }
 
   /**
    * Sets the filter for the layer.
-   *
    * @param filter to be set
    */
   public void setFilter(IFilter filter) {
@@ -37,21 +35,12 @@ public class Layer {
 
   /**
    * Adds an image to the layer.
-   *
-   * @param x     offset
-   * @param y     offset
+   * @param x offset
+   * @param y offset
    * @param image to be added
    */
-  public void addImage(IImage image, int x, int y) {
-    //FIXME: tbh u gotta check if this works but im pretty sure this is how it works.
-    //FIXME: add a invalid argument exception if the x and y given are out of bounds unless we dont care about it. Are we allowing partial images?
-    for (int i = 0; i < image.getHeight(); i++) {
-      for (int j = 0; j < image.getWidth(); j++) {
-        if (i + x < this.height && j + y < this.width) {
-          this.canvas[i + x][j + y] = image.getPixels()[i][j];
-        }
-      }
-    }
+  public void addImage(int x, int y, IImage image) {
+
   }
 
   /**
@@ -62,7 +51,12 @@ public class Layer {
     return this.canvas;
   }
 
+
+
+
 }
+
+
 
 
 //To-Do List.
