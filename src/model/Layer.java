@@ -10,7 +10,7 @@ import Filters.IFilter;
  * If a pixel is overridden on the canvas, it will show the last placed image's pixel.
  */
 
-public class Layer {
+public class Layer implements ILayer{
   IPixel[][] canvas;
   String name;
   IFilter filter;
@@ -23,6 +23,14 @@ public class Layer {
     this.filter = filter;
     this.height = height;
     this.width = width;
+    this.canvas = new IPixel[height][width];
+
+    for(int i = 0; i < height; i++){
+      for(int j = 0; j < width; j++){
+        this.canvas[i][j] = new Pixel(255,255,255,255);
+      }
+    }
+
   }
 
   /**

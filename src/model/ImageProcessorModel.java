@@ -1,24 +1,27 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Filters.IFilter;
 import Filters.Normal;
 
-public class ImageProcessorModel {
+public class ImageProcessorModel implements IImageProcessorModel {
   private int height;
   private int width;
   private int maxValue;
-  private ArrayList<Layer> layers;
+  //private ArrayList<ILayer> layers;
 
-  ImageProcessorModel(int height, int width, ArrayList<Layer> layers) {
+  private HashMap<String, ILayer> layers;
+
+  ImageProcessorModel(int height, int width, ArrayList<ILayer> layers) {
     this.height = height;
     this.width = width;
     this.layers = layers;
   }
 
   ImageProcessorModel(int height, int width) {
-    this(height, width, new ArrayList<Layer>());
+    this(height, width, new ArrayList<ILayer>());
   }
 
   public int getHeight() {
@@ -29,26 +32,40 @@ public class ImageProcessorModel {
     return this.width;
   }
 
+  @Override
+  public int getMaxValue() {
+    return this.maxValue;
+  }
+
+  @Override
+  public ILayer getLayer(int number) {
+    return this.layers.get(number);
+  }
+
   /**
    * This method will be used to add a layer to the project, with a filter.
    */
   public void addLayer(String name, IFilter filter) {
     // we need to make multiple different types of addLayer methods, where there is a default value set.
-    new Layer(name, filter, this.height, this.width);
+    this.layers.add(new Layer(name, filter, this.height, this.width));
   }
 
   /**
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    */
-  public void addLayer(String name) {
-   this.addLayer(name, new Normal());
+  public void newProject(int height, int width) {
+    this.height = height;
+    this.width = width;
+    this.maxValue = 255;
+    this.layers = new ArrayList<ILayer>();
+    this.addLayer("background", new Normal());
   }
 
   /**
    * This method will set a filter to a layer.
    */
-  public void setFilter(Layer name, IFilter filter) {
+  public void setFilter(String name, IFilter filter) {
 
   }
 
@@ -65,14 +82,6 @@ public class ImageProcessorModel {
 
   public void removeImage(IImage image, ILayer layer) {
     layer.removeImage(image);
-  }
-
-  public void saveImage(file) {
-    file.write
-  }
-
-  public void saveProject(file) {
-    file write ("")
   }
 
 
