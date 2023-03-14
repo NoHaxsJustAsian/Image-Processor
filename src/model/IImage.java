@@ -13,13 +13,13 @@ public interface IImage {
 
   /**
    * Retrieves the Height of the Image.
-   * @return int height of the image.
+   * @return int
    */
   public int getHeight();
 
   /**
-   * Retrieves the Width of the Image.
-   * @return int width of the image.
+   * 
+   * @return
    */
   public int getWidth();
 
