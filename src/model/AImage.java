@@ -20,6 +20,11 @@ public class AImage implements IImage {
     return new IPixel[0][];
   }
 
+
+  public IPixel getPixel(int x, int y) {
+    return content[x][y];
+  }
+
   @Override
   public int getHeight() {
     return this.height;
