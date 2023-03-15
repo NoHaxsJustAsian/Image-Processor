@@ -29,20 +29,18 @@ public class RedFilter implements IFilter {
    * @return IImage is original image with filter applied.
    */
   public IImage apply(IImage image) {
-    if (image == ppm) {
-
-    }
-
     IPixel[][] pixels =  image.getPixels();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for(int i = 0; i < pixels.length; i++) {
       for(int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
-        int color = pixel.getGreen();
+        int color = pixel.getRed();
         newPixels[i][j] = new Pixel(color, 0, 0, pixel.getAlpha());
       }
     }
-    return new PPMImage(newPixels, image.getHeight(), image.getWidth());
+    return new AImage(newPixels, image.getHeight(), image.getWidth());
   }
+
+
 }
