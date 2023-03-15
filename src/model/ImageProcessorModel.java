@@ -1,10 +1,9 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import Filters.IFilter;
-import Filters.Normal;
+import model.Filters.IFilter;
+import model.Filters.Normal;
 
 
 /**

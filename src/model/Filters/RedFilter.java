@@ -1,6 +1,4 @@
-package Filters;
-
-import java.awt.*;
+package model.Filters;
 
 import model.AImage;
 import model.IImage;
@@ -43,6 +41,6 @@ public class RedFilter implements IFilter {
         newPixels[i][j] = new Pixel(color, 0, 0, pixel.getAlpha());
       }
     }
-    return new PPMImage(newPixels, image.getHeight(), image.getWidth());
+    return new AImage(newPixels, image.getHeight(), image.getWidth());
   }
 }

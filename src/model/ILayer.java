@@ -1,6 +1,6 @@
 package model;
 
-import Filters.IFilter;
+import model.Filters.IFilter;
 
 /**
  * Interface for a Layer.

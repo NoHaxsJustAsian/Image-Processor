@@ -1,4 +1,4 @@
-package Filters;
+package model.Filters;
 
 import model.IImage;
 

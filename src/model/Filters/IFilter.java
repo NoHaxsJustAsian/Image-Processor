@@ -1,9 +1,9 @@
-package Filters;
+package model.Filters;
 
 import model.IImage;
 
 /**
- * Represents an interface for Filters.
+ * Represents an interface for model.Filters.
  */
 
 public interface IFilter {

@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-
-import Filters.IFilter;
-import Filters.Normal;
+import model.Filters.IFilter;
 
 /**
  * Represents an interface for model.

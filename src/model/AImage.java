@@ -15,7 +15,7 @@ public class AImage implements IImage {
    * @param height int height.
    * @param width int width.
    */
-  AImage(IPixel[][] content, int height,  int width) {
+  public AImage(IPixel[][] content, int height, int width) {
     this.content = content;
     this.height = height;
     this.width = width;
