@@ -19,12 +19,12 @@ public interface ILayer {
    * @param y offset
    * @param image to be added.
    */
-  public void addImage(int x, int y, IImage image);
+  public void addImage(IImage image,int x, int y);
 
   /**
    * returns the canvas from the layer.
    */
-  public Layer getCanvas();
+  public IPixel[][] getCanvas();
 
 
 

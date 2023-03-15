@@ -63,7 +63,6 @@ public class Layer implements ILayer {
    * returns the canvas from the layer.
    */
   public IPixel[][] getCanvas() {
-
     return this.canvas;
   }
 

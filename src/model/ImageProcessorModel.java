@@ -14,14 +14,14 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   private HashMap<String, ILayer> layers;
 
-  ImageProcessorModel(int height, int width, ArrayList<ILayer> layers) {
+  ImageProcessorModel(int height, int width, HashMap<String, ILayer> layers) {
     this.height = height;
     this.width = width;
     this.layers = layers;
   }
 
   ImageProcessorModel(int height, int width) {
-    this(height, width, new ArrayList<ILayer>());
+    this(height, width, new HashMap<String, ILayer>());
   }
 
   public int getHeight() {
