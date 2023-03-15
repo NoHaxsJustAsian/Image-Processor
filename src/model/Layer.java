@@ -24,6 +24,7 @@ public class Layer implements ILayer {
     this.height = height;
     this.width = width;
     this.canvas = new IPixel[height][width];
+    //creates a blank image for each layer
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         this.canvas[i][j] = new Pixel(255, 255, 255, 255);
@@ -33,15 +34,25 @@ public class Layer implements ILayer {
 
   /**
    * Sets the filter for the layer.
-   *
    * @param filter to be set
    */
   public void setFilter(IFilter filter) {
 
   }
 
+  /**
+   *
+   * @param x offset
+   * @param y offset
+   * @param image to be added.
+   */
   @Override
   public void addImage(int x, int y, IImage image) {
+
+  }
+
+  @Override
+  public void removeImage(IImage image) {
 
   }
 
@@ -68,7 +79,6 @@ public class Layer implements ILayer {
    * returns the canvas from the layer.
    */
   public IPixel[][] getCanvas() {
-
     return this.canvas;
   }
 

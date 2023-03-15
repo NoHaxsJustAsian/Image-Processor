@@ -44,4 +44,9 @@ public interface IImageProcessorModel extends IImageProcessorState {
   public void removeImage(IImage image, ILayer layer);
 
 
+  public void saveImage();
+
+  public void saveProject();
+
+
 }

@@ -14,8 +14,8 @@ public class BlueFilter implements IFilter {
   int blue;
 
   /**
-   * Represents constructor for GreenFilter.
-   * @param blue is the int value of the green component.
+   * Represents constructor for BlueFilter.
+   * @param blue is the int value of the blue component.
    */
   public BlueFilter(int blue) {
     this.blue = blue;

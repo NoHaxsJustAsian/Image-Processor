@@ -5,8 +5,7 @@ package controller;
  */
 public interface IImageProcessorController {
 
-  void newProject() throws IllegalStateException;
 
-  void addLayer() throws IllegalStateException;
+
 
 }

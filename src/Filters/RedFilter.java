@@ -15,8 +15,8 @@ public class RedFilter implements IFilter {
   int red;
 
   /**
-   * Represents constructor for GreenFilter.
-   * @param red is the int value of the green component.
+   * Represents constructor for RedFilter.
+   * @param red is the int value of the red component.
    */
   public RedFilter(int red) {
     this.red = red;

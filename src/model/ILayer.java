@@ -21,11 +21,18 @@ public interface ILayer {
    */
   public void addImage(int x, int y, IImage image);
 
+
   /**
-   * returns the canvas from the layer.
+   * Removes an image from the layer
+   * @param image to be removed.
+   */
+  public void removeImage(IImage image);
+
+
+  /**
+   * This method returns the canvas from the layer.
    */
   public Layer getCanvas();
-
 
 
 }

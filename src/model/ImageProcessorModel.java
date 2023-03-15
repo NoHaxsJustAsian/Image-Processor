@@ -16,7 +16,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
   private int maxValue;
   private ArrayList<ILayer> layers;
 
+//  private final ILayer background = new Layer("background", null, this.height, this.width);
+
 //  private HashMap<String, ILayer> layers;
+
 
   /**
    * Represents constructor for this model.
@@ -56,7 +59,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 //  /**
 //   * Represents a constructor for this model.
 //   * @param height int height.
-//   * @param width width int width.
+//   * @param width int width.
 //   */
 //  ImageProcessorModel(int height, int width) {
 //    this(height, width, new HashMap<String, ILayer> layers);
@@ -64,25 +67,38 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
 
   /**
-   *
-   * @return
+   * This method gets the height of the image.
+   * @return int height.
    */
   public int getHeight() {
     return this.height;
   }
 
+  /**
+   * This method gets the width of the image.
+   * @return int width.
+   */
   public int getWidth() {
     return this.width;
   }
 
+  /**
+   * This method gets the maxValue of the image.
+   * @return int max value.
+   */
   @Override
   public int getMaxValue() {
     return this.maxValue;
   }
 
+  /**
+   * This method gets the numbered layer from the image.
+   * @param num int layer number.
+   * @return ILayer from image.
+   */
   @Override
-  public ILayer getLayer(int number) {
-    return this.layers.get(number);
+  public ILayer getLayer(int num) {
+    return this.layers.get(num);
   }
 
 
@@ -128,6 +144,13 @@ public class ImageProcessorModel implements IImageProcessorModel {
     layer.removeImage(image);
   }
 
+  public void saveImage() {
+
+  }
+
+  public void saveProject() {
+
+  }
 
 
 }
