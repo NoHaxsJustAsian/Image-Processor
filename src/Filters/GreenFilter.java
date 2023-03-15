@@ -4,6 +4,7 @@ import java.awt.*;
 
 import model.IImage;
 import model.IPixel;
+
 import model.Pixel;
 
 /**
@@ -13,17 +14,17 @@ public class GreenFilter implements IFilter {
   int green;
 
   /**
-   * Represents constructor for GreenFIlter.
-   * @param green
+   * Represents constructor for GreenFilter.
+   * @param green is the int value of the green component.
    */
   public GreenFilter(int green) {
     this.green = green;
   }
 
   /**
-   * This applies the green filter to Image.
-   * @param image
-   * @return
+   * This applies green filter to Image.
+   * @param image is original image.
+   * @return IImage is original image with filter applied.
    */
   public IImage apply(IImage image) {
     IPixel[][] pixels =  image.getPixels();

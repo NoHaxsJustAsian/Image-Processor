@@ -40,6 +40,11 @@ public class Layer implements ILayer {
 
   }
 
+  @Override
+  public void addImage(int x, int y, IImage image) {
+
+  }
+
   /**
    * Adds an image to the layer.
    *

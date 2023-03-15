@@ -6,24 +6,67 @@ import java.util.HashMap;
 import Filters.IFilter;
 import Filters.Normal;
 
+
+/**
+ * Represents the model for this program.
+ */
 public class ImageProcessorModel implements IImageProcessorModel {
   private int height;
   private int width;
   private int maxValue;
-  //private ArrayList<ILayer> layers;
+  private ArrayList<ILayer> layers;
 
-  private HashMap<String, ILayer> layers;
+//  private HashMap<String, ILayer> layers;
 
-  ImageProcessorModel(int height, int width, HashMap<String, ILayer> layers) {
+  /**
+   * Represents constructor for this model.
+   * @param height int height.
+   * @param width int width.
+   * @param layers arraylist layers.
+   */
+  ImageProcessorModel(int height, int width, ArrayList<ILayer> layers) {
     this.height = height;
     this.width = width;
     this.layers = layers;
   }
 
+
+//  /**
+//   * Represents constructor for this model.
+//   * @param height int height.
+//   * @param width int width.
+//   * @param layers HashMap layers.
+//   */
+//  ImageProcessorModel(int height, int width, HashMap<String, ILayer> layers) {
+//    this.height = height;
+//    this.width = width;
+//    this.layers = layers;
+//  }
+
+  /**
+   * Represents a constructor for this model.
+   * @param height int height.
+   * @param width int width.
+   */
   ImageProcessorModel(int height, int width) {
-    this(height, width, new HashMap<String, ILayer>());
+    this(height, width, new ArrayList<ILayer>());
   }
 
+
+//  /**
+//   * Represents a constructor for this model.
+//   * @param height int height.
+//   * @param width width int width.
+//   */
+//  ImageProcessorModel(int height, int width) {
+//    this(height, width, new HashMap<String, ILayer> layers);
+//  }
+
+
+  /**
+   *
+   * @return
+   */
   public int getHeight() {
     return this.height;
   }
@@ -41,6 +84,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   public ILayer getLayer(int number) {
     return this.layers.get(number);
   }
+
 
   /**
    * This method will be used to add a layer to the project, with a filter.

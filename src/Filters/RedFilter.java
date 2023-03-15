@@ -2,27 +2,28 @@ package Filters;
 
 import java.awt.*;
 
+import model.AImage;
 import model.IImage;
 import model.IPixel;
 
 import model.Pixel;
 
 /**
- * Represents a blue filter.
+ * Represents a red filter.
  */
-public class BlueFilter implements IFilter {
-  int blue;
+public class RedFilter implements IFilter {
+  int red;
 
   /**
    * Represents constructor for GreenFilter.
-   * @param blue is the int value of the green component.
+   * @param red is the int value of the green component.
    */
-  public BlueFilter(int blue) {
-    this.blue = blue;
+  public RedFilter(int red) {
+    this.red = red;
   }
 
   /**
-   * This applies blue filter to Image.
+   * This applies red filter to Image.
    * @param image is original image.
    * @return IImage is original image with filter applied.
    */
@@ -34,7 +35,7 @@ public class BlueFilter implements IFilter {
       for(int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
         int color = pixel.getGreen();
-        newPixels[i][j] = new Pixel(0, color, 0, pixel.getAlpha());
+        newPixels[i][j] = new Pixel(color, 0, 0, pixel.getAlpha());
       }
     }
     return new Image(newPixels, image.getHeight, image.getWidth);
