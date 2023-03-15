@@ -41,10 +41,24 @@ public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
    * This method will return a layer from the project from an int key.
-   * @param int
+   * @param num
    * @return
    */
-  public ILayer getLayer(Integer int);
+  public ILayer getLayer(int num);
+
+  /**
+   * This method will return the position of a layer in the project given both their layer position.
+   * @param i
+   * @param j
+   */
+  public void swapLayers(int i, int j);
+
+  /**
+   * This method will return the position of a layer in the project given their names.
+   * @param a
+   * @param b
+   */
+  public void swapLayers(String a, String b);
 
   /**
    * This method wil remove an Image from a Layer.

@@ -107,6 +107,28 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
+   * This method will return the position of a layer in the project given both their layer position.
+   *
+   * @param i
+   * @param j
+   */
+  @Override
+  public void swapLayers(int i, int j) {
+
+  }
+
+  /**
+   * This method will return the position of a layer in the project given their names.
+   *
+   * @param a
+   * @param b
+   */
+  @Override
+  public void swapLayers(String a, String b) {
+
+  }
+
+  /**
    * This method gets the layer from the image using a String key.
    * @param string name of layer.
    * @return ILayer from image.
@@ -125,7 +147,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
    */
   public void addLayer(String name, IFilter filter) {
     // we need to make multiple different types of addLayer methods, where there is a default value set.
-    this.layers.add(new Layer(name, filter, this.height, this.width));
+    this.nameLayers.put(name, (new Layer(name, filter, this.height, this.width)));
+    this.orderLayers.add(this.nameLayers.get(name));
   }
 
   /**
