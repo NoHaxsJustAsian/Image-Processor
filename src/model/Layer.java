@@ -37,7 +37,7 @@ public class Layer implements ILayer {
    * @param filter to be set
    */
   public void setFilter(IFilter filter) {
-
+    this.filter = filter;
   }
 
   /**
@@ -51,6 +51,7 @@ public class Layer implements ILayer {
 
   }
 
+  //maybe change to clear canvas?
   @Override
   public void removeImage(IImage image) {
 

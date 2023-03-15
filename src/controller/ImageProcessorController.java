@@ -1,4 +1,11 @@
 package controller;
 
-public class ImageProcessorController {
+import model.ImageProcessorModel;
+
+public class ImageProcessorController implements IImageProcessorController{
+  int width;
+  int height;
+
+  final ImageProcessorModel model = new ImageProcessorModel(height, width);
+
 }

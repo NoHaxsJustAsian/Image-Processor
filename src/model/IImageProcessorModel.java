@@ -32,6 +32,19 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   public void addImage(int x, int y, IImage image, ILayer layer);
 
+  /**
+   * This method will return a layer from the project from a String key.
+   * @param string
+   * @return
+   */
+  public ILayer getLayer(String string);
+
+  /**
+   * This method will return a layer from the project from an int key.
+   * @param int
+   * @return
+   */
+  public ILayer getLayer(Integer int);
 
   /**
    * This method wil remove an Image from a Layer.

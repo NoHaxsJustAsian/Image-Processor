@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import model.Filters.IFilter;
 import model.Filters.Normal;
@@ -13,23 +15,26 @@ public class ImageProcessorModel implements IImageProcessorModel {
   private int height;
   private int width;
   private int maxValue;
-  private ArrayList<ILayer> layers;
+  private int currentLayer;
+  //private final ILayer background = new Layer("background", null, this.height, this.width);
+  private HashMap<String, ILayer> nameLayers;
+  private List<ILayer> orderLayers;
 
-//  private final ILayer background = new Layer("background", null, this.height, this.width);
-
-//  private HashMap<String, ILayer> layers;
 
 
   /**
    * Represents constructor for this model.
+   * (load existing project)
    * @param height int height.
    * @param width int width.
-   * @param layers arraylist layers.
+   * @param
    */
-  ImageProcessorModel(int height, int width, ArrayList<ILayer> layers) {
+  public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
+                             List<ILayer> orderLayers) {
     this.height = height;
     this.width = width;
-    this.layers = layers;
+    this.nameLayers = nameLayers;
+    this.orderLayers = orderLayers;
   }
 
 
@@ -47,11 +52,12 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * Represents a constructor for this model.
+   * (new project)
    * @param height int height.
    * @param width int width.
    */
-  ImageProcessorModel(int height, int width) {
-    this(height, width, new ArrayList<ILayer>());
+  public ImageProcessorModel(int height, int width) {
+    this(height, width, new HashMap<String,ILayer>(), new HashMap<Integer,ILayer>());
   }
 
 
@@ -91,15 +97,28 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method gets the numbered layer from the image.
+   * This method gets the numbered layer from the image using an int key.
    * @param num int layer number.
    * @return ILayer from image.
    */
   @Override
   public ILayer getLayer(int num) {
-    return this.layers.get(num);
+    return this.orderLayers.get(num);
   }
 
+  /**
+   * This method gets the layer from the image using a String key.
+   * @param string name of layer.
+   * @return ILayer from image.
+   */
+  @Override
+  public ILayer getLayer(String string) {
+    return this.nameLayers.get(string);
+  }
+
+  public int getLayerPosition(ILayer layer) {
+    return this.orderLayers.indexOf(layer);
+  }
 
   /**
    * This method will be used to add a layer to the project, with a filter.
@@ -136,7 +155,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param layer
    */
   public void addImage(int x, int y, IImage image, ILayer layer) {
-    layer.addImage(x, y, image);
+    layer.addImage(image, x, y);
   }
 
   public void removeImage(IImage image, ILayer layer) {
