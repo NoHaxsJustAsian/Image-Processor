@@ -67,7 +67,7 @@ public class ImageUtil {
           filename = args[0];
       }
       else {
-          filename = "tako.ppm";
+          filename = "./tako.ppm";
       }
       
       ImageUtil.readPPM(filename);

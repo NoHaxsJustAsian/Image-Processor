@@ -5,7 +5,7 @@ package model;
  */
 public class AImage implements IImage {
 
-  Pixel[][] content;
+    IPixel[][] content;
   int height;
   int width;
 
@@ -15,7 +15,7 @@ public class AImage implements IImage {
    * @param height int height.
    * @param width int width.
    */
-  AImage(Pixel[][] content, int height,  int width) {
+  AImage(IPixel[][] content, int height,  int width) {
     this.content = content;
     this.height = height;
     this.width = width;

@@ -155,4 +155,3 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
 }
 
-arraylist.map

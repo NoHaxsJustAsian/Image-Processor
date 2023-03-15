@@ -6,6 +6,7 @@ import model.AImage;
 import model.IImage;
 import model.IPixel;
 
+import model.PPMImage;
 import model.Pixel;
 
 /**
@@ -28,6 +29,10 @@ public class RedFilter implements IFilter {
    * @return IImage is original image with filter applied.
    */
   public IImage apply(IImage image) {
+    if (image == ppm) {
+
+    }
+
     IPixel[][] pixels =  image.getPixels();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
@@ -38,6 +43,6 @@ public class RedFilter implements IFilter {
         newPixels[i][j] = new Pixel(color, 0, 0, pixel.getAlpha());
       }
     }
-    return new Image(newPixels, image.getHeight, image.getWidth);
+    return new PPMImage(newPixels, image.getHeight(), image.getWidth());
   }
 }
