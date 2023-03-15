@@ -8,9 +8,9 @@ import model.IImage;
 public class Normal implements IFilter {
 
   /**
-   *
-   * @param image
-   * @return
+   * This applies green filter to Image.
+   * @param image is original image.
+   * @return IImage is original image with filter applied.
    */
   public IImage apply(IImage image) {
     return image;
