@@ -22,12 +22,16 @@ public interface ILayer {
   public void addImage(IImage image,int x, int y);
 
 
-  /**
-   * Removes an image from the layer
-   * @param image to be removed.
-   */
-  public void removeImage(IImage image);
+//  /**
+//   * Removes an image from the layer
+//   * @param image to be removed.
+//   */
+//  public void removeImage(IImage image);
 
+  /**
+   * Sets canvas to all white background.
+   */
+  public void clearLayer();
 
   /**
    * This method returns the canvas from the layer.

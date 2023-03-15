@@ -32,7 +32,6 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   public void addImage(int x, int y, IImage image, ILayer layer);
 
-
   /**
    * This method wil remove an Image from a Layer.
    * @param image IImage being removed.

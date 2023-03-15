@@ -6,6 +6,10 @@ package controller;
 public interface IImageProcessorController {
 
 
+  /**
+   * This method should start a new Program.
+   */
+  void startProcessor();
 
 
 }

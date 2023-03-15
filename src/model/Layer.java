@@ -37,28 +37,19 @@ public class Layer implements ILayer {
    * @param filter to be set
    */
   public void setFilter(IFilter filter) {
-
+    this.filter = filter;
   }
 
-  /**
-   *
-   * @param x offset
-   * @param y offset
-   * @param image to be added.
-   */
-  @Override
-  public void addImage(int x, int y, IImage image) {
 
-  }
-
-  @Override
-  public void removeImage(IImage image) {
-
-  }
+//  /**
+//   * Removes and image from the layer.
+//   * @param image to be removed.
+//   */
+//  public void removeImage(IImage image) {
+//  }
 
   /**
    * Adds an image to the layer.
-   *
    * @param x     offset
    * @param y     offset
    * @param image to be added
@@ -71,6 +62,19 @@ public class Layer implements ILayer {
         if (i + x < this.height && j + y < this.width) {
           this.canvas[i + x][j + y] = image.getPixel(i, j);
         }
+      }
+    }
+  }
+
+
+  /**
+   * Sets canvas to all white background.
+   */
+  public void clearLayer() {
+    this.canvas = new IPixel[height][width];
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        this.canvas[i][j] = new Pixel(255, 255, 255, 255);
       }
     }
   }
