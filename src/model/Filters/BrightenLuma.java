@@ -1,4 +1,4 @@
-package Filters;
+package model.Filters;
 
 import model.AImage;
 import model.IImage;
@@ -6,15 +6,15 @@ import model.IPixel;
 import model.Pixel;
 
 /**
- * Represents the Brighten Intensity filter.
+ * Represents the Brighten Luma filter.
  */
-public class BrightenIntensity implements IFilter {
+public class BrightenLuma implements IFilter {
 
   int red;
   int green;
   int blue;
 
-  public BrightenIntensity(int red, int green, int blue) {
+  public BrightenLuma(int red, int green, int blue) {
     this.red = red;
     this.green = green;
     this.blue = blue;
@@ -28,9 +28,9 @@ public class BrightenIntensity implements IFilter {
     for (int i = 0; i < pixels.length; i++) {
       for (int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
-        int color1 = (pixel.getRed() + pixel.getGreen() + pixel.getBlue())/3 + pixel.getRed();
-        int color2 = (pixel.getRed() + pixel.getGreen() + pixel.getBlue())/3 + pixel.getGreen();
-        int color3 = (pixel.getRed() + pixel.getGreen() + pixel.getBlue())/3 + pixel.getBlue();
+        int color1 = ((pixel.getRed()/100) * pixel.getRed()) + pixel.getRed();
+        int color2 = ((pixel.getGreen()/100) * pixel.getGreen()) + pixel.getGreen();
+        int color3 =  ((pixel.getBlue()/100) * pixel.getBlue()) + pixel.getBlue();
         newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
       }
     }

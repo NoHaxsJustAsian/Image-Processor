@@ -1,8 +1,5 @@
 package model;
 
-import Filters.IFilter;
-import Filters.Normal;
-
 /**
  * Represents a interface for the model.
  */

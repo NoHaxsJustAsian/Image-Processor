@@ -1,6 +1,6 @@
 package model;
 
-import Filters.IFilter;
+import model.Filters.IFilter;
 
 /**
  * Represents a Layer on the Image.
