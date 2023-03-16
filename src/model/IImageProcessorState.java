@@ -6,31 +6,38 @@ package model;
 
 public interface IImageProcessorState {
 
-  /**
-   * This method gets the height of the image.
-Í   * @return int height.
-   */
-  public int getHeight();
 
   /**
-   * This method gets the width of the image.
+   * This method will return the width of the project.
+   * @return int height.
+   */
+  int getHeight();
+
+  /**
+   * This method will return the height of the project.
    * @return int width.
    */
-  public int getWidth();
+  int getWidth();
 
   /**
-   * This method gets the maxValue of the image.
-   * @return int max value.
+   * This method will return the max value of the project.
+   * @return
    */
-  public int getMaxValue();
+  int getMaxValue();
 
   /**
-   * This method gets the numbered layer from the image.
+   * This method will return a layer from the project from a String key.
+   * @param string name of layer.
+   * @return ILayer
+   */
+  ILayer getLayer(String string);
+
+  /**
+   * This method will return a layer from the project from its layer number.
    * @param num int layer number.
-   * @return ILayer from image.
+   * @return ILayer
    */
-  public ILayer getLayer(int num);
-
+  ILayer getLayer(int num);
 
 
 }
