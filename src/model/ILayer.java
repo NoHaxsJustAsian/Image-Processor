@@ -8,6 +8,18 @@ import model.Filters.IFilter;
 public interface ILayer {
 
   /**
+   * Returns the height of the layer.
+   * @return int height.
+   */
+  int getHeight();
+
+  /**
+   * Returns the width of the layer.
+   * @return int width.
+   */
+  int getWidth();
+
+  /**
    * Sets the filter for the layer.
    *
    * @param filter to be set.

@@ -41,6 +41,26 @@ public class Layer implements ILayer {
   }
 
   /**
+   * Returns the height of the layer.
+   *
+   * @return int height.
+   */
+  @Override
+  public int getHeight() {
+    return this.height;
+  }
+
+  /**
+   * Returns the width of the layer.
+   *
+   * @return int width.
+   */
+  @Override
+  public int getWidth() {
+    return this.width;
+  }
+
+  /**
    * Sets the filter for the layer.
    * @param filter to be set
    */

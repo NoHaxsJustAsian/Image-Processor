@@ -4,6 +4,7 @@ import model.AImage;
 import model.IImage;
 import model.IPixel;
 import model.Pixel;
+import model.ILayer;
 
 /**
  * Represents a color filter.
@@ -15,8 +16,8 @@ public class ColorFilter {
   }
 
 
-  public IImage apply(IImage image, String color) {
-    IPixel[][] pixels =  image.getPixels();
+  public IPixel[][] apply(ILayer layer, String color) {
+    IPixel[][] pixels =  layer.getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for(int i = 0; i < pixels.length; i++) {
@@ -38,6 +39,6 @@ public class ColorFilter {
         }
       }
     }
-    return new AImage(newPixels, image.getHeight(), image.getWidth());
+    return newPixels;
   }
 }

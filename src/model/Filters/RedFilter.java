@@ -4,6 +4,7 @@ import java.awt.*;
 
 import model.AImage;
 import model.IImage;
+import model.ILayer;
 import model.IPixel;
 
 import model.Pixel;
@@ -24,11 +25,11 @@ public class RedFilter implements IFilter {
 
   /**
    * This applies blue filter to Image.
-   * @param image is original image.
+   * @param layer is original image.
    * @return IImage is original image with filter applied.
    */
-  public IImage apply(IImage image) {
-    IPixel[][] pixels =  image.getPixels();
+  public IPixel[][] apply(ILayer layer) {
+    IPixel[][] pixels =  layer.getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for(int i = 0; i < pixels.length; i++) {
@@ -38,6 +39,6 @@ public class RedFilter implements IFilter {
         newPixels[i][j] = new Pixel(color, 0, 0, pixel.getAlpha());
       }
     }
-    return new AImage(newPixels, image.getHeight(), image.getWidth());
+    return newPixels;
   }
 }

@@ -1,6 +1,8 @@
 package model.Filters;
 
 import model.IImage;
+import model.ILayer;
+import model.IPixel;
 
 /**
  * Represents an interface for model.Filters.
@@ -10,9 +12,13 @@ public interface IFilter {
 
   /**
    * This applies a filter to Image.
-   * @param image is original image.
-   * @return IImage is original image with filter applied.
+   * @param layer is original image.
+   * @return IPixel is original image with filter applied.
    */
-  public IImage apply(IImage image);
+  public IPixel[][] apply(ILayer layer);
   
 }
+
+
+//when u apply, u are outputting a canvas, which then will replace a layer's canvas, and you
+// will have to change that respective layers filter, to normal.
