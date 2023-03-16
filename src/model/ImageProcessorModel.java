@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   private int height;
   private int width;
   private int maxValue;
-  private int currentLayer;
+  private int currentLayer; //FIXME: figure out if we need this.
   //private final ILayer background = new Layer("background", null, this.height, this.width);
   private HashMap<String, ILayer> nameLayers;
   private List<ILayer> orderLayers;
@@ -27,7 +28,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * (load existing project)
    * @param height int height.
    * @param width int width.
-   * @param
+   * @param nameLayers HashMap of layers with keys as names.
+   * @param orderLayers List of layers.
    */
   public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
                              List<ILayer> orderLayers) {
@@ -57,7 +59,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param width int width.
    */
   public ImageProcessorModel(int height, int width) {
-    this(height, width, new HashMap<String,ILayer>(), new HashMap<Integer,ILayer>());
+    this(height, width, new HashMap<String,ILayer>(), new ArrayList<ILayer>());
   }
 
 
@@ -97,6 +99,20 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
+   * This method gets the layer from the project using a String key.
+   * @param string name of layer.
+   * @return ILayer
+   * @throws IllegalArgumentException if the layer does not exist.
+   */
+  @Override
+  public ILayer getLayer(String string) {
+    if (!this.nameLayers.containsKey(string)) {
+      throw new IllegalArgumentException("The layer does not exist.");
+    }
+    return this.nameLayers.get(string);
+  }
+
+  /**
    * This method gets the numbered layer from the image using an int key.
    * @param num int layer number.
    * @return ILayer from image.
@@ -108,38 +124,50 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the position of a layer in the project given both their layer position.
-   *
-   * @param i
-   * @param j
+   * @param i layer position.
+   * @param j layer position.
    */
   @Override
   public void swapLayers(int i, int j) {
-
+    Collections.swap(this.orderLayers, i, j);
+    //FIXME: check if this is correct or if it needs a -1.
   }
 
   /**
    * This method will return the position of a layer in the project given their names.
-   *
-   * @param a
-   * @param b
+   * @param a name of layer.
+   * @param b name of layer.
+   * @throws IllegalArgumentException if the layers do not exist or if they are already in position.
    */
   @Override
-  public void swapLayers(String a, String b) {
+  public void swapLayers(String a, String b) throws IllegalArgumentException {
+    if (!this.nameLayers.containsKey(a) || !this.nameLayers.containsKey(b)) {
+      throw new IllegalArgumentException("One of the layers does not exist.");
+    }
+    //FIXME: check if this is correct.
+    if(this.getLayerPosition(this.getLayer(a).getName())
+            == this.getLayerPosition(this.getLayer(b).getName())) {
+      throw new IllegalArgumentException("The layers are already in the same position.");
+    }
 
+    Collections.swap(this.orderLayers, this.orderLayers.indexOf(this.getLayer(a)),
+            this.orderLayers.indexOf(this.getLayer(b)));
   }
+
+
 
   /**
-   * This method gets the layer from the image using a String key.
+   * This method will return the position of a layer in the project given its name.
    * @param string name of layer.
-   * @return ILayer from image.
+   * @return int position of layer.
+   * @throws IllegalArgumentException if the layer does not exist.
    */
-  @Override
-  public ILayer getLayer(String string) {
-    return this.nameLayers.get(string);
-  }
+  public int getLayerPosition(String string) throws IllegalArgumentException {
+    if(!this.nameLayers.containsKey(string)) {
+      throw new IllegalArgumentException("The layer does not exist.");
+    }
 
-  public int getLayerPosition(ILayer layer) {
-    return this.orderLayers.indexOf(layer);
+    return this.orderLayers.indexOf(this.getLayer(string));
   }
 
   /**
@@ -155,11 +183,13 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    */
+  //FIXME: idek if we need this shit
   public void newProject(int height, int width) {
     this.height = height;
     this.width = width;
     this.maxValue = 255;
-    this.layers = new ArrayList<ILayer>();
+    this.nameLayers = new HashMap<String, ILayer>();
+    this.orderLayers = new ArrayList<ILayer>();
     this.addLayer("background", new Normal());
   }
 
@@ -167,28 +197,35 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will set a filter to a layer.
    */
   public void setFilter(String name, IFilter filter) {
-
+    this.getLayer(name).setFilter(filter);
   }
 
   /**
    * This method will add an Image to a Layer.
-   * @param x
-   * @param y
-   * @param image
-   * @param layer
+   * @param x int x position.
+   * @param y int y position.
+   * @param image IImage image.
+   * @param layer ILayer layer.
    */
   public void addImage(int x, int y, IImage image, ILayer layer) {
     layer.addImage(image, x, y);
+    //FIXME: check if we need to throw an exception if we place if off the existing grid
   }
 
   public void removeImage(IImage image, ILayer layer) {
     layer.removeImage(image);
   }
 
+  /**
+   * This method will output the image to a file.
+   */
   public void saveImage() {
 
   }
 
+  /**
+   * This method will output the project as its separate components.
+   */
   public void saveProject() {
 
   }
@@ -196,3 +233,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
 }
 
+//to do
+// we gotta make a thing to list all layers in the project
+// gotta add all the exceptions

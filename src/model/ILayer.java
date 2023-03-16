@@ -34,5 +34,9 @@ public interface ILayer {
    */
   public IPixel[][] getCanvas();
 
-
+  /**
+   * Returns the name of the layer.
+   * @return String name.
+   */
+  String getName();
 }
