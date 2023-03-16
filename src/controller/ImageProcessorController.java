@@ -1,34 +1,28 @@
 package controller;
-
-
-/
-import model.ImageProcessorModel;
-
-public class ImageProcessorController implements IImageProcessorController{
-  int width;
-  int height;
-
-  final ImageProcessorModel model = new ImageProcessorModel(height, width);
-
-/
 import java.util.Scanner;
 
 import model.IImageProcessorModel;
+
+import model.ImageProcessorModel;
 import view.IImageProcessorView;
+
 
 /**
  * This class implements the IImageProcessor Controller.
  */
 public class ImageProcessorController implements IImageProcessorController{
 
-  private IImageProcessorModel model;
+  int width;
+  int height;
+
+  ImageProcessorModel model = new ImageProcessorModel(height, width);
 
   private IImageProcessorView view;
 
   private Readable object;
 
 
-  public ImageProcessorController(IImageProcessorModel model, IImageProcessorView view, Readable object) {
+  public ImageProcessorController(ImageProcessorModel model, IImageProcessorView view, Readable object) {
     if (model == null || view == null || object == null) {
       throw new IllegalArgumentException("invalid arguments");
     }
