@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import model.IImageProcessorModel;
 
+import model.ILayer;
 import model.ImageProcessorModel;
 import view.IImageProcessorView;
 
@@ -67,4 +68,14 @@ public class ImageProcessorController implements IImageProcessorController{
         default:
           tryRender("Invalid command entered. Please try again.");
       }
+
+
+      for(ILayer layer: this.model.getLayers()) {
+        if(layer.getName().equals(givenLayerName)){
+          return true;
+        }
+      }
+
+
+
 }
