@@ -61,7 +61,7 @@ public class Layer implements ILayer {
    * @param y     offset
    * @param image to be added
    */
-  public void addImage(IImage image, int x, int y) {
+  public void addImage(IImage image, int x, int y) throws IllegalArgumentException {
     //FIXME: tbh u gotta check if this works but im pretty sure this is how it works.
     //FIXME: add a invalid argument exception if the x and y given are out of bounds unless we dont care about it. Are we allowing partial images?
     for (int i = 0; i < image.getHeight(); i++) {

@@ -183,7 +183,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    */
-  //FIXME: idek if we need this shit
+  //FIXME: idek if we need this
   public void newProject(int height, int width) {
     this.height = height;
     this.width = width;
@@ -207,7 +207,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param image IImage image.
    * @param layer ILayer layer.
    */
-  public void addImage(int x, int y, IImage image, ILayer layer) {
+  public void addImage(int x, int y, IImage image, ILayer layer) throws IllegalArgumentException {
+    if(x > this.width || x < 0 || y > this.height || y < 0) {
+      throw new IllegalArgumentException("invalid arguments");
+    }
     layer.addImage(image, x, y);
     //FIXME: check if we need to throw an exception if we place if off the existing grid
   }
@@ -222,6 +225,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   public void saveImage() {
 
   }
+
 
   /**
    * This method will output the project as its separate components.

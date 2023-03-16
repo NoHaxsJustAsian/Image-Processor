@@ -16,14 +16,16 @@ public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
    * This method will return the position of a layer in the project given their names.
-   * @param a
-   * @param b
+   * @param a name of layer.
+   * @param b name of layer.
    */
   void swapLayers(String a, String b);
 
 
   /**
    * This method will be used to add a layer to the project, with a filter.
+   * @param name name of filter.
+   * @param filter type of filter.
    */
   void addLayer(String name, IFilter filter);
 
@@ -31,6 +33,8 @@ public interface IImageProcessorModel extends IImageProcessorState {
   /**
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
+   * @param height int height.
+   * @param width int width.
    */
   void newProject(int height, int width);
 

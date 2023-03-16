@@ -22,6 +22,8 @@ public class ImageProcessorController implements IImageProcessorController{
   private Readable object;
 
 
+
+
   public ImageProcessorController(ImageProcessorModel model, IImageProcessorView view, Readable object) {
     if (model == null || view == null || object == null) {
       throw new IllegalArgumentException("invalid arguments");
@@ -32,7 +34,9 @@ public class ImageProcessorController implements IImageProcessorController{
   }
 
 
-  @Override
+  /**
+   * This method should start a new Program.
+   */
   public void startProcessor() {
     Scanner s = new Scanner(this.object);
 
