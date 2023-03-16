@@ -8,7 +8,7 @@ public interface IImageProcessorState {
 
   /**
    * This method gets the height of the image.
-   * @return int height.
+Í   * @return int height.
    */
   public int getHeight();
 

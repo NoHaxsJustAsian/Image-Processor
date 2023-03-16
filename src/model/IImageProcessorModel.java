@@ -8,20 +8,68 @@ import model.Filters.IFilter;
 public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
+   * This method will return the width of the project.
+   * @return int height.
+   */
+  int getHeight();
+
+  /**
+   * This method will return the height of the project.
+   * @return int width.
+   */
+  int getWidth();
+
+  /**
+   * This method will return the max value of the project.
+   * @return
+   */
+  int getMaxValue();
+
+  /**
+   * This method will return a layer from the project from a String key.
+   * @param string name of layer.
+   * @return ILayer
+   */
+  ILayer getLayer(String string);
+
+  /**
+   * This method will return a layer from the project from its layer number.
+   * @param num int layer number.
+   * @return ILayer
+   */
+  ILayer getLayer(int num);
+
+  /**
+   * This method will return the position of a layer in the project given both their layer position.
+   * @param i layer position.
+   * @param j layer position.
+   */
+  void swapLayers(int i, int j);
+
+  /**
+   * This method will return the position of a layer in the project given their names.
+   * @param a
+   * @param b
+   */
+  void swapLayers(String a, String b);
+
+
+  /**
    * This method will be used to add a layer to the project, with a filter.
    */
-  public void addLayer(String name, IFilter filter);
+  void addLayer(String name, IFilter filter);
+
 
   /**
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    */
-  public void newProject(int height, int width);
+  void newProject(int height, int width);
 
   /**
    * This method will set a filter to a layer.
    */
-  public void setFilter(String name, IFilter filter);
+  void setFilter(String name, IFilter filter);
 
   /**
    * This method will add an Image to a Layer.
@@ -30,19 +78,24 @@ public interface IImageProcessorModel extends IImageProcessorState {
    * @param image IImage being added.
    * @param layer Layer image being is added to.
    */
-  public void addImage(int x, int y, IImage image, ILayer layer);
+  void addImage(int x, int y, IImage image, ILayer layer);
 
   /**
    * This method wil remove an Image from a Layer.
    * @param image IImage being removed.
    * @param layer Layer image being is removed from.
    */
-  public void removeImage(IImage image, ILayer layer);
+  void removeImage(IImage image, ILayer layer);
 
+  /**
+   * This method will output the project as a file.
+   */
+  void saveImage();
 
-  public void saveImage();
-
-  public void saveProject();
+  /**
+   * This method will output the project as its separate components.
+   */
+  void saveProject();
 
 
 }

@@ -15,7 +15,7 @@ public class Pixel implements IPixel {
    * @param green pixel value
    * @param blue pixel value
    * @param alpha value
-   * @throws IllegalArgumentException
+   * @throws IllegalArgumentException if any of the values are out of range.
    */
   public Pixel(int red, int green, int blue, int alpha) throws IllegalArgumentException {
     if (red > 255 || red < 0) {

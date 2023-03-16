@@ -33,6 +33,14 @@ public class Layer implements ILayer {
   }
 
   /**
+   * Returns the name of the layer.
+   * @return name of the layer as a string
+   */
+  public String getName() {
+    return this.name;
+  }
+
+  /**
    * Sets the filter for the layer.
    * @param filter to be set
    */
@@ -41,12 +49,11 @@ public class Layer implements ILayer {
   }
 
 
-//  /**
-//   * Removes and image from the layer.
-//   * @param image to be removed.
-//   */
-//  public void removeImage(IImage image) {
-//  }
+  //maybe change to clear canvas?
+  @Override
+  public void removeImage(IImage image) {
+
+  }
 
   /**
    * Adds an image to the layer.
@@ -99,5 +106,7 @@ public class Layer implements ILayer {
 // the image's arraylist, and then apply the offsets to add to the arraylist index, to apply the shift.
 //make method that applies filter.
 
+
+//FIXME: we gotta add everything to the interface.
 
 

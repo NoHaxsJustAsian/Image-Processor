@@ -1,5 +1,16 @@
 package controller;
 
+
+/
+import model.ImageProcessorModel;
+
+public class ImageProcessorController implements IImageProcessorController{
+  int width;
+  int height;
+
+  final ImageProcessorModel model = new ImageProcessorModel(height, width);
+
+/
 import java.util.Scanner;
 
 import model.IImageProcessorModel;
