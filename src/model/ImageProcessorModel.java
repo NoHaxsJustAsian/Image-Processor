@@ -123,6 +123,15 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
+   * This method will return all the layers from the project.
+   * @return list of Layers.
+   */
+  @Override
+  public List<ILayer> getLayers() {
+    return this.orderLayers;
+  }
+
+  /**
    * This method will return the position of a layer in the project given both their layer position.
    * @param i layer position.
    * @param j layer position.
@@ -215,15 +224,20 @@ public class ImageProcessorModel implements IImageProcessorModel {
     //FIXME: check if we need to throw an exception if we place if off the existing grid
   }
 
-  public void removeImage(IImage image, ILayer layer) {
-    layer.removeImage(image);
-  }
+//  @Override
+//  public void removeImage(IImage image, ILayer layer) {
+//
+//  }
+
+//  public void removeImage(IImage image, ILayer layer) {
+//    layer.removeImage(image);
+//  }
 
   /**
    * This method will output the image to a file.
    */
   public void saveImage() {
-
+    for()
   }
 
 
@@ -231,6 +245,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will output the project as its separate components.
    */
   public void saveProject() {
+    for(ILayer layer : this.)
 
   }
 

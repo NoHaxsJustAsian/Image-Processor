@@ -27,7 +27,7 @@ public class Layer implements ILayer {
     //creates a blank image for each layer
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        this.canvas[i][j] = new Pixel(255, 255, 255, 255);
+        this.canvas[i][j] = new Pixel(255, 255, 255, 0);
       }
     }
   }

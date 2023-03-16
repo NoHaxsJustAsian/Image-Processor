@@ -1,5 +1,8 @@
 package model;
 
+
+import java.util.List;
+
 /**
  * Represents a interface for the model.
  */
@@ -21,7 +24,7 @@ public interface IImageProcessorState {
 
   /**
    * This method will return the max value of the project.
-   * @return
+   * @return int max value.
    */
   int getMaxValue();
 
@@ -38,6 +41,12 @@ public interface IImageProcessorState {
    * @return ILayer
    */
   ILayer getLayer(int num);
+
+  /**
+   * This method will return all the layers from the project.
+   * @return list of Layers.
+   */
+  List<ILayer> getLayers();
 
 
 }

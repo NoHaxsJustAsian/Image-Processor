@@ -1,5 +1,4 @@
 package controller;
-import java.io.IOException;
 import java.util.Scanner;
 
 import model.IImageProcessorModel;
@@ -18,9 +17,11 @@ public class ImageProcessorController implements IImageProcessorController {
 
   ImageProcessorModel model = new ImageProcessorModel(height, width);
 
-  private IImageProcessorView view =;
+  private IImageProcessorView view;
 
   private Readable object;
+
+
 
 
   public ImageProcessorController(ImageProcessorModel model, IImageProcessorView view, Readable object) {
@@ -41,24 +42,6 @@ public class ImageProcessorController implements IImageProcessorController {
 
   }
 
-  /**
-   * Trys to render a message with the view.
-   *
-   * @param message message to render
-   */
-  private void tryRender(String message) {
-    try {
-      this.view.renderMessage(message + "\n");
-    } catch (IOException e) {
-      System.out.println("Can't render!");
-    }
-  }
-
-  /**
-   * This method should read the command from the user.
-   *
-   * @param scan the scanner object
-   */
   private void readCommand(Scanner scan) {
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
@@ -84,6 +67,4 @@ public class ImageProcessorController implements IImageProcessorController {
         default:
           tryRender("Invalid command entered. Please try again.");
       }
-    }
-  }
 }
