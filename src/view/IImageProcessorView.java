@@ -9,5 +9,5 @@ public interface IImageProcessorView {
    * Produces a textual view of an image to be read from.
    * @return String
    */
-  String toString();
+  String renderMessage();
 }

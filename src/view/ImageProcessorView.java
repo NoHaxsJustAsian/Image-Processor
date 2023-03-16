@@ -1,4 +1,10 @@
 package view;
 
-public class ImageProcessorView {
+import java.awt.*;
+
+public class ImageProcessorView implements IImageProcessorView {
+  @Override
+  public String renderMessage() {
+    return null;
+  }
 }
