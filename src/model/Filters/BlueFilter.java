@@ -37,4 +37,5 @@ public class BlueFilter implements IFilter {
     }
     return newPixels;
   }
+
 }

@@ -39,4 +39,12 @@ public class GreenFilter implements IFilter {
     }
     return newPixels;
   }
+
+  /**
+   * Gets the name of the filter.
+   * @return string name of the filter.
+   */
+  public String getName() {
+    return "green";
+  }
 }

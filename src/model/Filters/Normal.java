@@ -18,4 +18,12 @@ public class Normal implements IFilter {
   public IPixel[][] apply(ILayer layer) {
     return layer.getCanvas();
   }
+
+  /**
+   * Gets the name of the filter.
+   * @return string name of the filter.
+   */
+  public String getName() {
+    return "normal";
+  }
 }

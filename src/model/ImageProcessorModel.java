@@ -1,5 +1,7 @@
 package model;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -224,10 +226,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     //FIXME: check if we need to throw an exception if we place if off the existing grid
   }
 
-//  @Override
-//  public void removeImage(IImage image, ILayer layer) {
-//
-//  }
 
 //  public void removeImage(IImage image, ILayer layer) {
 //    layer.removeImage(image);
@@ -237,7 +235,30 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will output the image to a file.
    */
   public void saveImage() {
-    for()
+
+    FileWriter writer = null;
+
+    try {
+      //If no full path is given, Java assumes the file
+      //is relative to wherever the program is run.
+      //IntelliJ runs all programs from their project folder
+      writer = new FileWriter("hello.txt");
+    } catch (IOException ex) {
+      //you can handle opening the file differently
+      //from failing to write to it
+      System.err.println(ex.getMessage());
+    }
+
+    if(writer != null) {
+      try {
+        writer.write("Hello!");
+        writer.close();
+      } catch (IOException ex) {
+        //handle the transmission failure
+      }
+    }
+
+
   }
 
 
@@ -245,7 +266,14 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will output the project as its separate components.
    */
   public void saveProject() {
-    for(ILayer layer : this.)
+
+
+  }
+
+  /**
+   * This method will load the project file.
+   */
+  public void loadProject() {
 
   }
 

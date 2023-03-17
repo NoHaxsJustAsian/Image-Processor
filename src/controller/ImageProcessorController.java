@@ -22,8 +22,12 @@ public class ImageProcessorController implements IImageProcessorController {
   private Readable object;
 
 
-
-
+  /**
+   * Represents a controller that reads and execute commands.
+   * @param model ImageProcessor model.
+   * @param view ImageProcessor view.
+   * @param object Readable object.
+   */
   public ImageProcessorController(ImageProcessorModel model, IImageProcessorView view, Readable object) {
     if (model == null || view == null || object == null) {
       throw new IllegalArgumentException("invalid arguments");
