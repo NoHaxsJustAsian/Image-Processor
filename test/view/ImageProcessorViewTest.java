@@ -14,13 +14,14 @@ import static org.junit.Assert.*;
  */
 public class ImageProcessorViewTest {
 
-  private ImageProcessorModel;
+  ImageProcessorModel model;
 
+  ImageProcessorView view;
   private StringBuilder sb; //acts as an Appendable
 
   @Before
   public void setupModelAndView() {
-    model = new ImageProcessorModel();
+    model = new ImageProcessorModel(200, 200);
     sb = new StringBuilder();
     view =  new ImageProcessorView(model, sb);
   }
@@ -28,7 +29,7 @@ public class ImageProcessorViewTest {
 
   @Test
   public void testRenderMessage() {
-    model.startGameWithDeck(deck, 3, 3);
+
     try {
       view.renderMessage("message");
     } catch (IOException e) {
@@ -36,6 +37,5 @@ public class ImageProcessorViewTest {
     }
     assertEquals("message" + "\n", sb.toString());
 
-  }
   }
 }

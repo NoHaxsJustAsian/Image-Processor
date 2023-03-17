@@ -129,7 +129,8 @@ public class ImageProcessorModelTest {
 
   @Test
   public void getHeight() {
-    model()
+    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    assertEquals(200, model.getHeight());
   }
 
   @Test
