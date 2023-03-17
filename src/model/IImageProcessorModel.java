@@ -72,7 +72,7 @@ public interface IImageProcessorModel extends IImageProcessorState {
   /**
    * This method will load the project file.
    */
-  void loadProject();
+  void loadProject(String FilePath);
 
 
 
