@@ -1,5 +1,10 @@
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -234,20 +239,42 @@ public class ImageProcessorModel implements IImageProcessorModel {
 //  }
 
   /**
-   * This method will output the image to a file.
+   * This method will output all the layers of image to a file.
    */
-  public void saveImage() {
-    for()
+  public void saveImage(String filePath) {
+
   }
 
 
   /**
    * This method will output the project as its separate components.
    */
-  public void saveProject() {
-    for(ILayer layer : this.)
-
+  public void saveProject(String filePath) {
+    PrintWriter writer = null;
+    try {
+      writer = new PrintWriter(new File(filePath));
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+    writer.println("P3");
+      writer.println(getWidth() + " " + getHeight());
+      writer.println(getMaxValue());
+      for(int x = 0; x < orderLayers.size(); x++){
+        writer.println(orderLayers.get(x).getName()
+                + " "
+                + orderLayers.get(x).getFilter().getName()))
+        for (int i = 0; i < getHeight(); i++) {
+          for (int j = 0; j < getWidth(); j++) {
+            writer.println(orderLayers.get(x).getPixel(i, j).getRed()
+                    + " " + orderLayers.get(x).getPixel(i, j).getGreen()
+                    + " " + orderLayers.get(x).getPixel(i, j).getBlue());
+          }
+        }
+      }
+      writer.close();
+    }
   }
+
 
 
 }

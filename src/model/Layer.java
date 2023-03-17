@@ -41,6 +41,28 @@ public class Layer implements ILayer {
   }
 
   /**
+   * Returns a pixel given an x and a y.
+   *
+   * @param x
+   * @param y
+   * @return
+   */
+  @Override
+  public IPixel getPixel(int x, int y) {
+    return this.canvas[x][y];
+  }
+
+  /**
+   * Returns the filter of the layer.
+   *
+   * @return IFilter filter.
+   */
+  @Override
+  public IFilter getFilter() {
+    return this.filter;
+  }
+
+  /**
    * Returns the height of the layer.
    *
    * @return int height.

@@ -59,4 +59,18 @@ public interface ILayer {
    * @return String name.
    */
   String getName();
+
+  /**
+   * Returns a pixel given an x and a y.
+   * @param x
+   * @param y
+   * @return
+   */
+  IPixel getPixel(int x, int y);
+
+  /**
+   * Returns the filter of the layer.
+   * @return IFilter filter.
+   */
+  IFilter getFilter();
 }
