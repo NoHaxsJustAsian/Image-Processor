@@ -106,8 +106,8 @@ public class Layer implements ILayer {
     if(x < 0 || y < 0 || image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
       throw new IllegalArgumentException("invalid bounds for image");
     }
-    for (int i = 0; i < image.getHeight(); i++) {
-      for (int j = 0; j < image.getWidth(); j++) {
+    for (int i = 0; i < image.getHeight() - 1; i++) {
+      for (int j = 0; j < image.getWidth() - 1; j++) {
         if (i + x < this.height && j + y < this.width) {
           this.canvas[i + x][j + y] = image.getPixel(i, j);
         }
