@@ -4,13 +4,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import model.Filters.BlueFilter;
 import model.Filters.BrightenIntensity;
 import model.Filters.BrightenLuma;
 import model.Filters.BrightenValue;
+import model.Filters.DarkenIntensity;
+import model.Filters.DarkenLuma;
+import model.Filters.DarkenValue;
+import model.Filters.GreenFilter;
+import model.Filters.Normal;
+import model.Filters.RedFilter;
 import model.IImageProcessorModel;
 
 import model.ImageProcessorModel;
 import view.IImageProcessorView;
+import view.ImageProcessorView;
 
 
 /**
@@ -21,7 +29,7 @@ public class ImageProcessorController implements IImageProcessorController {
   int width;
   int height;
 
-  ImageProcessorModel model = new ImageProcessorModel(height, width);
+  ImageProcessorModel model;
 
   private IImageProcessorView view;
 
@@ -35,7 +43,8 @@ public class ImageProcessorController implements IImageProcessorController {
    * @param view   ImageProcessor view.
    * @param object Readable object.
    */
-  public ImageProcessorController(ImageProcessorModel model, IImageProcessorView view, Readable object) {
+  public ImageProcessorController(ImageProcessorModel model,
+                                  IImageProcessorView view, Readable object) {
     if (model == null || view == null || object == null) {
       throw new IllegalArgumentException("invalid arguments");
     }
@@ -48,10 +57,19 @@ public class ImageProcessorController implements IImageProcessorController {
   /**
    * This method should start a new Program.
    */
-//  public void startProcessor() {
-//    Scanner s = new Scanner(this.object);
-//
-//  }
+  public void startProcessor() {
+    Scanner s = new Scanner(this.object);
+    readCommand(s);
+  }
+
+  private void tryRender(String message) {
+    try {
+      this.view.renderMessage(message);
+    } catch (IOException e) {
+      System.out.println("Error rendering");
+    }
+  }
+
   private void readCommand(Scanner scan) {
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
@@ -62,6 +80,9 @@ public class ImageProcessorController implements IImageProcessorController {
         case "save":
           this.model.saveProject(scan.next()); //FIXME: all these need catch blocks for the exceptions.
           break;
+        case "blue":
+          this.model.setFilter(scan.next(), new BlueFilter());
+          break;
         case "brighten-luma":
           this.model.setFilter(scan.next(), new BrightenLuma());
           break;
@@ -71,8 +92,23 @@ public class ImageProcessorController implements IImageProcessorController {
         case "brighten-value":
           this.model.setFilter(scan.next(), new BrightenValue());
           break;
-        case "-file":
-          readCommand(fileToScanner(scan.next()));
+        case "darken-luma":
+          this.model.setFilter(scan.next(), new DarkenLuma());
+          break;
+        case "darken-intensity":
+          this.model.setFilter(scan.next(), new DarkenIntensity());
+          break;
+        case "darken-value":
+          this.model.setFilter(scan.next(), new DarkenValue());
+          break;
+        case "green":
+          this.model.setFilter(scan.next(), new GreenFilter());
+          break;
+        case "normal":
+          this.model.setFilter(scan.next(), new Normal());
+          break;
+        case "red":
+          this.model.setFilter(scan.next(), new RedFilter());
           break;
         default:
           tryRender("Invalid command entered. Please try again.");
@@ -103,4 +139,6 @@ public class ImageProcessorController implements IImageProcessorController {
     }
 
   }
+
+
 }
