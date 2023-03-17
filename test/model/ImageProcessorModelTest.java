@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.Filters.BlueFilter;
+import model.Filters.BrightenLuma;
 import model.Filters.DarkenLuma;
 import model.Filters.GreenFilter;
 import model.Filters.IFilter;
@@ -26,6 +27,8 @@ public class ImageProcessorModelTest {
   IFilter normal = new Normal();
   IFilter redFilter = new RedFilter();
   IFilter darkenLuma = new DarkenLuma();
+
+  IFilter brightenLuma = new BrightenLuma();
 
 
 
@@ -120,13 +123,13 @@ public class ImageProcessorModelTest {
     ILayer first = new Layer("brighten", brightenLuma, 200, 200);
     first.addImage(image, 0,0);
 
-    assertEquals(image.getPixel(0,1), new Pixel(50,0,0, 255));
+    assertEquals(image.getPixel(0,1), new Pixel(100,0,0, 255));
   }
 
 
   @Test
   public void getHeight() {
-    model.
+    model()
   }
 
   @Test
