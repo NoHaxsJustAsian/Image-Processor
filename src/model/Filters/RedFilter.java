@@ -19,7 +19,7 @@ public class RedFilter implements IFilter {
     this.name = "redFilter";
   }
   /**
-   * This applies blue filter to Image.
+   * This applies red filter to Image.
    * @param layer is original image.
    * @return IImage is original image with filter applied.
    */

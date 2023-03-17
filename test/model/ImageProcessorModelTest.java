@@ -107,7 +107,7 @@ public class ImageProcessorModelTest {
 
 
   @Test
-  public void testRedFilter() {
+  public void testBrightenLuma() {
     Pixel[][] pixels;
     PPMImage image;
     pixels = new Pixel[2][2];
@@ -117,7 +117,7 @@ public class ImageProcessorModelTest {
     pixels[1][1] = new Pixel(50, 50, 50, 255);
     image = new PPMImage(pixels, 50, 50);
 
-    ILayer first = new Layer("red", redFilter, 200, 200);
+    ILayer first = new Layer("brighten", brightenLuma, 200, 200);
     first.addImage(image, 0,0);
 
     assertEquals(image.getPixel(0,1), new Pixel(50,0,0, 255));
