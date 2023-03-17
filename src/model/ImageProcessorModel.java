@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -232,14 +233,42 @@ public class ImageProcessorModel implements IImageProcessorModel {
 //  }
 
   /**
-   *  This method will create one image from all the layers.
+   *  This method will create one image from all the layers for PPM.
    */
   public void saveImage(String filePath) {
-    if(filePath.equals("./tako.ppm")) {
-
+    IPixel[][] finalPixels = new IPixel[getHeight()][getWidth()];
+    for(int x = 0; x < orderLayers.size(); x++) {
+      for (int i = 0; i < getHeight(); i++) {
+        for (int j = 0; j < getWidth(); j++) {
+          finalPixels[i][j] = orderLayers.get(x).getPixel(i, j);
+        }
+      }
     }
 
-
+    PrintWriter writer = null;
+    try {
+      writer = new PrintWriter(new File(filePath)); //FIXME: fix PrintWriter
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+    for (int i = 0; i < getHeight(); i++) {
+      for (int j = 0; j < getWidth(); j++) {
+        writer.println(finalPixels[i][j].getRed()
+                + " " + finalPixels[i][j].getGreen()
+                + " " + finalPixels[i][j].getBlue());
+      }
+    }
+    writer.close();
+    /*
+    //FIXME: separate if needed into seperate method
+    BufferedImage finalImage = new BufferedImage(getWidth(), getHeight(),
+            BufferedImage.TYPE_INT_RGB);
+    for (int ii = 0; ii < getHeight(); ii++) {
+      for (int jj = 0; jj < getWidth(); jj++) {
+        finalImage.setRGB(jj, ii, finalPixels[ii][jj].getRed());
+      }
+    }
+    */
   }
 
 
@@ -253,7 +282,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    writer.println("P3");
+    writer.println("P3"); //FIXME: figureout what this is and how to read a project file
     writer.println(getWidth() + " " + getHeight());
     writer.println(getMaxValue());
     for(int x = 0; x < orderLayers.size(); x++){
