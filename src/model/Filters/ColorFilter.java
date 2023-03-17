@@ -14,7 +14,7 @@ public class ColorFilter {
 
   public ColorFilter(IImage image) {
   }
-
+  //FIXME: Is this complete?
 
   public IPixel[][] apply(ILayer layer, String color) {
     IPixel[][] pixels =  layer.getCanvas();

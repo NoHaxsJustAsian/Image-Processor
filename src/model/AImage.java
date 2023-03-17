@@ -27,6 +27,7 @@ public class AImage implements IImage {
   @Override
   public IPixel[][] getPixels() {
     return new IPixel[0][];
+    //FIXME: Not sure if this is implemented correctly
   }
 
   /**

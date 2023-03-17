@@ -36,22 +36,23 @@ public interface ILayer {
   void addImage(IImage image, int x, int y);
 
 
-  /**
-   * Removes an image from the layer
-   *
-   * @param image to be removed.
-   */
-  void removeImage(IImage image);
+//  /**
+//   * Removes an image from the layer
+//   *
+//   * @param image to be removed.
+//   */
+//  void removeImage(IImage image);
 
   /**
    * Sets canvas to all white background.
    */
-  public void clearLayer();
+  public void firstLayer();
 
   /**
    * This method returns the canvas from the layer.
+   * @return 2D array of pixels.
    */
-  IPixel[][] getCanvas();
+  public IPixel[][] getCanvas();
 
   /**
    * Returns the name of the layer.
@@ -62,8 +63,8 @@ public interface ILayer {
 
   /**
    * Returns a pixel given an x and a y.
-   * @param x
-   * @param y
+   * @param x int x coord.
+   * @param y int y coord.
    * @return
    */
   IPixel getPixel(int x, int y);

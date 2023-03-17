@@ -21,8 +21,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
   private int height;
   private int width;
   private int maxValue;
-  private int currentLayer; //FIXME: figure out if we need this.
-  //private final ILayer background = new Layer("background", null, this.height, this.width);
   private HashMap<String, ILayer> nameLayers;
   private List<ILayer> orderLayers;
 
@@ -229,19 +227,17 @@ public class ImageProcessorModel implements IImageProcessorModel {
     //FIXME: check if we need to throw an exception if we place if off the existing grid
   }
 
-//  @Override
-//  public void removeImage(IImage image, ILayer layer) {
-//
-//  }
 
 //  public void removeImage(IImage image, ILayer layer) {
 //    layer.removeImage(image);
 //  }
 
   /**
-   * This method will output all the layers of image to a file.
+   *  This method will create one image from all the layers.
    */
   public void saveImage(String filePath) {
+
+
 
   }
 
@@ -262,7 +258,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     for(int x = 0; x < orderLayers.size(); x++){
       writer.println(orderLayers.get(x).getName()
               + " "
-              + orderLayers.get(x).getFilter().getName()))
+              + orderLayers.get(x).getFilter().getName());
       for (int i = 0; i < getHeight(); i++) {
         for (int j = 0; j < getWidth(); j++) {
           writer.println(orderLayers.get(x).getPixel(i, j).getRed()
@@ -279,6 +275,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    */
   @Override
   public void loadProject() {
+
 
   }
 }

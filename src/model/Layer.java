@@ -24,7 +24,7 @@ public class Layer implements ILayer {
     this.height = height;
     this.width = width;
     this.canvas = new IPixel[height][width];
-    //creates a blank image for each layer
+    //creates a blank background for each layer, all white and fully transparent
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         this.canvas[i][j] = new Pixel(255, 255, 255, 0);
@@ -43,9 +43,9 @@ public class Layer implements ILayer {
   /**
    * Returns a pixel given an x and a y.
    *
-   * @param x
-   * @param y
-   * @return
+   * @param x int x coord.
+   * @param y int y coord.
+   * @return IPixel.
    */
   @Override
   public IPixel getPixel(int x, int y) {
@@ -54,7 +54,6 @@ public class Layer implements ILayer {
 
   /**
    * Returns the filter of the layer.
-   *
    * @return IFilter filter.
    */
   @Override
@@ -64,7 +63,6 @@ public class Layer implements ILayer {
 
   /**
    * Returns the height of the layer.
-   *
    * @return int height.
    */
   @Override
@@ -74,7 +72,6 @@ public class Layer implements ILayer {
 
   /**
    * Returns the width of the layer.
-   *
    * @return int width.
    */
   @Override
@@ -91,21 +88,24 @@ public class Layer implements ILayer {
   }
 
 
-  //maybe change to clear canvas?
-  @Override
-  public void removeImage(IImage image) {
-
-  }
+//  //maybe change to clear canvas?
+//  @Override
+//  public void removeImage(IImage image) {
+//  }
 
   /**
    * Adds an image to the layer.
-   * @param x     offset
-   * @param y     offset
-   * @param image to be added
+   * @param x int offset.
+   * @param y int offset.
+   * @param image to be added.
    */
   public void addImage(IImage image, int x, int y) throws IllegalArgumentException {
     //FIXME: tbh u gotta check if this works but im pretty sure this is how it works.
     //FIXME: add a invalid argument exception if the x and y given are out of bounds unless we dont care about it. Are we allowing partial images?
+    //lets not allow it for now because they didn't specify in assignment
+    if(x < 0 || y < 0 || image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
+      throw new IllegalArgumentException("invalid bounds for image");
+    }
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
         if (i + x < this.height && j + y < this.width) {
@@ -119,11 +119,11 @@ public class Layer implements ILayer {
   /**
    * Sets canvas to all white transparent background.
    */
-  public void clearLayer() {
+  public void firstLayer() {
     this.canvas = new IPixel[height][width];
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        this.canvas[i][j] = new Pixel(255, 255, 255, 0);
+        this.canvas[i][j] = new Pixel(255, 255, 255, 255);
       }
     }
   }
@@ -149,6 +149,6 @@ public class Layer implements ILayer {
 //make method that applies filter.
 
 
-//FIXME: we gotta add everything to the interface.
+
 
 

@@ -1,4 +1,6 @@
 package controller;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import model.IImageProcessorModel;
@@ -41,10 +43,10 @@ public class ImageProcessorController implements IImageProcessorController {
   /**
    * This method should start a new Program.
    */
-  public void startProcessor() {
-    Scanner s = new Scanner(this.object);
-
-  }
+//  public void startProcessor() {
+//    Scanner s = new Scanner(this.object);
+//
+//  }
 
   private void readCommand(Scanner scan) {
     String command = scan.next();
@@ -71,4 +73,30 @@ public class ImageProcessorController implements IImageProcessorController {
         default:
           tryRender("Invalid command entered. Please try again.");
       }
+
+
+    }
+
+    FileWriter writer = null;
+    try {
+      //If no full path is given, Java assumes the file
+      //is relative to wherever the program is run.
+      //IntelliJ runs all programs from their project folder
+      writer = new FileWriter("hello.txt");
+    } catch (IOException ex) {
+      //you can handle opening the file differently
+      //from failing to write to it
+      System.err.println(ex.getMessage());
+    }
+
+    if(writer != null) {
+      try {
+        writer.write("Hello!");
+        writer.close();
+      } catch (IOException ex) {
+        //handle the transmission failure
+      }
+    }
+
+    }
 }

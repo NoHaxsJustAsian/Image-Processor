@@ -60,7 +60,7 @@ public interface IImageProcessorModel extends IImageProcessorState {
 //  void removeImage(IImage image, ILayer layer);
 
   /**
-   * This method will output the project as a file.
+   * This method will create one image from all the layers.
    */
   void saveImage(String filePath);
 
