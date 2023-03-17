@@ -13,16 +13,11 @@ import model.Pixel;
  * Represents a blue filter.
  */
 public class RedFilter implements IFilter {
-  int red;
+  String name;
 
-  /**
-   * Represents constructor for BlueFilter.
-   * @param red is the int value of the blue component.
-   */
-  public RedFilter(int red) {
-    this.red = red;
+  public RedFilter() {
+    this.name = "redFilter";
   }
-
   /**
    * This applies blue filter to Image.
    * @param layer is original image.
@@ -47,6 +42,6 @@ public class RedFilter implements IFilter {
    * @return string name of the filter.
    */
   public String getName() {
-    return "red";
+    return this.name;
   }
 }

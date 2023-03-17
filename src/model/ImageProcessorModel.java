@@ -236,7 +236,9 @@ public class ImageProcessorModel implements IImageProcessorModel {
    *  This method will create one image from all the layers.
    */
   public void saveImage(String filePath) {
+    if(filePath.equals("./tako.ppm")) {
 
+    }
 
 
   }

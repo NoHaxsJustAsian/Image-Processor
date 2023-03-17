@@ -12,15 +12,8 @@ import model.Pixel;
 public class DarkenLuma implements IFilter {
 
   String name;
-  //FIXME: would this be easier to retrieve the name of a filter??
-  int red;
-  int green;
-  int blue;
 
-  public DarkenLuma(int red, int green, int blue) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
+  public DarkenLuma() {
     this.name = "darkenLuma";
   }
 

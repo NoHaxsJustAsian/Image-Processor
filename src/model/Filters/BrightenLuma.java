@@ -11,15 +11,12 @@ import model.Pixel;
  */
 public class BrightenLuma implements IFilter {
 
-  int red;
-  int green;
-  int blue;
+  String name;
 
-  public BrightenLuma(int red, int green, int blue) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
+  public BrightenLuma() {
+    this.name = "brightenLuma";
   }
+
 
   @Override
   public IPixel[][] apply(ILayer layer) {
@@ -43,7 +40,7 @@ public class BrightenLuma implements IFilter {
    * @return string name of the filter.
    */
   public String getName() {
-    return "brighten luma";
+    return this.name;
   }
 }
 

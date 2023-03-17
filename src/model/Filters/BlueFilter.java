@@ -10,12 +10,10 @@ import model.Pixel;
  * Represents a blue filter.
  */
 public class BlueFilter implements IFilter {
-  int blue;
+  String name;
 
-  /**
-   * Represents constructor for BlueFilter.
-   */
   public BlueFilter() {
+    this.name = "blueFilter";
   }
 
   /**
@@ -43,7 +41,7 @@ public class BlueFilter implements IFilter {
    * @return string name of the filter.
    */
   public String getName() {
-    return "blue";
+    return this.name;
   }
 
 }

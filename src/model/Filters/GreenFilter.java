@@ -11,14 +11,10 @@ import model.Pixel;
  * Represents a green filter.
  */
 public class GreenFilter implements IFilter {
-  int green;
+  String name;
 
-  /**
-   * Represents constructor for GreenFilter.
-   * @param green is the int value of the green component.
-   */
-  public GreenFilter(int green) {
-    this.green = green;
+  public GreenFilter() {
+    this.name = "greenFilter";
   }
 
   /**
@@ -45,6 +41,6 @@ public class GreenFilter implements IFilter {
    * @return string name of the filter.
    */
   public String getName() {
-    return "green";
+    return this.name;
   }
 }

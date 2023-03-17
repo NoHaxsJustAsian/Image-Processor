@@ -11,14 +11,10 @@ import model.Pixel;
  */
 public class DarkenValue implements IFilter {
 
-  int red;
-  int green;
-  int blue;
+  String name;
 
-  public DarkenValue(int red, int green, int blue) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
+  public DarkenValue() {
+    this.name = "darkenValue";
   }
 
   @Override
@@ -55,7 +51,7 @@ public class DarkenValue implements IFilter {
    * @return string name of the filter.
    */
   public String getName() {
-    return "darken value";
+    return this.name;
   }
 }
 

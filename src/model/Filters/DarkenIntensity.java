@@ -11,15 +11,12 @@ import model.Pixel;
  */
 public class DarkenIntensity implements IFilter {
 
-  int red;
-  int green;
-  int blue;
+  String name;
 
-  public DarkenIntensity(int red, int green, int blue) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
+  public DarkenIntensity() {
+    this.name = "darkenIntensity";
   }
+
 
   @Override
   public IPixel[][] apply(ILayer layer) {
@@ -43,7 +40,7 @@ public class DarkenIntensity implements IFilter {
    * @return string name of the filter.
    */
   public String getName() {
-    return "darken intensity";
+    return this.name;
   }
 }
 

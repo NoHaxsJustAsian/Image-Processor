@@ -9,6 +9,11 @@ import model.Pixel;
  * Represents a filter with no effect. This is the default filter.
  */
 public class Normal implements IFilter {
+  String name;
+
+  public Normal() {
+    this.name = "normal";
+  }
 
   /**
    * This applies no filter to Image.
@@ -24,6 +29,6 @@ public class Normal implements IFilter {
    * @return string name of the filter.
    */
   public String getName() {
-    return "normal";
+    return this.name;
   }
 }
