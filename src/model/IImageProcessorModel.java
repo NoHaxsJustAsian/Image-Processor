@@ -62,12 +62,12 @@ public interface IImageProcessorModel extends IImageProcessorState {
   /**
    * This method will output the project as a file.
    */
-  void saveImage();
+  void saveImage(String filePath);
 
   /**
    * This method will output the project as its separate components.
    */
-  void saveProject();
+  void saveProject(String filePath);
 
   /**
    * This method will load the project file.
