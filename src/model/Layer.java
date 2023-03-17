@@ -117,13 +117,13 @@ public class Layer implements ILayer {
 
 
   /**
-   * Sets canvas to all white background.
+   * Sets canvas to all white transparent background.
    */
   public void clearLayer() {
     this.canvas = new IPixel[height][width];
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        this.canvas[i][j] = new Pixel(255, 255, 255, 255);
+        this.canvas[i][j] = new Pixel(255, 255, 255, 0);
       }
     }
   }

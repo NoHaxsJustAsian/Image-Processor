@@ -52,22 +52,28 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   void addImage(int x, int y, IImage image, ILayer layer);
 
-  /**
-   * This method wil remove an Image from a Layer.
-   * @param image IImage being removed.
-   * @param layer Layer image being is removed from.
-   */
-  //void removeImage(IImage image, ILayer layer);
+//  /**
+//   * This method wil remove an Image from a Layer.
+//   * @param image IImage being removed.
+//   * @param layer Layer image being is removed from.
+//   */
+//  void removeImage(IImage image, ILayer layer);
 
   /**
    * This method will output the project as a file.
    */
-  void saveImage(String filePath);
+  void saveImage();
 
   /**
    * This method will output the project as its separate components.
    */
-  void saveProject(String filePath);
+  void saveProject();
+
+  /**
+   * This method will load the project file.
+   */
+  void loadProject();
+
 
 
 }
