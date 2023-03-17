@@ -195,7 +195,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    */
-  //FIXME: idek if we need this
   public void newProject(int height, int width) {
     this.height = height;
     this.width = width;

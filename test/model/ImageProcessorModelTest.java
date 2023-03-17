@@ -3,6 +3,8 @@ package model;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,49 +13,120 @@ import model.Filters.BlueFilter;
 import model.Filters.DarkenLuma;
 import model.Filters.GreenFilter;
 import model.Filters.IFilter;
+import model.Filters.Normal;
+import model.Filters.RedFilter;
 
 import static org.junit.Assert.*;
 
+/**
+ * Represents tests for the model class.
+ */
 public class ImageProcessorModelTest {
 
-
+  IFilter normal = new Normal();
+  IFilter redFilter = new RedFilter();
   IFilter darkenLuma = new DarkenLuma();
-  private List<ILayer> orderLayers;
+
+
 
   @Before
   void init(){
+
+
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    pixels[0][1] = new Pixel(0, 50, 0, 255);
+    pixels[1][0] = new Pixel(0, 0, 50, 255);
+    pixels[1][1] = new Pixel(50, 50, 50, 255);
+    image = new PPMImage(pixels, 50, 50);
+
+
+    Pixel[][] pixelss;
+    PPMImage imagee;
+    pixelss = new Pixel[2][2];
+    pixelss[0][0] = new Pixel(50, 0, 0, 255);
+    pixelss[0][1] = new Pixel(0, 50, 0, 255);
+    pixelss[1][0] = new Pixel(0, 0, 50, 255);
+    pixelss[1][1] = new Pixel(50, 50, 50, 255);
+    imagee = new PPMImage(pixelss, 50, 50);
+
+
+
+
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
-    nameLayers.put("first", darkenLuma);
-    nameLayers.put("second", );
+    ILayer first = new Layer("normal", normal, 200, 200);
+    first.addImage(image, 0,0);
+    nameLayers.put("1", first);
 
-    Map<String, Image> storedImages;
-    Pixel[][] pixels;
-    Image image;
-    pixels = new Pixel[2][2];
-    pixels[0][0] = new Pixel(64, 16, 0);
-    pixels[0][1] = new Pixel(32, 8, 8);
-    pixels[1][0] = new Pixel(0, 0, 80);
-    pixels[1][1] = new Pixel(160, 160, 160);
+    ILayer second = new Layer("norm", normal, 200, 200);
+    first.addImage(imagee, 25,25);
+    nameLayers.put("2", second);
 
-    image = new Image(2, 2, 255, pixels);
+    ILayer third = new Layer("red", redFilter, 200, 200);
+    nameLayers.put("3", third);
 
-    storedImages = new HashMap<>();
-
-    model = new BetterImageProcessorModel(storedImages);
-
-    this.model.add("image", image);
+    ILayer fourth = new Layer("darken", darkenLuma, 200, 200);
+    nameLayers.put("4", fourth);
 
 
+
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+    orderLayers.add(third);
+    orderLayers.add(fourth);
+
+
+
+    ImageProcessorModel model = new ImageProcessorModel(200,200);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
 
   }
 
+  @Test
+  public void testRedFilter() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    pixels[0][1] = new Pixel(0, 50, 0, 255);
+    pixels[1][0] = new Pixel(0, 0, 50, 255);
+    pixels[1][1] = new Pixel(50, 50, 50, 255);
+    image = new PPMImage(pixels, 50, 50);
+
+    ILayer first = new Layer("red", redFilter, 200, 200);
+    first.addImage(image, 0,0);
+
+    assertEquals(image.getPixel(0,1), new Pixel(50,0,0, 255));
+  }
 
 
-  ImageProcessorModel model = new ImageProcessorModel(400,400, ,);
+  @Test
+  public void testRedFilter() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    pixels[0][1] = new Pixel(0, 50, 0, 255);
+    pixels[1][0] = new Pixel(0, 0, 50, 255);
+    pixels[1][1] = new Pixel(50, 50, 50, 255);
+    image = new PPMImage(pixels, 50, 50);
+
+    ILayer first = new Layer("red", redFilter, 200, 200);
+    first.addImage(image, 0,0);
+
+    assertEquals(image.getPixel(0,1), new Pixel(50,0,0, 255));
+  }
+
 
   @Test
   public void getHeight() {
+    model.
   }
 
   @Test
