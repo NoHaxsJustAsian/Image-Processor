@@ -1,8 +1,12 @@
 package controller;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import model.Filters.BrightenIntensity;
+import model.Filters.BrightenLuma;
+import model.Filters.BrightenValue;
 import model.IImageProcessorModel;
 
 import model.ImageProcessorModel;
@@ -26,8 +30,9 @@ public class ImageProcessorController implements IImageProcessorController {
 
   /**
    * Represents a controller that reads and execute commands.
-   * @param model ImageProcessor model.
-   * @param view ImageProcessor view.
+   *
+   * @param model  ImageProcessor model.
+   * @param view   ImageProcessor view.
    * @param object Readable object.
    */
   public ImageProcessorController(ImageProcessorModel model, IImageProcessorView view, Readable object) {
@@ -47,25 +52,24 @@ public class ImageProcessorController implements IImageProcessorController {
 //    Scanner s = new Scanner(this.object);
 //
 //  }
-
   private void readCommand(Scanner scan) {
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
       switch (command) {
         case "load":
-          this.load(scan.next(), scan.next()); //FIXME: add load and save functions
+          this.model.loadProject(scan.next()); //FIXME: add load and save functions
           break;
         case "save":
-          this.save(scan.next(), scan.next()); //FIXME: all these need catch blocks for the exceptions.
+          this.model.saveProject(scan.next()); //FIXME: all these need catch blocks for the exceptions.
           break;
-        case "brighten":
-          this.model.brighten(scan.nextInt(), scan.next(), scan.next());
+        case "brighten-luma":
+          this.model.setFilter(scan.next(), new BrightenLuma());
           break;
-        case "vertical-flip":
-          this.model.flip(false, scan.next(), scan.next());
+        case "brighten-intensity":
+          this.model.setFilter(scan.next(), new BrightenIntensity());
           break;
-        case "horizontal-flip":
-          this.model.flip(true, scan.next(), scan.next());
+        case "brighten-value":
+          this.model.setFilter(scan.next(), new BrightenValue());
           break;
         case "-file":
           readCommand(fileToScanner(scan.next()));
@@ -89,7 +93,7 @@ public class ImageProcessorController implements IImageProcessorController {
       System.err.println(ex.getMessage());
     }
 
-    if(writer != null) {
+    if (writer != null) {
       try {
         writer.write("Hello!");
         writer.close();
@@ -98,5 +102,5 @@ public class ImageProcessorController implements IImageProcessorController {
       }
     }
 
-    }
+  }
 }

@@ -304,8 +304,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will load the project file.
    */
   @Override
-  public void loadProject() {
-
+  public void loadProject(String filePath) {
 
   }
 }
