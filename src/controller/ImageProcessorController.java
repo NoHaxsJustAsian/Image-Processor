@@ -75,12 +75,20 @@ public class ImageProcessorController implements IImageProcessorController {
     while (!command.equals("q") && !command.equals("Q")) {
       switch (command) {
         case "new":
-          this.model.newProject(scan.nextInt(), scan.nextInt()); //FIXME: add load and save functions
-          break;
+          tryRender("enter height and width");
+          try {
+            this.model.newProject(scan.nextInt(), scan.nextInt()); //FIXME: add load and save functions
+            break;
+          } catch (IllegalArgumentException e) {
+            tryRender("Invalid height or width");
+            break;
+          }
         case "load":
-          this.model.loadProject(scan.next()); //FIXME: add load and save functions
+          tryRender("type project path to load");
+          this.model.loadProject(scan.next()); //FIXME: add load and save functions also figure out what the file path is
           break;
         case "save":
+          tryRender("type project path to save");
           this.model.saveProject(scan.next()); //FIXME: all these need catch blocks for the exceptions.
           break;
         case "blue":

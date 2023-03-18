@@ -35,7 +35,7 @@ public class AImage implements IImage {
    * @param y pos.
    * @return IPixel at the given location.
    */
-  public IPixel getPixel(int x, int y) {
+  public IPixel getPixel(int x, int y) { //FIXME: this needs throw exception
     return content[x][y];
   }
 

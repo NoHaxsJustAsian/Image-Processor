@@ -26,17 +26,20 @@ public class ImageProcessorModel implements IImageProcessorModel {
   private List<ILayer> orderLayers;
 
 
-
   /**
    * Represents constructor for this model.
    * (load existing project)
-   * @param height int height.
-   * @param width int width.
-   * @param nameLayers HashMap of layers with keys as names.
+   *
+   * @param height      int height.
+   * @param width       int width.
+   * @param nameLayers  HashMap of layers with keys as names.
    * @param orderLayers List of layers.
    */
   public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
                              List<ILayer> orderLayers) {
+    if (height < 0 || width < 0 || nameLayers == null || orderLayers == null) {
+      throw new IllegalArgumentException("invalid arguments");
+    }
     this.height = height;
     this.width = width;
     this.maxValue = 255;
@@ -60,11 +63,18 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * Represents a constructor for this model.
    * (new project)
+   *
    * @param height int height.
-   * @param width int width.
+   * @param width  int width.
    */
   public ImageProcessorModel(int height, int width) {
-    this(height, width, new HashMap<String,ILayer>(), new ArrayList<ILayer>());
+    if (height < 0 || width < 0) {
+      throw new IllegalArgumentException("invalid arguments");
+    }
+    this.height = height;
+    this.width = width;
+    this.nameLayers = new HashMap<String, ILayer>();
+    this.orderLayers = new ArrayList<ILayer>();
   }
 
 
@@ -80,6 +90,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method gets the height of the image.
+   *
    * @return int height.
    */
   public int getHeight() {
@@ -88,6 +99,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method gets the width of the image.
+   *
    * @return int width.
    */
   public int getWidth() {
@@ -96,6 +108,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method gets the maxValue of the image.
+   *
    * @return int max value.
    */
   @Override
@@ -105,6 +118,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method gets the layer from the project using a String key.
+   *
    * @param string name of layer.
    * @return ILayer
    * @throws IllegalArgumentException if the layer does not exist.
@@ -119,6 +133,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method gets the numbered layer from the image using an int key.
+   *
    * @param num int layer number.
    * @return ILayer from image.
    */
@@ -129,6 +144,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return all the layers from the project.
+   *
    * @return list of Layers.
    */
   @Override
@@ -138,6 +154,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the position of a layer in the project given both their layer position.
+   *
    * @param i layer position.
    * @param j layer position.
    */
@@ -149,6 +166,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the position of a layer in the project given their names.
+   *
    * @param a name of layer.
    * @param b name of layer.
    * @throws IllegalArgumentException if the layers do not exist or if they are already in position.
@@ -159,7 +177,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
       throw new IllegalArgumentException("One of the layers does not exist.");
     }
     //FIXME: check if this is correct.
-    if(this.getLayerPosition(this.getLayer(a).getName())
+    if (this.getLayerPosition(this.getLayer(a).getName())
             == this.getLayerPosition(this.getLayer(b).getName())) {
       throw new IllegalArgumentException("The layers are already in the same position.");
     }
@@ -169,15 +187,15 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
 
-
   /**
    * This method will return the position of a layer in the project given its name.
+   *
    * @param string name of layer.
    * @return int position of layer.
    * @throws IllegalArgumentException if the layer does not exist.
    */
   public int getLayerPosition(String string) throws IllegalArgumentException {
-    if(!this.nameLayers.containsKey(string)) {
+    if (!this.nameLayers.containsKey(string)) {
       throw new IllegalArgumentException("The layer does not exist.");
     }
 
@@ -215,13 +233,14 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will add an Image to a Layer.
-   * @param x int x position.
-   * @param y int y position.
+   *
+   * @param x     int x position.
+   * @param y     int y position.
    * @param image IImage image.
    * @param layer ILayer layer.
    */
   public void addImage(int x, int y, IImage image, ILayer layer) throws IllegalArgumentException {
-    if(x > this.width || x < 0 || y > this.height || y < 0) {
+    if (x > this.width || x < 0 || y > this.height || y < 0) {
       throw new IllegalArgumentException("invalid arguments");
     }
     layer.addImage(image, x, y);
@@ -235,11 +254,12 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This image will produce the final canvas for all layers for PPM.
+   *
    * @return IPixel[][] finalPixels.
    */
   public IPixel[][] saveCanvas() {
     IPixel[][] finalPixels = new IPixel[getHeight()][getWidth()];
-    for(int x = 0; x < orderLayers.size(); x++) {
+    for (int x = 0; x < orderLayers.size(); x++) {
       for (int i = 0; i < getHeight(); i++) {
         for (int j = 0; j < getWidth(); j++) {
           finalPixels[i][j] = orderLayers.get(x).getPixel(i, j);
@@ -250,7 +270,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   *  This method will create one image from all the layers for PPM.
+   * This method will create one image from all the layers for PPM.
    */
   public void saveImage(String filePath) {
     IPixel[][] finalPixels = saveCanvas();
@@ -295,7 +315,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     writer.println("P3"); //FIXME: figureout what this is and how to read a project file
     writer.println(getWidth() + " " + getHeight());
     writer.println(getMaxValue());
-    for(int x = 0; x < orderLayers.size(); x++){
+    for (int x = 0; x < orderLayers.size(); x++) {
       writer.println(orderLayers.get(x).getName()
               + " "
               + orderLayers.get(x).getFilter().getName());
