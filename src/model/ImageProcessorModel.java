@@ -204,6 +204,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will be used to add a layer to the project, with a filter.
+   * @param name name of filter.
+   * @param filter type of filter.
    */
   public void addLayer(String name, IFilter filter) {
     // we need to make multiple different types of addLayer methods, where there is a default value set.
@@ -214,6 +216,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
+   * @param height int height.
+   * @param width int width.
    */
   public void newProject(int height, int width) {
     this.height = height;
@@ -226,6 +230,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will set a filter to a layer.
+   * @param name of layer.
+   * @param filter type of filter.
    */
   public void setFilter(String name, IFilter filter) {
     this.getLayer(name).setFilter(filter);
@@ -271,6 +277,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will create one image from all the layers for PPM.
+   * @param filePath String path to file.
    */
   public void saveImage(String filePath) {
     IPixel[][] finalPixels = saveCanvas();
@@ -304,6 +311,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will output the project as its separate components.
+   * @param filePath String path to file.
    */
   public void saveProject(String filePath) {
     PrintWriter writer = null;
