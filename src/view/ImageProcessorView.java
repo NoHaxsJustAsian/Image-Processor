@@ -1,8 +1,10 @@
 package view;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import model.IImageProcessorModel;
+import model.IPixel;
 
 public class ImageProcessorView implements IImageProcessorView {
   private final IImageProcessorModel model;
@@ -51,4 +53,6 @@ public class ImageProcessorView implements IImageProcessorView {
       throw new IOException("Transmission failed");
     }
   }
+
+
 }

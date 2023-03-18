@@ -1,5 +1,5 @@
 package model;
-
+import java.util.Arrays;
 import model.Filters.IFilter;
 
 /**

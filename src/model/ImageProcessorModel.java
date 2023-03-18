@@ -232,10 +232,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 //    layer.removeImage(image);
 //  }
 
-  /**
-   *  This method will create one image from all the layers for PPM.
-   */
-  public void saveImage(String filePath) {
+  public IPixel[][] saveCanvas() {
     IPixel[][] finalPixels = new IPixel[getHeight()][getWidth()];
     for(int x = 0; x < orderLayers.size(); x++) {
       for (int i = 0; i < getHeight(); i++) {
@@ -244,6 +241,14 @@ public class ImageProcessorModel implements IImageProcessorModel {
         }
       }
     }
+    return finalPixels;
+  }
+
+  /**
+   *  This method will create one image from all the layers for PPM.
+   */
+  public void saveImage(String filePath) {
+    IPixel[][] finalPixels = saveCanvas();
 
     PrintWriter writer = null;
     try {
@@ -305,7 +310,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    */
   @Override
   public void loadProject(String filePath) {
-    
+
   }
 }
 
