@@ -47,7 +47,6 @@ public class ImageProcessorModelTest {
   @Before
   public void init(){
 
-
     Pixel[][] pixels;
     PPMImage image;
     pixels = new Pixel[2][2];
@@ -69,24 +68,21 @@ public class ImageProcessorModelTest {
 
 
 
-
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
-    ILayer first = new Layer("normal", normal, 200, 200);
+    ILayer first = new Layer("1", normal, 200, 200);
     first.addImage(image, 0,0);
     nameLayers.put("1", first);
 
-    ILayer second = new Layer("norm", normal, 200, 200);
+    ILayer second = new Layer("2", normal, 200, 200);
     second.addImage(imagee, 1,1);
     nameLayers.put("2", second);
 
-    ILayer third = new Layer("red", redFilter, 200, 200);
+    ILayer third = new Layer("3", redFilter, 200, 200);
     nameLayers.put("3", third);
 
-    ILayer fourth = new Layer("darken", darkenLuma, 200, 200);
+    ILayer fourth = new Layer("4", darkenLuma, 200, 200);
     nameLayers.put("4", fourth);
-
-
 
 
     List<ILayer> orderLayers = new ArrayList<>();
@@ -94,7 +90,6 @@ public class ImageProcessorModelTest {
     orderLayers.add(second);
     orderLayers.add(third);
     orderLayers.add(fourth);
-
 
 
     ImageProcessorModel model = new ImageProcessorModel(200,200);
@@ -114,6 +109,7 @@ public class ImageProcessorModelTest {
     ILayer first = new Layer("red", redFilter, 200, 200);
     first.addImage(image, 0,0);
 
+    assertEquals("redFilter", redFilter.getName());
     assertEquals(0, first.getPixel(0,0).getGreen());
     assertEquals(50, first.getPixel(0,0).getRed());
 
@@ -139,6 +135,7 @@ public class ImageProcessorModelTest {
     assertEquals(50, first.getPixel(0,0).getGreen());
   }
 
+  @Test
   public void testBlueFilter() {
     Pixel[][] pixels;
     PPMImage image;
@@ -153,7 +150,7 @@ public class ImageProcessorModelTest {
     assertEquals(50, first.getPixel(0,0).getBlue());
   }
 
-
+  @Test
   public void testBrightenIntensity() {
     Pixel[][] pixels;
     PPMImage image;
@@ -166,7 +163,7 @@ public class ImageProcessorModelTest {
 
   }
 
-
+  @Test
   public void testBrightenLuma() {
     Pixel[][] pixels;
     PPMImage image;
@@ -179,7 +176,7 @@ public class ImageProcessorModelTest {
 
   }
 
-
+  @Test
   public void testBrightenValue() {
     Pixel[][] pixels;
     PPMImage image;
@@ -193,7 +190,7 @@ public class ImageProcessorModelTest {
   }
 
 
-
+  @Test
   public void testDarkenIntensity() {
     Pixel[][] pixels;
     PPMImage image;
@@ -206,7 +203,7 @@ public class ImageProcessorModelTest {
 
   }
 
-
+  @Test
   public void testDarkenLuma() {
     Pixel[][] pixels;
     PPMImage image;
@@ -220,6 +217,7 @@ public class ImageProcessorModelTest {
   }
 
 
+  @Test
   public void testDarkenValue() {
     Pixel[][] pixels;
     PPMImage image;
@@ -232,9 +230,6 @@ public class ImageProcessorModelTest {
 
 
   }
-
-
-
 
   @Test
   public void getHeight() {
@@ -256,33 +251,136 @@ public class ImageProcessorModelTest {
 
   @Test
   public void getLayer() {
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
-    assertEquals(255, model.getMaxValue());
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    assertEquals(first, model1.getLayer(0));
+    assertEquals(second, model1.getLayer(1));
   }
 
   @Test
   public void testGetLayer() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    assertEquals(first, model1.getLayer("1"));
+    assertEquals(first, model1.getLayer("2"));
   }
+
 
   @Test
   public void getLayers() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    assertEquals(orderLayers, model1.getLayers());
   }
 
   @Test
   public void swapLayers() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    model1.swapLayers(0,1);
+    assertEquals(second, model1.getLayer(0));
   }
 
   @Test
   public void testSwapLayers() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    model1.swapLayers("1","2");
+    assertEquals(second, model1.getLayer(0));
   }
 
   @Test
   public void getLayerPosition() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    assertEquals(0, model1.getLayerPosition("1"));
+    assertEquals(1, model1.getLayerPosition("2"));
   }
 
   @Test
   public void addLayer() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    ILayer third = new Layer("3", normal, 200, 200);
+    model1.addLayer();
+    assertEquals(third, model1.getLayer(2));
   }
 
   @Test
