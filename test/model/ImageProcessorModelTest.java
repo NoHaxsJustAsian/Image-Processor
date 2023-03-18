@@ -102,17 +102,26 @@ public class ImageProcessorModelTest {
   public void testRedFilter() {
     Pixel[][] pixels;
     PPMImage image;
-    pixels = new Pixel[2][2];
+    pixels = new Pixel[1][1];
     pixels[0][0] = new Pixel(50, 50, 0, 255);
-    image = new PPMImage(pixels, 2, 2);
+    image = new PPMImage(pixels, 1, 1);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("red", redFilter, 200, 200);
+    orderLayers.add(first);
+
+    nameLayers.put("red", first);
     first.addImage(image, 0,0);
 
-    assertEquals("redFilter", redFilter.getName());
-    assertEquals(0, first.getPixel(0,0).getGreen());
-    assertEquals(50, first.getPixel(0,0).getRed());
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
 
+
+    assertEquals("redFilter", redFilter.getName());
+    assertEquals("red", first.getName());
+    assertEquals(50, model1.getLayer("red").getPixel(0,0).getRed());
+    assertEquals(0, model1.getLayer("red").getPixel(0,0).getGreen());
   }
 
   @Test

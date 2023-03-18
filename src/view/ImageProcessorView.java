@@ -12,8 +12,8 @@ public class ImageProcessorView implements IImageProcessorView {
 
   /**
    * Creates a view object using the model to display images.
-   * @param model the model
-   * @throws IllegalArgumentException if model is null
+   * @param model the model.
+   * @throws IllegalArgumentException if model is null.
    */
   public ImageProcessorView(IImageProcessorModel model) throws IllegalArgumentException {
     if (model == null) {
@@ -25,8 +25,8 @@ public class ImageProcessorView implements IImageProcessorView {
 
   /**
    * Creates a view object using the model and destination appendable to display images.
-   * @param model the model
-   * @param destination the Appendable
+   * @param model the model.
+   * @param destination the Appendable.
    * @throws IllegalArgumentException if model is null
    */
   public ImageProcessorView(IImageProcessorModel model, Appendable destination)
@@ -41,7 +41,7 @@ public class ImageProcessorView implements IImageProcessorView {
   /**
    * Renders a message to destination.
    *
-   * @param message the message to be transmitted
+   * @param message the message to be transmitted.
    * @throws IOException if transmission fails.
    */
   @Override
