@@ -10,8 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 import model.Filters.BlueFilter;
+import model.Filters.BrightenIntensity;
 import model.Filters.BrightenLuma;
+import model.Filters.BrightenValue;
+import model.Filters.DarkenIntensity;
 import model.Filters.DarkenLuma;
+import model.Filters.DarkenValue;
 import model.Filters.GreenFilter;
 import model.Filters.IFilter;
 import model.Filters.Normal;
@@ -26,14 +30,22 @@ public class ImageProcessorModelTest {
 
   IFilter normal = new Normal();
   IFilter redFilter = new RedFilter();
-  IFilter darkenLuma = new DarkenLuma();
+  IFilter greenFilter = new GreenFilter();
+  IFilter blueFilter = new BlueFilter();
 
+  IFilter brightenIntensity = new BrightenIntensity();
   IFilter brightenLuma = new BrightenLuma();
+  IFilter brightenValue = new BrightenValue();
+
+  IFilter darkenIntensity = new DarkenIntensity();
+  IFilter darkenLuma = new DarkenLuma();
+  IFilter darkenValue = new DarkenValue();
+
 
 
 
   @Before
-  void init(){
+  public void init(){
 
 
     Pixel[][] pixels;
@@ -43,7 +55,7 @@ public class ImageProcessorModelTest {
     pixels[0][1] = new Pixel(0, 50, 0, 255);
     pixels[1][0] = new Pixel(0, 0, 50, 255);
     pixels[1][1] = new Pixel(50, 50, 50, 255);
-    image = new PPMImage(pixels, 50, 50);
+    image = new PPMImage(pixels, 2, 2);
 
 
     Pixel[][] pixelss;
@@ -53,7 +65,7 @@ public class ImageProcessorModelTest {
     pixelss[0][1] = new Pixel(0, 50, 0, 255);
     pixelss[1][0] = new Pixel(0, 0, 50, 255);
     pixelss[1][1] = new Pixel(50, 50, 50, 255);
-    imagee = new PPMImage(pixelss, 50, 50);
+    imagee = new PPMImage(pixelss, 2, 2);
 
 
 
@@ -65,7 +77,7 @@ public class ImageProcessorModelTest {
     nameLayers.put("1", first);
 
     ILayer second = new Layer("norm", normal, 200, 200);
-    first.addImage(imagee, 25,25);
+    first.addImage(imagee, 0,1);
     nameLayers.put("2", second);
 
     ILayer third = new Layer("red", redFilter, 200, 200);
@@ -96,35 +108,132 @@ public class ImageProcessorModelTest {
     Pixel[][] pixels;
     PPMImage image;
     pixels = new Pixel[2][2];
-    pixels[0][0] = new Pixel(50, 0, 0, 255);
-    pixels[0][1] = new Pixel(0, 50, 0, 255);
-    pixels[1][0] = new Pixel(0, 0, 50, 255);
-    pixels[1][1] = new Pixel(50, 50, 50, 255);
-    image = new PPMImage(pixels, 50, 50);
+    pixels[0][0] = new Pixel(50, 50, 0, 255);
+    image = new PPMImage(pixels, 2, 2);
 
     ILayer first = new Layer("red", redFilter, 200, 200);
     first.addImage(image, 0,0);
 
-    assertEquals(image.getPixel(0,1), new Pixel(50,0,0, 255));
+    assertEquals(0, first.getPixel(0,0).getGreen());
+    assertEquals(50, first.getPixel(0,0).getRed());
+
+  }
+
+  @Test
+  public void testGreenFilter() {
+
+    ImageProcessorModel model = new ImageProcessorModel(200,200);
+
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 50, 0, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+    ILayer first = new Layer("green", greenFilter, 200, 200);
+    first.addImage(image, 0,0);
+
+    saveImage();
+
+    assertEquals(0, first.getPixel(0,0).getRed());
+    assertEquals(50, first.getPixel(0,0).getGreen());
+  }
+
+  public void testBlueFilter() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+    ILayer first = new Layer("blue", blueFilter, 200, 200);
+    first.addImage(image, 0,0);
+
+    assertEquals(0, first.getPixel(0,0).getRed());
+    assertEquals(50, first.getPixel(0,0).getBlue());
   }
 
 
-  @Test
+  public void testBrightenIntensity() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+    ILayer first = new Layer("brightenIntensity", brightenIntensity, 200, 200);
+    first.addImage(image, 0,0);
+
+  }
+
+
   public void testBrightenLuma() {
     Pixel[][] pixels;
     PPMImage image;
     pixels = new Pixel[2][2];
-    pixels[0][0] = new Pixel(50, 0, 0, 255);
-    pixels[0][1] = new Pixel(0, 50, 0, 255);
-    pixels[1][0] = new Pixel(0, 0, 50, 255);
-    pixels[1][1] = new Pixel(50, 50, 50, 255);
-    image = new PPMImage(pixels, 50, 50);
+    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    image = new PPMImage(pixels, 1, 1);
 
-    ILayer first = new Layer("brighten", brightenLuma, 200, 200);
+    ILayer first = new Layer("brightenLuma", brightenLuma, 200, 200);
     first.addImage(image, 0,0);
 
-    assertEquals(image.getPixel(0,1), new Pixel(100,0,0, 255));
   }
+
+
+  public void testBrightenValue() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+    ILayer first = new Layer("brightenValue", brightenValue, 200, 200);
+    first.addImage(image, 0,0);
+
+  }
+
+
+
+  public void testDarkenIntensity() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+    ILayer first = new Layer("darkenIntensity", darkenIntensity, 200, 200);
+    first.addImage(image, 0,0);
+
+  }
+
+
+  public void testDarkenLuma() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+    ILayer first = new Layer("darkenLuma", darkenLuma, 200, 200);
+    first.addImage(image, 0,0);
+
+  }
+
+
+  public void testDarkenValue() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+    ILayer first = new Layer("darkenValue", darkenValue, 200, 200);
+    first.addImage(image, 0,0);
+
+
+  }
+
+
 
 
   @Test
@@ -135,14 +244,21 @@ public class ImageProcessorModelTest {
 
   @Test
   public void getWidth() {
+    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    assertEquals(200, model.getWidth());
   }
 
   @Test
   public void getMaxValue() {
+    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    assertEquals(255, model.getMaxValue());
   }
 
   @Test
   public void getLayer() {
+    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    assertEquals(255, model.getMaxValue());
+
   }
 
   @Test

@@ -39,6 +39,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
                              List<ILayer> orderLayers) {
     this.height = height;
     this.width = width;
+    this.maxValue = 255;
     this.nameLayers = nameLayers;
     this.orderLayers = orderLayers;
   }

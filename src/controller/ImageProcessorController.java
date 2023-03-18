@@ -117,26 +117,26 @@ public class ImageProcessorController implements IImageProcessorController {
 
     }
 
-    FileWriter writer = null;
-    try {
-      //If no full path is given, Java assumes the file
-      //is relative to wherever the program is run.
-      //IntelliJ runs all programs from their project folder
-      writer = new FileWriter("hello.txt");
-    } catch (IOException ex) {
-      //you can handle opening the file differently
-      //from failing to write to it
-      System.err.println(ex.getMessage());
-    }
-
-    if (writer != null) {
-      try {
-        writer.write("Hello!");
-        writer.close();
-      } catch (IOException ex) {
-        //handle the transmission failure
-      }
-    }
+//    FileWriter writer = null;
+//    try {
+//      //If no full path is given, Java assumes the file
+//      //is relative to wherever the program is run.
+//      //IntelliJ runs all programs from their project folder
+//      writer = new FileWriter("hello.txt");
+//    } catch (IOException ex) {
+//      //you can handle opening the file differently
+//      //from failing to write to it
+//      System.err.println(ex.getMessage());
+//    }
+//
+//    if (writer != null) {
+//      try {
+//        writer.write("Hello!");
+//        writer.close();
+//      } catch (IOException ex) {
+//        //handle the transmission failure
+//      }
+//    }
 
   }
 
