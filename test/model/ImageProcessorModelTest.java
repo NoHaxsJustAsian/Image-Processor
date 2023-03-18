@@ -99,7 +99,6 @@ public class ImageProcessorModelTest {
   }
 
   @Test
-  //FIXME: this test is failing and all other filter tests are failing
   public void testRedFilter() {
     Pixel[][] pixels;
     PPMImage image;
