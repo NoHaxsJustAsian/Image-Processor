@@ -29,7 +29,6 @@ public class ImageProcessorViewTest {
 
   @Test
   public void testRenderMessage() {
-
     try {
       view.renderMessage("message");
     } catch (IOException e) {

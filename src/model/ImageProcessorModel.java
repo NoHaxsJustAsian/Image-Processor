@@ -200,7 +200,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     if (this.nameLayers.containsKey(name)) {
       throw new IllegalArgumentException("The layer already exists.");
     }
-    this.nameLayers.put(name, (new Layer(name, new Normal, this.height, this.width)));
+    this.nameLayers.put(name, (new Layer(name, new Normal(), this.height, this.width)));
     this.orderLayers.add(this.nameLayers.get(name));
   }
 
@@ -208,7 +208,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
-   */ //FIXME: idk how how useful this is.
+   */ //FIXME: idk how how useful this is. Maybe remove it?
   public void newProject(int height, int width) {
     this.height = height;
     this.width = width;
