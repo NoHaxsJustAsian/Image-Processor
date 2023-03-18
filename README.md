@@ -51,5 +51,7 @@ transmission fails, an IOException is thrown.
 
 ImageUtil is a tool used to read image files from the computer's files, and to write a given Image into a file.
 
+NEED TO DO THIS!!!
+A script of commands that your program will accept, that will create a new project, add at least one image as a layer, add some layers and filters on it and save the resulting image and project in other files. Include in your README file instructions on how we can run this script using your program (e.g. ''provide this file as a command line argument", ''type this script when the program runs", etc.
 
 
