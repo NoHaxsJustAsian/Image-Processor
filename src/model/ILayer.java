@@ -74,4 +74,10 @@ public interface ILayer {
    * @return IFilter filter.
    */
   IFilter getFilter();
+
+  /**
+   * sets the canvas of the layer.
+   * @param canvas
+   */
+  public void setCanvas(IPixel[][] canvas);
 }

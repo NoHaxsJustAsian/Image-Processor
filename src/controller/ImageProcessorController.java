@@ -1,9 +1,13 @@
 package controller;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import model.Filters.BlueFilter;
@@ -14,11 +18,15 @@ import model.Filters.DarkenIntensity;
 import model.Filters.DarkenLuma;
 import model.Filters.DarkenValue;
 import model.Filters.GreenFilter;
+import model.Filters.IFilter;
 import model.Filters.Normal;
 import model.Filters.RedFilter;
 import model.IImageProcessorModel;
 
+import model.ILayer;
+import model.IPixel;
 import model.ImageProcessorModel;
+import model.Layer;
 import model.Pixel;
 import view.IImageProcessorView;
 import view.ImageProcessorView;
@@ -158,7 +166,11 @@ public class ImageProcessorController implements IImageProcessorController {
     int width;
     int height;
     int maxRGB;
-    Pixel[][] pixels;
+    ImageProcessorModel model;
+    IFilter filter;
+    List<ILayer> orderLayers = new ArrayList<ILayer>();
+    HashMap<String,ILayer> nameLayers = new HashMap<String,ILayer>();
+    IPixel[][] pixels;
 
     try {
       sc = new Scanner(new FileInputStream(filePath));
@@ -185,17 +197,56 @@ public class ImageProcessorController implements IImageProcessorController {
     width = sc.nextInt();
     height = sc.nextInt();
     maxRGB = sc.nextInt();
-    pixels = new Pixel[height][width];
-
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        int r = sc.nextInt();
-        int g = sc.nextInt();
-        int b = sc.nextInt();
-        pixels[i][j] = new Pixel(r, g, b, 255);
+    while(sc.hasNext()) {
+      String name = sc.next();
+      try {
+        filter = filterHelp(sc.next()); //FIXME: fix naming scheme of filters
       }
+      catch(IllegalArgumentException e) {
+        this.tryRender("Invalid filter name");
+        return null;
+      }
+      pixels = new Pixel[height][width];
+      for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+          int r = sc.nextInt();
+          int g = sc.nextInt();
+          int b = sc.nextInt();
+          pixels[i][j] = new Pixel(r, g, b, 255);
+        }
+      }
+      ILayer hold = new Layer(name, filter, height, width);
+      hold.setCanvas(pixels);
+      orderLayers.add(hold);
+      nameLayers.put(name, hold);
     }
-    return new Image(width, height, maxRGB, pixels);
+    return new ImageProcessorModel(height, width, nameLayers, orderLayers); //fixme: so it loads into controller
   }
 
+  private IFilter filterHelp(String name) {
+    switch(name) {
+      case "blue":
+        return new BlueFilter();
+      case "brighten-luma":
+        return new BrightenLuma();
+      case "brighten-intensity":
+        return new BrightenIntensity();
+      case "brighten-value":
+        return new BrightenValue();
+      case "darken-luma":
+        return new DarkenLuma();
+      case "darken-intensity":
+        return new DarkenIntensity();
+      case "darken-value":
+        return new DarkenValue();
+      case "green":
+        return new GreenFilter();
+      case "normal":
+        return new Normal();
+      case "red":
+        return new RedFilter();
+      default:
+        return null;
+    }
+  }
 }

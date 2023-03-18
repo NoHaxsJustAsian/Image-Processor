@@ -1,6 +1,7 @@
 package model;
 import java.util.Arrays;
 import model.Filters.IFilter;
+import model.Filters.Normal;
 
 /**
  * Represents a Layer on the Image.
@@ -17,7 +18,13 @@ public class Layer implements ILayer {
   int height;
   int width;
 
-
+  /**
+   * Represents a constructor for a Layer if filter is given.
+   * @param name
+   * @param filter
+   * @param height
+   * @param width
+   */
   public Layer(String name, IFilter filter, int height, int width) {
     this.name = name;
     this.filter = filter;
@@ -31,6 +38,29 @@ public class Layer implements ILayer {
       }
     }
   }
+
+  /**
+   * if no filter is given.
+   * @param name
+   * @param filter
+   * @param height
+   * @param width
+   */
+  /*
+  public Layer(String name, int height, int width) {
+    this.name = name;
+    this.filter = new Normal();
+    this.height = height;
+    this.width = width;
+    this.canvas = new IPixel[height][width];
+    //creates a blank background for each layer, all white and fully transparent
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        this.canvas[i][j] = new Pixel(255, 255, 255, 0);
+      }
+    }
+  }
+  */
 
   /**
    * Returns the name of the layer.
@@ -136,7 +166,13 @@ public class Layer implements ILayer {
     return this.canvas;
   }
 
-
+  /**
+   * sets the canvas of the layer.
+   * @param canvas
+   */
+  public void setCanvas(IPixel[][] canvas) {
+    this.canvas = canvas;
+  }
 }
 
 
