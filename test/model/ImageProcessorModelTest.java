@@ -99,6 +99,7 @@ public class ImageProcessorModelTest {
   }
 
   @Test
+  //FIXME: this test is failing and all other filter tests are failing
   public void testRedFilter() {
     Pixel[][] pixels;
     PPMImage image;
@@ -379,28 +380,66 @@ public class ImageProcessorModelTest {
     ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
 
     ILayer third = new Layer("3", normal, 200, 200);
-    model1.addLayer();
+    model1.addLayer("3", redFilter);
     assertEquals(third, model1.getLayer(2));
   }
 
-  @Test
-  public void newProject() {
-  }
+//  @Test
+//  public void newProject() {
+//  }
 
   @Test
   public void setFilter() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    model1.setFilter("1", redFilter);
+    assertEquals(redFilter, model1.getLayer("1").getFilter());
   }
 
   @Test
   public void addImage() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    pixels[0][1] = new Pixel(0, 50, 0, 255);
+    pixels[1][0] = new Pixel(0, 0, 50, 255);
+    pixels[1][1] = new Pixel(50, 50, 50, 255);
+    image = new PPMImage(pixels, 2, 2);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    first.addImage(image, 0,0);
+
+    assertEquals(50, model1.getLayer("1").getPixel(0,0).getRed());
   }
 
   @Test
   public void saveImage() {
+
   }
 
   @Test
   public void saveProject() {
+
   }
 
   @Test
