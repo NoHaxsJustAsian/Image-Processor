@@ -48,18 +48,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
 
-//  /**
-//   * Represents constructor for this model.
-//   * @param height int height.
-//   * @param width int width.
-//   * @param layers HashMap layers.
-//   */
-//  ImageProcessorModel(int height, int width, HashMap<String, ILayer> layers) {
-//    this.height = height;
-//    this.width = width;
-//    this.layers = layers;
-//  }
-
   /**
    * Represents a constructor for this model.
    * (new project)
@@ -76,17 +64,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     this.nameLayers = new HashMap<String, ILayer>();
     this.orderLayers = new ArrayList<ILayer>();
   }
-
-
-//  /**
-//   * Represents a constructor for this model.
-//   * @param height int height.
-//   * @param width int width.
-//   */
-//  ImageProcessorModel(int height, int width) {
-//    this(height, width, new HashMap<String, ILayer> layers);
-//  }
-
 
   /**
    * This method gets the height of the image.
@@ -124,7 +101,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @throws IllegalArgumentException if the layer does not exist.
    */
   @Override
-  public ILayer getLayer(String string) {
+  public ILayer getLayer(String string) throws IllegalArgumentException {
     if (!this.nameLayers.containsKey(string)) {
       throw new IllegalArgumentException("The layer does not exist.");
     }
@@ -138,7 +115,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @return ILayer from image.
    */
   @Override
-  public ILayer getLayer(int num) {
+  public ILayer getLayer(int num) throws IllegalArgumentException {
+    if (num < 0 || num >= this.orderLayers.size()) {
+      throw new IllegalArgumentException("The layer does not exist.");
+    }
     return this.orderLayers.get(num);
   }
 
@@ -205,16 +185,30 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will be used to add a layer to the project, with a filter.
    */
-  public void addLayer(String name, IFilter filter) {
-    // we need to make multiple different types of addLayer methods, where there is a default value set.
+  public void addLayer(String name, IFilter filter) throws IllegalArgumentException {
+    if (this.nameLayers.containsKey(name)) {
+      throw new IllegalArgumentException("The layer already exists.");
+    }
     this.nameLayers.put(name, (new Layer(name, filter, this.height, this.width)));
     this.orderLayers.add(this.nameLayers.get(name));
   }
 
   /**
+   * This method will be used to add a layer to the project, with a defualt filter.
+   */
+  public void addLayer(String name) throws IllegalArgumentException {
+    if (this.nameLayers.containsKey(name)) {
+      throw new IllegalArgumentException("The layer already exists.");
+    }
+    this.nameLayers.put(name, (new Layer(name, new Normal, this.height, this.width)));
+    this.orderLayers.add(this.nameLayers.get(name));
+  }
+
+
+  /**
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
-   */
+   */ //FIXME: idk how how useful this is.
   public void newProject(int height, int width) {
     this.height = height;
     this.width = width;
@@ -227,7 +221,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will set a filter to a layer.
    */
-  public void setFilter(String name, IFilter filter) {
+  public void setFilter(String name, IFilter filter) throws IllegalArgumentException {
+    if (!this.nameLayers.containsKey(name)) {
+      throw new IllegalArgumentException("The layer does not exist.");
+    }
     this.getLayer(name).setFilter(filter);
   }
 
@@ -243,14 +240,12 @@ public class ImageProcessorModel implements IImageProcessorModel {
     if (x > this.width || x < 0 || y > this.height || y < 0) {
       throw new IllegalArgumentException("invalid arguments");
     }
+    if(image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
+      throw new IllegalArgumentException("image goes off the canvas");
+    }
     layer.addImage(image, x, y);
-    //FIXME: check if we need to throw an exception if we place if off the existing grid
   }
 
-
-//  public void removeImage(IImage image, ILayer layer) {
-//    layer.removeImage(image);
-//  }
 
   /**
    * This image will produce the final canvas for all layers for PPM.
@@ -271,8 +266,13 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will create one image from all the layers for PPM.
+   * FIXME: maybe move this to controller
    */
-  public void saveImage(String filePath) {
+  public void saveImage(String filePath) throws IllegalArgumentException {
+    if(filePath == null) {
+      throw new IllegalArgumentException("invalid file path");
+    }
+
     IPixel[][] finalPixels = saveCanvas();
 
     PrintWriter writer = null;
@@ -290,7 +290,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     }
     writer.close();
     /*
-    //FIXME: separate if needed into seperate method
     BufferedImage finalImage = new BufferedImage(getWidth(), getHeight(),
             BufferedImage.TYPE_INT_RGB);
     for (int ii = 0; ii < getHeight(); ii++) {
@@ -304,8 +303,12 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will output the project as its separate components.
+   * FIXME: maybe move this to controller?
    */
-  public void saveProject(String filePath) {
+  public void saveProject(String filePath) throws IllegalArgumentException {
+    if(filePath == null) {
+      throw new IllegalArgumentException("invalid file path");
+    }
     PrintWriter writer = null;
     try {
       writer = new PrintWriter(new File(filePath));
@@ -330,13 +333,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     writer.close();
   }
 
-  /**
-   * This method will load the project file.
-   */
-  @Override
-  public void loadProject(String filePath) {
-
-  }
 }
 
 //to do
