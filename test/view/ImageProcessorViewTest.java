@@ -35,7 +35,7 @@ public class ImageProcessorViewTest {
     } catch (IOException e) {
       fail();
     }
-    assertEquals("message" + "\n", sb.toString());
+    assertEquals("message", sb.toString());
 
   }
 }
