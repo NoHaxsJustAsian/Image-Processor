@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,6 +19,7 @@ import model.Filters.RedFilter;
 import model.IImageProcessorModel;
 
 import model.ImageProcessorModel;
+import model.Pixel;
 import view.IImageProcessorView;
 import view.ImageProcessorView;
 
@@ -85,7 +88,7 @@ public class ImageProcessorController implements IImageProcessorController {
           }
         case "load":
           tryRender("type project path to load");
-          this.model.loadProject(scan.next()); //FIXME: add load and save functions also figure out what the file path is
+          this.loadProject(scan.next()); //FIXME: add load and save functions also figure out what the file path is
           break;
         case "save":
           tryRender("type project path to save");
@@ -148,8 +151,51 @@ public class ImageProcessorController implements IImageProcessorController {
 //        //handle the transmission failure
 //      }
 //    }
-
   }
 
+  private IImageProcessorModel loadProject(String filePath) {
+    Scanner sc;
+    int width;
+    int height;
+    int maxRGB;
+    Pixel[][] pixels;
+
+    try {
+      sc = new Scanner(new FileInputStream(filePath));
+    } catch (FileNotFoundException e) {
+      this.tryRender("File " + filePath + " not found!");
+      return null;
+    }
+    StringBuilder builder = new StringBuilder();
+    while (sc.hasNextLine()) {
+      String s = sc.nextLine();
+      if (!s.equals("") && s.charAt(0) != '#') {
+        builder.append(s + System.lineSeparator());
+      }
+    }
+
+    sc = new Scanner(builder.toString());
+
+    String token;
+
+    token = sc.next();
+    if (!token.equals("C1")) {
+      this.tryRender("Invalid Collage file: Collage file should begin with C1");
+    }
+    width = sc.nextInt();
+    height = sc.nextInt();
+    maxRGB = sc.nextInt();
+    pixels = new Pixel[height][width];
+
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        int r = sc.nextInt();
+        int g = sc.nextInt();
+        int b = sc.nextInt();
+        pixels[i][j] = new Pixel(r, g, b, 255);
+      }
+    }
+    return new Image(width, height, maxRGB, pixels);
+  }
 
 }
