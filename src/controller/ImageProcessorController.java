@@ -74,6 +74,9 @@ public class ImageProcessorController implements IImageProcessorController {
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
       switch (command) {
+        case "new":
+          this.model.newProject(scan.nextInt(), scan.nextInt()); //FIXME: add load and save functions
+          break;
         case "load":
           this.model.loadProject(scan.next()); //FIXME: add load and save functions
           break;
@@ -112,9 +115,9 @@ public class ImageProcessorController implements IImageProcessorController {
           break;
         default:
           tryRender("Invalid command entered. Please try again.");
+          command = scan.next();
+          break;
       }
-
-
     }
 
 //    FileWriter writer = null;

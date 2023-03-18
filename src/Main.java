@@ -24,7 +24,7 @@ public class Main {
   public static void main(String[] args) {
     ImageProcessorModel model = new ImageProcessorModel(400, 400);
     Appendable ap = System.out;
-    IImageProcessorView view = new ImageProcessorView(model, ap);
+    IImageProcessorView view = new ImageProcessorView(model);
     Readable rd = new InputStreamReader(System.in);
     IImageProcessorController controller = new ImageProcessorController(model, view, rd);
     controller.startProcessor();

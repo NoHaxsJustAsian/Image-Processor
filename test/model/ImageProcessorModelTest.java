@@ -77,7 +77,7 @@ public class ImageProcessorModelTest {
     nameLayers.put("1", first);
 
     ILayer second = new Layer("norm", normal, 200, 200);
-    first.addImage(imagee, 0,1);
+    second.addImage(imagee, 25,25);
     nameLayers.put("2", second);
 
     ILayer third = new Layer("red", redFilter, 200, 200);
