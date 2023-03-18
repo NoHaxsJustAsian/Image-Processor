@@ -56,32 +56,32 @@ A script of commands that your program will accept, that will create a new proje
 
 //FIXME: Not currently working but would be script of commands
 
-//Creates the project with an 500 pixel by 500 pixel canvas
+#Creates the project with an 500 pixel by 500 pixel canvas
 new-project 500 500
 
-//Creates a new layer called boxes-blue
+#Creates a new layer called boxes-blue
 add-layer boxes-blue
 
-//Sets the filter to only show the blue of the image
+#Sets the filter to only show the blue of the image
 set-filter boxes-blue blue
 
-//Sets the image on the layer to the provided image, but offset 5
-//pixels to the right and 5 pixels down from the top left
+#Sets the image on the layer to the provided image, but offset 5
+#pixels to the right and 5 pixels down from the top left
 add-image-to-layer boxes-blue image/boxes.ppm 5 5
 
-//Creates a new layer called boxy-dark
+#Creates a new layer called boxy-dark
 add-layer boxy-dark
 
-//Adds the image to the boxy-dark layer with no offset
+#Adds the image to the boxy-dark layer with no offset
 add-image-to-layer boxy-dark image/boxy.ppm 0 0
 
-//Sets the filter to darken according to the luma value
+#Sets the filter to darken according to the luma value
 set-filter boxy-dark darken-luma
 
-//Saves the final rendered image to the given path
+#Saves the final rendered image to the given path
 save-image images/boxes-boxy.ppm
 
-//Saves the project to the given path to pick up later
+#Saves the project to the given path to pick up later
 save-project projects/boxes-boxy.collage
 
 
