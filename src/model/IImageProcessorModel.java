@@ -59,6 +59,13 @@ public interface IImageProcessorModel extends IImageProcessorState {
 //   */
 //  void removeImage(IImage image, ILayer layer);
 
+
+  /**
+   * This image will produce the final canvas for all layers for PPM.
+   * @return IPixel[][] finalPixels.
+   */
+  IPixel[][] saveCanvas();
+
   /**
    * This method will create one image from all the layers.
    */

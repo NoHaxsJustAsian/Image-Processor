@@ -232,6 +232,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
 //    layer.removeImage(image);
 //  }
 
+  /**
+   * This image will produce the final canvas for all layers for PPM.
+   * @return IPixel[][] finalPixels.
+   */
   public IPixel[][] saveCanvas() {
     IPixel[][] finalPixels = new IPixel[getHeight()][getWidth()];
     for(int x = 0; x < orderLayers.size(); x++) {
