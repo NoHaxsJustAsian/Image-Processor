@@ -176,7 +176,7 @@ public class ImageProcessorController implements IImageProcessorController {
       sc = new Scanner(new FileInputStream(filePath));
     } catch (FileNotFoundException e) {
       this.tryRender("File " + filePath + " not found!");
-      return null;
+      return;
     }
     StringBuilder builder = new StringBuilder();
     while (sc.hasNextLine()) {
@@ -204,7 +204,7 @@ public class ImageProcessorController implements IImageProcessorController {
       }
       catch(IllegalArgumentException e) {
         this.tryRender("Invalid filter name");
-        return null;
+        return;
       }
       pixels = new Pixel[height][width];
       for (int i = 0; i < height; i++) {

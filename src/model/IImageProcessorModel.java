@@ -30,13 +30,13 @@ public interface IImageProcessorModel extends IImageProcessorState {
   void addLayer(String name, IFilter filter);
 
 
-//  /**
-//   * This method will be used to add a layer to the project, without a filter.
-//   * This would be the background canvas.
-//   * @param height int height.
-//   * @param width int width.
-//   */
-//  void newProject(int height, int width);
+  /**
+   * This method will be used to add a layer to the project, without a filter.
+   * This would be the background canvas.
+   * @param height int height.
+   * @param width int width.
+   */
+  void newProject(int height, int width);
 
   /**
    * This method will set a filter to a layer.

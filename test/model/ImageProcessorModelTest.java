@@ -119,6 +119,7 @@ public class ImageProcessorModelTest {
 
     assertEquals("redFilter", redFilter.getName());
     assertEquals("red", first.getName());
+    //FIXME: not properly changing the color of the pixels
     assertEquals(50, model1.getLayer("red").getPixel(0,0).getRed());
     assertEquals(0, model1.getLayer("red").getPixel(0,0).getGreen());
   }
@@ -278,6 +279,7 @@ public class ImageProcessorModelTest {
 
   @Test
   public void testGetLayer() {
+    //FIXME: this test is not working
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("1", normal, 200, 200);
@@ -373,6 +375,7 @@ public class ImageProcessorModelTest {
 
   @Test
   public void addLayer() {
+    //FIXME: this test is not working
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("1", normal, 200, 200);
@@ -388,12 +391,28 @@ public class ImageProcessorModelTest {
 
     ILayer third = new Layer("3", normal, 200, 200);
     model1.addLayer("3", redFilter);
-    assertEquals(third, model1.getLayer(2));
+    assertEquals(third, model1.getLayer("3"));
   }
 
-//  @Test
-//  public void newProject() {
-//  }
+  @Test
+  public void newProject() {
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ILayer first = new Layer("1", normal, 200, 200);
+    nameLayers.put("1", first);
+    ILayer second = new Layer("2", normal, 200, 200);
+    nameLayers.put("2", second);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    orderLayers.add(first);
+    orderLayers.add(second);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+
+    model1.newProject(200,200);
+    assertEquals(200, model1.getWidth());
+    assertEquals(200, model1.getHeight());
+  }
 
   @Test
   public void setFilter() {
@@ -441,7 +460,6 @@ public class ImageProcessorModelTest {
 
   @Test
   public void saveImage() {
-
 
   }
 
