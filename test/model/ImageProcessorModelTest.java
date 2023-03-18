@@ -93,7 +93,6 @@ public class ImageProcessorModelTest {
 
 
     ImageProcessorModel model = new ImageProcessorModel(200,200);
-
     ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
 
   }
@@ -442,6 +441,7 @@ public class ImageProcessorModelTest {
 
   @Test
   public void saveImage() {
+
 
   }
 

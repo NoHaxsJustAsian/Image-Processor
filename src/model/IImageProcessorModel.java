@@ -30,13 +30,13 @@ public interface IImageProcessorModel extends IImageProcessorState {
   void addLayer(String name, IFilter filter);
 
 
-  /**
-   * This method will be used to add a layer to the project, without a filter.
-   * This would be the background canvas.
-   * @param height int height.
-   * @param width int width.
-   */
-  void newProject(int height, int width);
+//  /**
+//   * This method will be used to add a layer to the project, without a filter.
+//   * This would be the background canvas.
+//   * @param height int height.
+//   * @param width int width.
+//   */
+//  void newProject(int height, int width);
 
   /**
    * This method will set a filter to a layer.
@@ -68,17 +68,15 @@ public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
    * This method will create one image from all the layers.
+   * @param filePath String path.
    */
   void saveImage(String filePath);
 
   /**
-   * This method will output the project as its separate components.
+   * his method will output the project as its separate components.
+   * @param filePath String path.
    */
   void saveProject(String filePath);
 
-  /**
-   * This method will list all of the layers in the project.
-   * @return
-   */
-  String listLayers();
+
 }

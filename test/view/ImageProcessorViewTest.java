@@ -19,6 +19,7 @@ public class ImageProcessorViewTest {
   ImageProcessorView view;
   private StringBuilder sb; //acts as an Appendable
 
+
   @Before
   public void setupModelAndView() {
     model = new ImageProcessorModel(200, 200);

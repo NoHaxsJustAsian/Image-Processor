@@ -6,6 +6,10 @@ import java.util.Arrays;
 import model.IImageProcessorModel;
 import model.IPixel;
 
+/**
+ * Represents a view class for the ImageProcessor.
+ */
+
 public class ImageProcessorView implements IImageProcessorView {
   private final IImageProcessorModel model;
   private final Appendable destination;
