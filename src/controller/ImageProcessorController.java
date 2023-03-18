@@ -161,7 +161,7 @@ public class ImageProcessorController implements IImageProcessorController {
 //    }
   }
 
-  private IImageProcessorModel loadProject(String filePath) {
+  private void loadProject(String filePath) {
     Scanner sc;
     int width;
     int height;
@@ -220,7 +220,8 @@ public class ImageProcessorController implements IImageProcessorController {
       orderLayers.add(hold);
       nameLayers.put(name, hold);
     }
-    return new ImageProcessorModel(height, width, nameLayers, orderLayers); //fixme: so it loads into controller
+    this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers);
+    this.view = new ImageProcessorView(this.model);
   }
 
   private IFilter filterHelp(String name) {
