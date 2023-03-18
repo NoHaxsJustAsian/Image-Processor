@@ -1,10 +1,7 @@
 package model;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -323,7 +320,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    writer.println("P3"); //FIXME: figureout what this is and how to read a project file
+    writer.println("C1");
     writer.println(getWidth() + " " + getHeight());
     writer.println(getMaxValue());
     for (int x = 0; x < orderLayers.size(); x++) {
@@ -339,6 +336,15 @@ public class ImageProcessorModel implements IImageProcessorModel {
       }
     }
     writer.close();
+  }
+
+  /**
+   * This method will return the list of layers in the project.
+   * @return String list of layers.
+   */
+  @Override
+  public String listLayers() {
+    return String.join(",", nameLayers.keySet());
   }
 
 }

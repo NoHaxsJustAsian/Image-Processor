@@ -76,7 +76,9 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   void saveProject(String filePath);
 
-
-
-
+  /**
+   * This method will list all of the layers in the project.
+   * @return
+   */
+  String listLayers();
 }
