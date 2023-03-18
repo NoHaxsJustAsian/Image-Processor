@@ -180,7 +180,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will be used to add a layer to the project, with a filter.
+   * This method will return the position of a layer in the project given its layer.
+   * @param name name of filter.
+   * @param filter type of filter.
+   * @throws IllegalArgumentException if the layer already exists.
    */
   public void addLayer(String name, IFilter filter) throws IllegalArgumentException {
     if (this.nameLayers.containsKey(name)) {
@@ -191,7 +194,9 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will be used to add a layer to the project, with a defualt filter.
+   * This method will return the position of a layer in the project given its layer.
+   * @param name name of filter.
+   * @throws IllegalArgumentException if the layer already exists.
    */
   public void addLayer(String name) throws IllegalArgumentException {
     if (this.nameLayers.containsKey(name)) {
@@ -216,7 +221,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will set a filter to a layer.
+   * This method will remove a layer from the project.
+   *
+   * @param name name of layer.
+   * @throws IllegalArgumentException if the layer does not exist.
    */
   public void setFilter(String name, IFilter filter) throws IllegalArgumentException {
     if (!this.nameLayers.containsKey(name)) {
