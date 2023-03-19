@@ -92,4 +92,16 @@ add-layer <layer-name>
 set-filter <layer-name> <filter-name>
 add-image-to-layer <x-offset> <y-offset> <layer-name> <path> 
 
+# All filters <filter-name>
+normal
+blue
+red
+green
+brighten-intensity
+brighten-luma
+brighten-value
+darken-intensity
+darken-luma
+darken-value
+
 
