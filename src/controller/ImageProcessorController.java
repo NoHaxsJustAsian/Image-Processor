@@ -1,9 +1,7 @@
 package controller;
 
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +21,6 @@ import model.Filters.IFilter;
 import model.Filters.Normal;
 import model.Filters.RedFilter;
 import model.IImage;
-import model.IImageProcessorModel;
-
 import model.ILayer;
 import model.IPixel;
 import model.ImageProcessorModel;
@@ -95,7 +91,8 @@ public class ImageProcessorController implements IImageProcessorController {
         case "new-project":
           tryRender("enter height and width");
           try {
-            this.model.newProject(scan.nextInt(), scan.nextInt()); //FIXME: add load and save functions
+            this.model.newProject(scan.nextInt(), scan.nextInt());
+            //FIXME: add load and save functions
             break;
           } catch (IllegalArgumentException e) {
             tryRender("Invalid height or width");
@@ -114,7 +111,7 @@ public class ImageProcessorController implements IImageProcessorController {
           this.model.saveImage(scan.next());
           break;
         case "set-filter":
-          switch(scan.next()) {
+          switch (scan.next()) {
             case "blue":
               this.model.setFilter(scan.next(), new BlueFilter());
               break;
@@ -151,7 +148,9 @@ public class ImageProcessorController implements IImageProcessorController {
           this.model.addLayer(scan.next());
           break;
         case "add-image-to-layer":
-          this.model.addImage(scan.nextInt(), scan.nextInt(), loadPPM(scan.next()), this.model.getLayer(scan.next())); //FIXME: all these need catch blocks for the exceptions.
+          this.model.addImage(scan.nextInt(), scan.nextInt(), loadPPM(scan.next()),
+                  this.model.getLayer(scan.next()));
+          //FIXME: all these need catch blocks for the exceptions.
           break;
         default:
           tryRender("Invalid command entered. Please try again.");
@@ -160,26 +159,6 @@ public class ImageProcessorController implements IImageProcessorController {
       }
     }
 
-//    FileWriter writer = null;
-//    try {
-//      //If no full path is given, Java assumes the file
-//      //is relative to wherever the program is run.
-//      //IntelliJ runs all programs from their project folder
-//      writer = new FileWriter("hello.txt");
-//    } catch (IOException ex) {
-//      //you can handle opening the file differently
-//      //from failing to write to it
-//      System.err.println(ex.getMessage());
-//    }
-//
-//    if (writer != null) {
-//      try {
-//        writer.write("Hello!");
-//        writer.close();
-//      } catch (IOException ex) {
-//        //handle the transmission failure
-//      }
-//    }
   }
 
   /**
@@ -227,7 +206,7 @@ public class ImageProcessorController implements IImageProcessorController {
       try {
         filter = filterHelp(sc.next()); //FIXME: fix naming scheme of filters
       }
-      catch(IllegalArgumentException e) {
+      catch (IllegalArgumentException e) {
         this.tryRender("Invalid filter name");
         return;
       }
@@ -301,7 +280,7 @@ public class ImageProcessorController implements IImageProcessorController {
    * @param name the name of the filter.
    */
   private IFilter filterHelp(String name) {
-    switch(name) {
+    switch (name) {
       case "blue":
         return new BlueFilter();
       case "brighten-luma":

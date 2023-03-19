@@ -11,9 +11,10 @@ public class Pixel implements IPixel {
 
   /**
    * Represents constructor for Pixel.
-   * @param red pixel value
+   *
+   * @param red   pixel value
    * @param green pixel value
-   * @param blue pixel value
+   * @param blue  pixel value
    * @param alpha value
    * @throws IllegalArgumentException if any of the values are out of range.
    */
@@ -39,6 +40,7 @@ public class Pixel implements IPixel {
 
   /**
    * Returns the red value of the pixel.
+   *
    * @return the red value of the pixel.
    */
   @Override
@@ -49,6 +51,7 @@ public class Pixel implements IPixel {
 
   /**
    * Returns the green value of the pixel.
+   *
    * @return the green value of the pixel.
    */
   @Override
@@ -58,6 +61,7 @@ public class Pixel implements IPixel {
 
   /**
    * Returns the blue value of the pixel.
+   *
    * @return the blue value of the pixel.
    */
   @Override
@@ -67,6 +71,7 @@ public class Pixel implements IPixel {
 
   /**
    * Returns the alpha value of the pixel.
+   *
    * @return the alpha value of the pixel.
    */
   @Override

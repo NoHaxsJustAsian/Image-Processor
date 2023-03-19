@@ -38,11 +38,11 @@ public class AImage implements IImage {
    * @param y pos.
    * @return IPixel at the given location.
    */
-  public IPixel getPixel(int x, int y) throws IllegalArgumentException{
+  public IPixel getPixel(int x, int y) throws IllegalArgumentException {
     if (x < 0 || y < 0) {
       throw new IllegalArgumentException("Image dimensions must be positive");
     }
-    if(x >= this.height || y >= this.width) {
+    if (x >= this.height || y >= this.width) {
       throw new IllegalArgumentException("Image dimensions must be within bounds");
     }
     return content[x][y];

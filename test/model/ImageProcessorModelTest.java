@@ -3,11 +3,9 @@ package model;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import model.Filters.BlueFilter;
 import model.Filters.BrightenIntensity;
@@ -21,7 +19,7 @@ import model.Filters.IFilter;
 import model.Filters.Normal;
 import model.Filters.RedFilter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Represents tests for the model class.
