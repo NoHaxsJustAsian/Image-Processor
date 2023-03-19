@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import mocks.FailingAppendable;
 import model.ImageProcessorModel;
 
 import static org.junit.Assert.*;
@@ -18,6 +19,7 @@ public class ImageProcessorViewTest {
 
   ImageProcessorView view;
   private StringBuilder sb; //acts as an Appendable
+
 
   @Before
   public void setupModelAndView() {
@@ -36,5 +38,16 @@ public class ImageProcessorViewTest {
     }
     assertEquals("message", sb.toString());
 
+  }
+
+  @Test
+  public void testFailRenderMessage() {
+    view = new ImageProcessorView(model, new FailingAppendable());
+    try {
+      view.renderMessage("message");
+      fail();
+    } catch (IOException e) {
+      //do nothing
+    }
   }
 }

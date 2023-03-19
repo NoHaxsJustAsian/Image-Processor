@@ -4,7 +4,7 @@ package model;
 import java.util.List;
 
 /**
- * Represents a interface for the model.
+ * Represents an interface for the model.
  */
 
 public interface IImageProcessorState {
@@ -48,5 +48,10 @@ public interface IImageProcessorState {
    */
   List<ILayer> getLayers();
 
+  /**
+   * This method will list all the layers in the project.
+   * @return String list of layers.
+   */
+  public String listLayers();
 
 }

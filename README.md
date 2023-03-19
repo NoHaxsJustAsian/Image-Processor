@@ -54,4 +54,33 @@ ImageUtil is a tool used to read image files from the computer's files, and to w
 NEED TO DO THIS!!!
 A script of commands that your program will accept, that will create a new project, add at least one image as a layer, add some layers and filters on it and save the resulting image and project in other files. Include in your README file instructions on how we can run this script using your program (e.g. ''provide this file as a command line argument", ''type this script when the program runs", etc.
 
+//FIXME: Not currently working but would be script of commands
+
+# Creates the project with an 500 pixel by 500 pixel canvas
+new-project 500 500
+
+# Creates a new layer called boxes-blue
+add-layer boxes-blue
+
+# Sets the filter to only show the blue of the image
+set-filter boxes-blue blue
+
+# Sets the image on the layer to the provided image, but offset 5 pixels to the right and 5 pixels down from the top left
+add-image-to-layer boxes-blue image/boxes.ppm 5 5
+
+# Creates a new layer called boxy-dark
+add-layer boxy-dark
+
+# Adds the image to the boxy-dark layer with no offset
+add-image-to-layer boxy-dark image/boxy.ppm 0 0
+
+# Sets the filter to darken according to the luma value
+set-filter boxy-dark darken-luma
+
+# Saves the final rendered image to the given path
+save-image images/boxes-boxy.ppm
+
+# Saves the project to the given path to pick up later
+save-project projects/boxes-boxy.collage
+
 

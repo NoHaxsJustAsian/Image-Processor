@@ -68,17 +68,15 @@ public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
    * This method will create one image from all the layers.
+   * @param filePath String path.
    */
   void saveImage(String filePath);
 
   /**
-   * This method will output the project as its separate components.
+   * his method will output the project as its separate components.
+   * @param filePath String path.
    */
   void saveProject(String filePath);
 
-  /**
-   * This method will list all of the layers in the project.
-   * @return
-   */
-  String listLayers();
+
 }

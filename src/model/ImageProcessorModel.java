@@ -58,6 +58,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     }
     this.height = height;
     this.width = width;
+    this.maxValue = 255;
     this.nameLayers = new HashMap<String, ILayer>();
     this.orderLayers = new ArrayList<ILayer>();
   }
@@ -210,7 +211,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
-   */ //FIXME: idk how how useful this is. Maybe remove it?
+   */
   public void newProject(int height, int width) {
     this.height = height;
     this.width = width;
