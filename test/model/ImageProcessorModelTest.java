@@ -3,11 +3,9 @@ package model;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import model.Filters.BlueFilter;
 import model.Filters.BrightenIntensity;
@@ -42,10 +40,8 @@ public class ImageProcessorModelTest {
   IFilter darkenValue = new DarkenValue();
 
 
-
-
   @Before
-  public void init(){
+  public void init() {
 
     Pixel[][] pixels;
     PPMImage image;
@@ -67,15 +63,14 @@ public class ImageProcessorModelTest {
     imagee = new PPMImage(pixelss, 2, 2);
 
 
-
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("1", normal, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
     nameLayers.put("1", first);
 
     ILayer second = new Layer("2", normal, 200, 200);
-    second.addImage(imagee, 1,1);
+    second.addImage(imagee, 1, 1);
     nameLayers.put("2", second);
 
     ILayer third = new Layer("3", redFilter, 200, 200);
@@ -92,8 +87,8 @@ public class ImageProcessorModelTest {
     orderLayers.add(fourth);
 
 
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
   }
 
@@ -112,23 +107,23 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
 
     nameLayers.put("red", first);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
 
     assertEquals("redFilter", redFilter.getName());
     assertEquals("red", first.getName());
     //FIXME: not properly changing the color of the pixels
-    assertEquals(50, model1.getLayer("red").getPixel(0,0).getRed());
-    assertEquals(0, model1.getLayer("red").getPixel(0,0).getGreen());
+    assertEquals(50, model1.getLayer("red").getPixel(0, 0).getRed());
+    assertEquals(0, model1.getLayer("red").getPixel(0, 0).getGreen());
   }
 
   @Test
   public void testGreenFilter() {
 
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
 
     Pixel[][] pixels;
     PPMImage image;
@@ -140,13 +135,13 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("green", greenFilter, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(0, model1.getLayer("green").getPixel(0,0).getRed());
-    assertEquals(50, model1.getLayer("green").getPixel(0,0).getGreen());
+    assertEquals(0, model1.getLayer("green").getPixel(0, 0).getRed());
+    assertEquals(50, model1.getLayer("green").getPixel(0, 0).getGreen());
   }
 
   @Test
@@ -161,13 +156,13 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("blue", blueFilter, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(0, model1.getLayer("blue").getPixel(0,0).getRed());
-    assertEquals(50, model1.getLayer("blue").getPixel(0,0).getBlue());
+    assertEquals(0, model1.getLayer("blue").getPixel(0, 0).getRed());
+    assertEquals(50, model1.getLayer("blue").getPixel(0, 0).getBlue());
   }
 
   @Test
@@ -182,12 +177,12 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("brightenIntensity", brightenIntensity, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(40, model1.getLayer("red").getPixel(0,0).getRed());
+    assertEquals(40, model1.getLayer("red").getPixel(0, 0).getRed());
 
   }
 
@@ -203,12 +198,12 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("brightenLuma", brightenLuma, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(51, model1.getLayer("red").getPixel(0,0).getRed());
+    assertEquals(51, model1.getLayer("red").getPixel(0, 0).getRed());
 
 
   }
@@ -225,12 +220,12 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("brightenValue", brightenValue, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(100, model1.getLayer("red").getPixel(0,0).getRed());
+    assertEquals(100, model1.getLayer("red").getPixel(0, 0).getRed());
 
   }
 
@@ -247,12 +242,12 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("darkenIntensity", darkenIntensity, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(20, model1.getLayer("red").getPixel(0,0).getRed());
+    assertEquals(20, model1.getLayer("red").getPixel(0, 0).getRed());
 
   }
 
@@ -268,12 +263,12 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("darkenLuma", darkenLuma, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(0, model1.getLayer("red").getPixel(0,0).getRed());
+    assertEquals(0, model1.getLayer("red").getPixel(0, 0).getRed());
 
   }
 
@@ -290,30 +285,30 @@ public class ImageProcessorModelTest {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("darkenValue", darkenValue, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(0, model1.getLayer("red").getPixel(0,0).getRed());
+    assertEquals(0, model1.getLayer("red").getPixel(0, 0).getRed());
 
   }
 
   @Test
   public void getHeight() {
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
     assertEquals(200, model.getHeight());
   }
 
   @Test
   public void getWidth() {
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
     assertEquals(200, model.getWidth());
   }
 
   @Test
   public void getMaxValue() {
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
     assertEquals(255, model.getMaxValue());
   }
 
@@ -330,7 +325,7 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
     assertEquals(first, model1.getLayer(0));
     assertEquals(second, model1.getLayer(1));
@@ -350,7 +345,7 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
     assertEquals(first, model1.getLayer("1"));
     assertEquals(first, model1.getLayer("2"));
@@ -370,7 +365,7 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
     assertEquals(orderLayers, model1.getLayers());
   }
@@ -388,9 +383,9 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
-    model1.swapLayers(0,1);
+    model1.swapLayers(0, 1);
     assertEquals(second, model1.getLayer(0));
   }
 
@@ -407,9 +402,9 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
-    model1.swapLayers("1","2");
+    model1.swapLayers("1", "2");
     assertEquals(second, model1.getLayer(0));
   }
 
@@ -426,7 +421,7 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
     assertEquals(0, model1.getLayerPosition("1"));
     assertEquals(1, model1.getLayerPosition("2"));
@@ -446,7 +441,7 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
     ILayer third = new Layer("3", normal, 200, 200);
     model1.addLayer("3", redFilter);
@@ -466,9 +461,9 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
-    model1.newProject(200,200);
+    model1.newProject(200, 200);
     assertEquals(200, model1.getWidth());
     assertEquals(200, model1.getHeight());
   }
@@ -486,7 +481,7 @@ public class ImageProcessorModelTest {
     orderLayers.add(first);
     orderLayers.add(second);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
     model1.setFilter("1", redFilter);
     assertEquals(redFilter, model1.getLayer("1").getFilter());
@@ -511,10 +506,10 @@ public class ImageProcessorModelTest {
     pixels[1][1] = new Pixel(50, 50, 50, 255);
     image = new PPMImage(pixels, 2, 2);
 
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
-    first.addImage(image, 0,0);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
+    first.addImage(image, 0, 0);
 
-    assertEquals(50, model1.getLayer("1").getPixel(0,0).getRed());
+    assertEquals(50, model1.getLayer("1").getPixel(0, 0).getRed());
   }
 
   @Test

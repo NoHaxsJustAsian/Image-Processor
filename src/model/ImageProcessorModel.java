@@ -182,7 +182,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the position of a layer in the project given its layer.
-   * @param name name of filter.
+   *
+   * @param name   name of filter.
    * @param filter type of filter.
    * @throws IllegalArgumentException if the layer already exists.
    */
@@ -196,6 +197,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the position of a layer in the project given its layer.
+   *
    * @param name name of filter.
    * @throws IllegalArgumentException if the layer already exists.
    */
@@ -246,7 +248,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     if (x > this.width || x < 0 || y > this.height || y < 0) {
       throw new IllegalArgumentException("invalid arguments");
     }
-    if(image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
+    if (image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
       throw new IllegalArgumentException("image goes off the canvas");
     }
     layer.addImage(image, x, y);
@@ -275,7 +277,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * FIXME: maybe move this to controller
    */
   public void saveImage(String filePath) throws IllegalArgumentException {
-    if(filePath == null) {
+    if (filePath == null) {
       throw new IllegalArgumentException("invalid file path");
     }
 
@@ -312,7 +314,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * FIXME: maybe move this to controller?
    */
   public void saveProject(String filePath) throws IllegalArgumentException {
-    if(filePath == null) {
+    if (filePath == null) {
       throw new IllegalArgumentException("invalid file path");
     }
     PrintWriter writer = null;
@@ -341,6 +343,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the list of layers in the project.
+   *
    * @return String list of layers.
    */
   @Override

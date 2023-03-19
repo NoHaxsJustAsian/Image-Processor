@@ -1,6 +1,6 @@
 package model.Filters;
 
-import model.AImage;
+
 import model.IImage;
 import model.IPixel;
 import model.Pixel;
@@ -16,11 +16,11 @@ public class ColorFilter {
   }
 
   public IPixel[][] apply(ILayer layer, String color) {
-    IPixel[][] pixels =  layer.getCanvas();
+    IPixel[][] pixels = layer.getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
-    for(int i = 0; i < pixels.length; i++) {
-      for(int j = 0; j < pixels[0].length; j++) {
+    for (int i = 0; i < pixels.length; i++) {
+      for (int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
         switch (color) {
           case "red":

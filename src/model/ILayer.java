@@ -9,12 +9,14 @@ public interface ILayer {
 
   /**
    * Returns the height of the layer.
+   *
    * @return int height.
    */
   int getHeight();
 
   /**
    * Returns the width of the layer.
+   *
    * @return int width.
    */
   int getWidth();
@@ -50,6 +52,7 @@ public interface ILayer {
 
   /**
    * This method returns the canvas from the layer.
+   *
    * @return 2D array of pixels.
    */
   public IPixel[][] getCanvas();
@@ -63,6 +66,7 @@ public interface ILayer {
 
   /**
    * Returns a pixel given an x and a y.
+   *
    * @param x int x coord.
    * @param y int y coord.
    * @return
@@ -71,12 +75,14 @@ public interface ILayer {
 
   /**
    * Returns the filter of the layer.
+   *
    * @return IFilter filter.
    */
   IFilter getFilter();
 
   /**
    * sets the canvas of the layer.
+   *
    * @param canvas
    */
   public void setCanvas(IPixel[][] canvas);

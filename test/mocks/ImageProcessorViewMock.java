@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import model.IImageProcessorState;
 import view.IImageProcessorView;
-import view.ImageProcessorView;
+
 
 public class ImageProcessorViewMock implements IImageProcessorView {
   private IImageProcessorState state;

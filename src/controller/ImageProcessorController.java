@@ -1,9 +1,8 @@
 package controller;
 
-import java.awt.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +22,6 @@ import model.Filters.IFilter;
 import model.Filters.Normal;
 import model.Filters.RedFilter;
 import model.IImage;
-import model.IImageProcessorModel;
 
 import model.ILayer;
 import model.IPixel;
@@ -74,6 +72,7 @@ public class ImageProcessorController implements IImageProcessorController {
 
   /**
    * This method should load a project.
+   *
    * @param message the path of the project.
    */
   private void tryRender(String message) {
@@ -86,6 +85,7 @@ public class ImageProcessorController implements IImageProcessorController {
 
   /**
    * This method should load a project.
+   *
    * @param scan the scanner.
    */
   private void readCommand(Scanner scan) {
@@ -95,7 +95,8 @@ public class ImageProcessorController implements IImageProcessorController {
         case "new-project":
           tryRender("enter height and width");
           try {
-            this.model.newProject(scan.nextInt(), scan.nextInt()); //FIXME: add load and save functions
+            this.model.newProject(scan.nextInt(), scan.nextInt());
+            //FIXME: add load and save functions
             break;
           } catch (IllegalArgumentException e) {
             tryRender("Invalid height or width");
@@ -103,18 +104,20 @@ public class ImageProcessorController implements IImageProcessorController {
           }
         case "load-project":
           tryRender("type project path to load");
-          this.loadProject(scan.next()); //FIXME: add load and save functions also figure out what the file path is
+          this.loadProject(scan.next());
+          //FIXME: add load and save functions also figure out what the file path is
           break;
         case "save-project":
           tryRender("type project path to save");
-          this.model.saveProject(scan.next()); //FIXME: all these need catch blocks for the exceptions.
+          this.model.saveProject(scan.next());
+          //FIXME: all these need catch blocks for the exceptions.
           break;
         case "save-image":
           tryRender("type project path to save");
           this.model.saveImage(scan.next());
           break;
         case "set-filter":
-          switch(scan.next()) {
+          switch (scan.next()) {
             case "blue":
               this.model.setFilter(scan.next(), new BlueFilter());
               break;
@@ -151,7 +154,9 @@ public class ImageProcessorController implements IImageProcessorController {
           this.model.addLayer(scan.next());
           break;
         case "add-image-to-layer":
-          this.model.addImage(scan.nextInt(), scan.nextInt(), loadPPM(scan.next()), this.model.getLayer(scan.next())); //FIXME: all these need catch blocks for the exceptions.
+          this.model.addImage(scan.nextInt(), scan.nextInt(),
+                  loadPPM(scan.next()), this.model.getLayer(scan.next()));
+          //FIXME: all these need catch blocks for the exceptions.
           break;
         default:
           tryRender("Invalid command entered. Please try again.");
@@ -184,6 +189,7 @@ public class ImageProcessorController implements IImageProcessorController {
 
   /**
    * This method should load a project.
+   *
    * @param filePath the path of the project.
    */
   private void loadProject(String filePath) {
@@ -194,7 +200,7 @@ public class ImageProcessorController implements IImageProcessorController {
     ImageProcessorModel model;
     IFilter filter;
     List<ILayer> orderLayers = new ArrayList<ILayer>();
-    HashMap<String,ILayer> nameLayers = new HashMap<String,ILayer>();
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
     IPixel[][] pixels;
 
     try {
@@ -222,12 +228,11 @@ public class ImageProcessorController implements IImageProcessorController {
     width = sc.nextInt();
     height = sc.nextInt();
     maxRGB = sc.nextInt();
-    while(sc.hasNext()) {
+    while (sc.hasNext()) {
       String name = sc.next();
       try {
         filter = filterHelp(sc.next()); //FIXME: fix naming scheme of filters
-      }
-      catch(IllegalArgumentException e) {
+      } catch (IllegalArgumentException e) {
         this.tryRender("Invalid filter name");
         return;
       }
@@ -298,10 +303,11 @@ public class ImageProcessorController implements IImageProcessorController {
 
   /**
    * This method should load a project.
+   *
    * @param name the name of the filter.
    */
   private IFilter filterHelp(String name) {
-    switch(name) {
+    switch (name) {
       case "blue":
         return new BlueFilter();
       case "brighten-luma":
