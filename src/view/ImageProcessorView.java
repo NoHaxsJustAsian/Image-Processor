@@ -31,7 +31,7 @@ public class ImageProcessorView implements IImageProcessorView {
    * Creates a view object using the model and destination appendable to display images.
    * @param model the model.
    * @param destination the Appendable.
-   * @throws IllegalArgumentException if model is null
+   * @throws IllegalArgumentException if model is null.
    */
   public ImageProcessorView(IImageProcessorModel model, Appendable destination)
           throws IllegalArgumentException {

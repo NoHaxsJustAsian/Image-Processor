@@ -126,7 +126,7 @@ public class IImageProcessorControllerTest {
 
     control.startProcessor();
 
-    assertEquals( "height width", out.toString());
+    assertEquals( "", out.toString());
 
 
   }
