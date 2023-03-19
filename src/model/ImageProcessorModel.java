@@ -222,7 +222,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will remove a layer from the project.
+   * This method will set a filter to a layer
    *
    * @param name name of layer.
    * @throws IllegalArgumentException if the layer does not exist.

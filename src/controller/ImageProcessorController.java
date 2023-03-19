@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import model.AImage;
 import model.Filters.BlueFilter;
 import model.Filters.BrightenIntensity;
 import model.Filters.BrightenLuma;
@@ -21,6 +22,7 @@ import model.Filters.GreenFilter;
 import model.Filters.IFilter;
 import model.Filters.Normal;
 import model.Filters.RedFilter;
+import model.IImage;
 import model.IImageProcessorModel;
 
 import model.ILayer;
@@ -93,7 +95,7 @@ public class ImageProcessorController implements IImageProcessorController {
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
       switch (command) {
-        case "new":
+        case "new-project":
           tryRender("enter height and width");
           try {
             this.model.newProject(scan.nextInt(), scan.nextInt()); //FIXME: add load and save functions
@@ -102,43 +104,57 @@ public class ImageProcessorController implements IImageProcessorController {
             tryRender("Invalid height or width");
             break;
           }
-        case "load":
+        case "load-project":
           tryRender("type project path to load");
           this.loadProject(scan.next()); //FIXME: add load and save functions also figure out what the file path is
           break;
-        case "save":
+        case "save-project":
           tryRender("type project path to save");
           this.model.saveProject(scan.next()); //FIXME: all these need catch blocks for the exceptions.
           break;
-        case "blue":
-          this.model.setFilter(scan.next(), new BlueFilter());
+        case "save-image":
+          tryRender("type project path to save");
+          this.model.saveImage(scan.next());
           break;
-        case "brighten-luma":
-          this.model.setFilter(scan.next(), new BrightenLuma());
+        case "set-filter":
+          switch(scan.next()) {
+            case "blue":
+              this.model.setFilter(scan.next(), new BlueFilter());
+              break;
+            case "brighten-luma":
+              this.model.setFilter(scan.next(), new BrightenLuma());
+              break;
+            case "brighten-intensity":
+              this.model.setFilter(scan.next(), new BrightenIntensity());
+              break;
+            case "brighten-value":
+              this.model.setFilter(scan.next(), new BrightenValue());
+              break;
+            case "darken-luma":
+              this.model.setFilter(scan.next(), new DarkenLuma());
+              break;
+            case "darken-intensity":
+              this.model.setFilter(scan.next(), new DarkenIntensity());
+              break;
+            case "darken-value":
+              this.model.setFilter(scan.next(), new DarkenValue());
+              break;
+            case "green":
+              this.model.setFilter(scan.next(), new GreenFilter());
+              break;
+            case "normal":
+              this.model.setFilter(scan.next(), new Normal());
+              break;
+            case "red":
+              this.model.setFilter(scan.next(), new RedFilter());
+              break;
+          }
           break;
-        case "brighten-intensity":
-          this.model.setFilter(scan.next(), new BrightenIntensity());
+        case "add-layer":
+          this.model.addLayer(scan.next());
           break;
-        case "brighten-value":
-          this.model.setFilter(scan.next(), new BrightenValue());
-          break;
-        case "darken-luma":
-          this.model.setFilter(scan.next(), new DarkenLuma());
-          break;
-        case "darken-intensity":
-          this.model.setFilter(scan.next(), new DarkenIntensity());
-          break;
-        case "darken-value":
-          this.model.setFilter(scan.next(), new DarkenValue());
-          break;
-        case "green":
-          this.model.setFilter(scan.next(), new GreenFilter());
-          break;
-        case "normal":
-          this.model.setFilter(scan.next(), new Normal());
-          break;
-        case "red":
-          this.model.setFilter(scan.next(), new RedFilter());
+        case "add-image-to-layer":
+          this.model.addImage(scan.nextInt(), scan.nextInt(), loadPPM(scan.next()), this.model.getLayer(scan.next())); //FIXME: all these need catch blocks for the exceptions.
           break;
         default:
           tryRender("Invalid command entered. Please try again.");
@@ -234,6 +250,53 @@ public class ImageProcessorController implements IImageProcessorController {
     }
     this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers);
     this.view = new ImageProcessorView(this.model);
+  }
+
+  private IImage loadPPM(String imagePath) {
+    Scanner sc;
+    int width;
+    int height;
+    int maxRGB;
+    Pixel[][] pixels;
+
+
+    try {
+      sc = new Scanner(new FileInputStream(imagePath));
+      tryRender("Image loaded successfully");
+    } catch (FileNotFoundException e) {
+      tryRender("File " + imagePath + " not found!");
+      return null;
+    }
+    StringBuilder builder = new StringBuilder();
+    while (sc.hasNextLine()) {
+      String s = sc.nextLine();
+      if (!s.equals("") && s.charAt(0) != '#') {
+        builder.append(s + System.lineSeparator());
+      }
+    }
+
+    sc = new Scanner(builder.toString());
+
+    String token;
+
+    token = sc.next();
+    if (!token.equals("P3")) {
+      tryRender("Invalid PPM file: plain RAW file should begin with P3");
+    }
+    width = sc.nextInt();
+    height = sc.nextInt();
+    maxRGB = sc.nextInt();
+    pixels = new Pixel[height][width];
+
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        int r = sc.nextInt();
+        int g = sc.nextInt();
+        int b = sc.nextInt();
+        pixels[i][j] = new Pixel(r, g, b, 255);
+      }
+    }
+    return new AImage(pixels, width, height);
   }
 
   /**

@@ -3,9 +3,9 @@ Inheritance Summary:
 This project contains an Image interface and its implementation AImage class which is an abstract class for PPMImage class, 
 an IImageProcessorState interface which contains non-mutable methods extended by a IImageProcessorModel interface which 
 contains mutable methods and its implementation is an ImageModelProcessor class, an ILayer interface and its implementation 
-Layer class, an IPixel interface and its implementation Pixel class, an IImageProccessorController and its implementation 
-ImageProcessorController class, an IImageProccessorView Class and its implementation ImageProccessor class, and an IFilter 
-interface and its implementaion of function object classes that include Normal class, RedFilter class, GreenFilter class, 
+Layer class, an IPixel interface and its implementation Pixel class, an IImageProcessorController and its implementation 
+ImageProcessorController class, an IImageProcessorView Class and its implementation ImageProcessor class, and an IFilter 
+interface and its implementation of function object classes that include Normal class, RedFilter class, GreenFilter class, 
 BlueFilter class, BrightenIntensity class, BrightenLuma class, BrightenValue class, DarkenIntensity class, DarkenLuma class, 
 DarkenValue class and ColorFilter class. There a ImageUtil class and a main class to run the program.
 
@@ -72,7 +72,7 @@ add-image-to-layer boxes-blue image/boxes.ppm 5 5
 add-layer boxy-dark
 
 # Adds the image to the boxy-dark layer with no offset
-add-image-to-layer boxy-dark image/boxy.ppm 0 0
+add-image-to-layer 0 0 boxy-dark image/boxy.ppm
 
 # Sets the filter to darken according to the luma value
 set-filter boxy-dark darken-luma
@@ -82,5 +82,14 @@ save-image images/boxes-boxy.ppm
 
 # Saves the project to the given path to pick up later
 save-project projects/boxes-boxy.collage
+
+# All commands
+new-project <height> <width>
+load-project <path>
+save-project <path>
+save-image <path>
+add-layer <layer-name>
+set-filter <layer-name> <filter-name>
+add-image-to-layer <x-offset> <y-offset> <layer-name> <path> 
 
 
