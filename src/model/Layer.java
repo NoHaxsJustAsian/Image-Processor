@@ -20,10 +20,10 @@ public class Layer implements ILayer {
 
   /**
    * Represents a constructor for a Layer if filter is given.
-   * @param name
-   * @param filter
-   * @param height
-   * @param width
+   * @param name name of the layer.
+   * @param filter filter of the layer.
+   * @param height height of the layer.
+   * @param width width of the layer.
    */
   public Layer(String name, IFilter filter, int height, int width) {
     this.name = name;
@@ -39,12 +39,13 @@ public class Layer implements ILayer {
     }
   }
 
+  /*
   /**
-   * if no filter is given.
-   * @param name
-   * @param filter
-   * @param height
-   * @param width
+   * If no filter is given.
+   * @param name name of the layer.
+   * @param filter filter of the layer.
+   * @param height height of the layer.
+   * @param width width of the layer.
    */
   /*
   public Layer(String name, int height, int width) {
@@ -118,11 +119,6 @@ public class Layer implements ILayer {
   }
 
 
-//  //maybe change to clear canvas?
-//  @Override
-//  public void removeImage(IImage image) {
-//  }
-
   /**
    * Adds an image to the layer.
    * @param x int offset.
@@ -168,7 +164,7 @@ public class Layer implements ILayer {
 
   /**
    * sets the canvas of the layer.
-   * @param canvas
+   * @param canvas to be set.
    */
   public void setCanvas(IPixel[][] canvas) {
     this.canvas = canvas;

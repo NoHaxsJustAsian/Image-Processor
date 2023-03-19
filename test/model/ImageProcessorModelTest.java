@@ -132,7 +132,7 @@ public class ImageProcessorModelTest {
 
     Pixel[][] pixels;
     PPMImage image;
-    pixels = new Pixel[2][2];
+    pixels = new Pixel[1][1];
     pixels[0][0] = new Pixel(50, 50, 0, 255);
     image = new PPMImage(pixels, 1, 1);
 
@@ -174,12 +174,20 @@ public class ImageProcessorModelTest {
   public void testBrightenIntensity() {
     Pixel[][] pixels;
     PPMImage image;
-    pixels = new Pixel[2][2];
-    pixels[0][0] = new Pixel(50, 0, 50, 255);
+    pixels = new Pixel[1][1];
+    pixels[0][0] = new Pixel(30, , 50, 255);
     image = new PPMImage(pixels, 1, 1);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("brightenIntensity", brightenIntensity, 200, 200);
     first.addImage(image, 0,0);
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200,200,
+            nameLayers, orderLayers);
+
+    assertEquals(100, model1.getLayer("red").getPixel(0,0).getRed());
 
   }
 
