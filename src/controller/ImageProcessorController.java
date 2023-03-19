@@ -41,12 +41,9 @@ public class ImageProcessorController implements IImageProcessorController {
 
   int width;
   int height;
-
   ImageProcessorModel model;
-
   private IImageProcessorView view;
-
-  private Readable object;
+  private final Readable object;
 
 
   /**
