@@ -73,6 +73,10 @@ public class ImageProcessorController implements IImageProcessorController {
     readCommand(s);
   }
 
+  /**
+   * This method should load a project.
+   * @param message the path of the project.
+   */
   private void tryRender(String message) {
     try {
       this.view.renderMessage(message);
@@ -81,6 +85,10 @@ public class ImageProcessorController implements IImageProcessorController {
     }
   }
 
+  /**
+   * This method should load a project.
+   * @param scan the scanner.
+   */
   private void readCommand(Scanner scan) {
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
@@ -161,6 +169,10 @@ public class ImageProcessorController implements IImageProcessorController {
 //    }
   }
 
+  /**
+   * This method should load a project.
+   * @param filePath the path of the project.
+   */
   private void loadProject(String filePath) {
     Scanner sc;
     int width;
@@ -224,6 +236,10 @@ public class ImageProcessorController implements IImageProcessorController {
     this.view = new ImageProcessorView(this.model);
   }
 
+  /**
+   * This method should load a project.
+   * @param name the name of the filter.
+   */
   private IFilter filterHelp(String name) {
     switch(name) {
       case "blue":
