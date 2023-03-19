@@ -3,11 +3,13 @@ package controller;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import mocks.FailingAppendable;
 import model.Filters.BlueFilter;
 import model.Filters.BrightenIntensity;
 import model.Filters.BrightenLuma;
@@ -102,13 +104,49 @@ public class IImageProcessorControllerTest {
   @Test
   public void startProcessor() {
     ImageProcessorModel model = new ImageProcessorModel(200,200);
-    Readable read = new StringReader("new-project 200 200");
+    Readable read = new StringReader("q");
     Appendable out = new StringBuilder();
     ImageProcessorView view = new ImageProcessorView(model, out);
     IImageProcessorController control = new ImageProcessorController(model, view, read);
 
     control.startProcessor();
 
-    //assertEquals( );
+    assertEquals( "", out.toString());
+
+  }
+
+  @Test
+  public void startProcessor1() {
+    this.init();
+    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    Readable read = new StringReader("new");
+    Appendable out = new StringBuilder();
+    ImageProcessorView view = new ImageProcessorView(model, out);
+    IImageProcessorController control = new ImageProcessorController(model, view, read);
+
+    control.startProcessor();
+
+    assertEquals( "height width", out.toString());
+
+
+  }
+
+  @Test
+  public void renderMessage() {
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
+    Readable read = new StringReader("message");
+    Appendable out = new StringBuilder();
+    ImageProcessorView view = new ImageProcessorView(model, out);
+    IImageProcessorController control = new ImageProcessorController(model, view, read);
+
+    view = new ImageProcessorView(model, new FailingAppendable());
+    model.newProject(200, 200);
+    try {
+      view.renderMessage("message");
+      fail();
+    } catch (IOException e) {
+      System.out.println("Error rendering");
+    }
+
   }
 }
