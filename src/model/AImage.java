@@ -10,9 +10,10 @@ public class AImage implements IImage {
 
   /**
    * Represents a constructor for all Images.
+   *
    * @param content is all the pixels in an image.
-   * @param height int height.
-   * @param width int width.
+   * @param height  int height.
+   * @param width   int width.
    */
   public AImage(IPixel[][] content, int height, int width) throws IllegalArgumentException {
     if (height < 0 || width < 0) {
@@ -25,6 +26,7 @@ public class AImage implements IImage {
 
   /**
    * Retrieves the Pixels of the Image.
+   *
    * @return IPixel[][] pixels of the images.
    */
   @Override
@@ -34,6 +36,7 @@ public class AImage implements IImage {
 
   /**
    * Retrieves the Pixel at the given location.
+   *
    * @param x pos.
    * @param y pos.
    * @return IPixel at the given location.
@@ -50,6 +53,7 @@ public class AImage implements IImage {
 
   /**
    * Retrieves the Height of the Image.
+   *
    * @return int height.
    */
   @Override
@@ -59,6 +63,7 @@ public class AImage implements IImage {
 
   /**
    * Retrieves the Width of the Image.
+   *
    * @return int width.
    */
   @Override

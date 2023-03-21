@@ -1,9 +1,5 @@
 package model.Filters;
 
-import java.awt.*;
-
-import model.AImage;
-import model.IImage;
 import model.ILayer;
 import model.IPixel;
 

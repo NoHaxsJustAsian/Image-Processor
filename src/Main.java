@@ -3,20 +3,18 @@ import java.io.InputStreamReader;
 
 import controller.IImageProcessorController;
 import controller.ImageProcessorController;
-import model.IImageProcessorModel;
 import model.ImageProcessorModel;
 import view.IImageProcessorView;
 import view.ImageProcessorView;
 
 /**
- *
+ * Main class runs.
  */
 
 public class Main {
 
   /**
    * This is the main method.
-   *
    * @param args input for the controller.
    * @throws IOException if controller is unable to
    *                     successfully read input or transmit output.

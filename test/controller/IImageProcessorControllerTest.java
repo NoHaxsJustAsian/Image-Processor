@@ -46,10 +46,8 @@ public class IImageProcessorControllerTest {
   IFilter darkenValue = new DarkenValue();
 
 
-
-
   @Before
-  public void init(){
+  public void init() {
 
     Pixel[][] pixels;
     PPMImage image;
@@ -71,15 +69,14 @@ public class IImageProcessorControllerTest {
     imagee = new PPMImage(pixelss, 2, 2);
 
 
-
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("1", normal, 200, 200);
-    first.addImage(image, 0,0);
+    first.addImage(image, 0, 0);
     nameLayers.put("1", first);
 
     ILayer second = new Layer("2", normal, 200, 200);
-    second.addImage(imagee, 1,1);
+    second.addImage(imagee, 1, 1);
     nameLayers.put("2", second);
 
     ILayer third = new Layer("3", redFilter, 200, 200);
@@ -96,14 +93,14 @@ public class IImageProcessorControllerTest {
     orderLayers.add(fourth);
 
 
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
-    ImageProcessorModel model1 = new ImageProcessorModel(200,200, nameLayers, orderLayers);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
   }
 
   @Test
   public void startProcessor() {
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
     Readable read = new StringReader("q");
     Appendable out = new StringBuilder();
     ImageProcessorView view = new ImageProcessorView(model, out);
@@ -111,14 +108,14 @@ public class IImageProcessorControllerTest {
 
     control.startProcessor();
 
-    assertEquals( "", out.toString());
+    assertEquals("", out.toString());
 
   }
 
   @Test
   public void startProcessor1() {
     this.init();
-    ImageProcessorModel model = new ImageProcessorModel(200,200);
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
     Readable read = new StringReader("new");
     Appendable out = new StringBuilder();
     ImageProcessorView view = new ImageProcessorView(model, out);
@@ -126,7 +123,7 @@ public class IImageProcessorControllerTest {
 
     control.startProcessor();
 
-    assertEquals( "", out.toString());
+    assertEquals("", out.toString());
 
 
   }

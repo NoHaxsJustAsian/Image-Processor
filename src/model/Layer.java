@@ -1,7 +1,7 @@
 package model;
-import java.util.Arrays;
+
+
 import model.Filters.IFilter;
-import model.Filters.Normal;
 
 /**
  * Represents a Layer on the Image.
@@ -20,10 +20,11 @@ public class Layer implements ILayer {
 
   /**
    * Represents a constructor for a Layer if filter is given.
-   * @param name name of the layer.
+   *
+   * @param name   name of the layer.
    * @param filter filter of the layer.
    * @param height height of the layer.
-   * @param width width of the layer.
+   * @param width  width of the layer.
    */
   public Layer(String name, IFilter filter, int height, int width) {
     this.name = name;
@@ -65,6 +66,7 @@ public class Layer implements ILayer {
 
   /**
    * Returns the name of the layer.
+   *
    * @return name of the layer as a string
    */
   public String getName() {
@@ -85,6 +87,7 @@ public class Layer implements ILayer {
 
   /**
    * Returns the filter of the layer.
+   *
    * @return IFilter filter.
    */
   @Override
@@ -94,6 +97,7 @@ public class Layer implements ILayer {
 
   /**
    * Returns the height of the layer.
+   *
    * @return int height.
    */
   @Override
@@ -103,6 +107,7 @@ public class Layer implements ILayer {
 
   /**
    * Returns the width of the layer.
+   *
    * @return int width.
    */
   @Override
@@ -112,6 +117,7 @@ public class Layer implements ILayer {
 
   /**
    * Sets the filter for the layer.
+   *
    * @param filter to be set
    */
   public void setFilter(IFilter filter) {
@@ -121,15 +127,16 @@ public class Layer implements ILayer {
 
   /**
    * Adds an image to the layer.
-   * @param x int offset.
-   * @param y int offset.
+   *
+   * @param x     int offset.
+   * @param y     int offset.
    * @param image to be added.
    */
   public void addImage(IImage image, int x, int y) throws IllegalArgumentException {
     //FIXME: tbh u gotta check if this works but im pretty sure this is how it works.
     //FIXME: add a invalid argument exception if the x and y given are out of bounds unless we dont care about it. Are we allowing partial images?
     //lets not allow it for now because they didn't specify in assignment
-    if(x < 0 || y < 0 || image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
+    if (x < 0 || y < 0 || image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
       throw new IllegalArgumentException("invalid bounds for image");
     }
 
@@ -164,6 +171,7 @@ public class Layer implements ILayer {
 
   /**
    * sets the canvas of the layer.
+   *
    * @param canvas to be set.
    */
   public void setCanvas(IPixel[][] canvas) {

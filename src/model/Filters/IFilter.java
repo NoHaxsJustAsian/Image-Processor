@@ -1,6 +1,5 @@
 package model.Filters;
 
-import model.IImage;
 import model.ILayer;
 import model.IPixel;
 
