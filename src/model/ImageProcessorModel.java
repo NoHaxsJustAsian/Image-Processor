@@ -352,7 +352,3 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
 }
-
-//to do
-// we gotta make a thing to list all layers in the project
-// gotta add all the exceptions
