@@ -118,7 +118,7 @@ public class Layer implements ILayer {
   /**
    * Sets the filter for the layer.
    *
-   * @param filter to be set
+   * @param filter to be set.
    */
   public void setFilter(IFilter filter) {
     this.filter = filter;
@@ -163,14 +163,14 @@ public class Layer implements ILayer {
   }
 
   /**
-   * returns the canvas from the layer.
+   * Returns the canvas of the layer.
    */
   public IPixel[][] getCanvas() {
     return this.canvas;
   }
 
   /**
-   * sets the canvas of the layer.
+   * Sets the canvas of the layer.
    *
    * @param canvas to be set.
    */

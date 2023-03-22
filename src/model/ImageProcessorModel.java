@@ -311,6 +311,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
 
+  //create a new project and save it to a file
+  //load the saved file and check if the project is the same as the original
+  //save file a, create file b compare a to b
+
   /**
    * This method will output the project as its separate components.
    * FIXME: maybe move this to controller?
