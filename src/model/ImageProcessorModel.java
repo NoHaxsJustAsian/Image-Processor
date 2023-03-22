@@ -263,6 +263,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
   public IPixel[][] saveCanvas() {
     IPixel[][] finalPixels = new IPixel[getHeight()][getWidth()];
     for (int x = 0; x < orderLayers.size(); x++) {
+      ILayer layer = orderLayers.get(x);
+      layer.getFilter().apply(layer);
       for (int i = 0; i < getHeight(); i++) {
         for (int j = 0; j < getWidth(); j++) {
           finalPixels[i][j] = orderLayers.get(x).getPixel(i, j);
