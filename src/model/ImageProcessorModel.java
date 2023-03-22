@@ -275,79 +275,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will create one image from all the layers for PPM.
-   * FIXME: maybe move this to controller
-   */
-  public void saveImage(String filePath) throws IllegalArgumentException {
-    if (filePath == null) {
-      throw new IllegalArgumentException("invalid file path");
-    }
-
-    IPixel[][] finalPixels = saveCanvas();
-
-    PrintWriter writer = null;
-    try {
-      writer = new PrintWriter(new File(filePath)); //FIXME: fix PrintWriter
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
-    }
-    for (int i = 0; i < getHeight(); i++) {
-      for (int j = 0; j < getWidth(); j++) {
-        writer.println(finalPixels[i][j].getRed()
-                + " " + finalPixels[i][j].getGreen()
-                + " " + finalPixels[i][j].getBlue());
-      }
-    }
-    writer.close();
-    /*
-    BufferedImage finalImage = new BufferedImage(getWidth(), getHeight(),
-            BufferedImage.TYPE_INT_RGB);
-    for (int ii = 0; ii < getHeight(); ii++) {
-      for (int jj = 0; jj < getWidth(); jj++) {
-        finalImage.setRGB(jj, ii, finalPixels[ii][jj].getRed());
-      }
-    }
-    */
-  }
-
-
-  //create a new project and save it to a file
-  //load the saved file and check if the project is the same as the original
-  //save file a, create file b compare a to b
-
-  /**
-   * This method will output the project as its separate components.
-   * FIXME: maybe move this to controller?
-   */
-  public void saveProject(String filePath) throws IllegalArgumentException {
-    if (filePath == null) {
-      throw new IllegalArgumentException("invalid file path");
-    }
-    PrintWriter writer = null;
-    try {
-      writer = new PrintWriter(new File(filePath));
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
-    }
-    writer.println("C1");
-    writer.println(getWidth() + " " + getHeight());
-    writer.println(getMaxValue());
-    for (int x = 0; x < orderLayers.size(); x++) {
-      writer.println(orderLayers.get(x).getName()
-              + " "
-              + orderLayers.get(x).getFilter().getName());
-      for (int i = 0; i < getHeight(); i++) {
-        for (int j = 0; j < getWidth(); j++) {
-          writer.println(orderLayers.get(x).getPixel(i, j).getRed()
-                  + " " + orderLayers.get(x).getPixel(i, j).getGreen()
-                  + " " + orderLayers.get(x).getPixel(i, j).getBlue());
-        }
-      }
-    }
-    writer.close();
-  }
-
-  /**
    * This method will return the list of layers in the project.
    *
    * @return String list of layers.
@@ -357,4 +284,11 @@ public class ImageProcessorModel implements IImageProcessorModel {
     return String.join(",", nameLayers.keySet());
   }
 
+  /**
+   * This method will return the list of filters in the project.
+   * @return
+   */
+  public int getLayerCount() {
+    return orderLayers.size();
+  }
 }

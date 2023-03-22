@@ -72,19 +72,18 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   IPixel[][] saveCanvas();
 
-  /**
-   * This method will create one image from all the layers.
-   *
-   * @param filePath String path.
-   */
-  void saveImage(String filePath);
 
   /**
-   * his method will output the project as its separate components.
+   * This method will return the list of layers in the project.
    *
-   * @param filePath String path.
+   * @return String list of layers.
    */
-  void saveProject(String filePath);
+  @Override
+  public String listLayers();
 
-
+  /**
+   * This method will return the list of filters in the project.
+   * @return
+   */
+  public int getLayerCount();
 }

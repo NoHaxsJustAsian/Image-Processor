@@ -1,8 +1,10 @@
 package controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -310,4 +312,72 @@ public class ImageProcessorController implements IImageProcessorController {
         return null;
     }
   }
+
+  /**
+   * This method will output the project as its separate components.
+   *
+   */
+  public void saveProject(String filePath) throws IllegalArgumentException {
+    if (filePath == null) {
+      throw new IllegalArgumentException("invalid file path");
+    }
+    PrintWriter writer = null;
+    try {
+      writer = new PrintWriter(new File(filePath));
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+    writer.println("C1");
+    writer.println(model.getWidth() + " " + model.getHeight());
+    writer.println(model.getMaxValue());
+    for (int x = 0; x < model.getLayerCount(); x++) {
+      writer.println(model.getLayer(x).getName()
+              + " "
+              + model.getLayer(x).getFilter().getName());
+      for (int i = 0; i < model.getHeight(); i++) {
+        for (int j = 0; j < model.getWidth(); j++) {
+          writer.println(model.getLayer(x).getPixel(i, j).getRed()
+                  + " " + model.getLayer(x).getPixel(i, j).getGreen()
+                  + " " + model.getLayer(x).getPixel(i, j).getBlue());
+        }
+      }
+    }
+    writer.close();
+  }
+
+  /**
+   * This method will create one image from all the layers for PPM.
+   */
+  public void saveImage(String filePath) throws IllegalArgumentException {
+    if (filePath == null) {
+      throw new IllegalArgumentException("invalid file path");
+    }
+
+    IPixel[][] finalPixels = model.saveCanvas();
+
+    PrintWriter writer = null;
+    try {
+      writer = new PrintWriter(new File(filePath)); //FIXME: fix PrintWriter
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+    for (int i = 0; i < model.getHeight(); i++) {
+      for (int j = 0; j < model.getWidth(); j++) {
+        writer.println(finalPixels[i][j].getRed()
+                + " " + finalPixels[i][j].getGreen()
+                + " " + finalPixels[i][j].getBlue());
+      }
+    }
+    writer.close();
+    /*
+    BufferedImage finalImage = new BufferedImage(getWidth(), getHeight(),
+            BufferedImage.TYPE_INT_RGB);
+    for (int ii = 0; ii < getHeight(); ii++) {
+      for (int jj = 0; jj < getWidth(); jj++) {
+        finalImage.setRGB(jj, ii, finalPixels[ii][jj].getRed());
+      }
+    }
+    */
+  }
+
 }
