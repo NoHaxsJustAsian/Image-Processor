@@ -112,10 +112,11 @@ public class ImageProcessorModelTest {
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
+    IPixel[][] hold = model1.getLayer("red").getFilter().apply(model1.getLayer("red"));
+    model1.getLayer("red").setCanvas(hold);
 
     assertEquals("redFilter", redFilter.getName());
     assertEquals("red", first.getName());
-    //FIXME: not properly changing the color of the pixels
     assertEquals(50, model1.getLayer("red").getPixel(0, 0).getRed());
     assertEquals(0, model1.getLayer("red").getPixel(0, 0).getGreen());
   }
