@@ -278,7 +278,7 @@ public class ImageProcessorController implements IImageProcessorController {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-    return new AImage(pixels, width, height);
+    return new AImage(pixels, height, width);
   }
 
   /**
