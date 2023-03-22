@@ -27,16 +27,43 @@ public class DarkenValue implements IFilter {
           int color1 = pixel.getRed() - pixel.getRed();
           int color2 = pixel.getGreen() - pixel.getRed();
           int color3 = pixel.getBlue() - pixel.getRed();
+          if(color1 > 255) {
+            color1 = 255;
+          }
+          if(color2 > 255) {
+            color2 = 255;
+          }
+          if(color3 > 255) {
+            color3 = 255;
+          }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
         } else if (pixel.getGreen() > pixel.getRed() && pixel.getGreen() > pixel.getBlue()) {
           int color1 = pixel.getRed() - pixel.getGreen();
           int color2 = pixel.getGreen() - pixel.getGreen();
           int color3 = pixel.getBlue() - pixel.getGreen();
+          if(color1 > 255) {
+            color1 = 255;
+          }
+          if(color2 > 255) {
+            color2 = 255;
+          }
+          if(color3 > 255) {
+            color3 = 255;
+          }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
         } else {
           int color1 = pixel.getRed() - pixel.getBlue();
           int color2 = pixel.getGreen() - pixel.getBlue();
           int color3 = pixel.getBlue() - pixel.getBlue();
+          if(color1 > 255) {
+            color1 = 255;
+          }
+          if(color2 > 255) {
+            color2 = 255;
+          }
+          if(color3 > 255) {
+            color3 = 255;
+          }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
         }
       }
