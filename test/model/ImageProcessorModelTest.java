@@ -516,19 +516,4 @@ public class ImageProcessorModelTest {
     assertEquals(50, model1.getLayer("1").getPixel(0, 0).getRed());
   }
 
-  @Test
-  public void saveImage() {
-
-    
-  }
-
-  @Test
-  public void saveProject() {
-
-  }
-
-  @Test
-  public void loadProject() {
-
-  }
 }

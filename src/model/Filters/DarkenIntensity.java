@@ -25,16 +25,16 @@ public class DarkenIntensity implements IFilter {
       for (int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
         int color1 = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3 - pixel.getRed();
-        if(color1 > 255) {
-          color1 = 255;
+        if(color1 < 0) {
+          color1 = 0;
         }
         int color2 = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3 - pixel.getGreen();
-        if(color2 > 255) {
-          color2 = 255;
+        if(color2 < 0) {
+          color2 = 0;
         }
         int color3 = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3 - pixel.getBlue();
-        if(color3 > 255) {
-          color3 = 255;
+        if(color3 < 0) {
+          color3 = 0;
         }
         newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
       }

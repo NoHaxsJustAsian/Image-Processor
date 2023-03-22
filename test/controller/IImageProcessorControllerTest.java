@@ -124,10 +124,6 @@ public class IImageProcessorControllerTest {
     control.startProcessor();
 
     assertEquals("", out.toString());
-
-
-
-
   }
 
   @Test
@@ -146,6 +142,22 @@ public class IImageProcessorControllerTest {
     } catch (IOException e) {
       System.out.println("Error rendering");
     }
+  }
+
+
+  @Test
+  public void saveImage() {
+
+
+  }
+
+  @Test
+  public void saveProject() {
+
+  }
+
+  @Test
+  public void loadProject() {
 
   }
 }

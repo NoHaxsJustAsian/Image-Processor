@@ -109,12 +109,12 @@ public class ImageProcessorController implements IImageProcessorController {
           break;
         case "save-project":
           tryRender("type project path to save");
-          this.model.saveProject(scan.next());
+          this.saveProject(scan.next());
           //FIXME: all these need catch blocks for the exceptions.
           break;
         case "save-image":
           tryRender("type project path to save");
-          this.model.saveImage(scan.next());
+          this.saveImage(scan.next());
           break;
         case "set-filter":
           switch (scan.next()) {
@@ -238,7 +238,7 @@ public class ImageProcessorController implements IImageProcessorController {
     Scanner sc;
     int width;
     int height;
-    int maxRGB;
+    int maxValue;
     Pixel[][] pixels;
 
 
@@ -267,7 +267,7 @@ public class ImageProcessorController implements IImageProcessorController {
     }
     width = sc.nextInt();
     height = sc.nextInt();
-    maxRGB = sc.nextInt();
+    maxValue = sc.nextInt();
     pixels = new Pixel[height][width];
 
     for (int i = 0; i < height; i++) {
