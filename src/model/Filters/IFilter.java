@@ -18,6 +18,14 @@ public interface IFilter {
   public IPixel[][] apply(ILayer layer);
 
   /**
+   * This applies a filter to Image.
+   *
+   * @param layer is original image.
+   * @return IPixel is original image with filter applied.
+   */
+  public IPixel[][] apply(ILayer layer);
+
+  /**
    * Gets the name of the filter.
    *
    * @return string name of the filter.
