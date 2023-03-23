@@ -133,9 +133,7 @@ public class Layer implements ILayer {
    * @param image to be added.
    */
   public void addImage(IImage image, int x, int y) throws IllegalArgumentException {
-    //FIXME: tbh u gotta check if this works but im pretty sure this is how it works.
     //FIXME: add a invalid argument exception if the x and y given are out of bounds unless we dont care about it. Are we allowing partial images?
-    //lets not allow it for now because they didn't specify in assignment
     if (x < 0 || y < 0 || image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
       throw new IllegalArgumentException("invalid bounds for image");
     }
@@ -178,18 +176,4 @@ public class Layer implements ILayer {
     this.canvas = canvas;
   }
 }
-
-
-//To-Do List.
-//constructor that takes in the canvas size (from initial project size), and the name of the layer.
-//make array of pixels that is the canvas of the layer (make it a 2d array) (the size of project given by user)
-//
-//make methods that take in images, and their location (offset), and apply it to the canvas of the layer
-// (make sure to check if the image is within the bounds of the canvas) (this will have to iterate thought
-// the image's arraylist, and then apply the offsets to add to the arraylist index, to apply the shift.
-//make method that applies filter.
-
-
-
-
 

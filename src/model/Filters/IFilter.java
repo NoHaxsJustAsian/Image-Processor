@@ -11,10 +11,11 @@ public interface IFilter {
   /**
    * This applies a filter to Image.
    *
-   * @param layer is original image.
+   * @param layer is a list of layers.
    * @return IPixel is original image with filter applied.
    */
   public IPixel[][] apply(ILayer layer);
+
 
   /**
    * Gets the name of the filter.

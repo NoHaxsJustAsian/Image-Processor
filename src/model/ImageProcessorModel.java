@@ -30,15 +30,29 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param orderLayers List of layers.
    */
   public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
-                             List<ILayer> orderLayers) {
+                             List<ILayer> orderLayers, int maxValue) {
     if (height < 0 || width < 0 || nameLayers == null || orderLayers == null) {
       throw new IllegalArgumentException("invalid arguments");
     }
     this.height = height;
     this.width = width;
-    this.maxValue = 255;
+    this.maxValue = maxValue;
     this.nameLayers = nameLayers;
     this.orderLayers = orderLayers;
+  }
+
+  /**
+   * Represents constructor for this model.
+   * (load existing project)
+   *
+   * @param height      int height.
+   * @param width       int width.
+   * @param nameLayers  HashMap of layers with keys as names.
+   * @param orderLayers List of layers.
+   */
+  public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
+                             List<ILayer> orderLayers) {
+    this(height, width, nameLayers, orderLayers, 255);
   }
 
 
@@ -55,7 +69,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     }
     this.height = height;
     this.width = width;
-    this.maxValue = 255;
+    this.maxValue = maxValue;
     this.nameLayers = new HashMap<String, ILayer>();
     this.orderLayers = new ArrayList<ILayer>();
   }
