@@ -40,7 +40,6 @@ public class ImageProcessorViewTest {
     assertEquals("message", sb.toString());
 
   }
-
   @Test
   public void testFailRenderMessage() {
     view = new ImageProcessorView(model, new FailingAppendable());
