@@ -1,5 +1,7 @@
 package model.Filters;
 
+import java.util.List;
+
 import model.ILayer;
 import model.IPixel;
 import model.Pixel;
@@ -17,7 +19,7 @@ public class BrightenIntensity implements IFilter {
 
 
   @Override
-  public IPixel[][] apply(ILayer layer) {
+  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
     IPixel[][] pixels = layer.getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 

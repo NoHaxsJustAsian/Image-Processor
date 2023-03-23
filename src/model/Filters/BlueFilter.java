@@ -1,5 +1,7 @@
 package model.Filters;
 
+import java.util.List;
+
 import model.ILayer;
 import model.IPixel;
 import model.Pixel;
@@ -20,7 +22,7 @@ public class BlueFilter implements IFilter {
    * @param layer is original image.
    * @return IImage is original image with filter applied.
    */
-  public IPixel[][] apply(ILayer layer) {
+  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
     IPixel[][] pixels = layer.getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 

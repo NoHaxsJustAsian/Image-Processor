@@ -27,6 +27,7 @@ import model.ILayer;
 import model.IPixel;
 import model.ImageProcessorModel;
 import model.Layer;
+import model.PPMImage;
 import model.Pixel;
 import view.IImageProcessorView;
 import view.ImageProcessorView;
@@ -280,7 +281,7 @@ public class ImageProcessorController implements IImageProcessorController {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-    return new AImage(pixels, height, width);
+    return new PPMImage(pixels, height, width);
   }
 
   /**
