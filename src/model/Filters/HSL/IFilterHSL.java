@@ -1,12 +1,15 @@
-package model.Filters;
+package model.Filters.HSL;
+
+import model.IImageProcessorModel;
 import model.ILayer;
 import model.IPixel;
 
 /**
- * Represents an interface for model.Filters.
+ * Represents an interface for Filters, with access to the
+ * model and other layers other than the one
+ * it is being fed.
  */
-
-public interface IFilter {
+public interface IFilterHSL {
 
   /**
    * This applies a filter to Image.
@@ -14,7 +17,7 @@ public interface IFilter {
    * @param layer is original image.
    * @return IPixel is original image with filter applied.
    */
-  public IPixel[][] apply(ILayer layer);
+  public IPixel[][] apply(ILayer layer, IImageProcessorModel model);
 
   /**
    * Gets the name of the filter.
@@ -23,4 +26,3 @@ public interface IFilter {
    */
   public String getName();
 }
-

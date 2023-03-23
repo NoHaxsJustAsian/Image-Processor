@@ -3,7 +3,7 @@ package model;
 /**
  * Represents an abstract class for Image types.
  */
-public class AImage implements IImage {
+public abstract class AImage implements IImage {
   IPixel[][] content;
   int height;
   int width;

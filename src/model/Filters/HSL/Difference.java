@@ -1,10 +1,11 @@
-package model.Filters;
+package model.Filters.HSL;
 
+import model.IImageProcessorModel;
 import model.ILayer;
 import model.IPixel;
 import model.Pixel;
 
-public class Difference implements IFilter {
+public class Difference implements IFilterHSL {
 
   String name;
 
@@ -14,9 +15,8 @@ public class Difference implements IFilter {
 
 
   @Override
-  public IPixel[][] apply(ILayer layer) {
+  public IPixel[][] apply(ILayer layer, IImageProcessorModel model) {
     IPixel[][] pixels = layer.getCanvas();
-    
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for (int i = 0; i < pixels.length; i++) {
@@ -24,7 +24,7 @@ public class Difference implements IFilter {
         IPixel pixel = pixels[i][j];
 
         int color1 = Math.abs(pixel.getRed() - pixel.getRed());
-        if(color1 < 0) {
+        if (color1 < 0) {
           color1 = 0;
         }
 

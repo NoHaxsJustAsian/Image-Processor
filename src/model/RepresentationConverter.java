@@ -1,4 +1,4 @@
-package swingdemo;
+package model;
 
 /**
  * This class contains utility methods to convert an RGB representation

@@ -93,13 +93,13 @@ public class ImageProcessorController implements IImageProcessorController {
     while (!command.equals("q") && !command.equals("Q")) {
       switch (command) {
         case "new-project":
-          tryRender("enter height and width");
+          tryRender("enter height and width and max color value");
           try {
-            this.model.newProject(scan.nextInt(), scan.nextInt());
+            this.model.newProject(scan.nextInt(), scan.nextInt(), scan.nextInt());
             //FIXME: add load and save functions
             break;
           } catch (IllegalArgumentException e) {
-            tryRender("Invalid height or width");
+            tryRender("Invalid height or width or max color value");
             break;
           }
         case "load-project":
@@ -266,7 +266,9 @@ public class ImageProcessorController implements IImageProcessorController {
       tryRender("Invalid PPM file: plain RAW file should begin with P3");
     }
     width = sc.nextInt();
+    System.out.println("Width of image: " + width);
     height = sc.nextInt();
+    System.out.println("Height of image: " + height);
     maxValue = sc.nextInt();
     pixels = new Pixel[height][width];
 

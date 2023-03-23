@@ -9,18 +9,18 @@ public interface IPixel {
   public int getRed();
 
   /**
-   * Returns the blue value of the pixel.
-   *
-   * @return the blue value of the pixel.
-   */
-  public int getBlue();
-
-  /**
    * Returns the green value of the pixel.
    *
    * @return the green value of the pixel.
    */
   public int getGreen();
+
+  /**
+   * Returns the blue value of the pixel.
+   *
+   * @return the blue value of the pixel.
+   */
+  public int getBlue();
 
   /**
    * Returns the alpha value of the pixel.

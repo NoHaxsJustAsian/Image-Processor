@@ -1,8 +1,5 @@
 package model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -214,10 +211,10 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    */
-  public void newProject(int height, int width) {
+  public void newProject(int height, int width, int maxValue) {
     this.height = height;
     this.width = width;
-    this.maxValue = 255;
+    this.maxValue = maxValue;
     this.nameLayers = new HashMap<String, ILayer>();
     this.orderLayers = new ArrayList<ILayer>();
     this.addLayer("background", new Normal());

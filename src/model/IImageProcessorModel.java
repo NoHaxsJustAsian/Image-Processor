@@ -39,8 +39,9 @@ public interface IImageProcessorModel extends IImageProcessorState {
    *
    * @param height int height.
    * @param width  int width.
+   * @param maxValue int max value.
    */
-  void newProject(int height, int width);
+  void newProject(int height, int width, int maxValue);
 
   /**
    * This method will set a filter to a layer.
