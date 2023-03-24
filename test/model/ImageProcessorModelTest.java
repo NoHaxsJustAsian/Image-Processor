@@ -112,7 +112,7 @@ public class ImageProcessorModelTest {
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    IPixel[][] hold = model1.getLayer("red").getFilter().apply(model1.getLayer("red"));
+    IPixel[][] hold = model1.getLayer("red").getFilter().apply(model1.getLayers());
     model1.getLayer("red").setCanvas(hold);
 
     assertEquals("redFilter", redFilter.getName());
@@ -141,7 +141,7 @@ public class ImageProcessorModelTest {
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    IPixel[][] hold = model1.getLayer("green").getFilter().apply(model1.getLayer("green"));
+    IPixel[][] hold = model1.getLayer("green").getFilter().apply(model1.getLayers());
     model1.getLayer("green").setCanvas(hold);
 
     assertEquals("greenFilter", greenFilter.getName());
@@ -165,12 +165,13 @@ public class ImageProcessorModelTest {
     first.addImage(image, 0, 0);
 
     nameLayers.put("brightenIntensity", first);
+    orderLayers.add(first);
 
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
     IPixel[][] hold = model1.getLayer("brightenIntensity").getFilter()
-            .apply(model1.getLayer("brightenIntensity"));
+            .apply(model1.getLayers());
     model1.getLayer("brightenIntensity").setCanvas(hold);
 
     assertEquals(40, model1.getLayer("brightenIntensity").getPixel(0, 0).getRed());
@@ -192,12 +193,13 @@ public class ImageProcessorModelTest {
     first.addImage(image, 0, 0);
 
     nameLayers.put("brightenLuma", first);
+    orderLayers.add(first);
 
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
     IPixel[][] hold = model1.getLayer("brightenLuma").getFilter()
-            .apply(model1.getLayer("brightenLuma"));
+            .apply(model1.getLayers());
     model1.getLayer("brightenLuma").setCanvas(hold);
 
     assertEquals(100, model1.getLayer("brightenLuma").getPixel(0, 0).getRed());
@@ -220,13 +222,14 @@ public class ImageProcessorModelTest {
     first.addImage(image, 0, 0);
 
     nameLayers.put("brightenValue", first);
+    orderLayers.add(first);
 
 
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
     IPixel[][] hold = model1.getLayer("brightenValue").getFilter()
-            .apply(model1.getLayer("brightenValue"));
+            .apply(model1.getLayers());
     model1.getLayer("brightenValue").setCanvas(hold);
 
     assertEquals(100, model1.getLayer("brightenValue").getPixel(0, 0).getRed());
@@ -248,10 +251,18 @@ public class ImageProcessorModelTest {
     ILayer first = new Layer("darkenIntensity", darkenIntensity, 200, 200);
     first.addImage(image, 0, 0);
 
+
+    nameLayers.put("darkenIntensity", first);
+    orderLayers.add(first);
+
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(20, model1.getLayer("red").getPixel(0, 0).getRed());
+    IPixel[][] hold = model1.getLayer("darkenIntensity").getFilter()
+            .apply(model1.getLayers());
+    model1.getLayer("darkenIntensity").setCanvas(hold);
+
+    assertEquals(0, model1.getLayer("darkenIntensity").getPixel(0, 0).getRed());
 
   }
 
@@ -269,10 +280,18 @@ public class ImageProcessorModelTest {
     ILayer first = new Layer("darkenLuma", darkenLuma, 200, 200);
     first.addImage(image, 0, 0);
 
+    nameLayers.put("darkenLuma", first);
+    orderLayers.add(first);
+
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(0, model1.getLayer("red").getPixel(0, 0).getRed());
+    IPixel[][] hold = model1.getLayer("darkenLuma").getFilter()
+            .apply(model1.getLayers());
+    model1.getLayer("darkenLuma").setCanvas(hold);
+
+
+    assertEquals(0, model1.getLayer("darkenLuma").getPixel(0, 0).getRed());
 
   }
 
@@ -291,12 +310,52 @@ public class ImageProcessorModelTest {
     ILayer first = new Layer("darkenValue", darkenValue, 200, 200);
     first.addImage(image, 0, 0);
 
+
+    nameLayers.put("darkenValue", first);
+    orderLayers.add(first);
+
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    assertEquals(0, model1.getLayer("red").getPixel(0, 0).getRed());
+    IPixel[][] hold = model1.getLayer("darkenValue").getFilter()
+            .apply(model1.getLayers());
+    model1.getLayer("darkenValue").setCanvas(hold);
+
+
+    assertEquals(0, model1.getLayer("darkenValue").getPixel(0, 0).getRed());
+  }
+
+
+  @Test
+  public void Difference() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    image = new PPMImage(pixels, 1, 1);
 
   }
+
+  @Test
+  public void Multiply() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+  }
+
+  @Test
+  public void Screen() {
+    Pixel[][] pixels;
+    PPMImage image;
+    pixels = new Pixel[2][2];
+    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    image = new PPMImage(pixels, 1, 1);
+
+  }
+
 
   @Test
   public void getHeight() {
@@ -467,7 +526,7 @@ public class ImageProcessorModelTest {
 
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200, nameLayers, orderLayers);
 
-    model1.newProject(200, 200);
+    model1.newProject(200, 200, 255);
     assertEquals(200, model1.getWidth());
     assertEquals(200, model1.getHeight());
   }
@@ -515,5 +574,7 @@ public class ImageProcessorModelTest {
 
     assertEquals(50, model1.getLayer("1").getPixel(0, 0).getRed());
   }
+
+
 
 }

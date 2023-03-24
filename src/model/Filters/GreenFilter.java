@@ -18,13 +18,12 @@ public class GreenFilter implements IFilter {
   }
 
   /**
-   * This applies green filter to Image.
-   *
-   * @param layer is original image.
+   * This applies green filter to the top layer.
+   * @param layers is a list of layers.
    * @return IImage is original image with filter applied.
    */
-  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
-    IPixel[][] pixels = layer.getCanvas();
+  public IPixel[][] apply(List<ILayer> layers) {
+    IPixel[][] pixels = layers.get(0).getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for (int i = 0; i < pixels.length; i++) {

@@ -31,8 +31,8 @@ public interface ILayer {
   /**
    * Adds an image to the layer.
    *
-   * @param x     offset
-   * @param y     offset
+   * @param x offset.
+   * @param y offset.
    * @param image to be added.
    */
   void addImage(IImage image, int x, int y);

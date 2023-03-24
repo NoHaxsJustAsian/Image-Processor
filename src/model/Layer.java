@@ -17,6 +17,7 @@ public class Layer implements ILayer {
   IFilter filter;
   int height;
   int width;
+  
 
   /**
    * Represents a constructor for a Layer if filter is given.

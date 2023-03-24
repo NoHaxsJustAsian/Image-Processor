@@ -9,9 +9,9 @@ public class HSLtoRGBAdapter extends HSL implements IPixel {
   /**
    * Represents constructor for HSLtoRBGAdapter.
    *
-   * @param hue        pixel value
-   * @param saturation pixel value
-   * @param lightness  pixel value
+   * @param hue        pixel value.
+   * @param saturation pixel value.
+   * @param lightness  pixel value.
    * @throws IllegalArgumentException if any of the values are out of range.
    */
   public HSLtoRGBAdapter(double hue, double saturation,
@@ -66,7 +66,6 @@ public class HSLtoRGBAdapter extends HSL implements IPixel {
   private static double convertFn(double hue, double saturation, double lightness, int n) {
     double k = (n + (hue / 30)) % 12;
     double a = saturation * Math.min(lightness, 1 - lightness);
-
     return lightness - a * Math.max(-1, Math.min(k - 3, Math.min(9 - k, 1)));
   }
 }

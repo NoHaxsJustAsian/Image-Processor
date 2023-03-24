@@ -17,9 +17,14 @@ public class DarkenValue implements IFilter {
     this.name = "darkenValue";
   }
 
+/**
+   * Applies the Darken Value filter to the top layer.
+   * @param layers a list of layers.
+   * @return IPixel[][] is the new image.
+   */
   @Override
-  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
-    IPixel[][] pixels = layer.getCanvas();
+  public IPixel[][] apply(List<ILayer> layers) {
+    IPixel[][] pixels = layers.get(0).getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for (int i = 0; i < pixels.length; i++) {

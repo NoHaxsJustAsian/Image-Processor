@@ -17,13 +17,12 @@ public class BlueFilter implements IFilter {
   }
 
   /**
-   * This applies blue filter to Image.
-   *
-   * @param layer is original image.
-   * @return IImage is original image with filter applied.
+   * Applies the Blue filter to the top layer.
+   * @param layers a list of layers.
+   * @return IPixel[][] is the new image.
    */
-  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
-    IPixel[][] pixels = layer.getCanvas();
+  public IPixel[][] apply(List<ILayer> layers) {
+    IPixel[][] pixels = layers.get(0).getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for (int i = 0; i < pixels.length; i++) {

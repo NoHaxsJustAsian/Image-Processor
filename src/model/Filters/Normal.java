@@ -1,6 +1,8 @@
 package model.Filters;
 
 
+import java.util.List;
+
 import model.ILayer;
 import model.IPixel;
 
@@ -16,13 +18,12 @@ public class Normal implements IFilter {
   }
 
   /**
-   * This applies no filter to Image.
-   *
-   * @param layer is original image.
+   * This applies no filter to the top Layer.
+   * @param layers is original image.
    * @return IImage is original image with filter applied.
    */
-  public IPixel[][] apply(ILayer layer) {
-    return layer.getCanvas();
+  public IPixel[][] apply(List<ILayer> layers) {
+    return layers.get(0).getCanvas();
   }
 
   /**

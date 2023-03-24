@@ -15,6 +15,12 @@ public class ColorFilter {
   public ColorFilter(IImage image) {
   }
 
+  /**
+   * Applies the color filter to the layer.
+   * @param layer a layer.
+   * @param color a string representing the color.
+   * @return IPixel[][] is the new image.
+   */
   public IPixel[][] apply(ILayer layer, String color) {
     IPixel[][] pixels = layer.getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];

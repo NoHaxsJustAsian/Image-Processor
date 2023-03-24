@@ -31,7 +31,7 @@ public class ImageProcessorViewTest {
 
   @Test
   public void testRenderMessage() {
-    model.newProject(200, 200);
+    model.newProject(200, 200,255);
     try {
       view.renderMessage("message");
     } catch (IOException e) {
@@ -43,7 +43,7 @@ public class ImageProcessorViewTest {
   @Test
   public void testFailRenderMessage() {
     view = new ImageProcessorView(model, new FailingAppendable());
-    model.newProject(200, 200);
+    model.newProject(200, 200,255);
     try {
       view.renderMessage("message");
       fail();

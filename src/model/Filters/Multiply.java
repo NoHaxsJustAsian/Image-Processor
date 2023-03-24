@@ -7,9 +7,19 @@ import model.IPixel;
 
 public class Multiply implements IFilter {
 
+  String name;
 
+  public Multiply() {
+    this.name = "multiply";
+  }
+
+  /**
+   * Applies the filter to the given layer.
+   * @param layers a list of layers.
+   * @return IPixel[][] is the new image.
+   */
   @Override
-  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
+  public IPixel[][] apply(List<ILayer> layers) {
     return new IPixel[0][];
   }
 

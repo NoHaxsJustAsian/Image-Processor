@@ -135,7 +135,7 @@ public class IImageProcessorControllerTest {
     IImageProcessorController control = new ImageProcessorController(model, view, read);
 
     view = new ImageProcessorView(model, new FailingAppendable());
-    model.newProject(200, 200);
+    model.newProject(200, 200, 255);
     try {
       view.renderMessage("message");
       fail();

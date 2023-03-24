@@ -14,4 +14,9 @@ public class GUIView extends JFrame implements IImageProcessorView{
   public void renderMessage(String message) throws IOException {
 
   }
+
+  @Override
+  public void renderState() throws IOException {
+
+  }
 }
