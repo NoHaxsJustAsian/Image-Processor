@@ -18,13 +18,12 @@ public class RedFilter implements IFilter {
   }
 
   /**
-   * This applies red filter to Image.
-   *
-   * @param layer is original image.
-   * @return IImage is original image with filter applied.
+   * Applies the Red filter to the top layer.
+   * @param layers a list of layers.
+   * @return IPixel[][] is the new image.
    */
-  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
-    IPixel[][] pixels = layer.getCanvas();
+  public IPixel[][] apply(List<ILayer> layers) {
+    IPixel[][] pixels = layers.get(0).getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for (int i = 0; i < pixels.length; i++) {

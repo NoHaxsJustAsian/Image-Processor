@@ -1,4 +1,4 @@
-package model;
+package swingdemo;
 
 /**
  * This class contains utility methods to convert an RGB representation
@@ -79,7 +79,6 @@ public class RepresentationConverter {
   private static double convertFn(double hue, double saturation, double lightness, int n) {
     double k = (n + (hue / 30)) % 12;
     double a = saturation * Math.min(lightness, 1 - lightness);
-
     return lightness - a * Math.max(-1, Math.min(k - 3, Math.min(9 - k, 1)));
   }
 

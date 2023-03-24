@@ -32,4 +32,13 @@ public class ImageProcessorViewMock implements IImageProcessorView {
       throw new IOException("Invalid Appendable");
     }
   }
+
+  @Override
+  public void renderState() throws IOException {
+    try {
+      this.log.append(this.state.toString()).append("\n");
+    } catch (Exception e) {
+      throw new IOException("Invalid Appendable");
+    }
+  }
 }

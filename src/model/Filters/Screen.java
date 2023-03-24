@@ -7,9 +7,20 @@ import model.IPixel;
 
 public class Screen implements IFilter {
 
+  String name;
 
+  public Screen() {
+    this.name = "screen";
+  }
+
+
+  /**
+   * Applies the Screen filter to the given layer.
+   * @param layers a list of layers.
+   * @return IPixel[][] is the new image.
+   */
   @Override
-  public IPixel[][] apply(ILayer layer, List<ILayer> layers) {
+  public IPixel[][] apply(List<ILayer> layers) {
     return new IPixel[0][];
   }
 
