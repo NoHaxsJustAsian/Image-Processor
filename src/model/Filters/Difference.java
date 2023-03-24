@@ -22,8 +22,8 @@ public class Difference implements IFilter {
    */
   @Override
   public IPixel[][] apply(List<ILayer> layers) {
-    ILayer layer1 = layers.get(0);
-    ILayer layer2 = layers.get(1);
+    ILayer layer1 = layers.get(layers.size() - 1);
+    ILayer layer2 = layers.get(layers.size());
 
     IPixel[][] pixels1 = layer1.getCanvas();
     IPixel[][] pixels2 = layer2.getCanvas();

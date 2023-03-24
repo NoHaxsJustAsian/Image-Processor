@@ -300,29 +300,67 @@ public class ImageProcessorModelTest {
   public void testDarkenValue() {
     Pixel[][] pixels;
     PPMImage image;
-    pixels = new Pixel[2][2];
+    pixels = new Pixel[1][1];
     pixels[0][0] = new Pixel(50, 0, 0, 255);
     image = new PPMImage(pixels, 1, 1);
 
     List<ILayer> orderLayers = new ArrayList<>();
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
-    ILayer first = new Layer("darkenValue", darkenValue, 200, 200);
+    ILayer first = new Layer("normal", normal, 200, 200);
     first.addImage(image, 0, 0);
 
+    ILayer second = new Layer("darkenValue", darkenValue, 200, 200);
+    second.addImage(image, 0, 0);
 
-    nameLayers.put("darkenValue", first);
+    ILayer third = new Layer("green", greenFilter, 200, 200);
+    third.addImage(image, 0, 0);
+
+    nameLayers.put("normal", first);
     orderLayers.add(first);
+
+    nameLayers.put("darkenValue", second);
+    orderLayers.add(second);
+
+    nameLayers.put("green", third);
+    orderLayers.add(third);
 
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    IPixel[][] hold = model1.getLayer("darkenValue").getFilter()
+    IPixel[][] hold = model1.getLayer("normal").getFilter()
             .apply(model1.getLayers());
-    model1.getLayer("darkenValue").setCanvas(hold);
+    model1.getLayer("normal").setCanvas(hold);
 
+    IPixel[][] hold1 = model1.getLayer("darkenValue").getFilter()
+            .apply(model1.getLayers());
+    model1.getLayer("darkenValue").setCanvas(hold1);
+
+    IPixel[][] hold2 = model1.getLayer("green").getFilter()
+            .apply(model1.getLayers());
+    model1.getLayer("green").setCanvas(hold2);
+
+
+    assertEquals(50, model1.getLayer("normal").getPixel(0, 0).getRed());
+    assertEquals(0, model1.getLayer("darkenValue").getPixel(0, 0).getRed());
+    assertEquals(0, model1.getLayer("green").getPixel(0, 0).getRed());
+
+
+    model1.getLayer("normal").setFilter(darkenValue);
+    IPixel[][] hold3 = model1.getLayer("normal").getFilter()
+            .apply(model1.getLayers());
+    model1.getLayer("normal").setCanvas(hold3);
+
+    assertEquals(0, model1.getLayer("normal").getPixel(0, 0).getRed());
+
+
+    model1.getLayer("darkenValue").setFilter(redFilter);
+    IPixel[][] hold4 = model1.getLayer("darkenValue").getFilter()
+            .apply(model1.getLayers());
+    model1.getLayer("darkenValue").setCanvas(hold4);
 
     assertEquals(0, model1.getLayer("darkenValue").getPixel(0, 0).getRed());
+
   }
 
 
