@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import model.AImage;
 import model.Filters.BlueFilter;
 import model.Filters.BrightenIntensity;
 import model.Filters.BrightenLuma;
