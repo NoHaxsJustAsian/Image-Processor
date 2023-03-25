@@ -142,6 +142,16 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
+   * This method will return a map of all layers in the project.
+   *
+   * @return list of Layers.
+   */
+  @Override
+  public HashMap<String,ILayer> getMapLayers() {
+    return this.nameLayers;
+  }
+
+  /**
    * This method will return the position of a layer in the project given both their layer position.
    *
    * @param i layer position.
@@ -275,7 +285,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     IPixel[][] finalPixels = new IPixel[getHeight()][getWidth()];
     for (int x = 0; x < orderLayers.size(); x++) {
       ILayer layer = orderLayers.get(x);
-      layer.setCanvas(layer.getFilter().apply(this.getLayers()));
+      layer.setCanvas(layer.getFilter().apply(orderLayers, layer));
       for (int i = 0; i < getHeight(); i++) {
         for (int j = 0; j < getWidth(); j++) {
           finalPixels[i][j] = orderLayers.get(x).getPixel(i, j);

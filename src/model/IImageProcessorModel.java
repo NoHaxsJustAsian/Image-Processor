@@ -1,5 +1,7 @@
 package model;
 
+import java.util.HashMap;
+
 import model.Filters.IFilter;
 
 /**
@@ -79,7 +81,6 @@ public interface IImageProcessorModel extends IImageProcessorState {
    *
    * @return String list of layers.
    */
-  @Override
   public String listLayers();
 
   /**
@@ -87,4 +88,11 @@ public interface IImageProcessorModel extends IImageProcessorState {
    * @return
    */
   public int getLayerCount();
+
+  /**
+   * This method will return a map of all layers in the project.
+   *
+   * @return list of Layers.
+   */
+  public HashMap<String,ILayer> getMapLayers();
 }

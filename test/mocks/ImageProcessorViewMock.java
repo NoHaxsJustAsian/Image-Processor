@@ -18,7 +18,7 @@ public class ImageProcessorViewMock implements IImageProcessorView {
   }
 
 
-  /**
+  /**`
    * Renders a given message to the data output in the implementation.
    *
    * @param message the message to be printed

@@ -1,6 +1,7 @@
 package model.Filters;
 
 import java.util.List;
+import java.util.Map;
 
 import model.ILayer;
 import model.IPixel;
@@ -21,11 +22,17 @@ public class Difference implements IFilter {
    * @return IPixel[][] is the new image.
    */
   @Override
-  public IPixel[][] apply(List<ILayer> layers) {
-    ILayer layer1 = layers.get(layers.size() - 1);
-    ILayer layer2 = layers.get(layers.size());
+  public IPixel[][] apply(List<ILayer> layers, ILayer layer) {
+    ILayer layer2;
+    try {
+      layer2 = layers.get(layers.indexOf(layer) + 1);
+    }
+    catch (IndexOutOfBoundsException e) {
+      throw new IllegalArgumentException("No bottom layer");
+    }
 
-    IPixel[][] pixels1 = layer1.getCanvas();
+
+    IPixel[][] pixels1 = layer.getCanvas();
     IPixel[][] pixels2 = layer2.getCanvas();
 
     IPixel[][] newPixels = new IPixel[pixels1.length][pixels1[0].length];

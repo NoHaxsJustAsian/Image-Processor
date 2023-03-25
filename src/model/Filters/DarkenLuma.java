@@ -2,6 +2,7 @@ package model.Filters;
 
 
 import java.util.List;
+import java.util.Map;
 
 import model.ILayer;
 import model.IPixel;
@@ -25,8 +26,8 @@ public class DarkenLuma implements IFilter {
    * @return IPixel[][] is the new image.
    */
   @Override
-  public IPixel[][] apply(List<ILayer> layers) {
-    IPixel[][] pixels = layers.get(layers.size() - 1).getCanvas();
+  public IPixel[][] apply(List<ILayer> layers, ILayer layer) {
+    IPixel[][] pixels = layer.getCanvas();
     IPixel[][] newPixels = new IPixel[pixels.length][pixels[0].length];
 
     for (int i = 0; i < pixels.length; i++) {

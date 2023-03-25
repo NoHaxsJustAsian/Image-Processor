@@ -1,5 +1,6 @@
 package model.Filters;
 import java.util.List;
+import java.util.Map;
 
 import model.ILayer;
 import model.IPixel;
@@ -15,7 +16,7 @@ public interface IFilter {
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */
-  public IPixel[][] apply(List<ILayer> layers);
+  public IPixel[][] apply(List<ILayer> layers, ILayer layer);
 
 
   /**

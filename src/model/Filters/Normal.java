@@ -22,8 +22,8 @@ public class Normal implements IFilter {
    * @param layers is original image.
    * @return IImage is original image with filter applied.
    */
-  public IPixel[][] apply(List<ILayer> layers) {
-    return layers.get(layers.size() - 1).getCanvas();
+  public IPixel[][] apply(List<ILayer> layers, ILayer layer) {
+    return layer.getCanvas();
   }
 
   /**

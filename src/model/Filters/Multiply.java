@@ -19,7 +19,7 @@ public class Multiply implements IFilter {
    * @return IPixel[][] is the new image.
    */
   @Override
-  public IPixel[][] apply(List<ILayer> layers) {
+  public IPixel[][] apply(List<ILayer> layers, ILayer layer) {
     return new IPixel[0][];
   }
 
