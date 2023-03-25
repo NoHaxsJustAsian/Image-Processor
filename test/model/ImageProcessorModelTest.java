@@ -18,6 +18,7 @@ import model.Filters.GreenFilter;
 import model.Filters.IFilter;
 import model.Filters.Normal;
 import model.Filters.RedFilter;
+import model.Filters.Difference;
 
 import static org.junit.Assert.assertEquals;
 
@@ -39,6 +40,7 @@ public class ImageProcessorModelTest {
   IFilter darkenLuma = new DarkenLuma();
   IFilter darkenValue = new DarkenValue();
 
+  IFilter Difference = new Difference();
 
   @Before
   public void init() {
@@ -434,9 +436,52 @@ public class ImageProcessorModelTest {
     Pixel[][] pixels;
     PPMImage image;
     pixels = new Pixel[2][2];
-    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    pixels[0][0] = new Pixel(50, 50, 0, 255);
     image = new PPMImage(pixels, 1, 1);
 
+    Pixel[][] pixels2;
+    PPMImage image2;
+    pixels2 = new Pixel[1][1];
+    pixels2[0][0] = new Pixel(25, 25,10, 255);
+    image2 = new PPMImage(pixels2, 1, 1);
+
+    Pixel[][] pixels3;
+    PPMImage image3;
+    pixels3 = new Pixel[1][1];
+    pixels3[0][0] = new Pixel(50, 50, 0, 255);
+    image3 = new PPMImage(pixels3, 1, 1);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
+            nameLayers, orderLayers);
+
+    ILayer first = new Layer("difference", Difference, 200, 200);
+    first.addImage(image, 0, 0);
+
+    ILayer second = new Layer("bottom", normal, 200, 200);
+    second.addImage(image2, 0, 0);
+
+    ILayer third = new Layer("bottom2", normal, 200, 200);
+    third.addImage(image3, 0, 0);
+
+    orderLayers.add(first);
+    nameLayers.put("difference", first);
+    orderLayers.add(second);
+    nameLayers.put("bottom", second);
+    orderLayers.add(third);
+    nameLayers.put("bottom2", third);
+
+    IPixel[][] hold = model1.getLayer("difference")
+            .getFilter().apply(model1.getLayers(), model1.getLayer("difference"));
+    model1.getLayer("difference").setCanvas(hold);
+
+    assertEquals("difference", Difference.getName());
+    assertEquals("difference", first.getName());
+    assertEquals(25, model1.getLayer("difference").getPixel(0, 0).getRed());
+    assertEquals(25, model1.getLayer("difference").getPixel(0, 0).getGreen());
+    assertEquals(0, model1.getLayer("difference").getPixel(0, 0).getBlue());
   }
 
   @Test

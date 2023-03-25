@@ -41,6 +41,7 @@ public class Difference implements IFilter {
       throw new IllegalArgumentException("Images must be the same size");
     }
 
+
     for (int i = 0; i < pixels1.length; i++) {
       for (int j = 0; j < pixels1[0].length; j++) {
         IPixel pixel1 = pixels1[i][j];
@@ -50,6 +51,8 @@ public class Difference implements IFilter {
         for (int k = 0; k < pixels2.length; k++) {
           for (int l = 0; l < pixels2[0].length; l++) {
             IPixel pixel2 = pixels2[i][j];
+            //FIXME: you need to add the array positions for each pixel,
+            // u cant just reference the entire array
             int dr = pixel2.getRed();
             int dg = pixel2.getGreen();
             int db = pixel2.getBlue();
