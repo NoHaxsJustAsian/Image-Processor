@@ -17,8 +17,6 @@ public class GUIController extends JFrame implements IImageProcessorView {
     super();
     panel = new JPanel();
 
-
-
     this.pack();
     this.setVisible(true);
   }

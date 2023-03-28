@@ -363,6 +363,7 @@ public class ImageProcessorController implements IImageProcessorController {
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
+
     for (int i = 0; i < model.getHeight(); i++) {
       for (int j = 0; j < model.getWidth(); j++) {
         writer.println(finalPixels[i][j].getRed()

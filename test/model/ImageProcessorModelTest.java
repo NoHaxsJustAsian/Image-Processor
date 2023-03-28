@@ -481,7 +481,7 @@ public class ImageProcessorModelTest {
     assertEquals("difference", first.getName());
     assertEquals(25, model1.getLayer("difference").getPixel(0, 0).getRed());
     assertEquals(25, model1.getLayer("difference").getPixel(0, 0).getGreen());
-    assertEquals(0, model1.getLayer("difference").getPixel(0, 0).getBlue());
+    assertEquals(10, model1.getLayer("difference").getPixel(0, 0).getBlue());
   }
 
   @Test

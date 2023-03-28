@@ -65,6 +65,7 @@ public class ImageProcessorView implements IImageProcessorView {
   @Override
   public void renderState() throws IOException {
 
+    //FIXME: Implement this method.
   }
 
 
