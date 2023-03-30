@@ -1,4 +1,8 @@
 package swingdemo;
+import model.HSL;
+import model.HSLtoRGBAdapter;
+import model.IPixel;
+import model.Pixel;
 
 /**
  * This class contains utility methods to convert an RGB representation
@@ -20,7 +24,10 @@ public class RepresentationConverter {
    * @param g green value of the RGB between 0 and 1
    * @param b blue value of the RGB between 0 and 1
    */
-  public static void convertRGBtoHSL(double r, double g, double b) {
+  public static HSL convertRGBtoHSL(double r, double g, double b) {
+    r=r/255;
+    g=g/255;
+    b=b/255;
     double componentMax = Math.max(r, Math.max(g, b));
     double componentMin = Math.min(r, Math.min(g, b));
     double delta = componentMax - componentMin;
@@ -47,7 +54,7 @@ public class RepresentationConverter {
       hue = hue * 60;
     }
 
-    System.out.println("RGB (" + r + "," + g + "," + b + ") to HSL => (" + hue + "," + saturation + "," + lightness + ")");
+    return new HSL(hue, saturation, lightness);
   }
 
 
@@ -65,11 +72,11 @@ public class RepresentationConverter {
    * @param lightness  lightness of the HSL representation
    */
 
-  public static void convertHSLtoRGB(double hue, double saturation, double lightness) {
+  public static IPixel convertHSLtoRGB(double hue, double saturation, double lightness) {
     double r = convertFn(hue, saturation, lightness, 0) * 255;
     double g = convertFn(hue, saturation, lightness, 8) * 255;
     double b = convertFn(hue, saturation, lightness, 4) * 255;
-    System.out.println("HSL (" + hue + "," + saturation + "," + lightness + ") to RGB => (" + r + "," + g + "," + b + ")");
+    return new Pixel((int) r, (int) g, (int) b, 255);
   }
 
   /*
