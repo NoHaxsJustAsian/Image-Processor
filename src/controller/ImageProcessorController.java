@@ -320,7 +320,7 @@ public class ImageProcessorController implements IImageProcessorController {
    *
    */
   public void saveProject(String filePath) throws IllegalArgumentException {
-    if (filePath == null) {
+    if (filePath == null || !filePath.endsWith(".collage")) {
       throw new IllegalArgumentException("invalid file path");
     }
     PrintWriter writer = null;
@@ -351,7 +351,7 @@ public class ImageProcessorController implements IImageProcessorController {
    * This method will create one image from all the layers for PPM.
    */
   public void saveImage(String filePath) throws IllegalArgumentException {
-    if (filePath == null) {
+    if (filePath == null || !filePath.endsWith(".ppm")) {
       throw new IllegalArgumentException("invalid file path");
     }
 
