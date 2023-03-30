@@ -56,15 +56,6 @@ public class Screen implements IFilter {
     return finalPixels;
     }
 
-
-    
-
-
-
-
-    
-
-
     /**
      * Returns the name of the filter.
      */
