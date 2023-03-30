@@ -26,11 +26,11 @@ public class Multiply implements IFilter {
     IPixel[][] finalPixels = new IPixel[layer.getHeight()][layer.getWidth()];
 
     for(int x = layers.indexOf(layer) + 1; x < layers.size() - 1; x++) {
-        ILayer layerCurrent = layers.get(x);
-        layerCurrent.setCanvas(layerCurrent.getFilter().apply(layers, layerCurrent));
-        for (int i = 0; i < layer.getHeight(); i++) {
-          for (int j = 0; j < layer.getWidth(); j++) {
-            compPixels[i][j] = layers.get(i).getPixel(i, j);
+      ILayer layerCurrent = layers.get(x);
+      layerCurrent.setCanvas(layerCurrent.getFilter().apply(layers, layerCurrent));
+      for (int i = 0; i < layer.getHeight(); i++) {
+        for (int j = 0; j < layer.getWidth(); j++) {
+          compPixels[i][j] = layers.get(i).getPixel(i, j);
           }
         }
     }
@@ -56,18 +56,12 @@ public class Multiply implements IFilter {
     return finalPixels;
     }
 
-
-    
-
-
-
-
-    
-
-
-
-  @Override
+  /**
+   * Gets the name of the filter.
+   *
+   * @return string name of the filter.
+   */
   public String getName() {
-    return "multiply";
+    return this.name;
   }
 }

@@ -66,8 +66,13 @@ public class Difference implements IFilter {
     return newPixels;
   }
 
-  @Override
+
+  /**
+   * Gets the name of the filter.
+   *
+   * @return string name of the filter.
+   */
   public String getName() {
-    return "difference";
+    return this.name;
   }
 }

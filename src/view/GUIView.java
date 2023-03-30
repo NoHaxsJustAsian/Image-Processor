@@ -1,20 +1,30 @@
 package view;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class GUIView extends JFrame implements IImageProcessorView{
-
-  public GUIView(){
-    super();
+  /**
+   * Clears the in put in increment.
+   */
+  @Override
+  public void clearInputString() {
+    this.setInputString("");
   }
+
+  /**
+   * Sets the input string of our brighten field to a given value.
+   *
+   * @param s represents the value to brighten value.
+   */
+  @Override
+  public void setInputString(String s) {
+    increment.setText(s);
+  }
+
 
   @Override
   public void renderMessage(String message) throws IOException {
-
   }
 
   /**
@@ -24,7 +34,6 @@ public class GUIView extends JFrame implements IImageProcessorView{
    */
   @Override
   public void renderState() throws IOException {
-
   }
 
    /**

@@ -56,11 +56,12 @@ public class Screen implements IFilter {
     return finalPixels;
     }
 
-    /**
-     * Returns the name of the filter.
-     */
-    @Override
-    public String getName() {
-      return this.name;
-    }
+  /**
+   * Gets the name of the filter.
+   *
+   * @return string name of the filter.
+   */
+  public String getName() {
+    return this.name;
+  }
 }
