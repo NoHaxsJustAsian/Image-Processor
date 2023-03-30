@@ -47,7 +47,7 @@ public class Screen implements IFilter {
 
         double hue = holderHSLTop.getHue();
         double saturation = holderHSLTop.getSaturation();
-        double lightness =  1 - ((1 - holderHSLTop.getLightness()) * (1 - holderHSLBottom.getLightness());
+        double lightness =  1 - ((1 - holderHSLTop.getLightness()) * (1 - holderHSLBottom.getLightness()));
 
         finalPixels[z][y] = RepresentationConverter.convertHSLtoRGB(hue, saturation, lightness);
       }
