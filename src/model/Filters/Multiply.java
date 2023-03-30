@@ -44,7 +44,7 @@ public class Multiply implements IFilter {
         holderRGBTop.getBlue());
         IHSL holderHSLBottom = RepresentationConverter.convertRGBtoHSL(holderRGBBottom.getRed(),
                 holderRGBBottom.getGreen(), holderRGBBottom.getBlue());
-        
+
         double hue = holderHSLTop.getHue();
         double saturation = holderHSLTop.getSaturation();
         double lightness = holderHSLTop.getLightness() * holderHSLBottom.getLightness();
@@ -56,18 +56,12 @@ public class Multiply implements IFilter {
     return finalPixels;
     }
 
-
-    
-
-
-
-
-    
-
-
-
-  @Override
+  /**
+   * Gets the name of the filter.
+   *
+   * @return string name of the filter.
+   */
   public String getName() {
-    return "multiply";
+    return this.name;
   }
 }
