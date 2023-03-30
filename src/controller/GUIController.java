@@ -1,22 +1,30 @@
 package controller;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.*;
 
 import view.IImageProcessorView;
 
-public class GUIController extends JFrame implements IImageProcessorView {
-  
+
+public class GUIController extends JFrame implements ActionListener {
+  JPanel panel;
+
 
   public GUIController() {
+    super();
+    panel = new JPanel();
 
+    this.pack();
+    this.setVisible(true);
   }
 
-   public void loadProject() {
 
-   }
+  @Override
+  public void actionPerformed(ActionEvent e) {
 
-   
+  }
 }

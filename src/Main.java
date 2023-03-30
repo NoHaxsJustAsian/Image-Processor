@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 
+import javax.swing.*;
+
 import controller.IImageProcessorController;
 import controller.ImageProcessorController;
 import model.ImageProcessorModel;
@@ -30,7 +32,6 @@ public class Main {
     //FIXME: Not sure this is how is works with the appendable for file.
 
 
-
     Readable a = new InputStreamReader(System.in);
     if (args.length > 0) {
       StringBuilder commands = new StringBuilder();
@@ -48,17 +49,10 @@ public class Main {
       if (args[0].equals("-text")) {
         a = new InputStreamReader(System.in);
       }
-
-      Processor m = new ImageProcessorModel();
-      View v = new TextView(m);
-      ImageController c = new ImageUserInterface(m, v, a);
-      c.goRun();
-    } else {
-      IView sg = new SwingGUI();
-      Processor mo = new PpmProcessor();
-      Features con = new Controller(mo, sg);
     }
-  }
 
+    JFrame frame = new JFrame();
+
+  }
 }
 
