@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 import model.Filters.IFilter;
@@ -95,4 +96,9 @@ public interface IImageProcessorModel extends IImageProcessorState {
    * @return list of Layers.
    */
   public HashMap<String,ILayer> getMapLayers();
+
+  /**
+   * This method will return a BufferedImage of the final canvas.
+   */
+  public BufferedImage compressImage();
 }

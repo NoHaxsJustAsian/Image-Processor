@@ -317,7 +317,6 @@ public class ImageProcessorController implements IImageProcessorController {
 
   /**
    * This method will output the project as its separate components.
-   *
    */
   public void saveProject(String filePath) throws IllegalArgumentException {
     if (filePath == null || !filePath.endsWith(".collage")) {

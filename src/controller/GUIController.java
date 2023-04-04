@@ -55,7 +55,7 @@ public class GUIController extends JFrame implements Features{
         break;
       case "Blue":
         break;
-      case "Exit Botton":
+      case "Exit Button":
         System.exit(0);
         break;
     }
@@ -129,6 +129,14 @@ public class GUIController extends JFrame implements Features{
 
   @Override
   public void redFilter() {
+    String curLayer;
+    try {
+      model.setFilter(curLayer, new RedFilter());
+      view.addImageToGUI(model.compressImage(curLayer));
+    } catch (Exception e) {
+      System.out.println("Please load an image.");
+    }
+  }
   }
 
   @Override

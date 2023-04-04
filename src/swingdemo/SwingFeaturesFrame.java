@@ -12,6 +12,7 @@ import java.io.File;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -187,16 +188,16 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
     mainPanel.add(imagePanel);
 
     String[] images = {"Jellyfish.jpg", "Koala.jpg", "Penguins.jpg"};
-    JLabel[] imageLabel = new JLabel[images.length+1];
-    JScrollPane[] imageScrollPane = new JScrollPane[images.length+1];
+    JLabel[] imageLabel = new JLabel[images.length + 1];
+    JScrollPane[] imageScrollPane = new JScrollPane[images.length + 1];
 
     for (int i = 0; i < imageLabel.length; i++) {
       imageLabel[i] = new JLabel();
       imageScrollPane[i] = new JScrollPane(imageLabel[i]);
-      if(i < images.length) {
-	  imageLabel[i].setIcon(new ImageIcon(images[i]));
+      if (i < images.length) {
+        imageLabel[i].setIcon(new ImageIcon(images[i]));
       } else {
-	  imageLabel[i].setIcon(new ImageIcon(createImageFromScratch()));
+        imageLabel[i].setIcon(new ImageIcon(createImageFromScratch()));
       }
       imageScrollPane[i].setPreferredSize(new Dimension(100, 600));
       imagePanel.add(imageScrollPane[i]);
@@ -434,60 +435,60 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
   }
 
 
-    /*
-     * Creates an image object for viewing such that each pixel's value is
-     * represented is a single 32-bit number such that 8 bits of the
-     * number correspond to a particular component of a 4-component
-     * representation (R,G,B,A). The format of the number is below:
-     *
-     * AAAAAAAARRRRRRRRGGGGGGGGBBBBBBBB
-     *   alpha    red    green   blue
-     *
-     * @return a new handcrafted image for display
-     */
-    
+  /*
+   * Creates an image object for viewing such that each pixel's value is
+   * represented is a single 32-bit number such that 8 bits of the
+   * number correspond to a particular component of a 4-component
+   * representation (R,G,B,A). The format of the number is below:
+   *
+   * AAAAAAAARRRRRRRRGGGGGGGGBBBBBBBB
+   *   alpha    red    green   blue
+   *
+   * @return a new handcrafted image for display
+   */
+
   private Image createImageFromScratch() {
-      BufferedImage image = new BufferedImage(300, 400, BufferedImage.TYPE_INT_ARGB);
+    BufferedImage image = new BufferedImage(300, 400, BufferedImage.TYPE_INT_ARGB);
 
-      //Iterating so x moves to the right and y moves down
-      for(int x = 0; x < image.getWidth(); x++) {
-	  for(int y = 0; y < image.getHeight(); y++) {
-	      // Making every pixel the color chosen by Section 2 of CS3500
-	      // in Spring 2023
-	      int r = 99;
-	      int g = 137;
-	      int b = 160;
+    //Iterating so x moves to the right and y moves down
+    for (int x = 0; x < image.getWidth(); x++) {
+      for (int y = 0; y < image.getHeight(); y++) {
+        // Making every pixel the color chosen by Section 2 of CS3500
+        // in Spring 2023
+        int r = 99;
+        int g = 137;
+        int b = 160;
 
-	      //Demonstrating we can change the alpha of individual pixels
-	      //and they will appear diffrently on the label
-	      int a = 255;
-	      if(y * image.getWidth() + x >= 35000) {
-		  a = 100;
-	      }
-	      if (y * image.getWidth() +x >= 90000) {
-		  a = 0;
-	      }
-	      if (y * image.getWidth() + x >= 110000) {
-		  a = 255;
-	      }
+        //Demonstrating we can change the alpha of individual pixels
+        //and they will appear diffrently on the label
+        int a = 255;
+        if (y * image.getWidth() + x >= 35000) {
+          a = 100;
+        }
+        if (y * image.getWidth() + x >= 90000) {
+          a = 0;
+        }
+        if (y * image.getWidth() + x >= 110000) {
+          a = 255;
+        }
 
-	      // Taking the 4 values and creating a single number
-	      
-	      // For Systems folks: this is a use of bit-packing
-	      // It's a compact representation of a pixel made fast!
-	      
-	      // For everyone: Notice how this representation loses ALL
-	      // meaning without any flexibility? Also how you need to know
-	      // something about manipulating bits to get anything out of
-	      // this? Maybe not the best to use...
-	      int argb = a << 24;
-	      argb |= r << 16;
-	      argb |= g << 8;
-	      argb |= b;
-	      image.setRGB(x, y, argb);
-	  }
+        // Taking the 4 values and creating a single number
+
+        // For Systems folks: this is a use of bit-packing
+        // It's a compact representation of a pixel made fast!
+
+        // For everyone: Notice how this representation loses ALL
+        // meaning without any flexibility? Also how you need to know
+        // something about manipulating bits to get anything out of
+        // this? Maybe not the best to use...
+        int argb = a << 24;
+        argb |= r << 16;
+        argb |= g << 8;
+        argb |= b;
+        image.setRGB(x, y, argb);
       }
-      return image;
+    }
+    return image;
   }
 
   @Override
