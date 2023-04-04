@@ -10,14 +10,18 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import controller.Features;
 import controller.GUIController;
 import model.Filters.IFilter;
 import model.ImageProcessorModel;
 
-import static java.awt.SystemColor.control;
 
 //FIXME: add java doc, add to read me, add to interface.
 
+
+/**
+ * Represents the GUI view for the program.
+ */
 
 public class GUIView extends JFrame implements IImageProcessorView, ActionListener {
 
@@ -45,13 +49,12 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
   //Color Filters
   public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
 
-
   //Brighten/Darken Filters
   private JButton BrightenIntensityButton, BrightenLumaButton,
           BrightenValueButton, DarkenIntensityButton, DarkenLumaButton,
           DarkenValueButton;
 
-  //Composite FIlters
+  //Composite Filters
   private JButton MultiplyButton, DifferenceButton, ScreenButton;
 
 
@@ -108,17 +111,57 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
 
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
-    RedFilterButton.addActionListener(e -> controller.redFilter());
     this.add(this.RedFilterButton);
+
+    GreenFilterButton = new JButton("Green");
+    GreenFilterButton.setActionCommand("Green Button");
+    this.add(this.GreenFilterButton);
+
+    BlueFilterButton = new JButton("Blue");
+    BlueFilterButton.setActionCommand("Blue Button");
+    this.add(this.BlueFilterButton);
+
+    BrightenIntensityButton = new JButton("Brighten Intensity");
+    BrightenIntensityButton.setActionCommand("Brighten Intensity Button");
+    this.add(this.BrightenIntensityButton);
+
+    BrightenLumaButton = new JButton("Brighten Luma");
+    BrightenLumaButton.setActionCommand("Brighten Luma Button");
+    this.add(this.BrightenLumaButton);
+
+    BrightenValueButton = new JButton("Brighten Value");
+    BrightenValueButton.setActionCommand("Brighten Value Button");
+    this.add(this.BrightenValueButton);
+
+    DarkenIntensityButton = new JButton("Darken Intensity");
+    DarkenIntensityButton.setActionCommand("Darken Intensity Button");
+    this.add(this.DarkenIntensityButton);
+
+    DarkenLumaButton = new JButton("Darken Luma");
+    DarkenLumaButton.setActionCommand("Darken Luma Button");
+    this.add(this.DarkenLumaButton);
+
+    DarkenValueButton = new JButton("Darken Value");
+    DarkenValueButton.setActionCommand("Darken Value Button");
+    this.add(this.DarkenValueButton);
+
+
+    MultiplyButton = new JButton("Multiply");
+    MultiplyButton.setActionCommand("Multiply Button");
+    this.add(this.MultiplyButton);
+
+    DifferenceButton = new JButton("Difference");
+    DifferenceButton.setActionCommand("Difference Button");
+    this.add(this.DifferenceButton);
+
+    ScreenButton = new JButton("Screen");
+    ScreenButton.setActionCommand("Screen Button");
+    this.add(this.ScreenButton);
 
 
     ExitButton = new JButton("Exit");
     ExitButton.setActionCommand("Exit Button");
-    ExitButton.addActionListener(controller);
     this.add(this.ExitButton);
-
-
-
 
 
     this.pack();
@@ -185,7 +228,7 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
 
 
   /**
-   * Renders a message to the GUIview.
+   * Renders a message to the GUIView.
    * @param message
    * @throws IOException
    */
@@ -238,4 +281,24 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
   public void actionPerformed(ActionEvent e) {
 
   }
+
+  public void addFeatures(Features f) {
+    RedFilterButton.addActionListener(e -> f.redFilter());
+    GreenFilterButton.addActionListener(e -> f.greenFilter());
+    BlueFilterButton.addActionListener(e -> f.blueFilter());
+    BrightenIntensityButton.addActionListener(e -> f.brightenIntensity());
+    BrightenLumaButton.addActionListener(e -> f.brightenLuma());
+    BrightenValueButton.addActionListener(e -> f.brightenValue());
+    DarkenIntensityButton.addActionListener(e -> f.darkenIntensity());
+    DarkenLumaButton.addActionListener(e -> f.darkenLuma());
+    DarkenValueButton.addActionListener(e -> f.darkenValue());
+    MultiplyButton.addActionListener(e -> f.multiply());
+    DifferenceButton.addActionListener(e -> f.difference());
+    ScreenButton.addActionListener(e -> f.screen());
+
+  }
+
+
+  
+
 }
