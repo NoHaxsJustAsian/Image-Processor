@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -311,5 +312,29 @@ public class ImageProcessorModel implements IImageProcessorModel {
    */
   public int getLayerCount() {
     return orderLayers.size();
+  }
+
+  /**
+   * This method will return a BufferedImage of the final canvas.
+   */
+  public BufferedImage compressImage() {
+    BufferedImage image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
+    for (int i = 0; i < this.height; i++) {
+      for (int j = 0; j < this.width; j++) {
+        IPixel[][] finalPixels = this.saveCanvas();
+        int r = finalPixels[i][j].getRed();
+        int g = finalPixels[i][j].getGreen();
+        int b = finalPixels[i][j].getBlue();
+        int a = finalPixels[i][j].getAlpha();
+
+        int argb = a << 24;
+        argb |= r << 16;
+        argb |= g << 8;
+        argb |= b;
+
+        image.setRGB(j, i, argb);
+      }
+    }
+    return image;
   }
 }
