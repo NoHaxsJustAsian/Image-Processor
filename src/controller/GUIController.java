@@ -7,11 +7,13 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import view.GUIView;
 import view.IImageProcessorView;
 
 
 public class GUIController extends JFrame implements ActionListener {
   JPanel panel;
+  GUIView view;
 
 
   public GUIController() {
