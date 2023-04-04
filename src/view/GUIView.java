@@ -1,20 +1,41 @@
 package view;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+//FIXME: add java doc, add to read me, add to interface.
 
 public class GUIView extends JFrame implements IImageProcessorView {
 
   private JLabel label;
   private JTextField textField;
+
+
+  //Buttons
+  private JButton LoadButton;
+  private JButton SaveButton;
+  private JButton ExitButton;
+  private JButton AddImageButton;
+
+
+  //Layer Buttons
+  private JButton AddLayerButton;
+  private JButton RemoveLayerButton;
+  //FIXME: make a button to select a layer...
+
+
+  //Color Filters
   private JButton RedFilterButton;
   private JButton GreenFilterButton;
   private JButton BlueFilterButton;
+
+
+  //Brighten/Darken Filters
   private JButton BrightenIntensityButton;
   private JButton BrightenLumaButton;
   private JButton BrightenValueButton;
@@ -22,7 +43,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton DarkenLumaButton;
   private JButton DarkenValueButton;
 
-  private
 
 
   public GUIView() {
@@ -31,11 +51,11 @@ public class GUIView extends JFrame implements IImageProcessorView {
     JPanel buttonBox = new JPanel();
     JPanel layerBox = new JPanel();
 
-    JPanel selectedImageBox = new JPanel();
-    selectedImageBox.setBorder(BorderFactory.createTitledBorder("Selected Image"));
+    JPanel selectedLayerBox = new JPanel();
+    selectedLayerBox.setBorder(BorderFactory.createTitledBorder("Selected Image"));
     //FIXME: fix grid layout for selected image
-    selectedImageBox.setLayout(new GridLayout(2, 2));
-    this.add(selectedImageBox);
+    selectedLayerBox.setLayout(new GridLayout(2, 2));
+    this.add(selectedLayerBox);
 
 
     JPanel compositeImageBox = new JPanel();
@@ -108,18 +128,45 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
 
   /**
-   * Adds an image eto selected layer.
+   * Adds an image to selected layer.
    */
-  public void addImage() {
+  public File addImageToLayer() {
+    File f = null;
+    //FIXME: add a function to add this to a specific layer.
+    final JFileChooser fc = new JFileChooser(".");
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Image",
+            "ppm");
+    fc.setFileFilter(filter);
+    int response = fc.showOpenDialog(null);
+    if (response == JFileChooser.APPROVE_OPTION) {
+      f = fc.getSelectedFile();
+    }
+    return f;
+  }
+
+  /**
+   * Adds this image to the view.
+   *
+   * @param img represents the given image.
+   */
+  public void addImageToView(Image img) {
 
   }
 
-
+  /**
+   * Renders a message to the GUIview.
+   * @param message
+   * @throws IOException
+   */
   @Override
   public void renderMessage(String message) throws IOException {
 
   }
-
+  /**
+   * Renders a state to the GUIview.
+   * @param message
+   * @throws IOException
+   */
   @Override
   public void renderState() throws IOException {
 
