@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import model.Filters.IFilter;
 
 /**
  * Represents the View interface for the program.
@@ -18,4 +21,18 @@ public interface IImageProcessorView {
    * @throws IOException if transmission fails.
    */
   void renderState() throws IOException;
+
+  /**
+   * 
+   */
+  void setRedButtonOutput();
+
+  IFilter getInputButton();
+
+  void clearFilter();
+
+  void setListener(ActionListener listener);
+
+  void display();
+
 }

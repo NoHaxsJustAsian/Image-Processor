@@ -7,18 +7,31 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import model.Filters.BrightenLuma;
+import model.Filters.RedFilter;
+import model.IImageProcessorModel;
 import view.GUIView;
 import view.IImageProcessorView;
 
 
 public class GUIController extends JFrame implements ActionListener {
-  JPanel panel;
-  GUIView view;
+  private JPanel panel;
+  private GUIView view;
+  private IImageProcessorModel model;
 
 
-  public GUIController() {
+
+  public GUIController(GUIView view,  IImageProcessorModel model) {
     super();
-    panel = new JPanel();
+    this.view = view;
+    this.model = model;
+
+    this.view.RedFilterButton.setActionCommand("Red");
+    this.view.RedFilterButton.addActionListener(this);
+
+    view.setListener(this);
+    view.display();
+
 
     this.pack();
     this.setVisible(true);
@@ -27,6 +40,26 @@ public class GUIController extends JFrame implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-
+    String nameLayer = "";
+    String nameFilter = "";
+    switch(e.getActionCommand()) {
+      case "Red":
+        //FIXME: some input from user to get the name of the layer
+        nameFilter = "Red";
+        //set the filter of the layer to red
+        this.model.setFilter(nameLayer, new RedFilter());
+        //show that layer to the user
+        break;
+      case "Green":
+        break;
+      case "Blue":
+        break;
+      case "Exit Botton":
+        System.exit(0);
+        break;
+    }
   }
+
+
+
 }

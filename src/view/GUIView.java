@@ -8,9 +8,18 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import controller.GUIController;
+import model.ImageProcessorModel;
+
+import static java.awt.SystemColor.control;
+
 //FIXME: add java doc, add to read me, add to interface.
 
 public class GUIView extends JFrame implements IImageProcessorView {
+
+  private ImageProcessorModel model;
+  private GUIController controller;
+
 
   private JLabel label;
   private JTextField textField;
@@ -30,23 +39,25 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
   //Color Filters
-  private JButton RedFilterButton;
-  private JButton GreenFilterButton;
-  private JButton BlueFilterButton;
+  public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
 
 
   //Brighten/Darken Filters
-  private JButton BrightenIntensityButton;
-  private JButton BrightenLumaButton;
-  private JButton BrightenValueButton;
-  private JButton DarkenIntensityButton;
-  private JButton DarkenLumaButton;
-  private JButton DarkenValueButton;
+  private JButton BrightenIntensityButton, BrightenLumaButton,
+          BrightenValueButton, DarkenIntensityButton, DarkenLumaButton,
+          DarkenValueButton;
+
+  //Composite FIlters
+  private JButton MultiplyButton, DifferenceButton, ScreenButton;
 
 
 
-  public GUIView() {
+
+  public GUIView(ImageProcessorModel model) {
     super("Image Processor");
+
+    this.model = model;
+    this.controller = new GUIController(this, model);
 
     JPanel buttonBox = new JPanel();
     JPanel layerBox = new JPanel();
@@ -66,6 +77,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
     //FIXME: add error box
+    JPanel errorBox = new JPanel();
 
 
     this.setSize(500, 500);
@@ -73,9 +85,11 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.setLocation(200, 200);
 
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLayout(new FlowLayout());
-    this.setMinimumSize(new Dimension(500, 500));
+    //this.setResizable(false);
+    //this.setMinimumSize(new Dimension(500, 500));
 
+
+    this.setLayout(new FlowLayout());
 
 
     this.getContentPane().setBackground(Color.WHITE);
@@ -90,7 +104,16 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
-    this.add(RedFilterButton);
+    RedFilterButton.addActionListener(controller);
+    this.add(this.RedFilterButton);
+
+
+    ExitButton = new JButton("Exit");
+    ExitButton.setActionCommand("Exit Button");
+    ExitButton.addActionListener(controller);
+    this.add(this.ExitButton);
+
+
 
 
 
@@ -127,6 +150,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return f;
   }
 
+
   /**
    * Adds an image to selected layer.
    */
@@ -144,14 +168,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return f;
   }
 
+
   /**
    * Adds this image to the view.
    *
    * @param img represents the given image.
    */
-  public void addImageToView(Image img) {
+  public void addImageToGUI(Image img) {
 
   }
+
+
 
   /**
    * Renders a message to the GUIview.
@@ -164,7 +191,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
   /**
    * Renders a state to the GUIview.
-   * @param message
+   * @param
    * @throws IOException
    */
   @Override
@@ -173,5 +200,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
 
 
+  public void setListener(GUIController guiController) {
 
+
+  }
+
+
+  public void display() {
+  }
 }
