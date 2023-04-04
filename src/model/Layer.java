@@ -12,11 +12,11 @@ import model.Filters.IFilter;
  */
 
 public class Layer implements ILayer {
-  IPixel[][] canvas;
-  String name;
-  IFilter filter;
-  int height;
-  int width;
+  private IPixel[][] canvas;
+  private String name;
+  private IFilter filter;
+  private int height;
+  private int width;
   
 
   /**

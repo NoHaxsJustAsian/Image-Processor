@@ -1,6 +1,9 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.Scanner;
 
 import javax.swing.*;
 
@@ -52,6 +55,47 @@ public class Main {
     }
 
     JFrame frame = new JFrame();
+
+
+
+//
+//    /**
+//     * -file: THe next argument is a path to a script. Print the script out.
+//     * -gui: Starts the GUI.
+//     */
+//    if(args.length > 0) {
+//      if (args[0].equals("-file")) {
+//        String filePath = args[1];
+//        Readable reader = null;
+//        try {
+//          reader = new FileReader(filePath);
+//          Scanner scan = new Scanner(reader);
+//          while(scan.hasNextLine()) {
+//            System.out.println(scan.nextLine());
+//          }
+//        } catch (FileNotFoundException e) {
+//          System.out.println("Error reading file");
+//        }
+//
+//
+//      } else if (args[0].equals("-text")) {
+//        try {
+//
+//        } catch (IOException e) {
+//          System.out.println("Error reading file");
+//        }
+//
+//
+//      } else if (args[0].equals("-gui")) {
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.getContentPane().add(new ImageProcessorView(model));
+//        frame.pack();
+//        frame.setVisible(true);
+//      }
+//    } else {
+//
+//    }
+
 
   }
 }

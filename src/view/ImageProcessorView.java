@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import model.IImageProcessorModel;
@@ -55,6 +56,8 @@ public class ImageProcessorView implements IImageProcessorView {
     } catch (IOException e) {
       throw new IOException("Transmission failed");
     }
+
+
   }
 
   /**

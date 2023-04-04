@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -9,13 +11,15 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.GUIController;
+import model.Filters.IFilter;
 import model.ImageProcessorModel;
 
 import static java.awt.SystemColor.control;
 
 //FIXME: add java doc, add to read me, add to interface.
 
-public class GUIView extends JFrame implements IImageProcessorView {
+
+public class GUIView extends JFrame implements IImageProcessorView, ActionListener {
 
   private ImageProcessorModel model;
   private GUIController controller;
@@ -199,13 +203,39 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   }
 
+  @Override
+  public void setRedButtonOutput() {
 
-  public void setListener(GUIController guiController) {
+  }
 
+  @Override
+  public IFilter getInputButton() {
+    return null;
+  }
+
+  @Override
+  public void clearFilter() {
 
   }
 
 
+  /**
+   * Set the listener for any actions
+   * @param listener
+   */
+  public void setListener(ActionListener listener) {
+    RedFilterButton.addActionListener(listener);
+  }
+
+  /**
+   * Displays the view.
+   */
   public void display() {
+    setVisible(true);
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+
   }
 }

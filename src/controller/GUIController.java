@@ -14,7 +14,7 @@ import view.GUIView;
 import view.IImageProcessorView;
 
 
-public class GUIController extends JFrame implements ActionListener {
+public class GUIController extends JFrame implements Features{
   private JPanel panel;
   private GUIView view;
   private IImageProcessorModel model;
@@ -27,9 +27,9 @@ public class GUIController extends JFrame implements ActionListener {
     this.model = model;
 
     this.view.RedFilterButton.setActionCommand("Red");
-    this.view.RedFilterButton.addActionListener(this);
+    this.view.RedFilterButton.addActionListener();
 
-    view.setListener(this);
+    view.setListener();
     view.display();
 
 
@@ -49,6 +49,7 @@ public class GUIController extends JFrame implements ActionListener {
         //set the filter of the layer to red
         this.model.setFilter(nameLayer, new RedFilter());
         //show that layer to the user
+        view.
         break;
       case "Green":
         break;

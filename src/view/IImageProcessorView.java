@@ -22,17 +22,5 @@ public interface IImageProcessorView {
    */
   void renderState() throws IOException;
 
-  /**
-   * 
-   */
-  void setRedButtonOutput();
-
-  IFilter getInputButton();
-
-  void clearFilter();
-
-  void setListener(ActionListener listener);
-
-  void display();
 
 }

@@ -1,7 +1,8 @@
 package model;
 
 /**
- * Represents a class for a pixel's values.
+ * Represents a class for a pixel's component values as integers.
+ *
  */
 public class Pixel implements IPixel {
   int red;
@@ -12,10 +13,10 @@ public class Pixel implements IPixel {
   /**
    * Represents constructor for Pixel.
    *
-   * @param red   pixel value
-   * @param green pixel value
-   * @param blue  pixel value
-   * @param alpha value
+   * @param red   pixel value.
+   * @param green pixel value.
+   * @param blue  pixel value.
+   * @param alpha value.
    * @throws IllegalArgumentException if any of the values are out of range.
    */
   public Pixel(int red, int green, int blue, int alpha) throws IllegalArgumentException {
