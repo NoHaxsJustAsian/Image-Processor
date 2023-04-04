@@ -108,7 +108,7 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
 
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
-    RedFilterButton.addActionListener(controller);
+    RedFilterButton.addActionListener(e -> controller.redFilter());
     this.add(this.RedFilterButton);
 
 

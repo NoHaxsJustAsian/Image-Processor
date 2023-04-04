@@ -62,5 +62,97 @@ public class GUIController extends JFrame implements Features{
   }
 
 
+  @Override
+  public void newProject() {
 
+  }
+
+  @Override
+  public void loadProject() {
+
+  }
+
+  @Override
+  public void saveProject() {
+
+  }
+
+  @Override
+  public void saveImage() {
+
+  }
+
+  @Override
+  public void blueFilter() {
+
+  }
+
+  @Override
+  public void brightenIntensity() {
+
+  }
+
+  @Override
+  public void brightenLuma() {
+
+  }
+
+  @Override
+  public void brightenValue() {
+
+  }
+
+  @Override
+  public void darkenIntensity() {
+
+  }
+
+  @Override
+  public void darkenLuma() {
+
+  }
+
+  @Override
+  public void darkenValue() {
+
+  }
+
+  @Override
+  public void greenFilter() {
+
+  }
+
+  @Override
+  public void normal() {
+
+  }
+
+  @Override
+  public void redFilter() {
+  }
+
+  @Override
+  public void screen() {
+
+  }
+
+  @Override
+  public void multiply() {
+
+  }
+
+  @Override
+  public void difference() {
+
+  }
+
+  @Override
+  public void addLayer() {
+
+  }
+
+  @Override
+  public void addImageToLayer() {
+
+  }
 }
