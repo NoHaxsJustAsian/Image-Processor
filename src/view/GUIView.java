@@ -268,7 +268,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   @Override
   public void renderMessage(String message) throws IOException {
-
+    //FIXME: make this just make pop ups
   }
 
   /**
