@@ -381,4 +381,8 @@ public class GUIController implements Features {
       JOptionPane.showMessageDialog(null, "Message could not be rendered");
     }
   }
+
+  public void selectLayer(int) {
+    this.model.getLayer(layerName);
+  }
 }

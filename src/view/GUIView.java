@@ -20,12 +20,15 @@ import model.ImageProcessorModel;
 
 
 /**
- * Represents the GUI view for the program.
+ * Represents the GUI view for the program. This displayed the JFrame of the Program including
+ * the buttons, the image, and the layers.
  */
 public class GUIView extends JFrame implements IImageProcessorView {
 
   private ImageProcessorModel model;
   private GUIController controller;
+
+  private String curLayer;
 
 
   //Buttons Sections
@@ -49,7 +52,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
 
-
   //Layer Section
   private JPanel layerPane;
   private JButton AddLayerButton;
@@ -63,6 +65,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JPanel imagePane;
   private JScrollBar verticalBar;
   private JScrollBar horizontalBar;
+
+
+
+  //MISCELLANEOUS
+  private JFileChooser fileChooser;
+  private JOptionPane errorBox;
 
 
 
@@ -109,8 +117,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.add(compositeImageBox);
 
 
-    //FIXME: add error box
-    JPanel errorBox = new JPanel();
+
+    //ERROR JOPTIONPANE
+    errorBox.showMessageDialog(this, "Error: " + e.getMessage(), "Error",
+            JOptionPane.ERROR_MESSAGE);
 
 
 
@@ -172,20 +182,26 @@ public class GUIView extends JFrame implements IImageProcessorView {
     LoadButton.setActionCommand("Add Layer Button");
     this.add(this.AddLayerButton);
 
-    //Pop up menu for Layers
-    popupMenu = new JPopupMenu("Layers");
-    JMenuItem menuItemFirst = new JMenuItem("first");
-    popupMenu.add(menuItemFirst);
 
 
-    //COMBO BOX
+//    //Pop up menu for Layers
+//    popupMenu = new JPopupMenu("Layers");
+//    JMenuItem menuItemFirst = new JMenuItem("first");
+//    popupMenu.add(menuItemFirst);
+
+
+    //COMBO BOX FOR LAYERS
     ArrayList<String> layerNames = new ArrayList<String>();
     for (ILayer layer : model.getLayers()) {
       layerNames.add(layer.getName());
     }
-    layerList = new JComboBox<>(
-            new DefaultComboBoxModel<String>(layerNames.toArray(new String[0])));
+    String[] layerNamesArray = layerNames.toArray(new String[layerNames.size()]);
+    layerList = new JComboBox<String>(layerNamesArray);
     layerList.setActionCommand("Layer List");
+
+
+
+
 
 
     //IMAGE PANEL
@@ -356,7 +372,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     AddLayerButton.addActionListener(e -> f.addLayer());
     AddImageButton.addActionListener(e -> f.addImage());
 
-    layerList.addActionListener(e -> f.selectLayer(layerList.getSelectedIndex()));
+    layerList.addActionListener(e -> f.get()));
   }
 
 }
