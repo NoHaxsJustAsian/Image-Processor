@@ -33,7 +33,7 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
   private JList list;
   private DefaultListModel listModel;
   private static final String selectString = "Select";
-  private static final String AddLayerString = "Add Layer";
+  private static final String addLayerString = "Add Layer";
   private JButton selectButton;
   private JTextField layerName;
   private JLabel label;
@@ -306,11 +306,9 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
 
   
   public ListDemo() {
-    
+
     listModel = new DefaultListModel();
-    listModel.addElement("Jane Doe");
-    listModel.addElement("John Smith");
-    listModel.addElement("Kathy Green");
+
 
     //Create the list and put it in a scroll pane.
     list = new JList(listModel);
@@ -320,9 +318,9 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     list.setVisibleRowCount(5);
     JScrollPane listScrollPane = new JScrollPane(list);
 
-    JButton hireButton = new JButton(hireString);
-    HireListener hireListener = new HireListener(hireButton);
-    hireButton.setActionCommand(hireString);
+    JButton addLayerButton = new JButton(addLayerString);
+    HireListener addLayerListener = new addLayerListener(addlayerButton);
+    hireButton.setActionCommand(AddLayerString);
     hireButton.addActionListener(hireListener);
     hireButton.setEnabled(false);
 
