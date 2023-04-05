@@ -18,6 +18,16 @@ public interface Features {
   //Filter Functions
 
   /**
+   * This method applies a red filter to an image.
+   */
+  void redFilter(String curLayer);
+
+  /**
+   * This method applies a green filter to an image.
+   */
+  void greenFilter();
+
+  /**
    * This method applies a blue filter to an image.
    */
   void blueFilter();
@@ -53,24 +63,9 @@ public interface Features {
   void darkenValue();
 
   /**
-   * This method applies a green filter to an image.
-   */
-  void greenFilter();
-
-  /**
    * This method applies a normal filter to an image.
    */
   void normal();
-
-  /**
-   * This method applies a red filter to an image.
-   */
-  void redFilter(String curLayer);
-
-  /**
-   *  This method applies a screen filter to an image.
-   */
-  void screen();
 
   /**
    * This method applies a multiply filter to an image.
@@ -82,8 +77,12 @@ public interface Features {
    */
   void difference();
 
-  //Layer Functions
+  /**
+   *  This method applies a screen filter to an image.
+   */
+  void screen();
 
+  //Layer Functions
   /**
    * This method adds a layer to the project.
    */
