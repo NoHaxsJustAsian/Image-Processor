@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import model.Filters.BlueFilter;
@@ -30,6 +29,7 @@ import model.ILayer;
 import model.IPixel;
 import model.ImageProcessorModel;
 import model.Layer;
+import model.PPMImage;
 import model.Pixel;
 import view.GUIView;
 
@@ -365,13 +365,51 @@ public class GUIController implements Features {
    */
   @Override
   public void addImage(String curLayer) {
-    //FIXME: get the current layer from the user in some way.
+    Scanner sc;
+    int width;
+    int height;
+    int maxValue;
+    Pixel[][] pixels;
+
     try {
-      model.addImage(view.addImageTOLayer());
-      view.addImageToGUI(model.compressImage());
-    } catch (Exception e) {
-      System.out.println("Please choose an image or layer.");
+      sc = new Scanner(new FileInputStream(view.addImageToLayer()));
+      tryRenderMessage("Image loaded successfully");
+    } catch (FileNotFoundException e) {
+      tryRenderMessage("File " + view.addImageToLayer().getAbsolutePath() + " not found!");
+      return;
     }
+    StringBuilder builder = new StringBuilder();
+    while (sc.hasNextLine()) {
+      String s = sc.nextLine();
+      if (!s.equals("") && s.charAt(0) != '#') {
+        builder.append(s + System.lineSeparator());
+      }
+    }
+
+    sc = new Scanner(builder.toString());
+
+    String token;
+
+    token = sc.next();
+    if (!token.equals("P3")) {
+      tryRenderMessage("Invalid PPM file: plain RAW file should begin with P3");
+    }
+    width = sc.nextInt();
+    System.out.println("Width of image: " + width);
+    height = sc.nextInt();
+    System.out.println("Height of image: " + height);
+    maxValue = sc.nextInt();
+    pixels = new Pixel[height][width];
+
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        int r = sc.nextInt();
+        int g = sc.nextInt();
+        int b = sc.nextInt();
+        pixels[i][j] = new Pixel(r, g, b, 255);
+      }
+    }
+    model.addImage(0,0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
   }
 
   public void tryRenderMessage(String msg) {

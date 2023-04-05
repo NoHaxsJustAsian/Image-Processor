@@ -13,7 +13,7 @@ public interface Features {
   /**
    * This method saves an image.
    */
-  void saveImage();
+  void saveImage(String curLayer);
 
   //Filter Functions
 
@@ -25,62 +25,62 @@ public interface Features {
   /**
    * This method applies a green filter to an image.
    */
-  void greenFilter();
+  void greenFilter(String curLayer);
 
   /**
    * This method applies a blue filter to an image.
    */
-  void blueFilter();
+  void blueFilter(String curLayer);
 
   /**
    * This method applies a brightenIntensity filter to an image.
    */
-  void brightenIntensity();
+  void brightenIntensity(String curLayer);
 
   /**
    * This method applies a brightenLuma filter to an image.
    */
-  void brightenLuma();
+  void brightenLuma(String curLayer);
 
   /**
    * This method applies a brightenValue filter to an image.
    */
-  void brightenValue();
+  void brightenValue(String curLayer);
 
   /**
    * This method applies a darkenIntensity filter to an image.
    */
-  void darkenIntensity();
+  void darkenIntensity(String curLayer);
 
   /**
    * This method applies a darkenLuma filter to an image.
    */
-  void darkenLuma();
+  void darkenLuma(String curLayer);
 
   /**
    * This method applies a darkenValue filter to an image.
    */
-  void darkenValue();
+  void darkenValue(String curLayer);
 
   /**
    * This method applies a normal filter to an image.
    */
-  void normal();
+  void normal(String curLayer);
 
   /**
    * This method applies a multiply filter to an image.
    */
-  void multiply();
+  void multiply(String curLayer);
 
   /**
    * This method applies a difference filter to an image.
    */
-  void difference();
+  void difference(String curLayer);
 
   /**
    *  This method applies a screen filter to an image.
    */
-  void screen();
+  void screen(String curLayer);
 
   //Layer Functions
   /**
@@ -91,7 +91,7 @@ public interface Features {
   /**
    * This method adds an image to the layer.
    */
-  void addImage();
+  void addImage(String curLayer);
 
   /**
    * This method loads a project.
