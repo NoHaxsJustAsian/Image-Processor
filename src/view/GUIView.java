@@ -346,8 +346,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
   /**
    * Adds a layer to the view with a Normal filter.
    */
-  public void addLayer() {
-    //FIXME: add a pop up asking for its name.
+  public String addLayer() {
+    //FIXME: add a pop up asking for its name, and add it to its list.
   }
 
   public void addFeatures(Features f) {
