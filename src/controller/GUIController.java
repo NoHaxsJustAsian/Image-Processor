@@ -121,10 +121,10 @@ public class GUIController implements Features{
 
   @Override
   public void redFilter() {
-    String curLayer;
+    String curLayer; //FIXME: get the current layer from the user in some way.
     try {
       model.setFilter(curLayer, new RedFilter());
-      view.addImageToGUI(model.compressImage(curLayer));
+      view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please load an image.");
     }
