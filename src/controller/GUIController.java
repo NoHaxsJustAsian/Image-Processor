@@ -128,13 +128,13 @@ public class GUIController extends JFrame implements Features{
   }
 
   @Override
-  public void redFilter() {
-    String curLayer; //FIXME: get the current layer from the user in some way.
+  public void redFilter(String curLayer) {
+     //FIXME: get the current layer from the user in some way.
     try {
       model.setFilter(curLayer, new RedFilter());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please load an image.");
+      System.out.println("Please choose an layer.");
     }
   }
   }

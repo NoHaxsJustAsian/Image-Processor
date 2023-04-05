@@ -75,7 +75,7 @@ public interface Features {
   /**
    * This method applies a red filter to an image.
    */
-  void redFilter();
+  void redFilter(String curLayer);
 
   /**
    *  This method applies a screen filter to an image.
