@@ -43,15 +43,15 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
 
   //Buttons
   private JButton LoadButton;
-  private JButton SaveButton;
+  private JButton SaveProjectButton;
+  private JButton SaveImageButton;
   private JButton ExitButton;
   private JButton AddImageButton;
 
 
   //Layer Buttons
   private JButton AddLayerButton;
-  private JButton RemoveLayerButton;
-  //FIXME: make a button to select a layer...
+  private JButton SelectLayerButton;
 
 
   //Color Filters
@@ -64,10 +64,11 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
           BrightenValueButton, DarkenIntensityButton, DarkenLumaButton,
           DarkenValueButton;
 
+  //Normal Filter
+  private JButton Normal;
+
   //Composite Filters
   private JButton MultiplyButton, DifferenceButton, ScreenButton;
-
-
 
 
   public GUIView(ImageProcessorModel model) {
@@ -100,11 +101,9 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     this.setSize(500, 500);
     this.setTitle("Image Processor");
     this.setLocation(200, 200);
-
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //this.setResizable(false);
-    //this.setMinimumSize(new Dimension(500, 500));
-
+    this.setResizable(false);
+    this.setLayout(new FlowLayout());
 
 
 
@@ -246,9 +245,9 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
   }
 
 
-
   /**
    * Renders a message to the GUIView.
+   *
    * @param message
    * @throws IOException
    */
@@ -256,8 +255,10 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
   public void renderMessage(String message) throws IOException {
 
   }
+
   /**
    * Renders a state to the GUIview.
+   *
    * @param
    * @throws IOException
    */
@@ -274,6 +275,7 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
 
   /**
    * Set the listener for any actions
+   *
    * @param listener
    */
   public void setListener(ActionListener listener) {
@@ -301,13 +303,17 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     MultiplyButton.addActionListener(e -> f.multiply());
     DifferenceButton.addActionListener(e -> f.difference());
     ScreenButton.addActionListener(e -> f.screen());
+    Normal.addActionListener(e -> f.normal());
 
+    SaveProjectButton.addActionListener(e -> f.saveProject());
     ExitButton.addActionListener(e -> f.exit());
-    LoadButton.addActionListener(e -> f.load());
-    SaveButton.addActionListener(e -> f.save());
+    LoadButton.addActionListener(e -> f.loadProject());
+    SaveImageButton.addActionListener(e -> f.saveImage());
+
+    AddLayerButton.addActionListener(e -> f.addLayer());
+    AddImageButton.addActionListener(e -> f.addImage());
 
   }
-
 
   
   public ListDemo() {

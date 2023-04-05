@@ -43,7 +43,6 @@ public class GUIController implements Features, ListSelectionListener {
         //set the filter of the layer to red
         this.model.setFilter(nameLayer, new RedFilter());
         //show that layer to the user
-        
         break;
       case "Green":
         break;

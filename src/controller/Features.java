@@ -91,6 +91,16 @@ public interface Features {
   /**
    * This method adds an image to the layer.
    */
-  void addImageToLayer();
+  void addImage();
+
+  /**
+   * This method exits the program.
+   */
+  void exit();
+
+  /**
+   * This method loads a project.
+   */
+  void loadProject();
 
 }
