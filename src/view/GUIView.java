@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,7 +12,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.Features;
 import controller.GUIController;
-import model.Filters.IFilter;
 import model.ILayer;
 import model.ImageProcessorModel;
 
@@ -24,7 +22,6 @@ import model.ImageProcessorModel;
 /**
  * Represents the GUI view for the program.
  */
-
 public class GUIView extends JFrame implements IImageProcessorView {
 
   private ImageProcessorModel model;
@@ -294,8 +291,11 @@ public class GUIView extends JFrame implements IImageProcessorView {
   /**
    * Adds this image to the view.
    */
-  public void addImageToGUI() {
-
+  public void addImageToGUI(BufferedImage bufferedImage) {
+    imagePane.add(new JLabel(new ImageIcon(bufferedImage)));
+    this.pack();
+    this.setVisible(true);
+    refresh();
   }
 
 

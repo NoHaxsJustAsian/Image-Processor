@@ -57,7 +57,7 @@ public class GUIController implements Features {
   }
 
 
-  @Override
+  //FIXME: delete this
   public void actionPerformed(ActionEvent e) {
     String nameLayer = "";
     String nameFilter = "";
@@ -77,12 +77,6 @@ public class GUIController implements Features {
         System.exit(0);
         break;
     }
-  }
-
-
-  @Override
-  public void newProject() {
-
   }
 
   /**
@@ -208,14 +202,25 @@ public class GUIController implements Features {
   @Override
   public void saveImage() {
     File f = view.saveFile();
-    if (f == null) {
-      return;
-    }
+    IPixel[][] finalPixels = model.saveCanvas();
+
+    PrintWriter writer;
     try {
-      ImageIO.write(model.compressImage(), "ppm", f);
-    } catch (Exception ex) {
-      System.out.println("Error: Please try again.");
+      writer = new PrintWriter(f);
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
     }
+    writer.println("P3");
+    writer.println(model.getWidth() + " " + model.getHeight());
+    writer.println(model.getMaxValue());
+    for (int i = 0; i < model.getHeight(); i++) {
+      for (int j = 0; j < model.getWidth(); j++) {
+        writer.println(finalPixels[i][j].getRed()
+                + " " + finalPixels[i][j].getGreen()
+                + " " + finalPixels[i][j].getBlue());
+      }
+    }
+    writer.close();
     }
 
   @Override
