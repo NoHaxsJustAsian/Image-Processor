@@ -23,7 +23,6 @@ import model.ImageProcessorModel;
 /**
  * Represents the GUI view for the program.
  */
-
 public class GUIView extends JFrame implements IImageProcessorView {
 
   private ImageProcessorModel model;
@@ -35,7 +34,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton LoadButton;
   private JButton SaveProjectButton;
   private JButton SaveImageButton;
-  private JButton ExitButton;
   private JButton AddImageButton;
 
 
@@ -77,11 +75,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.setLayout(new FlowLayout());
     this.getContentPane().setBackground(Color.WHITE);
 
-
     this.add(imagePane);
     this.add(buttonPane);
     this.add(layerPane);
-
 
     imagePane = new JPanel();
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
@@ -213,7 +209,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return f;
   }
 
-  public File saveProject() {
+  public File saveFile() {
     File f = null;
     final JFileChooser saver = new JFileChooser(".");
     int ret = saver.showSaveDialog(null);
@@ -222,6 +218,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     }
     return f;
   }
+
 
   /**
    * Adds an image to selected layer.
@@ -259,7 +256,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   @Override
   public void renderMessage(String message) throws IOException {
-    //FIXME: make this just make pop ups
+    JOptionPane.showMessageDialog(this, message, "Message",
+            JOptionPane.PLAIN_MESSAGE);
   }
 
   /**
@@ -269,7 +267,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    * @throws IOException
    */
   @Override
-  public void renderState() throws IOException {
+  public void renderState() {
 
   }
 
@@ -307,7 +305,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     Normal.addActionListener(e -> f.normal());
 
     SaveProjectButton.addActionListener(e -> f.saveProject());
-    ExitButton.addActionListener(e -> f.exit());
     LoadButton.addActionListener(e -> f.loadProject());
     SaveImageButton.addActionListener(e -> f.saveImage());
 

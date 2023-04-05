@@ -4,12 +4,14 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import model.Filters.BlueFilter;
@@ -30,7 +32,6 @@ import model.ImageProcessorModel;
 import model.Layer;
 import model.Pixel;
 import view.GUIView;
-import view.ImageProcessorView;
 
 /**
  * Represents the controller for the GUI view.
@@ -41,18 +42,21 @@ public class GUIController implements Features {
   private IImageProcessorModel model;
 
 
-
+  /**
+   * Represents the default constructor for the GUIController.
+   * @param view
+   * @param model
+   */
   public GUIController(GUIView view,  IImageProcessorModel model) {
     super();
     this.view = view;
     this.model = model;
 
+    this.view.addFeatures(this);
     this.view.RedFilterButton.setActionCommand("Red");
+    this.view.display();
+
     this.view.RedFilterButton.addActionListener();
-
-    view.setListener();
-    view.display();
-
 
   }
 
@@ -186,7 +190,7 @@ public class GUIController implements Features {
 
   @Override
   public void saveProject() {
-    File file = view.saveProject(); //FIXME: something that gets file path to save project. popup.
+    File file = view.saveFile(); //FIXME: something that gets file path to save project. popup.
 
     IPixel[][] finalPixels = model.saveCanvas();
 
@@ -209,6 +213,16 @@ public class GUIController implements Features {
 
   @Override
   public void saveImage() {
+    File f = view.saveFile();
+    if (f == null) {
+      return;
+    }
+    try {
+      ImageIO.write(model.compressImage(), "ppm", f);
+    } catch (Exception ex) {
+      System.out.println("Error: Please try again.");
+    }
+    }
 
   }
 
@@ -296,11 +310,11 @@ public class GUIController implements Features {
 
   }
 
-  /**
-   * This method exits the program.
-   */
-  @Override
-  public void exit() {
-
+  public void tryRenderMessage() {
+    try {
+      this.view.renderMessage(msg);
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(null, "Message could not be rendered");
+    }
   }
 }

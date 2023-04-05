@@ -94,11 +94,6 @@ public interface Features {
   void addImage();
 
   /**
-   * This method exits the program.
-   */
-  void exit();
-
-  /**
    * This method loads a project.
    */
   void loadProject();
