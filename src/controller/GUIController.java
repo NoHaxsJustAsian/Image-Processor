@@ -53,11 +53,7 @@ public class GUIController implements Features {
     this.model = model;
 
     this.view.addFeatures(this);
-    this.view.RedFilterButton.setActionCommand("Red");
     this.view.display();
-
-    this.view.RedFilterButton.addActionListener();
-
   }
 
 
@@ -123,10 +119,8 @@ public class GUIController implements Features {
 
   /**
    * This method should load a project.
-   *
-   * @param filePath the path of the project.
    */
-  private void loadProject() {
+  public void loadProject() {
     Scanner sc;
     int width;
     int height;
@@ -140,7 +134,7 @@ public class GUIController implements Features {
     try {
       sc = new Scanner(new FileInputStream(view.loadProject()));
     } catch (FileNotFoundException e) {
-      this.tryRender("File " + filePath + " not found!"); //FIXME: replace with prompt pop up
+      this.tryRenderMessage("File " + view.loadProject().getAbsolutePath() + " not found!");
       return;
     }
 
@@ -158,7 +152,7 @@ public class GUIController implements Features {
 
     token = sc.next();
     if (!token.equals("C1")) {
-      this.tryRender("Invalid Collage file: Collage file should begin with C1");
+      this.tryRenderMessage("Invalid Collage file: Collage file should begin with C1");
     }  //FIXME: change this into a popup
     width = sc.nextInt();
     height = sc.nextInt();
@@ -310,7 +304,7 @@ public class GUIController implements Features {
 
   }
 
-  public void tryRenderMessage() {
+  public void tryRenderMessage(String msg) {
     try {
       this.view.renderMessage(msg);
     } catch (IOException e) {

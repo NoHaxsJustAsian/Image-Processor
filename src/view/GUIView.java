@@ -173,11 +173,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     LoadButton.setActionCommand("Add Layer Button");
     this.add(this.AddLayerButton);
 
-    ExitButton = new JButton("Exit");
-    ExitButton.setActionCommand("Exit Button");
-    this.add(this.ExitButton);
-
-
     //Pop up menu for Layers
     popupMenu = new JPopupMenu("Layers");
     JMenuItem menuItemFirst = new JMenuItem("first");
