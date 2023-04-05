@@ -23,20 +23,24 @@ import model.ImageProcessorModel;
 /**
  * Represents the GUI view for the program.
  */
+
 public class GUIView extends JFrame implements IImageProcessorView {
 
   private ImageProcessorModel model;
   private GUIController controller;
 
 
-  //Project Buttons
+  //Buttons Sections
   private JPanel buttonPane;
+
+  //Project Buttons
   private JButton LoadButton;
   private JButton SaveProjectButton;
   private JButton SaveImageButton;
+  private JButton ExitButton;
   private JButton AddImageButton;
 
-
+  
   //Filter Buttons
   private JButton Normal;
   public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
@@ -47,13 +51,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
 
-  //Layer Buttons
+
+  //Layer Section
   private JPanel layerPane;
   private JButton AddLayerButton;
   private JButton SelectLayerButton;
+  private JComboBox<ILayer> layerList;
 
 
-  //Buffered Image
+
+
+  //Buffered Image Section
   private JPanel imagePane;
   private JScrollBar verticalBar;
   private JScrollBar horizontalBar;
@@ -66,7 +74,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.model = model;
     this.controller = new GUIController(this, model);
 
-
+    //FRAME
     this.setSize(500, 500);
     this.setTitle("Image Processor");
     this.setLocation(200, 200);
@@ -75,15 +83,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.setLayout(new FlowLayout());
     this.getContentPane().setBackground(Color.WHITE);
 
-    this.add(imagePane);
-    this.add(buttonPane);
-    this.add(layerPane);
-
-    imagePane = new JPanel();
-    imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
-    imagePane.setLayout(new GridLayout(2, 2));
-
-
+    //PANELS LAYOUT ON FRAME
+    this.setLayout(new BorderLayout());
+    this.add(imagePane, BorderLayout.WEST);
+    imagePane.setBorder(BorderFactory.createTitledBorder("Buffered Image"));
+    imagePane.setPreferredSize(new Dimension(250, 500));
+    this.add(buttonPane, BorderLayout.EAST);
+    buttonPane.setBorder(BorderFactory.createTitledBorder("Buttons"));
+    buttonPane.setPreferredSize(new Dimension(250, 250));
+    this.add(layerPane, BorderLayout.SOUTH);
+    layerPane.setBorder(BorderFactory.createTitledBorder("Layers"));
+    layerPane.setPreferredSize(new Dimension(250, 250));
 
 
 
@@ -104,9 +114,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //FIXME: add error box
     JPanel errorBox = new JPanel();
 
+    
 
 
-    //Buttons
+    //BUTTONS
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
     this.add(this.RedFilterButton);
@@ -173,6 +184,42 @@ public class GUIView extends JFrame implements IImageProcessorView {
     JMenuItem menuItemFirst = new JMenuItem("first");
     popupMenu.add(menuItemFirst);
 
+
+
+    //IMAGE PANEL
+    imagePane = new JPanel();
+    imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
+    imagePane.setLayout(new GridLayout(2, 2));
+    imagePane.add(new JLabel("Composite Image"));
+    imagePane.add();
+
+
+    //BUTTON PANEL
+    buttonPane = new JPanel();
+    buttonPane.setLayout(new FlowLayout(FlowLayout.LEADING));
+    buttonPane.add(RedFilterButton);
+    buttonPane.add(GreenFilterButton);
+    buttonPane.add(BlueFilterButton);
+    buttonPane.add(BrightenIntensityButton);
+    buttonPane.add(BrightenLumaButton);
+    buttonPane.add(BrightenValueButton);
+    buttonPane.add(DarkenIntensityButton);
+    buttonPane.add(DarkenLumaButton);
+    buttonPane.add(DarkenValueButton);
+    buttonPane.add(MultiplyButton);
+    buttonPane.add(DifferenceButton);
+    buttonPane.add(ScreenButton);
+    buttonPane.add(LoadButton);
+    buttonPane.add(SaveImageButton);
+    buttonPane.add(SaveProjectButton);
+    buttonPane.add(ExitButton);
+    buttonPane.add(AddImageButton);
+
+
+    //LAYER PANEL
+    layerPane = new JPanel();
+
+
     this.pack();
     this.setVisible(true);
   }
@@ -209,7 +256,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return f;
   }
 
-  public File saveFile() {
+  public File saveProject() {
     File f = null;
     final JFileChooser saver = new JFileChooser(".");
     int ret = saver.showSaveDialog(null);
@@ -218,7 +265,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     }
     return f;
   }
-
 
   /**
    * Adds an image to selected layer.
@@ -256,8 +302,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   @Override
   public void renderMessage(String message) throws IOException {
-    JOptionPane.showMessageDialog(this, message, "Message",
-            JOptionPane.PLAIN_MESSAGE);
+    //FIXME: make this just make pop ups
   }
 
   /**
@@ -267,7 +312,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    * @throws IOException
    */
   @Override
-  public void renderState() {
+  public void renderState() throws IOException {
 
   }
 
@@ -305,6 +350,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     Normal.addActionListener(e -> f.normal());
 
     SaveProjectButton.addActionListener(e -> f.saveProject());
+    ExitButton.addActionListener(e -> f.exit());
     LoadButton.addActionListener(e -> f.loadProject());
     SaveImageButton.addActionListener(e -> f.saveImage());
 
