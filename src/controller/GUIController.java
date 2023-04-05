@@ -419,7 +419,4 @@ public class GUIController implements Features {
     }
   }
 
-  public void selectLayer(int) {
-    this.model.getLayer(layerName);
-  }
 }

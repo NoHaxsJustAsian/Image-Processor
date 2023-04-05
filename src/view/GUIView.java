@@ -242,12 +242,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.setVisible(true);
   }
 
-  public JMenuItem addPopupMenuItem(ILayer layer) {
-    JMenuItem menuItem = new JMenuItem(layer.getName());
-    popupMenu.add(menuItem);
-    return menuItem;
-  }
-
 
   /**
    * Refreshes the view.
@@ -368,7 +362,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     SaveProjectButton.addActionListener(e -> f.saveProject());
     LoadButton.addActionListener(e -> f.loadProject());
-    SaveImageButton.addActionListener(e -> f.saveImage(curLayer));
+    SaveImageButton.addActionListener(e -> f.saveImage());
 
     AddLayerButton.addActionListener(e -> f.addLayer());
     AddImageButton.addActionListener(e -> f.addImage(curLayer));
