@@ -178,8 +178,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     JMenuItem menuItemFirst = new JMenuItem("first");
     popupMenu.add(menuItemFirst);
 
-
-
     //IMAGE PANEL
     imagePane = new JPanel();
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
@@ -249,7 +247,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return f;
   }
 
-  public File saveProject() {
+  public File saveFile() {
     File f = null;
     final JFileChooser saver = new JFileChooser(".");
     int ret = saver.showSaveDialog(null);
