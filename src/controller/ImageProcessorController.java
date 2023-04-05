@@ -356,7 +356,7 @@ public class ImageProcessorController implements IImageProcessorController {
 
     IPixel[][] finalPixels = model.saveCanvas();
 
-    PrintWriter writer = null;
+    PrintWriter writer;
     try {
       writer = new PrintWriter(new File(filePath)); //FIXME: fix PrintWriter
     } catch (FileNotFoundException e) {
@@ -371,15 +371,6 @@ public class ImageProcessorController implements IImageProcessorController {
       }
     }
     writer.close();
-    /*
-    BufferedImage finalImage = new BufferedImage(getWidth(), getHeight(),
-            BufferedImage.TYPE_INT_RGB);
-    for (int ii = 0; ii < getHeight(); ii++) {
-      for (int jj = 0; jj < getWidth(); jj++) {
-        finalImage.setRGB(jj, ii, finalPixels[ii][jj].getRed());
-      }
-    }
-    */
   }
 
 }

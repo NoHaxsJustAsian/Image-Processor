@@ -1,15 +1,41 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.*;
 
+import model.Filters.BlueFilter;
+import model.Filters.BrightenIntensity;
+import model.Filters.BrightenLuma;
+import model.Filters.BrightenValue;
+import model.Filters.DarkenIntensity;
+import model.Filters.DarkenLuma;
+import model.Filters.DarkenValue;
+import model.Filters.GreenFilter;
+import model.Filters.IFilter;
+import model.Filters.Normal;
 import model.Filters.RedFilter;
 import model.IImageProcessorModel;
+import model.ILayer;
+import model.IPixel;
+import model.ImageProcessorModel;
+import model.Layer;
+import model.Pixel;
 import view.GUIView;
+import view.ImageProcessorView;
 
-
-public class GUIController implements Features{
+/**
+ * Represents the controller for the GUI view.
+ */
+public class GUIController implements Features {
   private JPanel panel;
   private GUIView view;
   private IImageProcessorModel model;
@@ -56,16 +82,129 @@ public class GUIController implements Features{
 
   @Override
   public void newProject() {
+
   }
 
-  @Override
-  public void loadProject() {
+  /**
+   * This method should load a project.
+   *
+   * @param name the name of the filter.
+   */
+  private IFilter filterHelp(String name) {
+    switch (name) {
+      case "blue":
+        return new BlueFilter();
+      case "brighten-luma":
+        return new BrightenLuma();
+      case "brighten-intensity":
+        return new BrightenIntensity();
+      case "brighten-value":
+        return new BrightenValue();
+      case "darken-luma":
+        return new DarkenLuma();
+      case "darken-intensity":
+        return new DarkenIntensity();
+      case "darken-value":
+        return new DarkenValue();
+      case "green":
+        return new GreenFilter();
+      case "normal":
+        return new Normal();
+      case "red":
+        return new RedFilter();
+      default:
+        return null;
+    }
+  }
 
+  /**
+   * This method should load a project.
+   *
+   * @param filePath the path of the project.
+   */
+  private void loadProject() {
+    Scanner sc;
+    int width;
+    int height;
+    int maxRGB;
+    ImageProcessorModel model;
+    IFilter filter;
+    List<ILayer> orderLayers = new ArrayList<ILayer>();
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+    IPixel[][] pixels;
+
+    try {
+      sc = new Scanner(new FileInputStream(view.loadProject()));
+    } catch (FileNotFoundException e) {
+      this.tryRender("File " + filePath + " not found!"); //FIXME: replace with prompt pop up
+      return;
+    }
+
+    StringBuilder builder = new StringBuilder();
+    while (sc.hasNextLine()) {
+      String s = sc.nextLine();
+      if (!s.equals("") && s.charAt(0) != '#') {
+        builder.append(s + System.lineSeparator());
+      }
+    }
+
+    sc = new Scanner(builder.toString());
+
+    String token;
+
+    token = sc.next();
+    if (!token.equals("C1")) {
+      this.tryRender("Invalid Collage file: Collage file should begin with C1");
+    }  //FIXME: change this into a popup
+    width = sc.nextInt();
+    height = sc.nextInt();
+    maxRGB = sc.nextInt();
+    while (sc.hasNext()) {
+      String name = sc.next();
+      try {
+        filter = filterHelp(sc.next()); //FIXME: fix naming scheme of filters
+      } catch (IllegalArgumentException e) {
+        this.tryRender("Invalid filter name"); //FIXME: change this into a popup
+        return;
+      }
+      pixels = new Pixel[height][width];
+      for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+          int r = sc.nextInt();
+          int g = sc.nextInt();
+          int b = sc.nextInt();
+          pixels[i][j] = new Pixel(r, g, b, 255);
+        }
+      }
+      ILayer hold = new Layer(name, filter, height, width);
+      hold.setCanvas(pixels);
+      orderLayers.add(hold);
+      nameLayers.put(name, hold);
+    }
+    this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers);
   }
 
   @Override
   public void saveProject() {
+    File file = view.saveProject(); //FIXME: something that gets file path to save project. popup.
 
+    IPixel[][] finalPixels = model.saveCanvas();
+
+    PrintWriter writer;
+    try {
+      writer = new PrintWriter(file); //FIXME: fix PrintWriter
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+
+    for (int i = 0; i < model.getHeight(); i++) {
+      for (int j = 0; j < model.getWidth(); j++) {
+        writer.println(finalPixels[i][j].getRed()
+                + " " + finalPixels[i][j].getGreen()
+                + " " + finalPixels[i][j].getBlue());
+      }
+    }
+    writer.close();
   }
 
   @Override
@@ -128,7 +267,6 @@ public class GUIController implements Features{
       System.out.println("Please choose an layer.");
     }
   }
-  }
 
   @Override
   public void screen() {
@@ -150,9 +288,19 @@ public class GUIController implements Features{
 
   }
 
+  /**
+   * This method adds an image to the layer.
+   */
   @Override
-  public void addImageToLayer() {
+  public void addImage() {
 
+  }
+
+  /**
+   * This method exits the program.
+   */
+  @Override
+  public void exit() {
 
   }
 }

@@ -24,7 +24,7 @@ import model.ImageProcessorModel;
  * Represents the GUI view for the program.
  */
 
-public class GUIView extends JFrame implements IImageProcessorView, ActionListener {
+public class GUIView extends JFrame implements IImageProcessorView {
 
   private ImageProcessorModel model;
   private GUIController controller;
@@ -101,8 +101,6 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
     this.setLayout(new FlowLayout());
-
-
     this.getContentPane().setBackground(Color.WHITE);
 
 
@@ -112,7 +110,7 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     this.textField = new JTextField(25);
     this.add(this.textField);
 
-
+    //Buttons
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
     this.add(this.RedFilterButton);
@@ -149,7 +147,6 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     DarkenValueButton.setActionCommand("Darken Value Button");
     this.add(this.DarkenValueButton);
 
-
     MultiplyButton = new JButton("Multiply");
     MultiplyButton.setActionCommand("Multiply Button");
     this.add(this.MultiplyButton);
@@ -162,12 +159,20 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     ScreenButton.setActionCommand("Screen Button");
     this.add(this.ScreenButton);
 
+    LoadButton = new JButton("Load");
+    LoadButton.setActionCommand("Load Project Button");
+    this.add(this.LoadButton);
+
+    AddLayerButton = new JButton("Add Layer");
+    LoadButton.setActionCommand("Add Layer Button");
+    this.add(this.AddLayerButton);
 
     ExitButton = new JButton("Exit");
     ExitButton.setActionCommand("Exit Button");
     this.add(this.ExitButton);
 
 
+    //Pop up menu for Layers
     popupMenu = new JPopupMenu("Layers");
     JMenuItem menuItemFirst = new JMenuItem("first");
     popupMenu.add(menuItemFirst);
@@ -209,6 +214,15 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     return f;
   }
 
+  public File saveProject() {
+    File f = null;
+    final JFileChooser saver = new JFileChooser(".");
+    int ret = saver.showSaveDialog(null);
+    if (ret == JFileChooser.APPROVE_OPTION) {
+      f = saver.getSelectedFile();
+    }
+    return f;
+  }
 
   /**
    * Adds an image to selected layer.
@@ -257,11 +271,6 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
    */
   @Override
   public void renderState() throws IOException {
-
-  }
-
-  @Override
-  public void clearFilter() {
 
   }
 
