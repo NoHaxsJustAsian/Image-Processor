@@ -3,13 +3,14 @@ package controller;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 
 import model.Filters.RedFilter;
 import model.IImageProcessorModel;
 import view.GUIView;
 
 
-public class GUIController implements Features{
+public class GUIController implements Features, ListSelectionListener {
   private JPanel panel;
   private GUIView view;
   private IImageProcessorModel model;

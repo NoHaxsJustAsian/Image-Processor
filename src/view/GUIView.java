@@ -13,6 +13,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import controller.Features;
 import controller.GUIController;
 import model.Filters.IFilter;
+import model.Filters.RedFilter;
 import model.ILayer;
 import model.ImageProcessorModel;
 
@@ -55,6 +56,8 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
 
   //Color Filters
   public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
+
+
 
   //Brighten/Darken Filters
   private JButton BrightenIntensityButton, BrightenLumaButton,
@@ -103,7 +106,6 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     //this.setMinimumSize(new Dimension(500, 500));
 
 
-    this.setLayout(new FlowLayout());
 
 
     this.getContentPane().setBackground(Color.WHITE);
@@ -116,8 +118,11 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     this.add(this.textField);
 
 
+    this.setLayout(new FlowLayout());
+    
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
+    RedFilterButton.setBounds(0,0,0,0);
     this.add(this.RedFilterButton);
 
     GreenFilterButton = new JButton("Green");
@@ -350,7 +355,8 @@ public class GUIView extends JFrame implements IImageProcessorView, ActionListen
     add(buttonPane, BorderLayout.PAGE_END);
 }
 
-class FireListener implements ActionListener {
+
+  class FireListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //This method can be called only if
         //there's a valid selection
