@@ -37,7 +37,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton LoadButton;
   private JButton SaveProjectButton;
   private JButton SaveImageButton;
-  private JButton ExitButton;
   private JButton AddImageButton;
 
   
@@ -212,7 +211,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     buttonPane.add(LoadButton);
     buttonPane.add(SaveImageButton);
     buttonPane.add(SaveProjectButton);
-    buttonPane.add(ExitButton);
     buttonPane.add(AddImageButton);
 
 
@@ -350,7 +348,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     Normal.addActionListener(e -> f.normal());
 
     SaveProjectButton.addActionListener(e -> f.saveProject());
-    ExitButton.addActionListener(e -> f.exit());
     LoadButton.addActionListener(e -> f.loadProject());
     SaveImageButton.addActionListener(e -> f.saveImage());
 
