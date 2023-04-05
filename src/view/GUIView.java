@@ -347,7 +347,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
    * Adds a layer to the view with a Normal filter.
    */
   public String addLayer() {
-    //FIXME: add a pop up asking for its name, and add it to its list.
+    String layerName = JOptionPane.showInputDialog("Enter a name for the layer");
+    return layerName;
   }
 
   public void addFeatures(Features f) {
