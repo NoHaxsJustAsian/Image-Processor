@@ -1,20 +1,15 @@
 package controller;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.*;
 
-import model.Filters.BrightenLuma;
 import model.Filters.RedFilter;
 import model.IImageProcessorModel;
 import view.GUIView;
-import view.IImageProcessorView;
 
 
-public class GUIController extends JFrame implements Features{
+public class GUIController implements Features{
   private JPanel panel;
   private GUIView view;
   private IImageProcessorModel model;
@@ -33,8 +28,6 @@ public class GUIController extends JFrame implements Features{
     view.display();
 
 
-    this.pack();
-    this.setVisible(true);
   }
 
 
@@ -49,7 +42,7 @@ public class GUIController extends JFrame implements Features{
         //set the filter of the layer to red
         this.model.setFilter(nameLayer, new RedFilter());
         //show that layer to the user
-        view.
+        
         break;
       case "Green":
         break;
@@ -64,7 +57,6 @@ public class GUIController extends JFrame implements Features{
 
   @Override
   public void newProject() {
-
   }
 
   @Override
@@ -161,6 +153,7 @@ public class GUIController extends JFrame implements Features{
 
   @Override
   public void addImageToLayer() {
+
 
   }
 }

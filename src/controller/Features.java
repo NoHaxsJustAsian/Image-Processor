@@ -6,16 +6,6 @@ public interface Features {
   //File Functions
 
   /**
-   * This method starts a new Project.
-   */
-  void newProject();
-
-  /**
-   * This method loads a project.
-   */
-  void loadProject();
-
-  /**
    * This method saves a project.
    */
   void saveProject();
@@ -103,4 +93,5 @@ public interface Features {
    * This method adds an image to the layer.
    */
   void addImageToLayer();
+
 }
