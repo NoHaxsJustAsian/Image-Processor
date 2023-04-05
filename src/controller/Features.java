@@ -13,7 +13,7 @@ public interface Features {
   /**
    * This method saves an image.
    */
-  void saveImage(String curLayer);
+  void saveImage();
 
   //Filter Functions
 

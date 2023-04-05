@@ -351,26 +351,26 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
 
   public void addFeatures(Features f) {
-    RedFilterButton.addActionListener(e -> f.redFilter());
-    GreenFilterButton.addActionListener(e -> f.greenFilter());
-    BlueFilterButton.addActionListener(e -> f.blueFilter());
-    BrightenIntensityButton.addActionListener(e -> f.brightenIntensity());
-    BrightenLumaButton.addActionListener(e -> f.brightenLuma());
-    BrightenValueButton.addActionListener(e -> f.brightenValue());
-    DarkenIntensityButton.addActionListener(e -> f.darkenIntensity());
-    DarkenLumaButton.addActionListener(e -> f.darkenLuma());
-    DarkenValueButton.addActionListener(e -> f.darkenValue());
-    MultiplyButton.addActionListener(e -> f.multiply());
-    DifferenceButton.addActionListener(e -> f.difference());
-    ScreenButton.addActionListener(e -> f.screen());
-    Normal.addActionListener(e -> f.normal());
+    RedFilterButton.addActionListener(e -> f.redFilter(curLayer));
+    GreenFilterButton.addActionListener(e -> f.greenFilter(curLayer));
+    BlueFilterButton.addActionListener(e -> f.blueFilter(curLayer));
+    BrightenIntensityButton.addActionListener(e -> f.brightenIntensity(curLayer));
+    BrightenLumaButton.addActionListener(e -> f.brightenLuma(curLayer));
+    BrightenValueButton.addActionListener(e -> f.brightenValue(curLayer));
+    DarkenIntensityButton.addActionListener(e -> f.darkenIntensity(curLayer));
+    DarkenLumaButton.addActionListener(e -> f.darkenLuma(curLayer));
+    DarkenValueButton.addActionListener(e -> f.darkenValue(curLayer));
+    MultiplyButton.addActionListener(e -> f.multiply(curLayer));
+    DifferenceButton.addActionListener(e -> f.difference(curLayer));
+    ScreenButton.addActionListener(e -> f.screen(curLayer));
+    Normal.addActionListener(e -> f.normal(curLayer));
 
     SaveProjectButton.addActionListener(e -> f.saveProject());
     LoadButton.addActionListener(e -> f.loadProject());
-    SaveImageButton.addActionListener(e -> f.saveImage());
+    SaveImageButton.addActionListener(e -> f.saveImage(curLayer));
 
     AddLayerButton.addActionListener(e -> f.addLayer());
-    AddImageButton.addActionListener(e -> f.addImage());
+    AddImageButton.addActionListener(e -> f.addImage(curLayer));
 
     layerList.addActionListener(e -> f.get()));
   }
