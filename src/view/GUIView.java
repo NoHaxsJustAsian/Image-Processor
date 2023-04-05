@@ -29,18 +29,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private ImageProcessorModel model;
   private GUIController controller;
 
-  //List
-  private JList list;
-  private DefaultListModel listModel;
-  private static final String selectString = "Select";
-  private static final String addLayerString = "Add Layer";
-  private JButton selectButton;
-  private JTextField layerName;
-  private JLabel label;
-  private JTextField textField;
-  private JPopupMenu popupMenu;
 
-  //Buttons
+  //Project Buttons
+  private JPanel buttonPane;
   private JButton LoadButton;
   private JButton SaveProjectButton;
   private JButton SaveImageButton;
@@ -48,24 +39,27 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton AddImageButton;
 
 
+  //Filter Buttons
+  private JButton Normal;
+  public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
+  private JButton BrightenIntensityButton, BrightenLumaButton,
+          BrightenValueButton, DarkenIntensityButton, DarkenLumaButton,
+          DarkenValueButton;
+  private JButton MultiplyButton, DifferenceButton, ScreenButton;
+
+
+
   //Layer Buttons
+  private JPanel layerPane;
   private JButton AddLayerButton;
   private JButton SelectLayerButton;
 
 
-  //Color Filters
-  public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
+  //Buffered Image
+  private JPanel imagePane;
+  private JScrollBar verticalBar;
+  private JScrollBar horizontalBar;
 
-  //Brighten/Darken Filters
-  private JButton BrightenIntensityButton, BrightenLumaButton,
-          BrightenValueButton, DarkenIntensityButton, DarkenLumaButton,
-          DarkenValueButton;
-
-  //Normal Filter
-  private JButton Normal;
-
-  //Composite Filters
-  private JButton MultiplyButton, DifferenceButton, ScreenButton;
 
 
   public GUIView(ImageProcessorModel model) {
@@ -74,8 +68,28 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.model = model;
     this.controller = new GUIController(this, model);
 
-    JPanel buttonBox = new JPanel();
-    JPanel layerBox = new JPanel();
+
+    this.setSize(500, 500);
+    this.setTitle("Image Processor");
+    this.setLocation(200, 200);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setResizable(false);
+    this.setLayout(new FlowLayout());
+    this.getContentPane().setBackground(Color.WHITE);
+
+
+    this.add(imagePane);
+    this.add(buttonPane);
+    this.add(layerPane);
+
+
+    imagePane = new JPanel();
+    imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
+    imagePane.setLayout(new GridLayout(2, 2));
+
+
+
+
 
     JPanel selectedLayerBox = new JPanel();
     selectedLayerBox.setBorder(BorderFactory.createTitledBorder("Selected Image"));
@@ -95,20 +109,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     JPanel errorBox = new JPanel();
 
 
-    this.setSize(500, 500);
-    this.setTitle("Image Processor");
-    this.setLocation(200, 200);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setLayout(new FlowLayout());
-    this.getContentPane().setBackground(Color.WHITE);
-
-
-    this.label = new JLabel("Image Processor");
-    this.add(label);
-
-    this.textField = new JTextField(25);
-    this.add(this.textField);
 
     //Buttons
     RedFilterButton = new JButton("Red");
@@ -179,7 +179,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     this.pack();
     this.setVisible(true);
-
   }
 
   public JMenuItem addPopupMenuItem(ILayer layer) {
