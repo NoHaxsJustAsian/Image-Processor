@@ -260,6 +260,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return f;
   }
 
+  /**
+   * Saves a file.
+   */
   public File saveFile() {
     File f = null;
     final JFileChooser saver = new JFileChooser(".");
@@ -290,10 +293,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   /**
    * Adds this image to the view.
-   *
-   * @param img represents the given image.
    */
-  public void addImageToGUI(Image img) {
+  public void addImageToGUI() {
 
   }
 
