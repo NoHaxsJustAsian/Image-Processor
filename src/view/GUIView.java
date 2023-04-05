@@ -74,7 +74,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.model = model;
     this.controller = new GUIController(this, model);
 
-
+    //FRAME
     this.setSize(500, 500);
     this.setTitle("Image Processor");
     this.setLocation(200, 200);
@@ -83,10 +83,18 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.setLayout(new FlowLayout());
     this.getContentPane().setBackground(Color.WHITE);
 
+    //PANELS LAYOUT ON FRAME
+    this.setLayout(new BorderLayout());
+    this.add(imagePane, BorderLayout.WEST);
+    imagePane.setBorder(BorderFactory.createTitledBorder("Buffered Image"));
+    imagePane.setPreferredSize(new Dimension(250, 500));
+    this.add(buttonPane, BorderLayout.EAST);
+    buttonPane.setBorder(BorderFactory.createTitledBorder("Buttons"));
+    buttonPane.setPreferredSize(new Dimension(250, 250));
+    this.add(layerPane, BorderLayout.SOUTH);
+    layerPane.setBorder(BorderFactory.createTitledBorder("Layers"));
+    layerPane.setPreferredSize(new Dimension(250, 250));
 
-    this.add(imagePane);
-    this.add(buttonPane);
-    this.add(layerPane);
 
 
     JPanel selectedLayerBox = new JPanel();
@@ -106,9 +114,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //FIXME: add error box
     JPanel errorBox = new JPanel();
 
+    
 
 
-    //Buttons
+    //BUTTONS
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
     this.add(this.RedFilterButton);
@@ -176,14 +185,39 @@ public class GUIView extends JFrame implements IImageProcessorView {
     popupMenu.add(menuItemFirst);
 
 
+
+    //IMAGE PANEL
     imagePane = new JPanel();
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
     imagePane.setLayout(new GridLayout(2, 2));
     imagePane.add(new JLabel("Composite Image"));
-    imagePane.add()
+    imagePane.add();
 
 
+    //BUTTON PANEL
+    buttonPane = new JPanel();
+    buttonPane.setLayout(new FlowLayout(FlowLayout.LEADING));
+    buttonPane.add(RedFilterButton);
+    buttonPane.add(GreenFilterButton);
+    buttonPane.add(BlueFilterButton);
+    buttonPane.add(BrightenIntensityButton);
+    buttonPane.add(BrightenLumaButton);
+    buttonPane.add(BrightenValueButton);
+    buttonPane.add(DarkenIntensityButton);
+    buttonPane.add(DarkenLumaButton);
+    buttonPane.add(DarkenValueButton);
+    buttonPane.add(MultiplyButton);
+    buttonPane.add(DifferenceButton);
+    buttonPane.add(ScreenButton);
+    buttonPane.add(LoadButton);
+    buttonPane.add(SaveImageButton);
+    buttonPane.add(SaveProjectButton);
+    buttonPane.add(ExitButton);
+    buttonPane.add(AddImageButton);
 
+
+    //LAYER PANEL
+    layerPane = new JPanel();
 
 
     this.pack();
