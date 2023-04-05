@@ -30,15 +30,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private GUIController controller;
 
 
-  //Project Buttons
+  //Buttons Sections
   private JPanel buttonPane;
+
+  //Project Buttons
   private JButton LoadButton;
   private JButton SaveProjectButton;
   private JButton SaveImageButton;
   private JButton ExitButton;
   private JButton AddImageButton;
 
-
+  
   //Filter Buttons
   private JButton Normal;
   public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
@@ -49,13 +51,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
 
-  //Layer Buttons
+
+  //Layer Section
   private JPanel layerPane;
   private JButton AddLayerButton;
   private JButton SelectLayerButton;
+  private JComboBox<ILayer> layerList;
 
 
-  //Buffered Image
+
+
+  //Buffered Image Section
   private JPanel imagePane;
   private JScrollBar verticalBar;
   private JScrollBar horizontalBar;
@@ -81,14 +87,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.add(imagePane);
     this.add(buttonPane);
     this.add(layerPane);
-
-
-    imagePane = new JPanel();
-    imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
-    imagePane.setLayout(new GridLayout(2, 2));
-
-
-
 
 
     JPanel selectedLayerBox = new JPanel();
@@ -176,6 +174,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
     popupMenu = new JPopupMenu("Layers");
     JMenuItem menuItemFirst = new JMenuItem("first");
     popupMenu.add(menuItemFirst);
+
+
+    imagePane = new JPanel();
+    imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
+    imagePane.setLayout(new GridLayout(2, 2));
+    imagePane.add(new JLabel("Composite Image"));
+    imagePane.add()
+
+
+
+
 
     this.pack();
     this.setVisible(true);
