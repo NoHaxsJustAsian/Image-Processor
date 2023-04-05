@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -55,7 +56,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JPanel layerPane;
   private JButton AddLayerButton;
   private JButton SelectLayerButton;
-  private JComboBox<ILayer> layerList;
+  private JComboBox<String> layerList;
 
 
 
@@ -178,6 +179,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
     JMenuItem menuItemFirst = new JMenuItem("first");
     popupMenu.add(menuItemFirst);
 
+
+    //COMBO BOX
+    ArrayList<String> layerNames = new ArrayList<String>();
+    for (ILayer layer : model.getLayers()) {
+        layerNames.add(layer.getName());
+    }
+    layerList = new JComboBox<>(
+            new DefaultComboBoxModel<String>(layerNames.toArray(new String[0])));
+    layerList.setActionCommand("Layer List");
+
+
     //IMAGE PANEL
     imagePane = new JPanel();
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
@@ -209,6 +221,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     //LAYER PANEL
     layerPane = new JPanel();
+    layerPane.add(layerList);
 
 
     this.pack();
@@ -347,6 +360,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     AddLayerButton.addActionListener(e -> f.addLayer());
     AddImageButton.addActionListener(e -> f.addImage());
 
+    layerList.addActionListener(e -> f.selectLayer(layerList.getSelectedIndex()));
   }
 
 }
