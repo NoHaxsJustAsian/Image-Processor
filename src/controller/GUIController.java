@@ -153,7 +153,7 @@ public class GUIController implements Features {
     token = sc.next();
     if (!token.equals("C1")) {
       this.tryRenderMessage("Invalid Collage file: Collage file should begin with C1");
-    }  //FIXME: change this into a popup
+    }
     width = sc.nextInt();
     height = sc.nextInt();
     maxRGB = sc.nextInt();
@@ -162,7 +162,7 @@ public class GUIController implements Features {
       try {
         filter = filterHelp(sc.next()); //FIXME: fix naming scheme of filters
       } catch (IllegalArgumentException e) {
-        this.tryRender("Invalid filter name"); //FIXME: change this into a popup
+        this.tryRenderMessage("Invalid filter name");
         return;
       }
       pixels = new Pixel[height][width];
@@ -184,13 +184,13 @@ public class GUIController implements Features {
 
   @Override
   public void saveProject() {
-    File file = view.saveFile(); //FIXME: something that gets file path to save project. popup.
+    File file = view.saveFile();
 
     IPixel[][] finalPixels = model.saveCanvas();
 
     PrintWriter writer;
     try {
-      writer = new PrintWriter(file); //FIXME: fix PrintWriter
+      writer = new PrintWriter(file);
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
@@ -217,8 +217,6 @@ public class GUIController implements Features {
       System.out.println("Error: Please try again.");
     }
     }
-
-  }
 
   @Override
   public void blueFilter() {
