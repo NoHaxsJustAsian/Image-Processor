@@ -36,6 +36,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton SaveProjectButton;
   private JButton SaveImageButton;
   private JButton AddImageButton;
+  private JButton selectFile;
 
   
   //Filter Buttons
@@ -309,19 +310,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   public void renderMessage(String message) throws IOException {
     //FIXME: make this just make pop ups
   }
-
-  /**
-   * Renders a state to the GUIview.
-   *
-   * @param
-   * @throws IOException
-   */
-  @Override
-  public void renderState() throws IOException {
-
-  }
-
-
+  
   /**
    * Set the listener for any actions
    *
