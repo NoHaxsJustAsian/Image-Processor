@@ -32,8 +32,6 @@ public class Main {
     Readable rd = new InputStreamReader(System.in);
     IImageProcessorController controller = new ImageProcessorController(model, view, rd);
     controller.startProcessor();
-    //FIXME: Not sure this is how is works with the appendable for file.
-
 
     Readable a = new InputStreamReader(System.in);
     if (args.length > 0) {
@@ -58,43 +56,43 @@ public class Main {
 
 
 
-//
-//    /**
-//     * -file: THe next argument is a path to a script. Print the script out.
-//     * -gui: Starts the GUI.
-//     */
-//    if(args.length > 0) {
-//      if (args[0].equals("-file")) {
-//        String filePath = args[1];
-//        Readable reader = null;
-//        try {
-//          reader = new FileReader(filePath);
-//          Scanner scan = new Scanner(reader);
-//          while(scan.hasNextLine()) {
-//            System.out.println(scan.nextLine());
-//          }
-//        } catch (FileNotFoundException e) {
-//          System.out.println("Error reading file");
-//        }
-//
-//
-//      } else if (args[0].equals("-text")) {
-//        try {
-//
-//        } catch (IOException e) {
-//          System.out.println("Error reading file");
-//        }
-//
-//
-//      } else if (args[0].equals("-gui")) {
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.getContentPane().add(new ImageProcessorView(model));
-//        frame.pack();
-//        frame.setVisible(true);
-//      }
-//    } else {
-//
-//    }
+
+    /**
+     * -file: THe next argument is a path to a script. Print the script out.
+     * -gui: Starts the GUI.
+     */
+    if(args.length > 0) {
+      if (args[0].equals("-file")) {
+        String filePath = args[1];
+        Readable reader = null;
+        try {
+          reader = new FileReader(filePath);
+          Scanner scan = new Scanner(reader);
+          while(scan.hasNextLine()) {
+            System.out.println(scan.nextLine());
+          }
+        } catch (FileNotFoundException e) {
+          System.out.println("Error reading file");
+        }
+
+
+      } else if (args[0].equals("-text")) {
+        try {
+
+        } catch (IOException e) {
+          System.out.println("Error reading file");
+        }
+
+
+      } else if (args[0].equals("-gui")) {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new ImageProcessorView(model));
+        frame.pack();
+        frame.setVisible(true);
+      }
+    } else {
+
+    }
 
 
   }
