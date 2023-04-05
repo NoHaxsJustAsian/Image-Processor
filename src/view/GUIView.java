@@ -38,7 +38,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton AddImageButton;
   private JButton selectFile;
 
-  
+
   //Filter Buttons
   private JButton Normal;
   public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
@@ -112,7 +112,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //FIXME: add error box
     JPanel errorBox = new JPanel();
 
-    
+
 
 
     //BUTTONS
@@ -181,7 +181,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //COMBO BOX
     ArrayList<String> layerNames = new ArrayList<String>();
     for (ILayer layer : model.getLayers()) {
-        layerNames.add(layer.getName());
+      layerNames.add(layer.getName());
     }
     layerList = new JComboBox<>(
             new DefaultComboBoxModel<String>(layerNames.toArray(new String[0])));
@@ -310,7 +310,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   public void renderMessage(String message) throws IOException {
     //FIXME: make this just make pop ups
   }
-  
+
   /**
    * Set the listener for any actions
    *
@@ -327,6 +327,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
     setVisible(true);
   }
 
+  /**
+   * Adds a layer to the view with a Normal filter.
+   */
+  public void addLayer() {
+    //FIXME: add a pop up asking for its name.
+  }
 
   public void addFeatures(Features f) {
     RedFilterButton.addActionListener(e -> f.redFilter());

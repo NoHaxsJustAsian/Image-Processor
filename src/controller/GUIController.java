@@ -80,8 +80,7 @@ public class GUIController implements Features {
   }
 
   /**
-   * This method should load a project.
-   *
+   * This method should select a filter by utilizing its name.
    * @param name the name of the filter.
    */
   private IFilter filterHelp(String name) {
@@ -112,7 +111,7 @@ public class GUIController implements Features {
   }
 
   /**
-   * This method should load a project.
+   * This method should load a project and set the model to the project.
    */
   public void loadProject() {
     Scanner sc;
@@ -176,6 +175,9 @@ public class GUIController implements Features {
     this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers);
   }
 
+  /**
+   * This method saves a project to a file.
+   */
   @Override
   public void saveProject() {
     File file = view.saveFile();
@@ -199,6 +201,9 @@ public class GUIController implements Features {
     writer.close();
   }
 
+  /**
+   * This method saves the final composite Image to a file.
+   */
   @Override
   public void saveImage() {
     File f = view.saveFile();
@@ -221,56 +226,96 @@ public class GUIController implements Features {
       }
     }
     writer.close();
-    }
+  }
 
+  /**
+   * This method applies a blue filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void blueFilter() {
+  public void blueFilter(String curLayer) {
 
   }
 
+  /**
+   * This method applies a brightenIntensity filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void brightenIntensity() {
+  public void brightenIntensity(String curLayer) {
 
   }
 
+  /**
+   * This method applies a brightenLuma filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void brightenLuma() {
+  public void brightenLuma(String curLayer) {
 
   }
 
+  /**
+   * This method applies a brightenValue filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void brightenValue() {
+  public void brightenValue(String curLayer) {
 
   }
 
+  /**
+   * This method applies a darkenIntensity filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void darkenIntensity() {
+  public void darkenIntensity(String curLayer) {
 
   }
 
+  /**
+   * This method applies a darkenLuma filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void darkenLuma() {
+  public void darkenLuma(String curLayer) {
 
   }
 
+  /**
+   * This method applies a darkenValue filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void darkenValue() {
+  public void darkenValue(String curLayer) {
 
   }
 
+  /**
+   * This method applies a green filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void greenFilter() {
+  public void greenFilter(String curLayer) {
 
   }
 
+  /**
+   * This method applies a normal filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void normal() {
+  public void normal(String curLayer) {
 
   }
 
+  /**
+   * This method applies a red filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
   public void redFilter(String curLayer) {
-     //FIXME: get the current layer from the user in some way.
+    //FIXME: get the current layer from the user in some way.
     try {
       model.setFilter(curLayer, new RedFilter());
       view.addImageToGUI(model.compressImage());
@@ -279,32 +324,54 @@ public class GUIController implements Features {
     }
   }
 
+  /**
+   * This method applies a screen filter to the current layer.
+   * @param curLayer the current layer.
+   */
   @Override
-  public void screen() {
-
-  }
-
-  @Override
-  public void multiply() {
-
-  }
-
-  @Override
-  public void difference() {
-
-  }
-
-  @Override
-  public void addLayer() {
+  public void screen(String curLayer) {
 
   }
 
   /**
-   * This method adds an image to the layer.
+   * This method applies a multiply filter to the current layer.
+   * @param curLayer the current layer.
    */
   @Override
-  public void addImage() {
+  public void multiply(String curLayer) {
 
+  }
+  /**
+   * This method applies a multiply filter to the current layer.
+   * @param curLayer the current layer.
+   */
+  @Override
+  public void difference(String curLayer) {
+
+  }
+
+  /**
+   * This method adds a blank layer to the project.
+   */
+  @Override
+  public void addLayer() {
+    String name = view.addLayer();
+    model.addLayer(name, new NormalFilter());
+  }
+
+  /**
+   * This method adds an image to the layer.
+   * @param curLayer the current layer.
+   */
+  @Override
+  public void addImage(String curLayer) {
+    //FIXME: get the current layer from the user in some way.
+    try {
+      model.addImage(view.addImageTOLayer());
+      view.addImageToGUI(model.compressImage());
+    } catch (Exception e) {
+      System.out.println("Please choose an image or layer.");
+    }
   }
 
   public void tryRenderMessage(String msg) {
