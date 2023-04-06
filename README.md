@@ -1,4 +1,17 @@
-# assignment2
+# assignment2 part2
+## Controller
+  - Feature
+    - Represents the interface which the user uses to interact with the model of the image processor. 
+  - GUIController
+    -  Represents the controller for the GUI view. This controller will be used to control the GUI view. 
+    -  It will be able to load a project, save a project, and apply filters to the project.  
+## View
+  - GUIView
+    - Represents the GUI view for the program. This displays the JFrame of the Program including the buttons, the image, and the layers. 
+    - This class also implements the IImageProcessorView interface. 
+
+
+# assignment2 part1
 Inheritance Summary:
 This project contains an Image interface and its implementation AImage class which is an abstract class for PPMImage class, 
 an IImageProcessorState interface which contains non-mutable methods extended by a IImageProcessorModel interface which 
