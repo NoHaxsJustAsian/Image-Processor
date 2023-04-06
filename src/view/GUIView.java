@@ -116,15 +116,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     compositeImageBox.setLayout(new GridLayout(2, 2));
     this.add(compositeImageBox);
 
-
-
-    //ERROR JOPTIONPANE
-    errorBox.showMessageDialog(this, "Error: " + e.getMessage(), "Error",
-            JOptionPane.ERROR_MESSAGE);
-
-
-
-
     //BUTTONS
     RedFilterButton = new JButton("Red");
     RedFilterButton.setActionCommand("Red Button");
@@ -216,7 +207,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     String[] layerNamesArray = layerNames.toArray(new String[layerNames.size()]);
     layerList = new JComboBox<String>(layerNamesArray);
     layerList.setActionCommand("Layer List");
-    layerList.setSelectedItem();
+    layerList.setSelectedItem(0);
 
 
 
@@ -331,13 +322,11 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   /**
    * Renders a message to the GUIView.
-   *
-   * @param message
-   * @throws IOException
    */
   @Override
-  public void renderMessage(String message) throws IOException {
-    //FIXME: make this just make pop ups
+  public void renderMessage(String message) {
+    JOptionPane.showMessageDialog(this, message, "Message",
+            JOptionPane.PLAIN_MESSAGE);
   }
 
   /**
@@ -359,9 +348,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
   /**
    * Gets name of layer from user.
    */
-  public void addLayerHelp() {
+  public String addLayerHelp() {
     String layerName = JOptionPane.showInputDialog("Enter a name for the layer");
-    controller.addLayer(layerName);
   }
 
   public void addFeatures(Features f) {
