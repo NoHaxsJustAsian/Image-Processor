@@ -16,9 +16,11 @@ import model.filters.DarkenLuma;
 import model.filters.DarkenValue;
 import model.filters.GreenFilter;
 import model.filters.IFilter;
+import model.filters.Multiply;
 import model.filters.Normal;
 import model.filters.RedFilter;
 import model.filters.Difference;
+import model.filters.Screen;
 
 import static org.junit.Assert.assertEquals;
 
@@ -40,7 +42,9 @@ public class ImageProcessorModelTest {
   IFilter darkenLuma = new DarkenLuma();
   IFilter darkenValue = new DarkenValue();
 
-  IFilter Difference = new Difference();
+  IFilter difference = new Difference();
+  IFilter multiply = new Multiply();
+  IFilter screen = new Screen();
 
   @Before
   public void init() {
@@ -457,7 +461,7 @@ public class ImageProcessorModelTest {
     ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
             nameLayers, orderLayers);
 
-    ILayer first = new Layer("difference", Difference, 200, 200);
+    ILayer first = new Layer("difference", difference, 200, 200);
     first.addImage(image, 0, 0);
 
     ILayer second = new Layer("bottom", normal, 200, 200);
@@ -477,7 +481,7 @@ public class ImageProcessorModelTest {
             .getFilter().apply(model1.getLayers(), model1.getLayer("difference"));
     model1.getLayer("difference").setCanvas(hold);
 
-    assertEquals("difference", Difference.getName());
+    assertEquals("difference", difference.getName());
     assertEquals("difference", first.getName());
     assertEquals(25, model1.getLayer("difference").getPixel(0, 0).getRed());
     assertEquals(25, model1.getLayer("difference").getPixel(0, 0).getGreen());
@@ -489,9 +493,32 @@ public class ImageProcessorModelTest {
     Pixel[][] pixels;
     PPMImage image;
     pixels = new Pixel[2][2];
-    pixels[0][0] = new Pixel(50, 0, 0, 255);
+    pixels[0][0] = new Pixel(50, 50, 0, 255);
     image = new PPMImage(pixels, 1, 1);
 
+    Pixel[][] pixels2;
+    PPMImage image2;
+    pixels2 = new Pixel[1][1];
+    pixels2[0][0] = new Pixel(25, 25,10, 255);
+    image2 = new PPMImage(pixels2, 1, 1);
+
+    Pixel[][] pixels3;
+    PPMImage image3;
+    pixels3 = new Pixel[1][1];
+    pixels3[0][0] = new Pixel(50, 50, 15, 255);
+    image3 = new PPMImage(pixels3, 1, 1);
+
+    List<ILayer> orderLayers = new ArrayList<>();
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+
+    ImageProcessorModel model1 = new ImageProcessorModel(200, 200,
+            nameLayers, orderLayers);
+
+    ILayer first = new Layer("multiply", multiply, 200, 200);
+
+
+    assertEquals("multiply", multiply.getName());
+    assertEquals("multiply", first.getName());
   }
 
   @Test
@@ -501,6 +528,7 @@ public class ImageProcessorModelTest {
     pixels = new Pixel[2][2];
     pixels[0][0] = new Pixel(50, 0, 0, 255);
     image = new PPMImage(pixels, 1, 1);
+    assertEquals("screen", screen.getName());
 
   }
 

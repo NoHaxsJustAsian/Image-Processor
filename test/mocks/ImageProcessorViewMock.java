@@ -5,7 +5,9 @@ import java.io.IOException;
 import model.IImageProcessorState;
 import view.IImageProcessorView;
 
-
+/**
+ * A mock view for the image processor.
+ */
 public class ImageProcessorViewMock implements IImageProcessorView {
   private IImageProcessorState state;
   final Appendable log;
@@ -24,7 +26,6 @@ public class ImageProcessorViewMock implements IImageProcessorView {
    * @param message the message to be printed
    * @throws IOException if the transmission of the message to the data output fails
    */
-  @Override
   public void renderMessage(String message) throws IOException {
     try {
       this.log.append(message).append("\n");
@@ -33,7 +34,6 @@ public class ImageProcessorViewMock implements IImageProcessorView {
     }
   }
 
-  @Override
   public void renderState() throws IOException {
     try {
       this.log.append(this.state.toString()).append("\n");

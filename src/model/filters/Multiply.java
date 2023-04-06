@@ -32,7 +32,7 @@ public class Multiply implements IFilter {
     IPixel[][] compPixels = new IPixel[layer.getHeight()][layer.getWidth()];
     IPixel[][] finalPixels = new IPixel[layer.getHeight()][layer.getWidth()];
 
-    for (int x = layers.indexOf(layer) + 1; x < layers.size() - 1; x++) {
+    for (int x = layers.indexOf(layer) + 1; x < layers.size() - 2; x++) {
       ILayer layerCurrent = layers.get(x);
       layerCurrent.setCanvas(layerCurrent.getFilter().apply(layers, layerCurrent));
       for (int i = 0; i < layer.getHeight(); i++) {

@@ -2,7 +2,10 @@ package controller;
 
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -28,8 +31,9 @@ import model.PPMImage;
 import model.Pixel;
 import view.ImageProcessorView;
 
-import static org.junit.Assert.*;
-
+/**
+ * Tests the IImageProcessorController class.
+ */
 public class IImageProcessorControllerTest {
 
   IFilter normal = new Normal();
@@ -147,17 +151,14 @@ public class IImageProcessorControllerTest {
 
   @Test
   public void saveImage() {
+    ImageProcessorModel model = new ImageProcessorModel(200, 200);
+    ImageProcessorView view = new ImageProcessorView(model);
+    Readable read = new StringReader("message");
+    ImageProcessorController control = new ImageProcessorController(model, view, read);
 
-
+    control.saveImage("test");
+    BufferedImage img = model.compressImage();
+    assertEquals(200, img.getWidth());
   }
 
-  @Test
-  public void saveProject() {
-
-  }
-
-  @Test
-  public void loadProject() {
-
-  }
 }

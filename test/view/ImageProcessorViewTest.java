@@ -8,7 +8,8 @@ import java.io.IOException;
 import mocks.FailingAppendable;
 import model.ImageProcessorModel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Represents a class for testing the view class.
@@ -40,6 +41,7 @@ public class ImageProcessorViewTest {
     assertEquals("message", sb.toString());
 
   }
+
   @Test
   public void testFailRenderMessage() {
     view = new ImageProcessorView(model, new FailingAppendable());
