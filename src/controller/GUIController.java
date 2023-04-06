@@ -37,7 +37,8 @@ import model.Pixel;
 import view.GUIView;
 
 /**
- * Represents the controller for the GUI view.
+ * Represents the controller for the GUI view. This controller will be used to control the GUI view.
+ * It will be able to load a project, save a project, and apply filters to the project.
  */
 public class GUIController implements Features {
   private JPanel panel;
