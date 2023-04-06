@@ -58,8 +58,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   //Filter Buttons
   private JButton normal;
-  public JButton redFilterButton;
-  public JButton greenFilterButton, blueFilterButton;
+  private JButton redFilterButton;
+  private JButton greenFilterButton;
+  private JButton blueFilterButton;
   private JButton brightenIntensityButton;
   private JButton brightenLumaButton;
   private JButton brightenValueButton;
@@ -363,6 +364,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return JOptionPane.showInputDialog("Enter a name for the layer");
   }
 
+  /**
+   * Adds features to the buttons, connecting the view to the controller.
+   */
   public void addFeatures(Features f) {
     redFilterButton.addActionListener(e -> f.redFilter(curLayer));
     greenFilterButton.addActionListener(e -> f.greenFilter(curLayer));
