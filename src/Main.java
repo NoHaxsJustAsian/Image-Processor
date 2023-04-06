@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import controller.GUIController;
 import controller.IImageProcessorController;
 import controller.ImageProcessorController;
+import model.IImageProcessorModel;
 import model.ImageProcessorModel;
 import view.GUIView;
 import view.IImageProcessorView;
@@ -23,18 +24,12 @@ public class Main {
 
   /**
    * This is the main method.
+   *
    * @param args input for the controller.
    * @throws IOException if controller is unable to
    *                     successfully read input or transmit output.
    */
   public static void main(String[] args) {
-    ImageProcessorModel model = new ImageProcessorModel(400, 400);
-    Appendable ap = System.out;
-    IImageProcessorView view = new ImageProcessorView(model);
-    Readable rd = new InputStreamReader(System.in);
-    IImageProcessorController controller = new ImageProcessorController(model, view, rd);
-    controller.startProcessor();
-
     Readable a = new InputStreamReader(System.in);
     if (args.length > 0) {
       StringBuilder commands = new StringBuilder();
@@ -52,47 +47,18 @@ public class Main {
       if (args[0].equals("-text")) {
         a = new InputStreamReader(System.in);
       }
+
+      ImageProcessorModel m = new ImageProcessorModel(0, 0);
+      IImageProcessorView v = new ImageProcessorView(m);
+      Readable r = new InputStreamReader(System.in);
+      IImageProcessorController c = new ImageProcessorController(m, v, r);
+      c.startProcessor();
+    } else {
+      ImageProcessorModel model = new ImageProcessorModel(0, 0);
+      GUIView sg = new GUIView(model);
+      GUIController control = new GUIController(sg, model);
+      control.startProcessor();
     }
-
-    JFrame frame = new JFrame();
-
-
-
-
-
-    if(args.length > 0) {
-      if (args[0].equals("-file")) {
-        String filePath = args[1];
-        Readable reader = null;
-        try {
-          reader = new FileReader(filePath);
-          Scanner scan = new Scanner(reader);
-          while(scan.hasNextLine()) {
-            System.out.println(scan.nextLine());
-          }
-        } catch (FileNotFoundException e) {
-          System.out.println("Error reading file");
-        }
-
-
-      } else if (args[0].equals("-text")) {
-        try {
-
-        } catch (IOException e) {
-          System.out.println("Error reading file");
-        }
-
-
-      } else if (args[0].equals("-gui")) {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(view);
-        frame.pack();
-        frame.setVisible(true);
-      }
-    }
-    GUIView guiView = new GUIView(model);
-    GUIController guiController = new GUIController(guiView, model);
-    guiController.runImageProcessor();
   }
 }
 
