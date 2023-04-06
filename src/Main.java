@@ -57,10 +57,10 @@ public class Main {
 
 
 
-    /**
+    /*
      * -file: THe next argument is a path to a script. Print the script out.
      * -gui: Starts the GUI.
-     */
+
     if(args.length > 0) {
       if (args[0].equals("-file")) {
         String filePath = args[1];
@@ -94,6 +94,7 @@ public class Main {
 
     }
 
+     */
 
   }
 }

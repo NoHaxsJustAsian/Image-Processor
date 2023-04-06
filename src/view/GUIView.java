@@ -60,11 +60,15 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton normal;
   public JButton redFilterButton;
   public JButton greenFilterButton, blueFilterButton;
-  private JButton brightenIntensityButton, brightenLumaButton,
-          brightenValueButton, darkenIntensityButton, darkenLumaButton,
-          darkenValueButton;
-  private JButton multiplyButton, differenceButton, screenButton;
-
+  private JButton brightenIntensityButton;
+  private JButton brightenLumaButton;
+  private JButton brightenValueButton;
+  private JButton darkenIntensityButton;
+  private JButton darkenLumaButton;
+  private JButton darkenValueButton;
+  private JButton multiplyButton;
+  private JButton differenceButton;
+  private JButton screenButton;
 
 
   //Layer Section
@@ -72,8 +76,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton addLayerButton;
   private JButton selectLayerButton;
   private JComboBox<String> layerList;
-
-
 
 
   //Buffered Image Section
@@ -86,9 +88,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JFileChooser fileChooser;
 
 
-
   /**
    * Constructor for the GUIView. Sets up the JFrame and the panels and the buttons.
+   *
    * @param model
    */
   public GUIView(ImageProcessorModel model) {
@@ -119,7 +121,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     layerPane.setPreferredSize(new Dimension(250, 250));
 
 
-
     JPanel selectedLayerBox = new JPanel();
     selectedLayerBox.setBorder(BorderFactory.createTitledBorder("Selected Image"));
     //FIXME: fix grid layout for selected image
@@ -132,7 +133,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //FIXME: fix grid layout for composite image
     compositeImageBox.setLayout(new GridLayout(2, 2));
     this.add(compositeImageBox);
-
 
 
     //BUTTONS
@@ -209,9 +209,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.add(this.selectLayerButton);
 
 
-
-
-
 //    //Pop up menu for Layers
 //    popupMenu = new JPopupMenu("Layers");
 //    JMenuItem menuItemFirst = new JMenuItem("first");
@@ -229,9 +226,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     curLayer = layerList.getSelectedItem().toString();
 
 
-
-
-
     //IMAGE PANEL
     imagePane = new JPanel();
     imageScrollPane = new JScrollPane(imageLabel);
@@ -241,7 +235,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     imagePane.add(new JLabel("Composite Image"));
     imagePane.add(imageScrollPane);
     imageLabel.setIcon(new ImageIcon(model.compressImage()));
-
 
 
     //BUTTON PANEL
