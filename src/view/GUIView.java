@@ -1,7 +1,11 @@
 package view;
 
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -20,7 +24,8 @@ import model.ImageProcessorModel;
 
 /**
  * Represents the GUI view for the program. This displays the JFrame of the Program including
- * the buttons, the image, and the layers. This class also implements the IImageProcessorView interface.
+ * the buttons, the image, and the layers.
+ * This class also implements the IImageProcessorView interface.
  */
 public class GUIView extends JFrame implements IImageProcessorView {
 
@@ -31,30 +36,31 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
   //Buttons Sections
+
   private JPanel buttonPane;
 
   //Project Buttons
-  private JButton LoadButton;
-  private JButton SaveProjectButton;
-  private JButton SaveImageButton;
-  private JButton AddImageButton;
+  private JButton loadButton;
+  private JButton saveProjectButton;
+  private JButton saveImageButton;
+  private JButton addImageButton;
   private JButton selectFile;
 
 
   //Filter Buttons
-  private JButton Normal;
-  public JButton RedFilterButton, GreenFilterButton, BlueFilterButton;
-  private JButton BrightenIntensityButton, BrightenLumaButton,
-          BrightenValueButton, DarkenIntensityButton, DarkenLumaButton,
-          DarkenValueButton;
-  private JButton MultiplyButton, DifferenceButton, ScreenButton;
+  private JButton normal;
+  public JButton redFilterButton, greenFilterButton, blueFilterButton;
+  private JButton brightenIntensityButton, brightenLumaButton,
+          brightenValueButton, darkenIntensityButton, darkenLumaButton,
+          darkenValueButton;
+  private JButton multiplyButton, differenceButton, screenButton;
 
 
 
   //Layer Section
   private JPanel layerPane;
-  private JButton AddLayerButton;
-  private JButton SelectLayerButton;
+  private JButton addLayerButton;
+  private JButton selectLayerButton;
   private JComboBox<String> layerList;
 
 
@@ -120,77 +126,77 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
     //BUTTONS
-    RedFilterButton = new JButton("Red");
-    RedFilterButton.setActionCommand("Red Button");
-    this.add(this.RedFilterButton);
+    redFilterButton = new JButton("Red");
+    redFilterButton.setActionCommand("Red Button");
+    this.add(this.redFilterButton);
 
-    GreenFilterButton = new JButton("Green");
-    GreenFilterButton.setActionCommand("Green Button");
-    this.add(this.GreenFilterButton);
+    greenFilterButton = new JButton("Green");
+    greenFilterButton.setActionCommand("Green Button");
+    this.add(this.greenFilterButton);
 
-    BlueFilterButton = new JButton("Blue");
-    BlueFilterButton.setActionCommand("Blue Button");
-    this.add(this.BlueFilterButton);
+    blueFilterButton = new JButton("Blue");
+    blueFilterButton.setActionCommand("Blue Button");
+    this.add(this.blueFilterButton);
 
-    BrightenIntensityButton = new JButton("Brighten Intensity");
-    BrightenIntensityButton.setActionCommand("Brighten Intensity Button");
-    this.add(this.BrightenIntensityButton);
+    brightenIntensityButton = new JButton("Brighten Intensity");
+    brightenIntensityButton.setActionCommand("Brighten Intensity Button");
+    this.add(this.brightenIntensityButton);
 
-    BrightenLumaButton = new JButton("Brighten Luma");
-    BrightenLumaButton.setActionCommand("Brighten Luma Button");
-    this.add(this.BrightenLumaButton);
+    brightenLumaButton = new JButton("Brighten Luma");
+    brightenLumaButton.setActionCommand("Brighten Luma Button");
+    this.add(this.brightenLumaButton);
 
-    BrightenValueButton = new JButton("Brighten Value");
-    BrightenValueButton.setActionCommand("Brighten Value Button");
-    this.add(this.BrightenValueButton);
+    brightenValueButton = new JButton("Brighten Value");
+    brightenValueButton.setActionCommand("Brighten Value Button");
+    this.add(this.brightenValueButton);
 
-    DarkenIntensityButton = new JButton("Darken Intensity");
-    DarkenIntensityButton.setActionCommand("Darken Intensity Button");
-    this.add(this.DarkenIntensityButton);
+    darkenIntensityButton = new JButton("Darken Intensity");
+    darkenIntensityButton.setActionCommand("Darken Intensity Button");
+    this.add(this.darkenIntensityButton);
 
-    DarkenLumaButton = new JButton("Darken Luma");
-    DarkenLumaButton.setActionCommand("Darken Luma Button");
-    this.add(this.DarkenLumaButton);
+    darkenLumaButton = new JButton("Darken Luma");
+    darkenLumaButton.setActionCommand("Darken Luma Button");
+    this.add(this.darkenLumaButton);
 
-    DarkenValueButton = new JButton("Darken Value");
-    DarkenValueButton.setActionCommand("Darken Value Button");
-    this.add(this.DarkenValueButton);
+    darkenValueButton = new JButton("Darken Value");
+    darkenValueButton.setActionCommand("Darken Value Button");
+    this.add(this.darkenValueButton);
 
-    MultiplyButton = new JButton("Multiply");
-    MultiplyButton.setActionCommand("Multiply Button");
-    this.add(this.MultiplyButton);
+    multiplyButton = new JButton("Multiply");
+    multiplyButton.setActionCommand("Multiply Button");
+    this.add(this.multiplyButton);
 
-    DifferenceButton = new JButton("Difference");
-    DifferenceButton.setActionCommand("Difference Button");
-    this.add(this.DifferenceButton);
+    differenceButton = new JButton("Difference");
+    differenceButton.setActionCommand("Difference Button");
+    this.add(this.differenceButton);
 
-    ScreenButton = new JButton("Screen");
-    ScreenButton.setActionCommand("Screen Button");
-    this.add(this.ScreenButton);
+    screenButton = new JButton("Screen");
+    screenButton.setActionCommand("Screen Button");
+    this.add(this.screenButton);
 
-    LoadButton = new JButton("Load");
-    LoadButton.setActionCommand("Load Project Button");
-    this.add(this.LoadButton);
+    loadButton = new JButton("Load");
+    loadButton.setActionCommand("Load Project Button");
+    this.add(this.loadButton);
 
-    AddLayerButton = new JButton("Add Layer");
-    LoadButton.setActionCommand("Add Layer Button");
-    this.add(this.AddLayerButton);
+    addLayerButton = new JButton("Add Layer");
+    loadButton.setActionCommand("Add Layer Button");
+    this.add(this.addLayerButton);
 
-    SaveProjectButton = new JButton("Save Project");
-    SaveProjectButton.setActionCommand("Save Project Button");
-    this.add(this.SaveProjectButton);
+    saveProjectButton = new JButton("Save Project");
+    saveProjectButton.setActionCommand("Save Project Button");
+    this.add(this.saveProjectButton);
 
-    SaveImageButton = new JButton("Save Image");
-    SaveImageButton.setActionCommand("Save Image Button");
-    this.add(this.SaveImageButton);
+    saveImageButton = new JButton("Save Image");
+    saveImageButton.setActionCommand("Save Image Button");
+    this.add(this.saveImageButton);
 
-    AddImageButton = new JButton("Add Image");
-    AddImageButton.setActionCommand("Add Image Button");
-    this.add(this.AddImageButton);
+    addImageButton = new JButton("Add Image");
+    addImageButton.setActionCommand("Add Image Button");
+    this.add(this.addImageButton);
 
-    SelectLayerButton = new JButton("Select Layer");
-    SelectLayerButton.setActionCommand("Select Layer Button");
-    this.add(this.SelectLayerButton);
+    selectLayerButton = new JButton("Select Layer");
+    selectLayerButton.setActionCommand("Select Layer Button");
+    this.add(this.selectLayerButton);
 
 
 
@@ -231,22 +237,22 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //BUTTON PANEL
     buttonPane = new JPanel();
     buttonPane.setLayout(new FlowLayout(FlowLayout.LEADING));
-    buttonPane.add(RedFilterButton);
-    buttonPane.add(GreenFilterButton);
-    buttonPane.add(BlueFilterButton);
-    buttonPane.add(BrightenIntensityButton);
-    buttonPane.add(BrightenLumaButton);
-    buttonPane.add(BrightenValueButton);
-    buttonPane.add(DarkenIntensityButton);
-    buttonPane.add(DarkenLumaButton);
-    buttonPane.add(DarkenValueButton);
-    buttonPane.add(MultiplyButton);
-    buttonPane.add(DifferenceButton);
-    buttonPane.add(ScreenButton);
-    buttonPane.add(LoadButton);
-    buttonPane.add(SaveImageButton);
-    buttonPane.add(SaveProjectButton);
-    buttonPane.add(AddImageButton);
+    buttonPane.add(redFilterButton);
+    buttonPane.add(greenFilterButton);
+    buttonPane.add(blueFilterButton);
+    buttonPane.add(brightenIntensityButton);
+    buttonPane.add(brightenLumaButton);
+    buttonPane.add(brightenValueButton);
+    buttonPane.add(darkenIntensityButton);
+    buttonPane.add(darkenLumaButton);
+    buttonPane.add(darkenValueButton);
+    buttonPane.add(multiplyButton);
+    buttonPane.add(differenceButton);
+    buttonPane.add(screenButton);
+    buttonPane.add(loadButton);
+    buttonPane.add(saveImageButton);
+    buttonPane.add(saveProjectButton);
+    buttonPane.add(addImageButton);
 
 
     //LAYER PANEL
@@ -352,29 +358,29 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
 
   public void addFeatures(Features f) {
-    RedFilterButton.addActionListener(e -> f.redFilter(curLayer));
-    GreenFilterButton.addActionListener(e -> f.greenFilter(curLayer));
-    BlueFilterButton.addActionListener(e -> f.blueFilter(curLayer));
-    BrightenIntensityButton.addActionListener(e -> f.brightenIntensity(curLayer));
-    BrightenLumaButton.addActionListener(e -> f.brightenLuma(curLayer));
-    BrightenValueButton.addActionListener(e -> f.brightenValue(curLayer));
-    DarkenIntensityButton.addActionListener(e -> f.darkenIntensity(curLayer));
-    DarkenLumaButton.addActionListener(e -> f.darkenLuma(curLayer));
-    DarkenValueButton.addActionListener(e -> f.darkenValue(curLayer));
-    MultiplyButton.addActionListener(e -> f.multiply(curLayer));
-    DifferenceButton.addActionListener(e -> f.difference(curLayer));
-    ScreenButton.addActionListener(e -> f.screen(curLayer));
-    Normal.addActionListener(e -> f.normal(curLayer));
+    redFilterButton.addActionListener(e -> f.redFilter(curLayer));
+    greenFilterButton.addActionListener(e -> f.greenFilter(curLayer));
+    blueFilterButton.addActionListener(e -> f.blueFilter(curLayer));
+    brightenIntensityButton.addActionListener(e -> f.brightenIntensity(curLayer));
+    brightenLumaButton.addActionListener(e -> f.brightenLuma(curLayer));
+    brightenValueButton.addActionListener(e -> f.brightenValue(curLayer));
+    darkenIntensityButton.addActionListener(e -> f.darkenIntensity(curLayer));
+    darkenLumaButton.addActionListener(e -> f.darkenLuma(curLayer));
+    darkenValueButton.addActionListener(e -> f.darkenValue(curLayer));
+    multiplyButton.addActionListener(e -> f.multiply(curLayer));
+    differenceButton.addActionListener(e -> f.difference(curLayer));
+    screenButton.addActionListener(e -> f.screen(curLayer));
+    normal.addActionListener(e -> f.normal(curLayer));
 
-    SaveProjectButton.addActionListener(e -> f.saveProject());
-    LoadButton.addActionListener(e -> f.loadProject());
-    SaveImageButton.addActionListener(e -> f.saveImage());
+    saveProjectButton.addActionListener(e -> f.saveProject());
+    loadButton.addActionListener(e -> f.loadProject());
+    saveImageButton.addActionListener(e -> f.saveImage());
 
-    AddLayerButton.addActionListener(e -> {
+    addLayerButton.addActionListener(e -> {
       f.addLayer(this.addLayerHelp());
 
     });
-    AddImageButton.addActionListener(e -> f.addImage(curLayer));
+    addImageButton.addActionListener(e -> f.addImage(curLayer));
 
   }
 
