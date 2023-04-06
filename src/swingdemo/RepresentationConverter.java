@@ -1,6 +1,6 @@
 package swingdemo;
+
 import model.HSL;
-import model.HSLtoRGBAdapter;
 import model.IPixel;
 import model.Pixel;
 
@@ -12,7 +12,7 @@ import model.Pixel;
 public class RepresentationConverter {
 
   /**
-   * Convers an RGB representation in the range 0-1 into an HSL
+   * Convers an RGB representation in the range 0-1 into an HSL.
    * representation where
    * <ul>
    * <li> 0 &lt;= H &lt; 360</li>
@@ -25,15 +25,16 @@ public class RepresentationConverter {
    * @param b blue value of the RGB between 0 and 1
    */
   public static HSL convertRGBtoHSL(double r, double g, double b) {
-    r=r/255;
-    g=g/255;
-    b=b/255;
+    r = r / 255;
+    g = g / 255;
+    b = b / 255;
     double componentMax = Math.max(r, Math.max(g, b));
     double componentMin = Math.min(r, Math.min(g, b));
     double delta = componentMax - componentMin;
 
     double lightness = (componentMax + componentMin) / 2;
-    double hue, saturation;
+    double hue;
+    double saturation;
     if (delta == 0) {
       hue = 0;
       saturation = 0;
@@ -59,7 +60,7 @@ public class RepresentationConverter {
 
 
   /**
-   * Convers an HSL representation where
+   * Convers an HSL representation where.
    * <ul>
    * <li> 0 &lt;= H &lt; 360</li>
    * <li> 0 &lt;= S &lt;= 1</li>
@@ -71,7 +72,6 @@ public class RepresentationConverter {
    * @param saturation saturation of the HSL representation
    * @param lightness  lightness of the HSL representation
    */
-
   public static IPixel convertHSLtoRGB(double hue, double saturation, double lightness) {
     double r = convertFn(hue, saturation, lightness, 0) * 255;
     double g = convertFn(hue, saturation, lightness, 8) * 255;
@@ -89,7 +89,10 @@ public class RepresentationConverter {
     return lightness - a * Math.max(-1, Math.min(k - 3, Math.min(9 - k, 1)));
   }
 
-  //demo main
+  /**
+   * Main method to test the conversion methods.
+   * @param args command line arguments.
+   */
   public static void main(String[] args) {
     RepresentationConverter.convertRGBtoHSL(0.0, 0.0, 0.0);
     RepresentationConverter.convertRGBtoHSL(1.0, 1.0, 1.0);

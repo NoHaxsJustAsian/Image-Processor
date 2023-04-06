@@ -89,7 +89,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   /**
    * Constructor for the GUIView. Sets up the JFrame and the panels and the buttons.
-   * @param model
+   * @param model the ImageProcessorModel of the program.
    */
   public GUIView(ImageProcessorModel model) {
     super("Image Processor");
@@ -208,14 +208,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     selectLayerButton.setActionCommand("Select Layer Button");
     this.add(this.selectLayerButton);
 
-
-
-
-
-//    //Pop up menu for Layers
-//    popupMenu = new JPopupMenu("Layers");
-//    JMenuItem menuItemFirst = new JMenuItem("first");
-//    popupMenu.add(menuItemFirst);
 
 
     //COMBO BOX FOR LAYERS
@@ -367,6 +359,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     return JOptionPane.showInputDialog("Enter a name for the layer");
   }
 
+  /**
+   * Adds all the features to the view, connecting the view to the Controller.
+   * @param f the features interface to be added.
+   */
   public void addFeatures(Features f) {
     redFilterButton.addActionListener(e -> f.redFilter(curLayer));
     greenFilterButton.addActionListener(e -> f.greenFilter(curLayer));

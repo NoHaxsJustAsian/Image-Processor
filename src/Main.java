@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import controller.IImageProcessorController;
 import controller.ImageProcessorController;

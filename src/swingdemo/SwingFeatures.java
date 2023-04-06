@@ -9,12 +9,14 @@ import javax.swing.UnsupportedLookAndFeelException;
  * Please use these examples as guidelines only to see how to use them. This
  * example has not been designed very well, it is only meant to illustrate code
  * snippets.
- *
  * Feel free to try out different modifications to see how the program changes
  */
-
 public class SwingFeatures {
 
+  /**
+   * Test the Swing features in main.
+   * @param args
+   */
   public static void main(String[] args) {
     SwingFeaturesFrame.setDefaultLookAndFeelDecorated(false);
     SwingFeaturesFrame frame = new SwingFeaturesFrame();
@@ -46,6 +48,7 @@ public class SwingFeatures {
     } catch (IllegalAccessException e) {
       // handle exception
     } catch (Exception e) {
+      System.out.println("bruh");
     }
 
   }

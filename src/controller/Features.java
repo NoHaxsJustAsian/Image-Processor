@@ -1,7 +1,7 @@
 package controller;
 
 /**
- * Represents the interface which the user uses to interact with the model of the image processor
+ * Represents the interface which the user uses to interact with the model of the image processor.
  */
 public interface Features {
   //File Functions

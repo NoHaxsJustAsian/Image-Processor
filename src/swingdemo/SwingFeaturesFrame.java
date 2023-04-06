@@ -42,37 +42,37 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * it. It also doubles up as all the listeners for simplicity. Such a design is
  * not recommended in general.
  */
+public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemListener,
+        ListSelectionListener {
+  private final JPasswordField pfield;
+  private final JLabel pDisplay;
 
-public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemListener, ListSelectionListener {
-  private JPasswordField pfield;
-  private JButton pButton;
-  private JLabel pDisplay;
-  private JPanel mainPanel;
-  private JScrollPane mainScrollPane;
+  private final JLabel checkboxDisplay;
+  private final JLabel radioDisplay;
+  private final JLabel comboboxDisplay;
+  private final JLabel colorChooserDisplay;
+  private final JLabel fileOpenDisplay;
+  private final JLabel fileSaveDisplay;
+  private final JLabel inputDisplay;
+  private final JLabel optionDisplay;
 
-  private JLabel checkboxDisplay;
-  private JLabel radioDisplay;
-  private JLabel comboboxDisplay;
-  private JLabel colorChooserDisplay;
-  private JLabel fileOpenDisplay;
-  private JLabel fileSaveDisplay;
-  private JLabel inputDisplay;
-  private JLabel optionDisplay;
+  private final JList<String> listOfStrings;
+  private final JList<Integer> listOfIntegers;
 
-  private JList<String> listOfStrings;
-  private JList<Integer> listOfIntegers;
-
+  /**
+   * Constructor for the main window.
+   */
   public SwingFeaturesFrame() {
     super();
     setTitle("Swing features");
     setSize(400, 400);
 
 
-    mainPanel = new JPanel();
+    JPanel mainPanel = new JPanel();
     //for elements to be arranged vertically within this panel
     mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
     //scroll bars around this main panel
-    mainScrollPane = new JScrollPane(mainPanel);
+    JScrollPane mainScrollPane = new JScrollPane(mainPanel);
     add(mainScrollPane);
 
     //text area
@@ -97,7 +97,7 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
     pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.PAGE_AXIS));
     pfield = new JPasswordField(10);
     pPanel.add(pfield);
-    pButton = new JButton("Echo password");
+    JButton pButton = new JButton("Echo password");
     pButton.addActionListener(this);
     pButton.setActionCommand("password button");
     pPanel.add(pButton);
@@ -119,7 +119,6 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
       checkBoxes[i].setSelected(false);
       checkBoxes[i].setActionCommand("CB" + (i + 1));
       checkBoxes[i].addItemListener(this);
-      //	group.add(checkBoxes[i]);
       checkBoxPanel.add(checkBoxes[i]);
     }
     checkboxDisplay = new JLabel("Which one did the user touch?");
@@ -146,10 +145,12 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
 
       radioButtons[i].setActionCommand("RB" + (i + 1));
       radioButtons[i].addActionListener(this);
-      if (i < 2)
+      if (i < 2) {
         rGroup1.add(radioButtons[i]);
-      else
+      }
+      else {
         rGroup2.add(radioButtons[i]);
+      }
       radioPanel.add(radioButtons[i]);
 
     }
@@ -173,8 +174,8 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
     //the event listener when an option is selected
     combobox.setActionCommand("Size options");
     combobox.addActionListener(this);
-    for (int i = 0; i < options.length; i++) {
-      combobox.addItem(options[i]);
+    for (String option : options) {
+      combobox.addItem(option);
     }
 
     comboboxPanel.add(combobox);
@@ -224,8 +225,9 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
 
 
     DefaultListModel<Integer> dataForListOfIntegers = new DefaultListModel<>();
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 1000; i++) {
       dataForListOfIntegers.addElement(i);
+    }
     listOfIntegers = new JList<>(dataForListOfIntegers);
     listOfIntegers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     listOfIntegers.addListSelectionListener(this);
@@ -340,7 +342,7 @@ public class SwingFeaturesFrame extends JFrame implements ActionListener, ItemLi
       case "Size options":
         if (arg0.getSource() instanceof JComboBox) {
           JComboBox<String> box = (JComboBox<String>) arg0.getSource();
-          comboboxDisplay.setText("You selected: " + (String) box.getSelectedItem());
+          comboboxDisplay.setText("You selected: " + box.getSelectedItem());
 
 
         }
