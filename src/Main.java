@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+import controller.GUIController;
 import controller.IImageProcessorController;
 import controller.ImageProcessorController;
 import model.ImageProcessorModel;
+import view.GUIView;
 import view.IImageProcessorView;
 import view.ImageProcessorView;
 
@@ -57,9 +59,6 @@ public class Main {
 
 
 
-    /*
-     * -file: THe next argument is a path to a script. Print the script out.
-     * -gui: Starts the GUI.
 
     if(args.length > 0) {
       if (args[0].equals("-file")) {
@@ -86,16 +85,14 @@ public class Main {
 
       } else if (args[0].equals("-gui")) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new ImageProcessorView(model));
+        frame.getContentPane().add(view);
         frame.pack();
         frame.setVisible(true);
       }
-    } else {
-
     }
-
-     */
-
+    GUIView guiView = new GUIView(model);
+    GUIController guiController = new GUIController(guiView, model);
+    guiController.runImageProcessor();
   }
 }
 
