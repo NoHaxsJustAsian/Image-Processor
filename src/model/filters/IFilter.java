@@ -1,14 +1,12 @@
-package model.Filters;
-import java.util.List;
-import java.util.Map;
+package model.filters;
 
+import java.util.List;
 import model.ILayer;
 import model.IPixel;
 
 /**
  * Represents an interface for model.Filters.
  */
-
 public interface IFilter {
 
   /**

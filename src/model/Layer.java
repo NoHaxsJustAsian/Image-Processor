@@ -1,7 +1,7 @@
 package model;
 
 
-import model.Filters.IFilter;
+import model.filters.IFilter;
 
 /**
  * Represents a Layer on the Image.
@@ -134,8 +134,8 @@ public class Layer implements ILayer {
    * @param image to be added.
    */
   public void addImage(IImage image, int x, int y) throws IllegalArgumentException {
-    //FIXME: add a invalid argument exception if the x and y given are out of bounds unless we dont care about it. Are we allowing partial images?
-    if (x < 0 || y < 0 || image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
+    if (x < 0 || y < 0 || image.getHeight() + y > this.height
+            || image.getWidth() + x > this.width) {
       throw new IllegalArgumentException("invalid bounds for image");
     }
 

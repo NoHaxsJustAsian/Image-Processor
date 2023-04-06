@@ -1,6 +1,6 @@
 package model;
 
-import model.Filters.IFilter;
+import model.filters.IFilter;
 
 /**
  * Interface for a Layer.
@@ -38,21 +38,13 @@ public interface ILayer {
   void addImage(IImage image, int x, int y);
 
 
-//  /**
-//   * Removes an image from the layer
-//   *
-//   * @param image to be removed.
-//   */
-//  void removeImage(IImage image);
-
   /**
    * Sets canvas to all white background.
    */
   public void firstLayer();
 
   /**
-   * This method returns the canvas from the layer.
-   *
+   * Returns the canvas of the layer.
    * @return 2D array of pixels.
    */
   public IPixel[][] getCanvas();
@@ -81,9 +73,9 @@ public interface ILayer {
   IFilter getFilter();
 
   /**
-   * sets the canvas of the layer.
+   * Sets the canvas of the layer.
    *
-   * @param canvas
+   * @param canvas 2D array of pixels.
    */
   public void setCanvas(IPixel[][] canvas);
 }

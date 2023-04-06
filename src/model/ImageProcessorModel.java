@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import model.Filters.IFilter;
-import model.Filters.Normal;
+import model.filters.IFilter;
+import model.filters.Normal;
 
 
 /**
@@ -246,8 +246,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will set a filter to a layer
-   *
+   * This method will set a filter to a layer.
    * @param name name of layer.
    * @throws IllegalArgumentException if the layer does not exist.
    */

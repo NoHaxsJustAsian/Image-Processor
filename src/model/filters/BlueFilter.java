@@ -1,26 +1,24 @@
-package model.Filters;
+package model.filters;
 
 import java.util.List;
-
 import model.ILayer;
 import model.IPixel;
-
 import model.Pixel;
 
 /**
- * Represents a green filter.
+ * Represents a blue filter.
  */
-public class GreenFilter implements IFilter {
+public class BlueFilter implements IFilter {
   String name;
 
-  public GreenFilter() {
-    this.name = "greenFilter";
+  public BlueFilter() {
+    this.name = "blueFilter";
   }
 
   /**
-   * This applies green filter to the top layer.
-   * @param layers is a list of layers.
-   * @return IImage is original image with filter applied.
+   * Applies the Blue filter to the top layer.
+   * @param layers a list of layers.
+   * @return IPixel[][] is the new image.
    */
   public IPixel[][] apply(List<ILayer> layers, ILayer layer) {
     IPixel[][] pixels = layer.getCanvas();
@@ -29,8 +27,8 @@ public class GreenFilter implements IFilter {
     for (int i = 0; i < pixels.length; i++) {
       for (int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
-        int color = pixel.getGreen();
-        newPixels[i][j] = new Pixel(0, color, 0, pixel.getAlpha());
+        int color = pixel.getBlue();
+        newPixels[i][j] = new Pixel(0, 0, color, pixel.getAlpha());
       }
     }
     return newPixels;
@@ -44,4 +42,5 @@ public class GreenFilter implements IFilter {
   public String getName() {
     return this.name;
   }
+
 }

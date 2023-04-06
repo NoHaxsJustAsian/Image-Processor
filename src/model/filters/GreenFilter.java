@@ -1,4 +1,4 @@
-package model.Filters;
+package model.filters;
 
 import java.util.List;
 
@@ -8,19 +8,19 @@ import model.IPixel;
 import model.Pixel;
 
 /**
- * Represents a blue filter.
+ * Represents a green filter.
  */
-public class RedFilter implements IFilter {
+public class GreenFilter implements IFilter {
   String name;
 
-  public RedFilter() {
-    this.name = "redFilter";
+  public GreenFilter() {
+    this.name = "greenFilter";
   }
 
   /**
-   * Applies the Red filter to the top layer.
-   * @param layers a list of layers.
-   * @return IPixel[][] is the new image.
+   * This applies green filter to the top layer.
+   * @param layers is a list of layers.
+   * @return IImage is original image with filter applied.
    */
   public IPixel[][] apply(List<ILayer> layers, ILayer layer) {
     IPixel[][] pixels = layer.getCanvas();
@@ -29,8 +29,8 @@ public class RedFilter implements IFilter {
     for (int i = 0; i < pixels.length; i++) {
       for (int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
-        int color = pixel.getRed();
-        newPixels[i][j] = new Pixel(color, 0, 0, pixel.getAlpha());
+        int color = pixel.getGreen();
+        newPixels[i][j] = new Pixel(0, color, 0, pixel.getAlpha());
       }
     }
     return newPixels;

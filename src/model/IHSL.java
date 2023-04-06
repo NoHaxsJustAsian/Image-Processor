@@ -5,7 +5,7 @@ package model;
  */
 public interface IHSL {
 
-/**
+  /**
    * Returns the hue value of the pixel.
    *
    * @return the hue value of the pixel.

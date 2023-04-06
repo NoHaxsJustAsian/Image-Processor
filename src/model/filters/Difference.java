@@ -1,16 +1,21 @@
-package model.Filters;
+package model.filters;
 
 import java.util.List;
-import java.util.Map;
 
 import model.ILayer;
 import model.IPixel;
 import model.Pixel;
 
+/**
+ * Represents a difference filter.
+ */
 public class Difference implements IFilter {
 
   String name;
 
+  /**
+   * Constructs a Difference filter and sets its name.
+   */
   public Difference() {
     this.name = "difference";
   }

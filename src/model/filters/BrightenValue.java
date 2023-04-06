@@ -1,7 +1,6 @@
-package model.Filters;
+package model.filters;
 
 import java.util.List;
-import java.util.Map;
 
 import model.ILayer;
 import model.IPixel;
@@ -19,7 +18,7 @@ public class BrightenValue implements IFilter {
   }
 
   /**
-   * Applies the brighten value filter to the given layer.
+   * Applies the brightened value filter to the given layer.
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */
@@ -35,13 +34,13 @@ public class BrightenValue implements IFilter {
           int color1 = pixel.getRed() + pixel.getRed();
           int color2 = pixel.getGreen() + pixel.getRed();
           int color3 = pixel.getBlue() + pixel.getRed();
-          if(color1 > 255) {
+          if (color1 > 255) {
             color1 = 255;
           }
-          if(color2 > 255) {
+          if (color2 > 255) {
             color2 = 255;
           }
-          if(color3 > 255) {
+          if (color3 > 255) {
             color3 = 255;
           }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
@@ -49,13 +48,13 @@ public class BrightenValue implements IFilter {
           int color1 = pixel.getRed() + pixel.getGreen();
           int color2 = pixel.getGreen() + pixel.getGreen();
           int color3 = pixel.getBlue() + pixel.getGreen();
-          if(color1 > 255) {
+          if (color1 > 255) {
             color1 = 255;
           }
-          if(color2 > 255) {
+          if (color2 > 255) {
             color2 = 255;
           }
-          if(color3 > 255) {
+          if (color3 > 255) {
             color3 = 255;
           }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
@@ -63,13 +62,13 @@ public class BrightenValue implements IFilter {
           int color1 = pixel.getRed() + pixel.getBlue();
           int color2 = pixel.getGreen() + pixel.getBlue();
           int color3 = pixel.getBlue() + pixel.getBlue();
-          if(color1 > 255) {
+          if (color1 > 255) {
             color1 = 255;
           }
-          if(color2 > 255) {
+          if (color2 > 255) {
             color2 = 255;
           }
-          if(color3 > 255) {
+          if (color3 > 255) {
             color3 = 255;
           }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());

@@ -1,25 +1,24 @@
-package model.Filters;
+package model.filters;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import model.ILayer;
 import model.IPixel;
+
 import model.Pixel;
 
 /**
  * Represents a blue filter.
  */
-public class BlueFilter implements IFilter {
+public class RedFilter implements IFilter {
   String name;
 
-  public BlueFilter() {
-    this.name = "blueFilter";
+  public RedFilter() {
+    this.name = "redFilter";
   }
 
   /**
-   * Applies the Blue filter to the top layer.
+   * Applies the Red filter to the top layer.
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */
@@ -30,8 +29,8 @@ public class BlueFilter implements IFilter {
     for (int i = 0; i < pixels.length; i++) {
       for (int j = 0; j < pixels[0].length; j++) {
         IPixel pixel = pixels[i][j];
-        int color = pixel.getBlue();
-        newPixels[i][j] = new Pixel(0, 0, color, pixel.getAlpha());
+        int color = pixel.getRed();
+        newPixels[i][j] = new Pixel(color, 0, 0, pixel.getAlpha());
       }
     }
     return newPixels;
@@ -45,5 +44,4 @@ public class BlueFilter implements IFilter {
   public String getName() {
     return this.name;
   }
-
 }

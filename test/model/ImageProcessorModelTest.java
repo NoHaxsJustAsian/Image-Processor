@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import model.Filters.BlueFilter;
-import model.Filters.BrightenIntensity;
-import model.Filters.BrightenLuma;
-import model.Filters.BrightenValue;
-import model.Filters.DarkenIntensity;
-import model.Filters.DarkenLuma;
-import model.Filters.DarkenValue;
-import model.Filters.GreenFilter;
-import model.Filters.IFilter;
-import model.Filters.Normal;
-import model.Filters.RedFilter;
-import model.Filters.Difference;
+import model.filters.BlueFilter;
+import model.filters.BrightenIntensity;
+import model.filters.BrightenLuma;
+import model.filters.BrightenValue;
+import model.filters.DarkenIntensity;
+import model.filters.DarkenLuma;
+import model.filters.DarkenValue;
+import model.filters.GreenFilter;
+import model.filters.IFilter;
+import model.filters.Normal;
+import model.filters.RedFilter;
+import model.filters.Difference;
 
 import static org.junit.Assert.assertEquals;
 

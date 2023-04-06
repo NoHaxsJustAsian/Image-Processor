@@ -1,9 +1,6 @@
 package view;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
-
-import model.Filters.IFilter;
 
 /**
  * Represents the View interface for the program.

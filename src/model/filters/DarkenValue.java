@@ -1,7 +1,6 @@
-package model.Filters;
+package model.filters;
 
 import java.util.List;
-import java.util.Map;
 
 import model.ILayer;
 import model.IPixel;
@@ -18,7 +17,7 @@ public class DarkenValue implements IFilter {
     this.name = "darkenValue";
   }
 
-/**
+  /**
    * Applies the Darken Value filter to the top layer.
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
@@ -35,13 +34,13 @@ public class DarkenValue implements IFilter {
           int color1 = pixel.getRed() - pixel.getRed();
           int color2 = pixel.getGreen() - pixel.getRed();
           int color3 = pixel.getBlue() - pixel.getRed();
-          if(color1 < 0) {
+          if (color1 < 0) {
             color1 = 0;
           }
-          if(color2 < 0) {
+          if (color2 < 0) {
             color2 = 0;
           }
-          if(color3 < 0) {
+          if (color3 < 0) {
             color3 = 0;
           }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
@@ -49,13 +48,13 @@ public class DarkenValue implements IFilter {
           int color1 = pixel.getRed() - pixel.getGreen();
           int color2 = pixel.getGreen() - pixel.getGreen();
           int color3 = pixel.getBlue() - pixel.getGreen();
-          if(color1 < 0) {
+          if (color1 < 0) {
             color1 = 0;
           }
-          if(color2 < 0) {
+          if (color2 < 0) {
             color2 = 0;
           }
-          if(color3 < 0) {
+          if (color3 < 0) {
             color3 = 0;
           }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());
@@ -63,13 +62,13 @@ public class DarkenValue implements IFilter {
           int color1 = pixel.getRed() - pixel.getBlue();
           int color2 = pixel.getGreen() - pixel.getBlue();
           int color3 = pixel.getBlue() - pixel.getBlue();
-          if(color1 < 0) {
+          if (color1 < 0) {
             color1 = 0;
           }
-          if(color2 < 0) {
+          if (color2 < 0) {
             color2 = 0;
           }
-          if(color3 < 0) {
+          if (color3 < 0) {
             color3 = 0;
           }
           newPixels[i][j] = new Pixel(color1, color2, color3, pixel.getAlpha());

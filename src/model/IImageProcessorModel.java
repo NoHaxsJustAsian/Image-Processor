@@ -3,7 +3,7 @@ package model;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
-import model.Filters.IFilter;
+import model.filters.IFilter;
 
 /**
  * Represents an interface for model.
@@ -61,12 +61,6 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   void addImage(int x, int y, IImage image, ILayer layer);
 
-//  /**
-//   * This method wil remove an Image from a Layer.
-//   * @param image IImage being removed.
-//   * @param layer Layer image being is removed from.
-//   */
-//  void removeImage(IImage image, ILayer layer);
 
 
   /**

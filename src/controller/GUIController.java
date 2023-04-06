@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,20 +13,20 @@ import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
 
-import model.Filters.BlueFilter;
-import model.Filters.BrightenIntensity;
-import model.Filters.BrightenLuma;
-import model.Filters.BrightenValue;
-import model.Filters.DarkenIntensity;
-import model.Filters.DarkenLuma;
-import model.Filters.DarkenValue;
-import model.Filters.Difference;
-import model.Filters.GreenFilter;
-import model.Filters.IFilter;
-import model.Filters.Multiply;
-import model.Filters.Normal;
-import model.Filters.RedFilter;
-import model.Filters.Screen;
+import model.filters.BlueFilter;
+import model.filters.BrightenIntensity;
+import model.filters.BrightenLuma;
+import model.filters.BrightenValue;
+import model.filters.DarkenIntensity;
+import model.filters.DarkenLuma;
+import model.filters.DarkenValue;
+import model.filters.Difference;
+import model.filters.GreenFilter;
+import model.filters.IFilter;
+import model.filters.Multiply;
+import model.filters.Normal;
+import model.filters.RedFilter;
+import model.filters.Screen;
 import model.IImageProcessorModel;
 import model.ILayer;
 import model.IPixel;
