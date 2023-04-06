@@ -182,6 +182,24 @@ public class GUIView extends JFrame implements IImageProcessorView {
     LoadButton.setActionCommand("Add Layer Button");
     this.add(this.AddLayerButton);
 
+    SaveProjectButton = new JButton("Save Project");
+    SaveProjectButton.setActionCommand("Save Project Button");
+    this.add(this.SaveProjectButton);
+
+    SaveImageButton = new JButton("Save Image");
+    SaveImageButton.setActionCommand("Save Image Button");
+    this.add(this.SaveImageButton);
+
+    AddImageButton = new JButton("Add Image");
+    AddImageButton.setActionCommand("Add Image Button");
+    this.add(this.AddImageButton);
+
+    SelectLayerButton = new JButton("Select Layer");
+    SelectLayerButton.setActionCommand("Select Layer Button");
+    this.add(this.SelectLayerButton);
+
+    
+
 
 
 //    //Pop up menu for Layers
@@ -198,6 +216,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     String[] layerNamesArray = layerNames.toArray(new String[layerNames.size()]);
     layerList = new JComboBox<String>(layerNamesArray);
     layerList.setActionCommand("Layer List");
+    layerList.setSelectedItem();
 
 
 
