@@ -44,8 +44,8 @@ public class GUIController implements Features {
 
   /**
    * Represents the default constructor for the GUIController.
-   * @param view
-   * @param model
+   * @param view the view.
+   * @param model the model.
    */
   public GUIController(GUIView view,  IImageProcessorModel model) {
     super();

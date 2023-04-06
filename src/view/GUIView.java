@@ -63,14 +63,13 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   //Buffered Image Section
   private JPanel imagePane;
-  private JScrollBar verticalBar;
-  private JScrollBar horizontalBar;
-
+  private JScrollPane imageScrollPane;
+  private JLabel imageLabel;
 
 
   //MISCELLANEOUS
   private JFileChooser fileChooser;
-  private JOptionPane errorBox;
+
 
 
 
@@ -115,6 +114,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //FIXME: fix grid layout for composite image
     compositeImageBox.setLayout(new GridLayout(2, 2));
     this.add(compositeImageBox);
+
+
 
     //BUTTONS
     RedFilterButton = new JButton("Red");
@@ -216,10 +217,14 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     //IMAGE PANEL
     imagePane = new JPanel();
+    imageScrollPane = new JScrollPane(imageLabel);
+    imagePane.add(imageScrollPane);
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
-    imagePane.setLayout(new GridLayout(2, 2));
+    imagePane.setLayout(new FlowLayout(FlowLayout.LEADING));
     imagePane.add(new JLabel("Composite Image"));
-    imagePane.add();
+    imagePane.add(imageScrollPane);
+    imageLabel.setIcon(new ImageIcon(model.compressImage()));
+
 
 
     //BUTTON PANEL
@@ -258,6 +263,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   public void refresh() {
     this.repaint();
+    imageLabel.setIcon(new ImageIcon(model.compressImage()));
   }
 
 
