@@ -1,5 +1,8 @@
 package controller;
 
+/**
+ * Represents the features interface for this program. Connects the view to the controller.
+ */
 public interface Features {
   //File Functions
 

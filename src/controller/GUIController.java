@@ -4,14 +4,15 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+
 
 import model.Filters.BlueFilter;
 import model.Filters.BrightenIntensity;
@@ -57,29 +58,6 @@ public class GUIController implements Features {
 
     this.view.addFeatures(this);
     this.view.display();
-  }
-
-
-  //FIXME: delete this
-  public void actionPerformed(ActionEvent e) {
-    String nameLayer = "";
-    String nameFilter = "";
-    switch(e.getActionCommand()) {
-      case "Red":
-        //FIXME: some input from user to get the name of the layer
-        nameFilter = "Red";
-        //set the filter of the layer to red
-        this.model.setFilter(nameLayer, new RedFilter());
-        //show that layer to the user
-        break;
-      case "Green":
-        break;
-      case "Blue":
-        break;
-      case "Exit Button":
-        System.exit(0);
-        break;
-    }
   }
 
   /**
@@ -474,6 +452,10 @@ public class GUIController implements Features {
     model.addImage(0,0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
   }
 
+  /**
+   * This method renders a message using the view, as a popup.
+   * @param msg is the given message as a String.
+   */
   public void tryRenderMessage(String msg) {
     try {
       this.view.renderMessage(msg);
