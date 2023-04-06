@@ -34,6 +34,10 @@ public class ImageProcessorViewMock implements IImageProcessorView {
     }
   }
 
+  /**
+   * Renders the state of the image processor to the data output in the implementation.
+   * @throws IOException if the transmission of the state to the data output fails.
+   */
   public void renderState() throws IOException {
     try {
       this.log.append(this.state.toString()).append("\n");
