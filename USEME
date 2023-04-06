@@ -1,0 +1,22 @@
+Select the "Load" button to load a file into our program. A pop-up should appear to allow you to select a pmm file.
+Select the "Add Layer" button to add a default layer to the program.
+Select the "Save Project" button to save the project.
+Select the "Save Image" button to save the composite image.
+
+Select a Layer from the JOptions
+Select the "Add Image" button to add an image to a selected layer. A pop-up should appear to allow you to select a ppm file.
+Select the "Red Button" to apply filter to a selected Layer.
+Select the "Green Button" to apply filter to a selected Layer.
+Select the "Blue Button" to apply filter to a selected Layer.
+Select the "Brighten Intensity Button" to apply filter to a selected Layer.
+Select the "Brighten Luma Button" to apply filter to a selected Layer.
+Select the "Brighten Value Button" to apply filter to a selected Layer.
+Select the "Darken Intensity Button" to apply filter to a selected Layer.
+Select the "Darken Luma Button" to apply filter to a selected Layer.
+Select the "Darken Value Button" to apply filter to a selected Layer.
+Select the "Difference Button" to apply filter to a selected Layer.
+Select the "Multiply Button" to apply filter to a selected Layer.
+Select the "Screen Button" to apply filter to a selected Layer.
+
+The image and list of layers should both be scrollable.
+
