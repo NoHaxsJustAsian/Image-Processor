@@ -19,8 +19,8 @@ import model.ImageProcessorModel;
 
 
 /**
- * Represents the GUI view for the program. This displayed the JFrame of the Program including
- * the buttons, the image, and the layers.
+ * Represents the GUI view for the program. This displays the JFrame of the Program including
+ * the buttons, the image, and the layers. This class also implements the IImageProcessorView interface.
  */
 public class GUIView extends JFrame implements IImageProcessorView {
 
