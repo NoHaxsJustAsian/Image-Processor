@@ -1,14 +1,20 @@
 # assignment2 part2
 ## Controller
   - Feature
-    - Represents the interface which the user uses to interact with the model of the image processor. 
+    - Represents the interface which the user uses to interact with the model of the image processor The interface defines methods related to file functions such as
+    saving projects and images, filter functions such as applying various filters to an image, and layer functions such as adding layers and images to a project.
+    - The "void" return type for all methods in the interface indicates that they do not return any value. The methods take a string parameter called "curLayer" which     specifies the layer to which the filter or image should be applied.
+    - The purpose of this interface is to provide a set of methods that can be used by different classes to interact with the image processing model in a consistent       manner, regardless of the underlying implementation details. This promotes modularity and allows different parts of the program to be developed and tested             independently.
   - GUIController
-    -  Represents the controller for the GUI view. This controller will be used to control the GUI view. 
-    -  It will be able to load a project, save a project, and apply filters to the project.  
+    -  Represents the controller for the GUI view. This controller will be used to control the GUI view. The class has three private fields: a JPanel named "panel", a        GUIView named "view", and an IImageProcessorModel named "model".
+    - The constructor takes two arguments, a GUIView object and an IImageProcessorModel object, and initializes the view and model fields with them. It also calls the        "addFeatures" method of the view object and passes itself (the current object) as an argument, and then calls the "display" method of the view object.
+    - The class has an "actionPerformed" method that is called when an action is performed on the GUI. It checks the action command of the event and performs an action       accordingly. Currently, it only handles "Red", "Green", "Blue", and "Exit Button" actions. When the "Red" action is performed, it sets the filter of a layer to a       "RedFilter" object, and when the "Exit Button" action is performed, it exits the program.
+    - It will be able to load a project, save a project, and apply filters to the project.  
 ## View
   - GUIView
     - Represents the GUI view for the program. This displays the JFrame of the Program including the buttons, the image, and the layers. 
-    - This class also implements the IImageProcessorView interface. 
+    - The GUI view displays a JFrame that includes buttons, an image, and layers. It also has a model and a controller that are used to implement the functionality of       the program.
+    - The constructor initializes the GUI view by setting up the JFrame, the panels, and the buttons. It sets the layout of the GUI using BorderLayout and adds the           panels to the JFrame. It also initializes the buttons and adds them to the GUI view.
 
 
 # assignment2 part1
