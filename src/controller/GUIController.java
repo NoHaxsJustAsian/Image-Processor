@@ -355,7 +355,7 @@ public class GUIController implements Features {
    */
   @Override
   public void addLayer() {
-    model.addLayer(name, new NormalFilter());
+    model.addLayer(view.addLayerHelp(), new NormalFilter());
   }
 
   /**

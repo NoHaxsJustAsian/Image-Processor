@@ -86,7 +86,7 @@ public interface Features {
   /**
    * This method adds a layer to the project.
    */
-  void addLayer(String name);
+  void addLayer();
 
   /**
    * This method adds an image to the layer.
