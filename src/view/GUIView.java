@@ -192,7 +192,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     SelectLayerButton.setActionCommand("Select Layer Button");
     this.add(this.SelectLayerButton);
 
-    
+
 
 
 
@@ -210,8 +210,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     String[] layerNamesArray = layerNames.toArray(new String[layerNames.size()]);
     layerList = new JComboBox<String>(layerNamesArray);
     layerList.setActionCommand("Layer List");
-    layerList.setSelectedItem(0);
-
+    curLayer = layerList.getSelectedItem().toString();
 
 
 
@@ -387,7 +386,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     });
     AddImageButton.addActionListener(e -> f.addImage(curLayer));
 
-    layerList.addActionListener(e -> f.get()));
   }
 
 }
