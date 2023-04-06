@@ -337,16 +337,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
 
 
-  //FIXME: this is so wrong.
-  /**
-   * Set the listener for any actions
-   *
-   * @param listener
-   */
-  public void setListener(ActionListener listener) {
-    RedFilterButton.addActionListener(listener);
-  }
-
   /**
    * Displays the view.
    */
@@ -358,7 +348,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    * Gets name of layer from user.
    */
   public String addLayerHelp() {
-    String layerName = JOptionPane.showInputDialog("Enter a name for the layer");
+    return JOptionPane.showInputDialog("Enter a name for the layer");
   }
 
   public void addFeatures(Features f) {

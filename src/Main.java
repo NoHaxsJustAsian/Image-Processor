@@ -14,7 +14,7 @@ import view.IImageProcessorView;
 import view.ImageProcessorView;
 
 /**
- * Main class runs.
+ * Main class runs the program.
  */
 
 public class Main {
