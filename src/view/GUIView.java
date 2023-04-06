@@ -73,7 +73,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JOptionPane errorBox;
 
 
-
+  /**
+   * Constructor for the GUIView. Sets up the JFrame and the panels and the buttons.
+   * @param model
+   */
   public GUIView(ImageProcessorModel model) {
     super("Image Processor");
 
@@ -279,7 +282,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
 
   /**
-   * Saves a file.
+   * Saves a file, either a project or composite image helper..
    */
   public File saveFile() {
     File f = null;
@@ -329,6 +332,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
             JOptionPane.PLAIN_MESSAGE);
   }
 
+
+  //FIXME: this is so wrong.
   /**
    * Set the listener for any actions
    *
@@ -371,7 +376,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     LoadButton.addActionListener(e -> f.loadProject());
     SaveImageButton.addActionListener(e -> f.saveImage());
 
-    AddLayerButton.addActionListener(e -> f.addLayer());
+    AddLayerButton.addActionListener(e -> {
+      f.addLayer(this.addLayerHelp());
+
+    });
     AddImageButton.addActionListener(e -> f.addImage(curLayer));
 
     layerList.addActionListener(e -> f.get()));

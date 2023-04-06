@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-
 public interface Features {
   //File Functions
 
@@ -86,7 +84,7 @@ public interface Features {
   /**
    * This method adds a layer to the project.
    */
-  void addLayer();
+  void addLayer(String s);
 
   /**
    * This method adds an image to the layer.

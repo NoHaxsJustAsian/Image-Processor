@@ -354,8 +354,8 @@ public class GUIController implements Features {
    * This method adds a blank layer to the project.
    */
   @Override
-  public void addLayer() {
-    model.addLayer(view.addLayerHelp(), new Normal());
+  public void addLayer(String name) {
+    model.addLayer(name, new Normal());
   }
 
   /**
