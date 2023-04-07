@@ -30,6 +30,7 @@ import model.filters.Multiply;
 import model.filters.Normal;
 import model.filters.RedFilter;
 import model.filters.Screen;
+import model.IImage;
 import model.IImageProcessorModel;
 import model.ILayer;
 import model.IPixel;
@@ -470,8 +471,14 @@ public class GUIController implements Features {
 
 
   //FIXME: figure out if we need to restrict the file type.
-  private PPMImage loadImage(String imagePath) throws IOException {
-    BufferedImage image = ImageIO.read(new File(imagePath));
+  private IImage loadImage(String imagePath) {
+    BufferedImage image;
+    try {
+      image = ImageIO.read(new File(imagePath));
+    } catch (IOException e) {
+      tryRenderMessage("File " + imagePath + " not found!");
+      return null;
+    }
     int width = image.getWidth();
     int height = image.getHeight();
     Pixel[][] pixels = new Pixel[height][width];
@@ -488,4 +495,15 @@ public class GUIController implements Features {
     return new PPMImage(pixels, height, width);
   }
 
+
+  //FIXME: edit addImage to utilize this method to filter the file type and add it to the model and view accordingly. 
+  //FIXME: The problem with this rn is that it is not putting it into the view, its simply grabbing an image. 
+  private IImage loadAnyImage(String imagePath) {
+    if(imagePath.contains(".ppm")) {
+
+    }
+    else {
+      return loadImage(imagePath);
+    }
+  }
 }
