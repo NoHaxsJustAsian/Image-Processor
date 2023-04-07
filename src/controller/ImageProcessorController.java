@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 import model.filters.BlueFilter;
 import model.filters.BrightenIntensity;
@@ -373,6 +376,26 @@ public class ImageProcessorController implements IImageProcessorController {
       }
     }
     writer.close();
+  }
+
+
+  //FIXME: figure out if we need to restrict the file type.
+  private PPMImage loadImage(String imagePath) throws IOException {
+    BufferedImage image = ImageIO.read(new File(imagePath));
+    int width = image.getWidth();
+    int height = image.getHeight();
+    Pixel[][] pixels = new Pixel[height][width];
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        int rgb = image.getRGB(j, i);
+        int r = (rgb >> 16) & 0xFF;
+        int g = (rgb >> 8) & 0xFF;
+        int b = (rgb & 0xFF);
+        pixels[i][j] = new Pixel(r, g, b, 255);
+      }
+    }
+    tryRender("Image loaded successfully");
+    return new PPMImage(pixels, height, width);
   }
 
 }
