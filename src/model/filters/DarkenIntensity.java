@@ -13,6 +13,9 @@ public class DarkenIntensity implements IFilter {
 
   String name;
 
+  /**
+   * Constructs a Darken Intensity filter and sets its name.
+   */
   public DarkenIntensity() {
     this.name = "darkenIntensity";
   }

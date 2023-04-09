@@ -13,6 +13,9 @@ public class BrightenValue implements IFilter {
 
   String name;
 
+  /**
+   * Constructs a Brighten Value filter and sets its name.
+   */
   public BrightenValue() {
     this.name = "brightenValue";
   }

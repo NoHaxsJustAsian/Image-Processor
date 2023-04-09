@@ -13,6 +13,9 @@ public class BrightenLuma implements IFilter {
 
   String name;
 
+  /**
+   * Constructs a Brighten Luma filter and sets its name.
+   */
   public BrightenLuma() {
     this.name = "brightenLuma";
   }

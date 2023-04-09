@@ -13,6 +13,9 @@ public class DarkenValue implements IFilter {
 
   String name;
 
+  /**
+   * Constructs a Darken Value filter and sets its name.
+   */
   public DarkenValue() {
     this.name = "darkenValue";
   }

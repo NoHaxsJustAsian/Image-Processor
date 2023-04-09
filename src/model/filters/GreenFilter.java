@@ -13,6 +13,9 @@ import model.Pixel;
 public class GreenFilter implements IFilter {
   String name;
 
+  /**
+   * Constructs a green filter and sets its name.
+   */
   public GreenFilter() {
     this.name = "greenFilter";
   }

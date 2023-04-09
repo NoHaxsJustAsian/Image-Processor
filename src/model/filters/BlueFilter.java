@@ -11,6 +11,9 @@ import model.Pixel;
 public class BlueFilter implements IFilter {
   String name;
 
+  /**
+   * Constructs a blue filter and sets its name.
+   */
   public BlueFilter() {
     this.name = "blueFilter";
   }

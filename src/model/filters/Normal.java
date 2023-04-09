@@ -13,6 +13,9 @@ import model.IPixel;
 public class Normal implements IFilter {
   String name;
 
+  /**
+   * Constructs a normal filter and sets its name.
+   */
   public Normal() {
     this.name = "normal";
   }
