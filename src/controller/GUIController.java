@@ -224,7 +224,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new BlueFilter());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -238,7 +238,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new BrightenIntensity());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -252,7 +252,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new BrightenLuma());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -266,7 +266,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new BrightenValue());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -280,7 +280,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new DarkenIntensity());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -294,7 +294,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new DarkenLuma());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -308,7 +308,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new DarkenValue());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -322,7 +322,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new GreenFilter());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -336,7 +336,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new Normal());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -350,7 +350,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new RedFilter());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -364,7 +364,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new Screen());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -378,7 +378,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new Multiply());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -392,7 +392,7 @@ public class GUIController implements Features {
       model.setFilter(curLayer, new Difference());
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
-      System.out.println("Please choose an layer.");
+      System.out.println("Please choose a layer.");
     }
   }
 
@@ -471,6 +471,10 @@ public class GUIController implements Features {
 
 
   //FIXME: figure out if we need to restrict the file type.
+  
+  /**
+   * This method saves the image to a file.
+   */
   private IImage loadImage(String imagePath) {
     BufferedImage image;
     try {
@@ -500,7 +504,13 @@ public class GUIController implements Features {
   //FIXME: The problem with this rn is that it is not putting it into the view, its simply grabbing an image. 
   private IImage loadAnyImage(String imagePath) {
     if(imagePath.contains(".ppm")) {
-
+      return loadImage(imagePath);
+    }
+    else if(imagePath.contains(".jpg")) {
+      return loadImage(imagePath);
+    }
+    else if(imagePath.contains("png")) {
+      return loadImage(imagePath);
     }
     else {
       return loadImage(imagePath);
