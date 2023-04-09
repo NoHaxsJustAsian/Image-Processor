@@ -150,7 +150,7 @@ public class Layer implements ILayer {
 
 
   /**
-   * Sets canvas to all white transparent background.
+   * Sets canvas to all white opaque background.
    */
   public void firstLayer() {
     this.canvas = new IPixel[height][width];
@@ -167,6 +167,7 @@ public class Layer implements ILayer {
   public IPixel[][] getCanvas() {
     return this.canvas;
   }
+
 
   /**
    * Sets the canvas of the layer.

@@ -28,9 +28,6 @@ import model.ILayer;
 import model.ImageProcessorModel;
 
 
-//FIXME: add java doc, add to read me, add to interface.
-
-
 /**
  * Represents the GUI view for the program. This displays the JFrame of the Program including
  * the buttons, the image, and the layers.

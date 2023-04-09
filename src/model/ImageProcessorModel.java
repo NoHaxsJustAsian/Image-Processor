@@ -161,7 +161,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
   @Override
   public void swapLayers(int i, int j) {
     Collections.swap(this.orderLayers, i, j);
-    //FIXME: check if this is correct or if it needs a -1.
   }
 
   /**
@@ -297,24 +296,24 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the list of layers in the project.
-   *
    * @return String list of layers.
    */
-  @Override
   public String listLayers() {
     return String.join(",", nameLayers.keySet());
   }
 
   /**
    * This method will return the list of filters in the project.
-   * @return
+   * @return String list of filters.
    */
   public int getLayerCount() {
     return orderLayers.size();
   }
 
+
   /**
-   * This method will return a BufferedImage of the final canvas.
+   * This method will return the list of filters in the project.
+   * @return String list of filters.
    */
   public BufferedImage compressImage() {
     BufferedImage image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);

@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -54,11 +55,37 @@ public interface IImageProcessorState {
    */
   List<ILayer> getLayers();
 
+
   /**
-   * This method will list all the layers in the project.
+   * This method will return the number of layers in the project.
+   *
+   * @return int number of layers.
+   */
+  HashMap<String,ILayer> getMapLayers();
+
+
+  /**
+   * This method will return the position of a layer in the project given their names.
+   *
+   * @param name name of layer.
+   * @return int position of layer.
+   */
+  int getLayerPosition(String name);
+
+  /**
+   * This method will return the list of layers in the project.
    *
    * @return String list of layers.
    */
-  public String listLayers();
+  String listLayers();
+
+
+  /**
+   * This method will return the number of layers in the project.
+   *
+   * @return int number of layers.
+   */
+  int getLayerCount();
+
 
 }

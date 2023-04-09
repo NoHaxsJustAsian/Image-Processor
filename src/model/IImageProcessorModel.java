@@ -38,6 +38,12 @@ public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
    * This method will be used to add a layer to the project, without a filter.
+   * @param name name of layer.
+   */
+  void addLayer(String name);
+
+  /**
+   * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    *
    * @param height int height.
@@ -62,7 +68,6 @@ public interface IImageProcessorModel extends IImageProcessorState {
   void addImage(int x, int y, IImage image, ILayer layer);
 
 
-
   /**
    * This image will produce the final canvas for all layers for PPM.
    *
@@ -70,26 +75,6 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   IPixel[][] saveCanvas();
 
-
-  /**
-   * This method will return the list of layers in the project.
-   *
-   * @return String list of layers.
-   */
-  public String listLayers();
-
-  /**
-   * This method will return the list of filters in the project.
-   * @return
-   */
-  public int getLayerCount();
-
-  /**
-   * This method will return a map of all layers in the project.
-   *
-   * @return list of Layers.
-   */
-  public HashMap<String,ILayer> getMapLayers();
 
   /**
    * This method will return a BufferedImage of the final canvas.
