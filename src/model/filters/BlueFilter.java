@@ -9,7 +9,7 @@ import model.Pixel;
  * Represents a blue filter.
  */
 public class BlueFilter implements IFilter {
-  String name;
+  private String name;
 
   /**
    * Constructs a blue filter and sets its name.

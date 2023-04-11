@@ -11,7 +11,7 @@ import model.Pixel;
  * Represents a blue filter.
  */
 public class RedFilter implements IFilter {
-  String name;
+  private String name;
 
   public RedFilter() {
     this.name = "redFilter";

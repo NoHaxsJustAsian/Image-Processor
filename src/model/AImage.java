@@ -5,8 +5,8 @@ package model;
  */
 public abstract class AImage implements IImage {
   IPixel[][] content;
-  int height;
-  int width;
+  private int height;
+  private int width;
 
   /**
    * Represents a constructor for all Images.

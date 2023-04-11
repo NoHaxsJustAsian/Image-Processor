@@ -11,7 +11,7 @@ import model.Pixel;
  */
 public class Difference implements IFilter {
 
-  String name;
+  private String name;
 
   /**
    * Constructs a Difference filter and sets its name.

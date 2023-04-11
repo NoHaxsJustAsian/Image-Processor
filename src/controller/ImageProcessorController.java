@@ -41,9 +41,9 @@ import view.ImageProcessorView;
  */
 public class ImageProcessorController implements IImageProcessorController {
 
-  int width;
-  int height;
-  IImageProcessorModel model;
+  private int width;
+  private int height;
+  private IImageProcessorModel model;
   private IImageProcessorView view;
   private final Readable object;
 
@@ -333,7 +333,7 @@ public class ImageProcessorController implements IImageProcessorController {
   /**
    * This method will output the project as its separate components.
    */
-  public void saveProject(String filePath) throws IllegalArgumentException {
+  private void saveProject(String filePath) throws IllegalArgumentException {
     if (filePath == null || !filePath.endsWith(".collage")) {
       throw new IllegalArgumentException("invalid file path");
     }
@@ -364,7 +364,7 @@ public class ImageProcessorController implements IImageProcessorController {
   /**
    * This method will create one image from all the layers for PPM.
    */
-  public void saveImage(String filePath) throws IllegalArgumentException {
+  private void saveImage(String filePath) throws IllegalArgumentException {
     if (filePath == null || !filePath.endsWith(".ppm")) {
       throw new IllegalArgumentException("invalid file path");
     }

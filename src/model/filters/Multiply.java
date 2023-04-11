@@ -12,7 +12,7 @@ import model.IHSL;
  */
 public class Multiply implements IFilter {
 
-  String name;
+  private String name;
 
   /**
    * Constructor for the multiply filter.

@@ -11,7 +11,7 @@ import model.Pixel;
  */
 public class BrightenLuma implements IFilter {
 
-  String name;
+  private String name;
 
   /**
    * Constructs a Brighten Luma filter and sets its name.

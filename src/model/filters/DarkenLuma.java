@@ -12,7 +12,7 @@ import model.Pixel;
  */
 public class DarkenLuma implements IFilter {
 
-  String name;
+  private String name;
 
   /**
    * Constructs a Darken Luma filter and sets its name.

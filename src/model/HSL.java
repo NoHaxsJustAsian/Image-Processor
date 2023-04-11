@@ -4,9 +4,9 @@ package model;
  * Represents a class for a pixel's values in HSL.
  */
 public class HSL implements IHSL {
-  double hue;
-  double saturation;
-  double lightness;
+  private double hue;
+  private double saturation;
+  private double lightness;
 
   /**
    * Represents constructor for Pixel.

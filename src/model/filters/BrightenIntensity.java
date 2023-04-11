@@ -10,7 +10,7 @@ import model.Pixel;
  */
 public class BrightenIntensity implements IFilter {
 
-  String name;
+  private String name;
 
   /**
    * Constructs a Brighten Intensity filter and sets its name.

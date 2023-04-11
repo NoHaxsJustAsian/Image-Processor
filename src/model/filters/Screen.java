@@ -12,7 +12,7 @@ import model.IHSL;
  */
 public class Screen implements IFilter {
 
-  String name;
+  private String name;
 
   /**
    * Constructs a screen filter.

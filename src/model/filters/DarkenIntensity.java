@@ -11,7 +11,7 @@ import model.Pixel;
  */
 public class DarkenIntensity implements IFilter {
 
-  String name;
+  private String name;
 
   /**
    * Constructs a Darken Intensity filter and sets its name.

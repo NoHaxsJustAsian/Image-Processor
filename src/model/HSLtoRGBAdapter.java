@@ -26,7 +26,7 @@ public class HSLtoRGBAdapter extends HSL implements IPixel {
    */
   @Override
   public int getRed() {
-    return (int) (convertFn(hue, saturation, lightness, 0) * 255);
+    return (int) (convertFn(getHue(), getSaturation(), getLightness(), 0) * 255);
   }
 
   /**
@@ -36,7 +36,7 @@ public class HSLtoRGBAdapter extends HSL implements IPixel {
    */
   @Override
   public int getBlue() {
-    return (int) (convertFn(hue, saturation, lightness, 4) * 255);
+    return (int) (convertFn(getHue(), getSaturation(), getLightness(), 4) * 255);
   }
 
   /**
@@ -46,7 +46,7 @@ public class HSLtoRGBAdapter extends HSL implements IPixel {
    */
   @Override
   public int getGreen() {
-    return (int) (convertFn(hue, saturation, lightness, 8) * 255);
+    return (int) (convertFn(getHue(), getSaturation(), getLightness(), 8) * 255);
   }
 
   /**

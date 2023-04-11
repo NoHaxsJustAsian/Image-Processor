@@ -5,10 +5,10 @@ package model;
  *
  */
 public class Pixel implements IPixel {
-  int red;
-  int green;
-  int blue;
-  int alpha;
+  private int red;
+  private int green;
+  private int blue;
+  private int alpha;
 
   /**
    * Represents constructor for Pixel.

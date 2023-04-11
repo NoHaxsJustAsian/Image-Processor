@@ -11,7 +11,7 @@ import model.IPixel;
  * Represents a filter with no effect. This is the default filter.
  */
 public class Normal implements IFilter {
-  String name;
+  private String name;
 
   /**
    * Constructs a normal filter and sets its name.

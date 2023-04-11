@@ -11,7 +11,7 @@ import model.Pixel;
  * Represents a green filter.
  */
 public class GreenFilter implements IFilter {
-  String name;
+  private String name;
 
   /**
    * Constructs a green filter and sets its name.
