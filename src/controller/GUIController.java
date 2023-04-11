@@ -506,7 +506,7 @@ public class GUIController implements Features {
    * This method saves the image to a file.
    * @param fileType the type of file it is being saved as.
    */
-  public void saveImage(String fileType) {
+  public void saveImage(String fileType) throws IOException {
     if(!fileType.equals("ppm") && !fileType.equals("png") && !fileType.equals("jpg")) {
       tryRenderMessage("Invalid file type");
       return;
@@ -518,7 +518,11 @@ public class GUIController implements Features {
     else {
       File f = view.saveFile();
       BufferedImage img = model.compressImage();
-      ImageIO.write(img, fileType, f);
+      try {
+        ImageIO.write(img, fileType, f);
+      } catch (IOException e) {
+        tryRenderMessage("File " + view.saveFile().getAbsolutePath() + " not found! / INVALID");
+      }
     }
   }
 }

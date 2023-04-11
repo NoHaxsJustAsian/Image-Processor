@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 /**
  * Represents the interface which the user uses to interact with the model of the image processor.
  */
@@ -14,7 +16,7 @@ public interface Features {
   /**
    * This method saves an image.
    */
-  void saveImage(String fileType);
+  void saveImage(String fileType) throws IOException;
 
   //Filter Functions
 

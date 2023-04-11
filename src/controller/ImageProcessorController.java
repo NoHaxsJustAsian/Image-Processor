@@ -415,7 +415,7 @@ public class ImageProcessorController implements IImageProcessorController {
     return new PPMImage(pixels, height, width);
   }
 
-  private void saveImage(String filePath, String fileType) throws IllegalArgumentException {
+  private void saveImage(String filePath, String fileType) throws IllegalArgumentException, IOException {
     if (filePath == null || fileType == null) {
       throw new IllegalArgumentException("invalid file path");
     }
@@ -425,7 +425,12 @@ public class ImageProcessorController implements IImageProcessorController {
     else {
       BufferedImage img = model.compressImage();
       File outputfile = new File("saved." + fileType);
-      ImageIO.write(img, fileType, outputfile);
+      try {
+        ImageIO.write(img, fileType, outputfile);
+      } catch (IOException e) {
+        tryRender("File " + filePath + " not found! / INVALID");
+      }
+
     }
   }
 }
