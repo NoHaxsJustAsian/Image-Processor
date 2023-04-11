@@ -418,7 +418,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     });
     addImageButton.addActionListener(e -> f.addImage(curLayer));
-
   }
 
 }
