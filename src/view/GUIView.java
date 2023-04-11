@@ -38,6 +38,9 @@ import model.ILayer;
  */
 public class GUIView extends JFrame implements IImageProcessorView {
 
+  private int height = 0;
+  private int width = 0;
+
   private IImageProcessorModel model;
   private GUIController controller;
 
@@ -53,7 +56,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton saveProjectButton;
   private JButton saveImageButton;
   private JButton addImageButton;
-  private JButton selectFile;
+  private JButton newProjectButton;
 
 
   //Filter Buttons
@@ -70,6 +73,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton multiplyButton;
   private JButton differenceButton;
   private JButton screenButton;
+
 
 
 
@@ -194,6 +198,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     normal = new JButton("Normal");
     normal.setActionCommand("Normal Button");
     this.add(this.normal);
+
+    newProjectButton = new JButton("New Project");
+    newProjectButton.setActionCommand("New Project Button");
+    this.add(this.newProjectButton);
 
     loadButton = new JButton("Load");
     loadButton.setActionCommand("Load Project Button");
@@ -394,7 +402,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     differenceButton.addActionListener(e -> f.difference(curLayer));
     screenButton.addActionListener(e -> f.screen(curLayer));
     normal.addActionListener(e -> f.normal(curLayer));
-
+    newProjectButton.addActionListener(e -> f.newProject());
     saveProjectButton.addActionListener(e -> f.saveProject());
     loadButton.addActionListener(e -> f.loadProject());
     saveImageButton.addActionListener(e -> {
