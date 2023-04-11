@@ -48,16 +48,15 @@ public class Main {
         a = new InputStreamReader(System.in);
       }
 
-      IImageProcessorModel m = new ImageProcessorModel(0, 0);
+      IImageProcessorModel m = new ImageProcessorModel(10, 10);
       IImageProcessorView v = new ImageProcessorView(m);
       Readable r = new InputStreamReader(System.in);
       IImageProcessorController c = new ImageProcessorController(m, v, r);
       c.startProcessor();
     } else {
-      IImageProcessorModel model = new ImageProcessorModel(0, 0);
+      IImageProcessorModel model = new ImageProcessorModel(10, 10);
       GUIView sg = new GUIView(model);
       GUIController control = new GUIController(sg, model);
-      //control.startProcessor();
     }
   }
 }

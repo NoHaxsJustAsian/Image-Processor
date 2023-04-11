@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+
 import javax.swing.JOptionPane;
 
 
@@ -45,7 +45,7 @@ import view.GUIView;
  * It will be able to load a project, save a project, and apply filters to the project.
  */
 public class GUIController implements Features {
-  private JPanel panel;
+
   private GUIView view;
   private IImageProcessorModel model;
 
@@ -56,10 +56,8 @@ public class GUIController implements Features {
    * @param model the model.
    */
   public GUIController(GUIView view,  IImageProcessorModel model) {
-    super();
     this.view = view;
     this.model = model;
-
     this.view.addFeatures(this);
     this.view.display();
   }
@@ -94,6 +92,7 @@ public class GUIController implements Features {
         return null;
     }
   }
+
 
   /**
    * This method should load a project and set the model to the project.

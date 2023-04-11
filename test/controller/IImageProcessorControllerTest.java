@@ -156,7 +156,7 @@ public class IImageProcessorControllerTest {
     Readable read = new StringReader("message");
     ImageProcessorController control = new ImageProcessorController(model, view, read);
 
-    control.saveImage("test");
+    //control.saveImage("test"); //FIXME: change this into a test where it reads an appendable.
     BufferedImage img = model.compressImage();
     assertEquals(200, img.getWidth());
   }

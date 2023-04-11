@@ -39,7 +39,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private IImageProcessorModel model;
   private GUIController controller;
 
-  private String curLayer;
+  private String curLayer = "";
 
 
   //Buttons Sections
@@ -96,7 +96,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   public GUIView(IImageProcessorModel model) {
     super("Image Processor");
-
     this.model = model;
     this.controller = new GUIController(this, model);
 
@@ -293,6 +292,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     if (response == JFileChooser.APPROVE_OPTION) {
       f = fc.getSelectedFile();
     }
+    refresh();
     return f;
   }
 
@@ -323,6 +323,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     if (response == JFileChooser.APPROVE_OPTION) {
       f = fc.getSelectedFile();
     }
+    refresh();
     return f;
   }
 
@@ -345,6 +346,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   public void renderMessage(String message) {
     JOptionPane.showMessageDialog(this, message, "Message",
             JOptionPane.PLAIN_MESSAGE);
+    refresh();
   }
 
 
@@ -353,6 +355,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   public void display() {
     setVisible(true);
+    refresh();
   }
 
   /**
