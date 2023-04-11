@@ -56,7 +56,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     this(height, width, nameLayers, orderLayers, 255);
   }
 
-
   /**
    * Represents a constructor for this model.
    * (new project)

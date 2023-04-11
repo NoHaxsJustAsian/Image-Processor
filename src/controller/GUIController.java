@@ -30,7 +30,6 @@ import model.filters.Multiply;
 import model.filters.Normal;
 import model.filters.RedFilter;
 import model.filters.Screen;
-import model.IImage;
 import model.IImageProcessorModel;
 import model.ILayer;
 import model.IPixel;
@@ -126,7 +125,6 @@ public class GUIController implements Features {
     sc = new Scanner(builder.toString());
 
     String token;
-
     token = sc.next();
     if (!token.equals("C1")) {
       this.tryRenderMessage("Invalid Collage file: Collage file should begin with C1");
@@ -499,6 +497,18 @@ public class GUIController implements Features {
     }
     model.addImage(0,0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
     tryRenderMessage("Image loaded successfully");
+  }
+
+  /**
+   * This method makes a new project.
+   *
+   * @param height
+   * @param width
+   */
+  @Override
+  public void newProject(int height, int width, int maxValue) {
+    model.newProject(height, width, maxValue);
+    view.addImageToGUI(model.compressImage());
   }
 
 

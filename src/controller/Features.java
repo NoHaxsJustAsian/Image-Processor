@@ -111,4 +111,9 @@ public interface Features {
    */
   void addImage(String curLayer);
 
+  /**
+   * This method makes a new project.
+   */
+  void newProject(int height, int width, int maxValue);
+
 }
