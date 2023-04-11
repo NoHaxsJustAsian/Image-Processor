@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 import controller.Features;
 import controller.GUIController;
@@ -88,7 +90,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   //MISCELLANEOUS
   private JFileChooser fileChooser;
-
+  private JComboBox<String> formats;
 
 
   /**
@@ -230,6 +232,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     curLayer = layerList.getSelectedItem().toString();
 
 
+    //COMBO BOX FOR FORMATS
+    String[] formats = {"ppm", "jpg", "png", "bmp"};
+    this.formats = new JComboBox<String>(formats);
+    this.formats.setSelectedIndex(0);
 
 
 
@@ -238,7 +244,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     imagePane.add(imageScrollPane);
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
     imagePane.setLayout(new FlowLayout(FlowLayout.LEADING));
-    imagePane.add(new JLabel("Composite Image"));
     imagePane.add(imageScrollPane);
     imageLabel = new JLabel();
     imageLabel.setIcon(new ImageIcon(model.compressImage()));
@@ -267,6 +272,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     //LAYER PANEL
     layerPane.add(layerList);
+    layerPane.add(this.formats);
 
 
     this.pack();
@@ -363,6 +369,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     refresh();
   }
 
+
   /**
    * Gets name of layer from user.
    */
@@ -390,7 +397,13 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     saveProjectButton.addActionListener(e -> f.saveProject());
     loadButton.addActionListener(e -> f.loadProject());
-    saveImageButton.addActionListener(e -> f.saveImage());
+    saveImageButton.addActionListener(e -> {
+      try {
+        f.saveImage((String) formats.getSelectedItem());
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
 
     addLayerButton.addActionListener(e -> {
       f.addLayer(this.addLayerHelp());
