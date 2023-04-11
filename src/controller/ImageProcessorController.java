@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,8 +37,10 @@ import view.IImageProcessorView;
 import view.ImageProcessorView;
 
 
+
 //FIXME: adapter fom BufferedImage to IImage
 //FIXME: IImage converter from IImage to BufferedImage because RenderImage implements BufferedImage
+
 /**
  * This class implements the IImageProcessor Controller.
  */
@@ -130,7 +133,7 @@ public class ImageProcessorController implements IImageProcessorController {
           break;
         case "save-image":
           tryRender("type project path to save \n");
-          this.saveImage(scan.next());
+          this.savePPM(scan.next());
           break;
         case "set-filter":
           tryRender("type filter name \n");
@@ -366,7 +369,7 @@ public class ImageProcessorController implements IImageProcessorController {
   /**
    * This method will create one image from all the layers for PPM.
    */
-  private void saveImage(String filePath) throws IllegalArgumentException {
+  private void savePPM(String filePath) throws IllegalArgumentException {
     if (filePath == null || !filePath.endsWith(".ppm")) {
       throw new IllegalArgumentException("invalid file path");
     }
@@ -412,5 +415,17 @@ public class ImageProcessorController implements IImageProcessorController {
     return new PPMImage(pixels, height, width);
   }
 
-  
+  private void saveImage(String filePath, String fileType) throws IllegalArgumentException {
+    if (filePath == null || fileType == null) {
+      throw new IllegalArgumentException("invalid file path");
+    }
+    if (fileType.equals("ppm")) {
+      savePPM(filePath);
+    }
+    else {
+      BufferedImage img = model.compressImage();
+      File outputfile = new File("saved." + fileType);
+      ImageIO.write(img, fileType, outputfile);
+    }
+  }
 }

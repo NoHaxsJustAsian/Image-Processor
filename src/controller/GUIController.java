@@ -190,7 +190,7 @@ public class GUIController implements Features {
    * This method saves the final composite Image to a file.
    */
   @Override
-  public void saveImage() {
+  public void savePPM() {
     File f = view.saveFile();
     IPixel[][] finalPixels = model.saveCanvas();
 
@@ -408,7 +408,7 @@ public class GUIController implements Features {
    * @param curLayer the current layer.
    */
   @Override
-  public void addImage(String curLayer) {
+  public void addPPM(String curLayer) {
     Scanner sc;
     int width;
     int height;
@@ -469,18 +469,21 @@ public class GUIController implements Features {
   }
 
 
-  //FIXME: figure out if we need to restrict the file type.
-  
   /**
    * This method saves the image to a file.
+   * Works for ANY file type.
    */
-  private IImage loadImage(String imagePath) {
+  public void addImage(String curLayer) {
     BufferedImage image;
+    if(view.addImageToLayer().getAbsolutePath().endsWith(".ppm")) {
+      addPPM(curLayer);
+      return;
+    }
     try {
-      image = ImageIO.read(new File(imagePath));
+      image = ImageIO.read(new FileInputStream(view.addImageToLayer()));
     } catch (IOException e) {
-      tryRenderMessage("File " + imagePath + " not found!");
-      return null;
+      tryRenderMessage("File " + view.addImageToLayer().getAbsolutePath() + " not found!");
+      return;
     }
     int width = image.getWidth();
     int height = image.getHeight();
@@ -494,25 +497,28 @@ public class GUIController implements Features {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
+    model.addImage(0,0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
     tryRenderMessage("Image loaded successfully");
-    return new PPMImage(pixels, height, width);
   }
 
 
-  //FIXME: edit addImage to utilize this method to filter the file type and add it to the model and view accordingly. 
-  //FIXME: The problem with this rn is that it is not putting it into the view, its simply grabbing an image. 
-  private IImage loadAnyImage(String imagePath) {
-    if(imagePath.contains(".ppm")) {
-      return loadImage(imagePath);
+  /**
+   * This method saves the image to a file.
+   * @param fileType the type of file it is being saved as.
+   */
+  public void saveImage(String fileType) {
+    if(!fileType.equals("ppm") && !fileType.equals("png") && !fileType.equals("jpg")) {
+      tryRenderMessage("Invalid file type");
+      return;
     }
-    else if(imagePath.contains(".jpg")) {
-      return loadImage(imagePath);
-    }
-    else if(imagePath.contains("png")) {
-      return loadImage(imagePath);
+
+    if (fileType.equals("ppm")) {
+      savePPM();
     }
     else {
-      return loadImage(imagePath);
+      File f = view.saveFile();
+      BufferedImage img = model.compressImage();
+      ImageIO.write(img, fileType, f);
     }
   }
 }

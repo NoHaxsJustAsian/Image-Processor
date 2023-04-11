@@ -14,7 +14,7 @@ public interface Features {
   /**
    * This method saves an image.
    */
-  void saveImage();
+  void saveImage(String fileType);
 
   //Filter Functions
 
@@ -92,13 +92,21 @@ public interface Features {
   /**
    * This method adds an image to the layer.
    */
-  void addImage(String curLayer);
+  void addPPM(String curLayer);
 
   /**
    * This method loads a project.
    */
   void loadProject();
 
+  /**
+   * This saves an image as a ppm.
+   */
+  void savePPM();
 
+  /**
+   * This loads an image.
+   */
+  void addImage(String curLayer);
 
 }
