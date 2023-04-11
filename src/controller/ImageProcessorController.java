@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
+import model.IImageProcessorModel;
+import model.ImageProcessorModel;
 import model.filters.BlueFilter;
 import model.filters.BrightenIntensity;
 import model.filters.BrightenLuma;
@@ -27,7 +29,6 @@ import model.filters.RedFilter;
 import model.IImage;
 import model.ILayer;
 import model.IPixel;
-import model.ImageProcessorModel;
 import model.Layer;
 import model.PPMImage;
 import model.Pixel;
@@ -42,7 +43,7 @@ public class ImageProcessorController implements IImageProcessorController {
 
   int width;
   int height;
-  ImageProcessorModel model;
+  IImageProcessorModel model;
   private IImageProcessorView view;
   private final Readable object;
 
@@ -54,7 +55,7 @@ public class ImageProcessorController implements IImageProcessorController {
    * @param view   ImageProcessor view.
    * @param object Readable object.
    */
-  public ImageProcessorController(ImageProcessorModel model,
+  public ImageProcessorController(IImageProcessorModel model,
                                   IImageProcessorView view, Readable object) {
     if (model == null || view == null || object == null) {
       throw new IllegalArgumentException("invalid arguments");
@@ -92,34 +93,45 @@ public class ImageProcessorController implements IImageProcessorController {
    * @param scan the scanner.
    */
   private void readCommand(Scanner scan) {
+    tryRender("Welcome to the Image Processor! \n");
+    tryRender("press q to quit! \n");
+    tryRender("Possible commands include: \n");
+    tryRender("new-project \n" );
+    tryRender("load-project \n");
+    tryRender("save-project \n");
+    tryRender("save-image \n");
+    tryRender("set-filter \n");
+    tryRender("add-layer \n");
+    tryRender("add-image-to-layer \n");
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
       switch (command) {
         case "new-project":
-          tryRender("enter height and width and max color value");
+          tryRender("enter height and width and max color value \n");
           try {
             this.model.newProject(scan.nextInt(), scan.nextInt(), scan.nextInt());
-            //FIXME: add load and save functions
+            tryRender("new Project created! \n");
             break;
           } catch (IllegalArgumentException e) {
-            tryRender("Invalid height or width or max color value");
+            tryRender("Invalid height or width or max color value \n");
             break;
           }
         case "load-project":
-          tryRender("type project path to load");
+          tryRender("type project path to load \n");
           this.loadProject(scan.next());
           //FIXME: add load and save functions also figure out what the file path is
           break;
         case "save-project":
-          tryRender("type project path to save");
+          tryRender("type project path to save \n");
           this.saveProject(scan.next());
           //FIXME: all these need catch blocks for the exceptions.
           break;
         case "save-image":
-          tryRender("type project path to save");
+          tryRender("type project path to save \n");
           this.saveImage(scan.next());
           break;
         case "set-filter":
+          tryRender("type filter name \n");
           switch (scan.next()) {
             case "blue":
               this.model.setFilter(scan.next(), new BlueFilter());
@@ -180,7 +192,7 @@ public class ImageProcessorController implements IImageProcessorController {
     int width;
     int height;
     int maxRGB;
-    ImageProcessorModel model;
+    IImageProcessorModel model;
     IFilter filter;
     List<ILayer> orderLayers = new ArrayList<ILayer>();
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();

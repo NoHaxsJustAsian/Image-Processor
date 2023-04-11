@@ -103,7 +103,7 @@ public class GUIController implements Features {
     int width;
     int height;
     int maxRGB;
-    ImageProcessorModel model;
+    IImageProcessorModel model;
     IFilter filter;
     List<ILayer> orderLayers = new ArrayList<ILayer>();
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();

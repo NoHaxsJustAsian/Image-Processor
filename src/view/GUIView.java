@@ -24,8 +24,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.Features;
 import controller.GUIController;
+import model.IImageProcessorModel;
 import model.ILayer;
-import model.ImageProcessorModel;
+
 
 
 /**
@@ -35,7 +36,7 @@ import model.ImageProcessorModel;
  */
 public class GUIView extends JFrame implements IImageProcessorView {
 
-  private ImageProcessorModel model;
+  private IImageProcessorModel model;
   private GUIController controller;
 
   private String curLayer;
@@ -93,7 +94,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    * Constructor for the GUIView. Sets up the JFrame and the panels and the buttons.
    * @param model
    */
-  public GUIView(ImageProcessorModel model) {
+  public GUIView(IImageProcessorModel model) {
     super("Image Processor");
 
     this.model = model;
