@@ -36,6 +36,8 @@ import view.IImageProcessorView;
 import view.ImageProcessorView;
 
 
+//FIXME: adapter fom BufferedImage to IImage
+//FIXME: IImage converter from IImage to BufferedImage because RenderImage implements BufferedImage
 /**
  * This class implements the IImageProcessor Controller.
  */

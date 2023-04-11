@@ -73,6 +73,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     this.maxValue = maxValue;
     this.nameLayers = new HashMap<String, ILayer>();
     this.orderLayers = new ArrayList<ILayer>();
+    this.addLayer("background", new Normal());
   }
 
   /**

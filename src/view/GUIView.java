@@ -70,6 +70,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton screenButton;
 
 
+
   //Layer Section
   private JPanel layerPane;
   private JButton addLayerButton;
@@ -97,7 +98,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   public GUIView(IImageProcessorModel model) {
     super("Image Processor");
     this.model = model;
-    this.controller = new GUIController(this, model);
 
     //FRAME
     this.setSize(500, 500);
@@ -110,12 +110,15 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     //PANELS LAYOUT ON FRAME
     this.setLayout(new BorderLayout());
+    imagePane = new JPanel();
     this.add(imagePane, BorderLayout.WEST);
     imagePane.setBorder(BorderFactory.createTitledBorder("Buffered Image"));
     imagePane.setPreferredSize(new Dimension(250, 500));
+    buttonPane = new JPanel();
     this.add(buttonPane, BorderLayout.EAST);
     buttonPane.setBorder(BorderFactory.createTitledBorder("Buttons"));
     buttonPane.setPreferredSize(new Dimension(250, 250));
+    layerPane = new JPanel();
     this.add(layerPane, BorderLayout.SOUTH);
     layerPane.setBorder(BorderFactory.createTitledBorder("Layers"));
     layerPane.setPreferredSize(new Dimension(250, 250));
@@ -186,6 +189,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     screenButton.setActionCommand("Screen Button");
     this.add(this.screenButton);
 
+    normal = new JButton("Normal");
+    normal.setActionCommand("Normal Button");
+    this.add(this.normal);
+
     loadButton = new JButton("Load");
     loadButton.setActionCommand("Load Project Button");
     this.add(this.loadButton);
@@ -227,19 +234,18 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
     //IMAGE PANEL
-    imagePane = new JPanel();
     imageScrollPane = new JScrollPane(imageLabel);
     imagePane.add(imageScrollPane);
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
     imagePane.setLayout(new FlowLayout(FlowLayout.LEADING));
     imagePane.add(new JLabel("Composite Image"));
     imagePane.add(imageScrollPane);
+    imageLabel = new JLabel();
     imageLabel.setIcon(new ImageIcon(model.compressImage()));
 
 
 
     //BUTTON PANEL
-    buttonPane = new JPanel();
     buttonPane.setLayout(new FlowLayout(FlowLayout.LEADING));
     buttonPane.add(redFilterButton);
     buttonPane.add(greenFilterButton);
@@ -260,7 +266,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
     //LAYER PANEL
-    layerPane = new JPanel();
     layerPane.add(layerList);
 
 
