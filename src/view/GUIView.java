@@ -40,6 +40,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   private int height = 0;
   private int width = 0;
+  private int maxValue = 0;
 
   private IImageProcessorModel model;
   private GUIController controller;
@@ -276,6 +277,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     buttonPane.add(saveImageButton);
     buttonPane.add(saveProjectButton);
     buttonPane.add(addImageButton);
+    buttonPane.add(newProjectButton);
 
 
     //LAYER PANEL
@@ -378,11 +380,15 @@ public class GUIView extends JFrame implements IImageProcessorView {
   }
 
 
-  /**
-   * Gets name of layer from user.
-   */
-  public String addLayerHelp() {
+  private String addLayerHelp() {
     return JOptionPane.showInputDialog("Enter a name for the layer");
+  }
+
+
+  private void newProjectHelp() {
+    this.height = Integer.parseInt(JOptionPane.showInputDialog("Enter height"));
+    this.width = Integer.parseInt(JOptionPane.showInputDialog("Enter width"));
+    this.maxValue = Integer.parseInt(JOptionPane.showInputDialog("Enter maxValue"));
   }
 
   /**
@@ -402,7 +408,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
     differenceButton.addActionListener(e -> f.difference(curLayer));
     screenButton.addActionListener(e -> f.screen(curLayer));
     normal.addActionListener(e -> f.normal(curLayer));
-    newProjectButton.addActionListener(e -> f.newProject());
+    newProjectButton.addActionListener(e -> {
+      newProjectHelp();
+      f.newProject(height, width, maxValue);
+    }
+    );
+
     saveProjectButton.addActionListener(e -> f.saveProject());
     loadButton.addActionListener(e -> f.loadProject());
     saveImageButton.addActionListener(e -> {
