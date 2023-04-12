@@ -25,9 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 import controller.Features;
-import controller.GUIController;
 import model.IImageProcessorModel;
-import model.ILayer;
 
 
 
@@ -43,7 +41,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private int maxValue = 0;
 
   private IImageProcessorModel model;
-  private GUIController controller;
 
   private String curLayer = "";
 
@@ -83,6 +80,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton addLayerButton;
   private JButton selectLayerButton;
   private JComboBox<String> layerList;
+  ArrayList<String> layerNames = new ArrayList<String>();
 
 
 
@@ -233,10 +231,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
     //COMBO BOX FOR LAYERS
-    ArrayList<String> layerNames = new ArrayList<String>();
-    for (ILayer layer : model.getLayers()) {
-      layerNames.add(layer.getName());
-    }
     String[] layerNamesArray = layerNames.toArray(new String[layerNames.size()]);
     layerList = new JComboBox<String>(layerNamesArray);
     layerList.setActionCommand("Layer List");
@@ -383,7 +377,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
   private String addLayerHelp() {
-    return JOptionPane.showInputDialog("Enter a name for the layer");
+    String name = JOptionPane.showInputDialog("Enter a name for the layer");
+    layerNames.add(name);
+    return name;
   }
 
 
