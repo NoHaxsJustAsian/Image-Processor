@@ -244,7 +244,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
     //COMBO BOX FOR FORMATS
-    String[] formats = {"ppm", "jpg", "png", "bmp"};
+    String[] formats = {"ppm", "jpg", "png"};
     this.formats = new JComboBox<String>(formats);
     this.formats.setSelectedIndex(0);
 
@@ -340,7 +340,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //FIXME: add a function to add this to a specific layer.
     final JFileChooser fc = new JFileChooser(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter("Image",
-            "ppm");
+            "ppm", "jpg", "png");
     fc.setFileFilter(filter);
     int response = fc.showOpenDialog(null);
     if (response == JFileChooser.APPROVE_OPTION) {
