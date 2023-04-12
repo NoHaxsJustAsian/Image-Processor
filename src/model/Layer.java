@@ -17,6 +17,7 @@ public class Layer implements ILayer {
   private IFilter filter;
   private int height;
   private int width;
+  private int alpha;
   
 
   /**
@@ -41,29 +42,19 @@ public class Layer implements ILayer {
     }
   }
 
-  /*
-  /**
-   * If no filter is given.
-   * @param name name of the layer.
-   * @param filter filter of the layer.
-   * @param height height of the layer.
-   * @param width width of the layer.
-   */
-  /*
-  public Layer(String name, int height, int width) {
+  public Layer(String name, IFilter filter, int height, int width, int alpha) {
     this.name = name;
-    this.filter = new Normal();
+    this.filter = filter;
     this.height = height;
     this.width = width;
+    this.alpha = alpha;
     this.canvas = new IPixel[height][width];
-    //creates a blank background for each layer, all white and fully transparent
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        this.canvas[i][j] = new Pixel(255, 255, 255, 0);
+        this.canvas[i][j] = new Pixel(255, 255, 255, 255);
       }
     }
   }
-  */
 
   /**
    * Returns the name of the layer.
@@ -134,15 +125,14 @@ public class Layer implements ILayer {
    * @param image to be added.
    */
   public void addImage(IImage image, int x, int y) throws IllegalArgumentException {
-    if (x < 0 || y < 0 || image.getHeight() + y > this.height
-            || image.getWidth() + x > this.width) {
+    if (x < 0 || y < 0) {
       throw new IllegalArgumentException("invalid bounds for image");
     }
 
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
-        if (i + x < this.height && j + y < this.width) {
-          this.canvas[i + x][j + y] = image.getPixel(i, j);
+        if (i + y < this.height && j + x < this.width) {
+          this.canvas[i + y][j + x] = image.getPixel(i, j);
         }
       }
     }
