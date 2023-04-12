@@ -12,6 +12,8 @@ add-image-to-layer 0 0 boxy-dark image/boxy.ppm
 
 set-filter boxy-dark darken-luma
 
+set-filter boxy-dark multiply
+
 save-image images/boxes-boxy.ppm
 
 save-project projects/boxes-boxy.collage

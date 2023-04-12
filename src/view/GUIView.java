@@ -276,15 +276,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
     buttonPane.add(differenceButton);
     buttonPane.add(screenButton);
     buttonPane.add(loadButton);
-    buttonPane.add(saveImageButton);
-    buttonPane.add(saveProjectButton);
     buttonPane.add(addImageButton);
+    buttonPane.add(saveProjectButton);
+    buttonPane.add(saveImageButton);
     buttonPane.add(newProjectButton);
+    buttonPane.add(this.formats);
 
 
     //LAYER PANEL
     layerPane.add(layerList);
-    layerPane.add(this.formats);
+    layerPane.add(addLayerButton);
+    layerPane.add(selectLayerButton);
 
 
     this.pack();
@@ -426,8 +428,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     addLayerButton.addActionListener(e -> {
       f.addLayer(this.addLayerHelp());
-
     });
+
     addImageButton.addActionListener(e -> f.addImage(curLayer));
   }
 
