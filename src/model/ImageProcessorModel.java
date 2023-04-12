@@ -268,9 +268,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     if (x > this.width || x < 0 || y > this.height || y < 0) {
       throw new IllegalArgumentException("invalid arguments");
     }
-    if (image.getHeight() + y > this.height || image.getWidth() + x > this.width) {
-      throw new IllegalArgumentException("image goes off the canvas");
-    }
     layer.addImage(image, x, y);
   }
 
