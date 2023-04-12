@@ -168,6 +168,15 @@ public class ImageProcessorController implements IImageProcessorController {
             case "red":
               this.model.setFilter(scan.next(), new RedFilter());
               break;
+            case "multiply":
+              this.model.setFilter(scan.next(), new Multiply());
+              break;
+            case "difference":
+              this.model.setFilter(scan.next(), new Difference());
+              break;
+            case "screen":
+              this.model.setFilter(scan.next(), new Screen());
+              break;
             default:
               this.model.setFilter(scan.next(), new Normal());
               break;
