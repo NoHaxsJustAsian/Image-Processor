@@ -1,3 +1,22 @@
+# assignment2 part3
+## Model
+  - ImageProcesssorModel
+    - Decoupled
+    
+  
+## View
+  - GUIView 
+    - Decoupled from
+    - Debugged 
+  
+## Controller
+  - GUIController
+    - Decoupled from 
+    - addLayerButton
+  - ImageProcessorController
+    - Added switch case operations for new filters, multiply, difference, and screen filters. 
+    - handle add-image to render png and jpg files 
+
 # assignment2 part2
 ## Controller
   - Feature
