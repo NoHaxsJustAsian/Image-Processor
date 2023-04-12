@@ -25,7 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 import controller.Features;
-import model.IImageProcessorModel;
+
 
 
 
@@ -39,8 +39,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private int height = 0;
   private int width = 0;
   private int maxValue = 0;
-
-  private IImageProcessorModel model;
 
   private String curLayer = "";
 
@@ -98,11 +96,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   /**
    * Constructor for the GUIView. Sets up the JFrame and the panels and the buttons.
-   * @param model
    */
-  public GUIView(IImageProcessorModel model) {
+  public GUIView() {
     super("Image Processor");
-    this.model = model;
 
     imageLabel = new JLabel();
     //FRAME
@@ -251,7 +247,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     imagePane.setLayout(new FlowLayout(FlowLayout.LEADING));
     imagePane.add(imageScrollPane);
     imageLabel = new JLabel();
-    imageLabel.setIcon(new ImageIcon(model.compressImage()));
 
 
 
@@ -293,7 +288,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   public void refresh() {
     this.repaint();
-    imageLabel.setIcon(new ImageIcon(model.compressImage()));
+    this.validate();
   }
 
 

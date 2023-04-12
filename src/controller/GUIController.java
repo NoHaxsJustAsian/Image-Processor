@@ -412,12 +412,13 @@ public class GUIController implements Features {
     int height;
     int maxValue;
     Pixel[][] pixels;
+    File f = view.addImageToLayer();
 
     try {
-      sc = new Scanner(new FileInputStream(view.addImageToLayer()));
+      sc = new Scanner(new FileInputStream(f));
       tryRenderMessage("Image loaded successfully");
     } catch (FileNotFoundException e) {
-      tryRenderMessage("File " + view.addImageToLayer().getAbsolutePath() + " not found!");
+      tryRenderMessage("File " + f.getAbsolutePath() + " not found!");
       return;
     }
     StringBuilder builder = new StringBuilder();
@@ -535,4 +536,5 @@ public class GUIController implements Features {
       }
     }
   }
+
 }
