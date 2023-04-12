@@ -23,8 +23,10 @@ import model.filters.BrightenValue;
 import model.filters.DarkenIntensity;
 import model.filters.DarkenLuma;
 import model.filters.DarkenValue;
+import model.filters.Difference;
 import model.filters.GreenFilter;
 import model.filters.IFilter;
+import model.filters.Multiply;
 import model.filters.Normal;
 import model.filters.RedFilter;
 import model.IImage;
@@ -33,6 +35,7 @@ import model.IPixel;
 import model.Layer;
 import model.PPMImage;
 import model.Pixel;
+import model.filters.Screen;
 import view.IImageProcessorView;
 import view.ImageProcessorView;
 
@@ -330,6 +333,12 @@ public class ImageProcessorController implements IImageProcessorController {
         return new Normal();
       case "red":
         return new RedFilter();
+      case "multiply":
+        return new Multiply();
+      case "difference":
+        return new Difference();
+      case "screen":
+        return new Screen();
       default:
         return null;
     }
