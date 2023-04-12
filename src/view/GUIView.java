@@ -280,11 +280,11 @@ public class GUIView extends JFrame implements IImageProcessorView {
     buttonPane.add(saveProjectButton);
     buttonPane.add(addImageButton);
     buttonPane.add(newProjectButton);
+    buttonPane.add(this.formats);
 
 
     //LAYER PANEL
     layerPane.add(layerList);
-    layerPane.add(this.formats);
     layerPane.add(addLayerButton);
     layerPane.add(selectLayerButton);
 
