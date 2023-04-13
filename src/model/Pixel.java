@@ -2,7 +2,6 @@ package model;
 
 /**
  * Represents a class for a pixel's component values as integers.
- *
  */
 public class Pixel implements IPixel {
   private int red;

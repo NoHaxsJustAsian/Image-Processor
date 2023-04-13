@@ -91,6 +91,7 @@ public class RepresentationConverter {
 
   /**
    * Main method to test the conversion methods.
+   *
    * @param args command line arguments.
    */
   public static void main(String[] args) {

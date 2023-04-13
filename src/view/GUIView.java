@@ -12,8 +12,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import controller.Features;
 
 
-
-
 /**
  * Represents the GUI view for the program. This displays the JFrame of the Program including
  * the buttons, the image, and the layers.
@@ -56,16 +54,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private JButton screenButton;
 
 
-
-
   //Layer Section
   private JPanel layerPane;
   private JButton addLayerButton;
   private JButton selectLayerButton;
   private JComboBox<String> layerList;
   ArrayList<String> layerNames = new ArrayList<String>();
-
-
 
 
   //Buffered Image Section
@@ -112,7 +106,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     layerPane.setPreferredSize(new Dimension(250, 250));
 
 
-
     JPanel selectedLayerBox = new JPanel();
     selectedLayerBox.setBorder(BorderFactory.createTitledBorder("Selected Image"));
     //FIXME: fix grid layout for selected image
@@ -125,7 +118,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
     //FIXME: fix grid layout for composite image
     compositeImageBox.setLayout(new GridLayout(2, 2));
     this.add(compositeImageBox);
-
 
 
     //BUTTONS
@@ -210,12 +202,10 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.add(this.selectLayerButton);
 
 
-
     //COMBO BOX FOR LAYERS
     String[] layerNamesArray = layerNames.toArray(new String[layerNames.size()]);
     layerList = new JComboBox<String>(layerNamesArray);
     layerList.setActionCommand("Layer List");
-
 
 
     //COMBO BOX FOR FORMATS
@@ -224,15 +214,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
     this.formats.setSelectedIndex(0);
 
 
-
     //IMAGE PANEL
     imageLabel = new JLabel();
     imageScrollPane = new JScrollPane(imageLabel);
     imagePane.add(imageScrollPane);
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
     imagePane.setLayout(new FlowLayout(FlowLayout.LEADING));
-
-
 
 
     //BUTTON PANEL
@@ -324,7 +311,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
       f = fc.getSelectedFile();
     }
     curLayer = layerList.getSelectedItem().toString();
-    
+
     refresh();
     return f;
   }
@@ -391,9 +378,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
     screenButton.addActionListener(e -> f.screen(curLayer));
     normal.addActionListener(e -> f.normal(curLayer));
     newProjectButton.addActionListener(e -> {
-      newProjectHelp();
-      f.newProject(height, width, maxValue);
-    }
+              newProjectHelp();
+              f.newProject(height, width, maxValue);
+            }
     );
 
     saveProjectButton.addActionListener(e -> f.saveProject());

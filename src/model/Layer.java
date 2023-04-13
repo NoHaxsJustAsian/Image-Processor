@@ -18,7 +18,7 @@ public class Layer implements ILayer {
   private int height;
   private int width;
   private int alpha;
-  
+
 
   /**
    * Represents a constructor for a Layer if filter is given.

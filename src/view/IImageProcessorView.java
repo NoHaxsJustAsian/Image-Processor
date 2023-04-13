@@ -13,5 +13,4 @@ public interface IImageProcessorView {
   void renderMessage(String message) throws IOException;
 
 
-
 }

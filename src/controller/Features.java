@@ -81,11 +81,12 @@ public interface Features {
   void difference(String curLayer);
 
   /**
-   *  This method applies a screen filter to an image.
+   * This method applies a screen filter to an image.
    */
   void screen(String curLayer);
 
   //Layer Functions
+
   /**
    * This method adds a layer to the project.
    */

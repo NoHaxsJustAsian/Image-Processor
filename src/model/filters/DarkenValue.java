@@ -22,6 +22,7 @@ public class DarkenValue implements IFilter {
 
   /**
    * Applies the Darken Value filter to the top layer.
+   *
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */

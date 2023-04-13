@@ -148,7 +148,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @return list of Layers.
    */
   @Override
-  public HashMap<String,ILayer> getMapLayers() {
+  public HashMap<String, ILayer> getMapLayers() {
     return this.nameLayers;
   }
 
@@ -246,6 +246,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will set a filter to a layer.
+   *
    * @param name name of layer.
    * @throws IllegalArgumentException if the layer does not exist.
    */
@@ -293,6 +294,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the list of layers in the project.
+   *
    * @return String list of layers.
    */
   public String listLayers() {
@@ -301,6 +303,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the list of filters in the project.
+   *
    * @return String list of filters.
    */
   public int getLayerCount() {
@@ -310,6 +313,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the list of filters in the project.
+   *
    * @return String list of filters.
    */
   public BufferedImage compressImage() {
