@@ -549,7 +549,7 @@ public class GUIController implements Features {
       try {
         ImageIO.write(img, fileType, f);
       } catch (IOException e) {
-        tryRenderMessage("File " + view.saveFile().getAbsolutePath() + " not found! / INVALID");
+        tryRenderMessage("File " + f.getAbsolutePath() + " not found! / INVALID");
       }
     }
   }
