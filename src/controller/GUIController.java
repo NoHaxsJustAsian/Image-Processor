@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 import model.IImageProcessorModel;
 import model.ILayer;

@@ -336,12 +336,4 @@ public class ImageProcessorModel implements IImageProcessorModel {
     }
     return image;
   }
-
-  /**
-   * This method will help load the project, by taking in all of the required information
-   * to initialize a project.
-   */
-  public void loadProjectHelp() {
-
-  }
 }

@@ -17,7 +17,7 @@ public class Layer implements ILayer {
   private IFilter filter;
   private int height;
   private int width;
-  private int alpha;
+
 
 
   /**
@@ -38,20 +38,6 @@ public class Layer implements ILayer {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         this.canvas[i][j] = new Pixel(255, 255, 255, 0);
-      }
-    }
-  }
-
-  public Layer(String name, IFilter filter, int height, int width, int alpha) {
-    this.name = name;
-    this.filter = filter;
-    this.height = height;
-    this.width = width;
-    this.alpha = alpha;
-    this.canvas = new IPixel[height][width];
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        this.canvas[i][j] = new Pixel(255, 255, 255, 255);
       }
     }
   }

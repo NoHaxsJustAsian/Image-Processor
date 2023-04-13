@@ -1,12 +1,26 @@
 package view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.Features;
@@ -28,7 +42,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
   //Buttons Sections
 
-  private JPanel buttonPane;
+  //private JPanel buttonPane;
 
   //Project Buttons
   private JButton loadButton;
@@ -55,16 +69,19 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
   //Layer Section
-  private JPanel layerPane;
+  
+  //private JPanel layerPane;
   private JButton addLayerButton;
-  private JButton selectLayerButton;
+  
+  //private JButton selectLayerButton;
   private JComboBox<String> layerList;
   ArrayList<String> layerNames = new ArrayList<String>();
 
 
   //Buffered Image Section
-  private JPanel imagePane;
-  private JScrollPane imageScrollPane;
+  
+  //private JPanel imagePane;
+  //private JScrollPane imageScrollPane;
   private JLabel imageLabel;
 
 
@@ -91,16 +108,16 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     //PANELS LAYOUT ON FRAME
     this.setLayout(new BorderLayout());
-    imagePane = new JPanel();
+    JPanel imagePane = new JPanel();
     this.add(imagePane, BorderLayout.WEST);
     imagePane.setBorder(BorderFactory.createTitledBorder("Buffered Image"));
     imagePane.setPreferredSize(new Dimension(250, 500));
-    buttonPane = new JPanel();
+    JPanel buttonPane = new JPanel();
     imagePane.add(imageLabel);
     this.add(buttonPane, BorderLayout.EAST);
     buttonPane.setBorder(BorderFactory.createTitledBorder("Buttons"));
     buttonPane.setPreferredSize(new Dimension(250, 250));
-    layerPane = new JPanel();
+    JPanel layerPane = new JPanel();
     this.add(layerPane, BorderLayout.SOUTH);
     layerPane.setBorder(BorderFactory.createTitledBorder("Layers"));
     layerPane.setPreferredSize(new Dimension(250, 250));
@@ -197,9 +214,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
     addImageButton.setActionCommand("Add Image Button");
     this.add(this.addImageButton);
 
-    selectLayerButton = new JButton("Select Layer");
+    JButton selectLayerButton = new JButton("Select Layer");
     selectLayerButton.setActionCommand("Select Layer Button");
-    this.add(this.selectLayerButton);
+    this.add(selectLayerButton);
 
 
     //COMBO BOX FOR LAYERS
@@ -216,7 +233,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     //IMAGE PANEL
     imageLabel = new JLabel();
-    imageScrollPane = new JScrollPane(imageLabel);
+    JScrollPane imageScrollPane = new JScrollPane(imageLabel);
     imagePane.add(imageScrollPane);
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
     imagePane.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -378,9 +395,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
     screenButton.addActionListener(e -> f.screen(curLayer));
     normal.addActionListener(e -> f.normal(curLayer));
     newProjectButton.addActionListener(e -> {
-              newProjectHelp();
-              f.newProject(height, width, maxValue);
-            }
+      newProjectHelp();
+      f.newProject(height, width, maxValue);
+    }
     );
 
     saveProjectButton.addActionListener(e -> f.saveProject());
