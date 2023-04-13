@@ -1,28 +1,13 @@
 package view;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-import javax.swing.BorderFactory;
-import javax.swing.JFileChooser;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 
 import controller.Features;
 
