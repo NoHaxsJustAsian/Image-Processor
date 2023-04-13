@@ -489,15 +489,16 @@ public class GUIController implements Features {
    */
   public void addImage(String curLayer) {
     BufferedImage image;
-    if (view.addImageToLayer().getAbsolutePath().endsWith(".ppm")) {
+    File f = view.addImageToLayer();
+    if (f.getAbsolutePath().endsWith(".ppm")) {
       addPPM(curLayer);
 
       return;
     }
     try {
-      image = ImageIO.read(new FileInputStream(view.addImageToLayer()));
+      image = ImageIO.read(new FileInputStream(f));
     } catch (IOException e) {
-      tryRenderMessage("File " + view.addImageToLayer().getAbsolutePath() + " not found!");
+      tryRenderMessage("File " + f.getAbsolutePath() + " not found!");
       return;
     }
     int width = image.getWidth();
