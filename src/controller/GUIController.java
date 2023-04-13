@@ -491,6 +491,7 @@ public class GUIController implements Features {
     BufferedImage image;
     if (view.addImageToLayer().getAbsolutePath().endsWith(".ppm")) {
       addPPM(curLayer);
+
       return;
     }
     try {
@@ -512,14 +513,15 @@ public class GUIController implements Features {
       }
     }
     model.addImage(0, 0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
+    view.addImageToGUI(model.compressImage());
     tryRenderMessage("Image loaded successfully");
   }
 
   /**
    * This method makes a new project.
    *
-   * @param height
-   * @param width
+   * @param height the height of the project.
+   * @param width the width of the project.
    */
   @Override
   public void newProject(int height, int width, int maxValue) {

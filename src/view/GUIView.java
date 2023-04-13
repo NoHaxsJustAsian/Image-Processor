@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -73,7 +72,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   //private JPanel layerPane;
   private JButton addLayerButton;
   
-  //private JButton selectLayerButton;
+  private JButton selectLayerButton;
   private JComboBox<String> layerList;
   ArrayList<String> layerNames = new ArrayList<String>();
 
@@ -214,7 +213,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     addImageButton.setActionCommand("Add Image Button");
     this.add(this.addImageButton);
 
-    JButton selectLayerButton = new JButton("Select Layer");
+    selectLayerButton = new JButton("Select Layer");
     selectLayerButton.setActionCommand("Select Layer Button");
     this.add(selectLayerButton);
 
@@ -399,7 +398,9 @@ public class GUIView extends JFrame implements IImageProcessorView {
       f.newProject(height, width, maxValue);
     }
     );
-
+    selectLayerButton.addActionListener(e -> {
+      curLayer = layerList.getSelectedItem().toString();
+    });
     saveProjectButton.addActionListener(e -> f.saveProject());
     loadButton.addActionListener(e -> f.loadProject());
     saveImageButton.addActionListener(e -> {
