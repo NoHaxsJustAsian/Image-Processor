@@ -55,7 +55,7 @@ public class Main {
       c.startProcessor();
     } else {
       IImageProcessorModel model = new ImageProcessorModel(10, 10);
-      GUIView sg = new GUIView(model);
+      GUIView sg = new GUIView();
       GUIController control = new GUIController(sg, model);
     }
   }

@@ -230,7 +230,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     String[] layerNamesArray = layerNames.toArray(new String[layerNames.size()]);
     layerList = new JComboBox<String>(layerNamesArray);
     layerList.setActionCommand("Layer List");
-    curLayer = layerList.getSelectedItem().toString();
+
 
 
     //COMBO BOX FOR FORMATS
@@ -337,6 +337,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
     if (response == JFileChooser.APPROVE_OPTION) {
       f = fc.getSelectedFile();
     }
+    curLayer = layerList.getSelectedItem().toString();
+    
     refresh();
     return f;
   }
