@@ -136,7 +136,7 @@ public class ImageProcessorController implements IImageProcessorController {
           break;
         case "save-image":
           tryRender("type project path to save \n");
-          this.savePPM(scan.next());
+          this.saveImage(scan.next(), scan.next());
           break;
         case "set-filter":
           tryRender("type filter name \n");
@@ -433,7 +433,7 @@ public class ImageProcessorController implements IImageProcessorController {
     return new PPMImage(pixels, height, width);
   }
 
-  private void saveImage(String filePath, String fileType) throws IllegalArgumentException, IOException {
+  private void saveImage(String filePath, String fileType) throws IllegalArgumentException {
     if (filePath == null || fileType == null) {
       throw new IllegalArgumentException("invalid file path");
     }

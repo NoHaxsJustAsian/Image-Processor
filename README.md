@@ -6,16 +6,32 @@
   
 ## View
   - GUIView 
-    - Decoupled from
+    - Decoupled from model, No longer needs to be passed a model or an interface of a model. 
+    - Decoupled from controller, does not need to be passed a controller. 
+    - Originally, the controller was passed in, and never used.
+    - Only relies on the features interface of a controller. 
+    - Fixed buttons that were not working, such as the save button, and the load button. 
+    - Added file type filtering for the load button.
+    - Added file type filtering for the save button, allowing the user to choose what type of file 
+    - to save. 
     - Debugged 
   
 ## Controller
   - GUIController
     - Decoupled from 
     - addLayerButton
+    - Changed our original saveImage, to savePPM, as it saved a ppm, then constructed a new method,
+    - called, saveImage, which can save any type of image, including ppms.
+    - Changed our original addImage, to addPPM, as it loaded in a ppm, then constructed a 
+    - new method, called, addImage, which can load any type of image, including ppms.
+    - Debugged
   - ImageProcessorController
     - Added switch case operations for new filters, multiply, difference, and screen filters. 
     - handle add-image to render png and jpg files 
+    - Changed our original saveImage, to savePPM, as it loaded a ppm, then constructed a new
+    - method, called, saveImage, which can take in any type of image, including ppms.
+    - Changed our original addImage, to addPPM, as it loaded in a ppm, then constructed a 
+    - new method, called, addImage, which can load any type of image, including ppms.
 
 # assignment2 part2
 ## Controller
