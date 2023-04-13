@@ -241,12 +241,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
     //IMAGE PANEL
+    imageLabel = new JLabel();
     imageScrollPane = new JScrollPane(imageLabel);
     imagePane.add(imageScrollPane);
     imagePane.setBorder(BorderFactory.createTitledBorder("Composite Image"));
     imagePane.setLayout(new FlowLayout(FlowLayout.LEADING));
-    imagePane.add(imageScrollPane);
-    imageLabel = new JLabel();
+
 
 
 
@@ -276,6 +276,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     layerPane.add(layerList);
     layerPane.add(addLayerButton);
     layerPane.add(selectLayerButton);
+    this.add(imagePane);
 
 
     this.pack();
@@ -376,6 +377,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
   private String addLayerHelp() {
     String name = JOptionPane.showInputDialog("Enter a name for the layer");
     layerNames.add(name);
+    layerList.addItem(name);
     return name;
   }
 
