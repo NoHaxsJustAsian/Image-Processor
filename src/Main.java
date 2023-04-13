@@ -1,11 +1,6 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.Scanner;
-
-import javax.swing.JFrame;
 
 import controller.GUIController;
 import controller.IImageProcessorController;

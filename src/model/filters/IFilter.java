@@ -1,6 +1,7 @@
 package model.filters;
 
 import java.util.List;
+
 import model.ILayer;
 import model.IPixel;
 

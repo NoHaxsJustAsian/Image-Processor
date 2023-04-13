@@ -12,10 +12,15 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
-import javax.swing.JOptionPane;
-
-
+import model.IImageProcessorModel;
+import model.ILayer;
+import model.IPixel;
+import model.ImageProcessorModel;
+import model.Layer;
+import model.PPMImage;
+import model.Pixel;
 import model.filters.BlueFilter;
 import model.filters.BrightenIntensity;
 import model.filters.BrightenLuma;
@@ -30,13 +35,6 @@ import model.filters.Multiply;
 import model.filters.Normal;
 import model.filters.RedFilter;
 import model.filters.Screen;
-import model.IImageProcessorModel;
-import model.ILayer;
-import model.IPixel;
-import model.ImageProcessorModel;
-import model.Layer;
-import model.PPMImage;
-import model.Pixel;
 import view.GUIView;
 
 /**

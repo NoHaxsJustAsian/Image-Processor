@@ -4,7 +4,6 @@ import java.util.List;
 
 import model.ILayer;
 import model.IPixel;
-
 import model.Pixel;
 
 /**

@@ -2,10 +2,10 @@ package model.filters;
 
 import java.util.List;
 
+import model.IHSL;
 import model.ILayer;
 import model.IPixel;
 import swingdemo.RepresentationConverter;
-import model.IHSL;
 
 /**
  * Represents a multiply filter.
