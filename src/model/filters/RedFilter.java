@@ -18,6 +18,7 @@ public class RedFilter implements IFilter {
 
   /**
    * Applies the Red filter to the top layer.
+   *
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */

@@ -21,6 +21,7 @@ public class BlueFilter implements IFilter {
 
   /**
    * Applies the Blue filter to the top layer.
+   *
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */

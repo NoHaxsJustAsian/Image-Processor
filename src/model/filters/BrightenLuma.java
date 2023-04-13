@@ -22,6 +22,7 @@ public class BrightenLuma implements IFilter {
 
   /**
    * Applies the brighten luma filter to the top layer.
+   *
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */

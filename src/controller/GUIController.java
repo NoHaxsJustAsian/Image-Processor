@@ -49,10 +49,11 @@ public class GUIController implements Features {
 
   /**
    * Represents the default constructor for the GUIController.
-   * @param view the view.
+   *
+   * @param view  the view.
    * @param model the model.
    */
-  public GUIController(GUIView view,  IImageProcessorModel model) {
+  public GUIController(GUIView view, IImageProcessorModel model) {
     this.view = view;
     this.model = model;
     this.view.addFeatures(this);
@@ -61,6 +62,7 @@ public class GUIController implements Features {
 
   /**
    * This method should select a filter by utilizing its name.
+   *
    * @param name the name of the filter.
    */
   private IFilter filterHelp(String name) {
@@ -211,6 +213,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a blue filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -225,6 +228,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a brightenIntensity filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -239,6 +243,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a brightenLuma filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -253,6 +258,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a brightenValue filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -267,6 +273,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a darkenIntensity filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -281,6 +288,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a darkenLuma filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -295,6 +303,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a darkenValue filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -309,6 +318,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a green filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -323,6 +333,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a normal filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -337,6 +348,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a red filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -351,6 +363,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a screen filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -365,6 +378,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a multiply filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -379,6 +393,7 @@ public class GUIController implements Features {
 
   /**
    * This method applies a multiply filter to the current layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -401,6 +416,7 @@ public class GUIController implements Features {
 
   /**
    * This method adds an image to the layer.
+   *
    * @param curLayer the current layer.
    */
   @Override
@@ -450,11 +466,12 @@ public class GUIController implements Features {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-    model.addImage(0,0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
+    model.addImage(0, 0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
   }
 
   /**
    * This method renders a message using the view, as a popup.
+   *
    * @param msg is the given message as a String.
    */
   public void tryRenderMessage(String msg) {
@@ -472,7 +489,7 @@ public class GUIController implements Features {
    */
   public void addImage(String curLayer) {
     BufferedImage image;
-    if(view.addImageToLayer().getAbsolutePath().endsWith(".ppm")) {
+    if (view.addImageToLayer().getAbsolutePath().endsWith(".ppm")) {
       addPPM(curLayer);
       return;
     }
@@ -494,7 +511,7 @@ public class GUIController implements Features {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-    model.addImage(0,0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
+    model.addImage(0, 0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
     tryRenderMessage("Image loaded successfully");
   }
 
@@ -513,18 +530,18 @@ public class GUIController implements Features {
 
   /**
    * This method saves the image to a file.
+   *
    * @param fileType the type of file it is being saved as.
    */
   public void saveImage(String fileType) throws IOException {
-    if(!fileType.equals("ppm") && !fileType.equals("png") && !fileType.equals("jpg")) {
+    if (!fileType.equals("ppm") && !fileType.equals("png") && !fileType.equals("jpg")) {
       tryRenderMessage("Invalid file type");
       return;
     }
 
     if (fileType.equals("ppm")) {
       savePPM();
-    }
-    else {
+    } else {
       File f = view.saveFile();
       BufferedImage img = model.compressImage();
       try {

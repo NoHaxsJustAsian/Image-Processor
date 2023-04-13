@@ -37,6 +37,7 @@ public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
    * This method will be used to add a layer to the project, without a filter.
+   *
    * @param name name of layer.
    */
   void addLayer(String name);
@@ -45,8 +46,8 @@ public interface IImageProcessorModel extends IImageProcessorState {
    * This method will be used to add a layer to the project, without a filter.
    * This would be the background canvas.
    *
-   * @param height int height.
-   * @param width  int width.
+   * @param height   int height.
+   * @param width    int width.
    * @param maxValue int max value.
    */
   void newProject(int height, int width, int maxValue);

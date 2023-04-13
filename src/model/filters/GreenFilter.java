@@ -21,6 +21,7 @@ public class GreenFilter implements IFilter {
 
   /**
    * This applies green filter to the top layer.
+   *
    * @param layers is a list of layers.
    * @return IImage is original image with filter applied.
    */

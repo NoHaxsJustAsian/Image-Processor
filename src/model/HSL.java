@@ -10,6 +10,7 @@ public class HSL implements IHSL {
 
   /**
    * Represents constructor for Pixel.
+   *
    * @param hue        pixel value
    * @param saturation pixel value
    * @param lightness  pixel value
@@ -32,6 +33,7 @@ public class HSL implements IHSL {
 
   /**
    * Returns the hue value of the pixel.
+   *
    * @return hue
    */
   public double getHue() {
@@ -40,6 +42,7 @@ public class HSL implements IHSL {
 
   /**
    * Returns the saturation value of the pixel.
+   *
    * @return saturation
    */
   public double getSaturation() {
@@ -48,6 +51,7 @@ public class HSL implements IHSL {
 
   /**
    * Returns the lightness value of the pixel.
+   *
    * @return lightness
    */
   public double getLightness() {

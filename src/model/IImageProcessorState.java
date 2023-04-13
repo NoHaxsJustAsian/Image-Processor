@@ -61,7 +61,7 @@ public interface IImageProcessorState {
    *
    * @return int number of layers.
    */
-  HashMap<String,ILayer> getMapLayers();
+  HashMap<String, ILayer> getMapLayers();
 
 
   /**

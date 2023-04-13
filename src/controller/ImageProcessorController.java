@@ -40,7 +40,6 @@ import view.IImageProcessorView;
 import view.ImageProcessorView;
 
 
-
 //FIXME: adapter fom BufferedImage to IImage
 //FIXME: IImage converter from IImage to BufferedImage because RenderImage implements BufferedImage
 
@@ -104,7 +103,7 @@ public class ImageProcessorController implements IImageProcessorController {
     tryRender("Welcome to the Image Processor! \n");
     tryRender("press q to quit! \n");
     tryRender("Possible commands include: \n");
-    tryRender("new-project \n" );
+    tryRender("new-project \n");
     tryRender("load-project \n");
     tryRender("save-project \n");
     tryRender("save-image \n");
@@ -439,8 +438,7 @@ public class ImageProcessorController implements IImageProcessorController {
     }
     if (fileType.equals("ppm")) {
       savePPM(filePath);
-    }
-    else {
+    } else {
       BufferedImage img = model.compressImage();
       File outputfile = new File("saved." + fileType);
       try {

@@ -22,6 +22,7 @@ public class BrightenValue implements IFilter {
 
   /**
    * Applies the brightened value filter to the given layer.
+   *
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */

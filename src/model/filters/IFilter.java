@@ -12,6 +12,7 @@ public interface IFilter {
 
   /**
    * Applies the filter to the given layer.
+   *
    * @param layers a list of layers.
    * @return IPixel[][] is the new image.
    */

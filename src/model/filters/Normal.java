@@ -22,6 +22,7 @@ public class Normal implements IFilter {
 
   /**
    * This applies no filter to the top Layer.
+   *
    * @param layers is original image.
    * @return IImage is original image with filter applied.
    */
