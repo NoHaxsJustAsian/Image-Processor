@@ -114,6 +114,7 @@ public class ImageProcessorController implements IImageProcessorController {
     tryRender("add-image-to-layer \n");
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
+      while (scan.hasNext()) {
       switch (command) {
         case "new-project":
           tryRender("enter height and width and max color value \n");
@@ -197,7 +198,7 @@ public class ImageProcessorController implements IImageProcessorController {
           break;
       }
     }
-
+  }
   }
 
   /**
