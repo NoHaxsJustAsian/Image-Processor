@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 import javax.imageio.ImageIO;
 
-import model.IImage;
+
 import model.IImageProcessorModel;
+import view.IImageProcessorView;
+
+
+import model.IImage;
 import model.ILayer;
 import model.IPixel;
 import model.ImageProcessorModel;
@@ -36,7 +39,6 @@ import model.filters.Multiply;
 import model.filters.Normal;
 import model.filters.RedFilter;
 import model.filters.Screen;
-import view.IImageProcessorView;
 import view.ImageProcessorView;
 
 
