@@ -6,8 +6,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+//Filters
+import model.filters.BlueFilter;
+import model.filters.BrightenIntensity;
+import model.filters.BrightenLuma;
+import model.filters.BrightenValue;
+import model.filters.DarkenIntensity;
+import model.filters.DarkenLuma;
+import model.filters.DarkenValue;
+import model.filters.GreenFilter;
 import model.filters.IFilter;
 import model.filters.Normal;
+import model.filters.RedFilter;
 
 
 /**
@@ -335,5 +345,51 @@ public class ImageProcessorModel implements IImageProcessorModel {
       }
     }
     return image;
+  }
+
+  /**
+   * This method will return the filter when given the name of the filter.
+   * @param name name of filter.
+   * @return IFilter
+   */
+  public IFilter getFilter(String name) {
+    switch (name) {
+      case "blue":
+        return new BlueFilter();
+      case "brighten-luma":
+        return new BrightenLuma();
+      case "brighten-intensity":
+        return new BrightenIntensity();
+      case "brighten-value":
+        return new BrightenValue();
+      case "darken-luma":
+        return new DarkenLuma();
+      case "darken-intensity":
+        return new DarkenIntensity();
+      case "darken-value":
+        return new DarkenValue();
+      case "green":
+        return new GreenFilter();
+      case "normal":
+        return new Normal();
+      case "red":
+        return new RedFilter();
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * This method will help the load an existing project.
+   */
+  public void loadProjectHelp(int width, int height, int maxValue) {
+
+  }
+
+  /**
+   * This method will help construct pixels.
+   */
+  public IPixel constructPixels(int r, int g, int b) {
+    return new Pixel(r, g, b, 255);
   }
 }

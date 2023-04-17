@@ -21,20 +21,6 @@ import model.ImageProcessorModel;
 import model.Layer;
 import model.PPMImage;
 import model.Pixel;
-import model.filters.BlueFilter;
-import model.filters.BrightenIntensity;
-import model.filters.BrightenLuma;
-import model.filters.BrightenValue;
-import model.filters.DarkenIntensity;
-import model.filters.DarkenLuma;
-import model.filters.DarkenValue;
-import model.filters.Difference;
-import model.filters.GreenFilter;
-import model.filters.IFilter;
-import model.filters.Multiply;
-import model.filters.Normal;
-import model.filters.RedFilter;
-import model.filters.Screen;
 import view.GUIView;
 
 /**
@@ -60,38 +46,6 @@ public class GUIController implements Features {
     this.view.display();
   }
 
-  /**
-   * This method should select a filter by utilizing its name.
-   *
-   * @param name the name of the filter.
-   */
-  private IFilter filterHelp(String name) {
-    switch (name) {
-      case "blue":
-        return new BlueFilter();
-      case "brighten-luma":
-        return new BrightenLuma();
-      case "brighten-intensity":
-        return new BrightenIntensity();
-      case "brighten-value":
-        return new BrightenValue();
-      case "darken-luma":
-        return new DarkenLuma();
-      case "darken-intensity":
-        return new DarkenIntensity();
-      case "darken-value":
-        return new DarkenValue();
-      case "green":
-        return new GreenFilter();
-      case "normal":
-        return new Normal();
-      case "red":
-        return new RedFilter();
-      default:
-        return null;
-    }
-  }
-
 
   /**
    * This method should load a project and set the model to the project.
@@ -101,7 +55,6 @@ public class GUIController implements Features {
     int width;
     int height;
     int maxRGB;
-    IImageProcessorModel model;
     IFilter filter;
     List<ILayer> orderLayers = new ArrayList<ILayer>();
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
@@ -136,7 +89,7 @@ public class GUIController implements Features {
     while (sc.hasNext()) {
       String name = sc.next();
       try {
-        filter = filterHelp(sc.next()); //FIXME: fix naming scheme of filters
+        filter = model.getFilter(sc.next()); //FIXME: fix naming scheme of filters
       } catch (IllegalArgumentException e) {
         this.tryRenderMessage("Invalid filter name");
         return;
@@ -147,7 +100,7 @@ public class GUIController implements Features {
           int r = sc.nextInt();
           int g = sc.nextInt();
           int b = sc.nextInt();
-          pixels[i][j] = new Pixel(r, g, b, 255);
+          pixels[i][j] = model.constructPixels(r, g, b);
         }
       }
       ILayer hold = new Layer(name, filter, height, width);
@@ -155,9 +108,10 @@ public class GUIController implements Features {
       orderLayers.add(hold);
       nameLayers.put(name, hold);
     }
-    this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers);
+    this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers, maxRGB);
   }
 
+  //FIXME: THIS IS COMPLTELTY WRONG.
   /**
    * This method saves a project to a file.
    */
@@ -219,7 +173,7 @@ public class GUIController implements Features {
   @Override
   public void blueFilter(String curLayer) {
     try {
-      model.setFilter(curLayer, new BlueFilter());
+      model.setFilter(curLayer, model.getFilter("blue"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -234,7 +188,7 @@ public class GUIController implements Features {
   @Override
   public void brightenIntensity(String curLayer) {
     try {
-      model.setFilter(curLayer, new BrightenIntensity());
+      model.setFilter(curLayer, model.getFilter("brighten-intensity"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -249,7 +203,7 @@ public class GUIController implements Features {
   @Override
   public void brightenLuma(String curLayer) {
     try {
-      model.setFilter(curLayer, new BrightenLuma());
+      model.setFilter(curLayer, model.getFilter("brighten-luma"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -264,7 +218,7 @@ public class GUIController implements Features {
   @Override
   public void brightenValue(String curLayer) {
     try {
-      model.setFilter(curLayer, new BrightenValue());
+      model.setFilter(curLayer, model.getFilter("brighten-value"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -279,7 +233,7 @@ public class GUIController implements Features {
   @Override
   public void darkenIntensity(String curLayer) {
     try {
-      model.setFilter(curLayer, new DarkenIntensity());
+      model.setFilter(curLayer, model.getFilter("darken-intensity"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -294,7 +248,7 @@ public class GUIController implements Features {
   @Override
   public void darkenLuma(String curLayer) {
     try {
-      model.setFilter(curLayer, new DarkenLuma());
+      model.setFilter(curLayer, model.getFilter("darken-luma"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -309,7 +263,7 @@ public class GUIController implements Features {
   @Override
   public void darkenValue(String curLayer) {
     try {
-      model.setFilter(curLayer, new DarkenValue());
+      model.setFilter(curLayer, model.getFilter("darken-value"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -324,7 +278,7 @@ public class GUIController implements Features {
   @Override
   public void greenFilter(String curLayer) {
     try {
-      model.setFilter(curLayer, new GreenFilter());
+      model.setFilter(curLayer, model.getFilter("green"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -339,7 +293,7 @@ public class GUIController implements Features {
   @Override
   public void normal(String curLayer) {
     try {
-      model.setFilter(curLayer, new Normal());
+      model.setFilter(curLayer, model.getFilter("normal"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -354,7 +308,7 @@ public class GUIController implements Features {
   @Override
   public void redFilter(String curLayer) {
     try {
-      model.setFilter(curLayer, new RedFilter());
+      model.setFilter(curLayer, model.getFilter("red"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -369,7 +323,7 @@ public class GUIController implements Features {
   @Override
   public void screen(String curLayer) {
     try {
-      model.setFilter(curLayer, new Screen());
+      model.setFilter(curLayer, model.getFilter("screen"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -384,7 +338,7 @@ public class GUIController implements Features {
   @Override
   public void multiply(String curLayer) {
     try {
-      model.setFilter(curLayer, new Multiply());
+      model.setFilter(curLayer, model.getFilter("multiply"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -399,7 +353,7 @@ public class GUIController implements Features {
   @Override
   public void difference(String curLayer) {
     try {
-      model.setFilter(curLayer, new Difference());
+      model.setFilter(curLayer, model.getFilter("difference"));
       view.addImageToGUI(model.compressImage());
     } catch (Exception e) {
       System.out.println("Please choose a layer.");
@@ -411,7 +365,7 @@ public class GUIController implements Features {
    */
   @Override
   public void addLayer(String name) {
-    model.addLayer(name, new Normal());
+    model.addLayer(name, model.getFilter("normal"));
   }
 
   /**

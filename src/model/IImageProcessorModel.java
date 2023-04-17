@@ -80,4 +80,21 @@ public interface IImageProcessorModel extends IImageProcessorState {
    * This method will return a BufferedImage of the final canvas.
    */
   public BufferedImage compressImage();
+  
+  /**
+   * This method will return the filter when given the name of the filter.
+   * @param name name of filter.
+   * @return IFilter
+   */
+  public IFilter getFilter(String name);
+
+  /**
+   * This method will construct and return a pixer given rgb values.
+   * @param r red value.
+   * @param g green value.
+   * @param b blue value.
+   * @return IPixel
+   */
+  public IPixel constructPixels(int r, int g, int b);
+
 }
