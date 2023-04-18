@@ -97,4 +97,10 @@ public interface IImageProcessorModel extends IImageProcessorState {
    */
   public IPixel constructPixels(int r, int g, int b);
 
+  /**
+   * This method helps load the project in the controller.
+   * @param string all the inputs of a file.
+   */
+  public void loadProjectHelp(String totalInput);
+
 }

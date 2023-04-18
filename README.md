@@ -3,6 +3,7 @@
   - IImageProcessorModel
     - Added filter return method, getFilter into the interface.
     - Added constructPixel method, which returns a pixel when given rgb values.
+    - Added loadProjectHelp, to call all necessary methods to load in a model when given a string which contains all of the data contained in a file. 
 
   - ImageProcessorModel
     - Added filter return method, getFilter, to decouple the model from the controller.
@@ -13,6 +14,7 @@
   - GUIController.java
     - Removed filterHelp, put getFilter into model to decouple the model from the controller. It helps remove one needed IFilter interface import. 
     - Changed all uses of IFilters, to utilize the model's method of getFilter, to decouple the model from the controller. 
+    - Changed loadProject, and offloaded any model referencing to loadProjectHelp in the model.
 
 
 

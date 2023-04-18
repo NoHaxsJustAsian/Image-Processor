@@ -382,8 +382,37 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will help the load an existing project.
    */
-  public void loadProjectHelp(int width, int height, int maxValue) {
+  public void loadProjectHelp(String totalInput) {
+    List<ILayer> orderLayers = new ArrayList<ILayer>();
+    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
+    String[] lineNum = totalInput.split("\n");
+    int width = Integer.parseInt(lineNum[1].substring(0, lineNum[1].indexOf(" ")));
+    int height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" "), lineNum[1].length()));
+    int maxValue = Integer.parseInt(lineNum[2]);
 
+    for(int i = 3; i > lineNum.length; i=i+2+height) {
+      String name = lineNum[i];
+      IFilter filter = this.getFilter(lineNum[i + 1]);
+      IPixel pixels[][] = new Pixel[height][width];
+      for (int j = 0; j < height; j++) {
+        for (int k = 0; k < width; k++) {
+          String[] rgb = lineNum[i + 2 + j].split(" ");
+          int r = Integer.parseInt(rgb[0]);
+          int g = Integer.parseInt(rgb[1]);
+          int b = Integer.parseInt(rgb[2]);
+          pixels[j][k] = new Pixel(r, g, b, 255);
+        }
+      }
+      ILayer hold = new Layer(name, filter, height, width);
+      hold.setCanvas(pixels);
+      orderLayers.add(hold);
+      nameLayers.put(name, hold);
+    }
+    this.height = height;
+    this.width = width;
+    this.maxValue = maxValue;
+    this.nameLayers = nameLayers;
+    this.orderLayers = orderLayers;
   }
 
   /**
