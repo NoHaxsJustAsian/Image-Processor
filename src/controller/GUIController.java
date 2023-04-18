@@ -21,6 +21,7 @@ import model.ImageProcessorModel;
 import model.Layer;
 import model.PPMImage;
 import model.Pixel;
+import model.filters.IFilter;
 import view.GUIView;
 
 /**

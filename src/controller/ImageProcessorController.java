@@ -42,6 +42,11 @@ import model.filters.Screen;
 import view.ImageProcessorView;
 
 
+//enum with the filter options
+//controller would handle parsing the user input and converting to that enum value
+//model would need to expose that method that sets the layer's filter, as the enum value
+// in actual model
+
 //FIXME: adapter fom BufferedImage to IImage
 //FIXME: IImage converter from IImage to BufferedImage because RenderImage implements BufferedImage
 
@@ -55,6 +60,19 @@ public class ImageProcessorController implements IImageProcessorController {
   private IImageProcessorModel model;
   private IImageProcessorView view;
   private final Readable object;
+
+
+
+  /**
+   * This is a method for checking for quit game command is prompted.
+   *
+   * @param input is the input.
+   * @return boolean if quit.
+   */
+  private boolean isQuit(String input) {
+    return input.equals("q") || input.equals("Q");
+  }
+
 
 
   /**
@@ -103,18 +121,17 @@ public class ImageProcessorController implements IImageProcessorController {
    */
   private void readCommand(Scanner scan) {
     tryRender("Welcome to the Image Processor! \n");
-    tryRender("press q to quit! \n");
+    tryRender("press q or Q to quit! \n");
     tryRender("Possible commands include: \n");
-    tryRender("new-project \n");
-    tryRender("load-project \n");
-    tryRender("save-project \n");
-    tryRender("save-image \n");
-    tryRender("set-filter \n");
-    tryRender("add-layer \n");
+    tryRender("new-project ");
+    tryRender("load-project ");
+    tryRender("save-project ");
+    tryRender("save-image ");
+    tryRender("set-filter ");
+    tryRender("add-layer ");
     tryRender("add-image-to-layer \n");
     String command = scan.next();
     while (!command.equals("q") && !command.equals("Q")) {
-      while (scan.hasNext()) {
       switch (command) {
         case "new-project":
           tryRender("enter height and width and max color value \n");
@@ -198,7 +215,7 @@ public class ImageProcessorController implements IImageProcessorController {
           break;
       }
     }
-  }
+
   }
 
   /**
@@ -264,7 +281,12 @@ public class ImageProcessorController implements IImageProcessorController {
       orderLayers.add(hold);
       nameLayers.put(name, hold);
     }
+    //rename current model to project
+    //Layers
+    //create new model interface and class, take project as a field of new model
+    //model.newProject(height, width, nameLayers, orderLayers);
     this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers);
+
     this.view = new ImageProcessorView(this.model);
   }
 
