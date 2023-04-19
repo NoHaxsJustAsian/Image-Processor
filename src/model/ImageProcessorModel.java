@@ -14,10 +14,13 @@ import model.filters.BrightenValue;
 import model.filters.DarkenIntensity;
 import model.filters.DarkenLuma;
 import model.filters.DarkenValue;
+import model.filters.Difference;
 import model.filters.GreenFilter;
 import model.filters.IFilter;
+import model.filters.Multiply;
 import model.filters.Normal;
 import model.filters.RedFilter;
+import model.filters.Screen;
 
 /**
  * Represents the model for this program.
@@ -374,6 +377,12 @@ public class ImageProcessorModel implements IImageProcessorModel {
         return new Normal();
       case "red":
         return new RedFilter();
+        case "multiply":
+        return new Multiply();
+      case "difference":
+        return new Difference();
+      case "screen":
+        return new Screen();
       default:
         return null;
     }

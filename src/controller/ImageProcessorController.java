@@ -7,9 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
 
@@ -17,38 +14,9 @@ import javax.imageio.ImageIO;
 import model.IImageProcessorModel;
 import view.IImageProcessorView;
 
-
-import model.IImage;
-import model.ILayer;
 import model.IPixel;
-import model.ImageProcessorModel;
-import model.Layer;
 import model.PPMImage;
 import model.Pixel;
-import model.filters.BlueFilter;
-import model.filters.BrightenIntensity;
-import model.filters.BrightenLuma;
-import model.filters.BrightenValue;
-import model.filters.DarkenIntensity;
-import model.filters.DarkenLuma;
-import model.filters.DarkenValue;
-import model.filters.Difference;
-import model.filters.GreenFilter;
-import model.filters.IFilter;
-import model.filters.Multiply;
-import model.filters.Normal;
-import model.filters.RedFilter;
-import model.filters.Screen;
-import view.ImageProcessorView;
-
-
-//enum with the filter options
-//controller would handle parsing the user input and converting to that enum value
-//model would need to expose that method that sets the layer's filter, as the enum value
-// in actual model
-
-//FIXME: adapter fom BufferedImage to IImage
-//FIXME: IImage converter from IImage to BufferedImage because RenderImage implements BufferedImage
 
 /**
  * This class implements the IImageProcessor Controller.
@@ -60,6 +28,7 @@ public class ImageProcessorController implements IImageProcessorController {
   private IImageProcessorModel model;
   private IImageProcessorView view;
   private final Readable object;
+  private String curLayer;
 
 
 
@@ -157,47 +126,51 @@ public class ImageProcessorController implements IImageProcessorController {
           tryRender("type project path to save \n");
           this.saveImage(scan.next(), scan.next());
           break;
+        case "select-layer":
+          tryRender("type layer name to select \n");
+          curLayer = scan.next();
+          break;
         case "set-filter":
           tryRender("type filter name \n");
           switch (scan.next()) {
             case "blue":
-              this.model.setFilter(scan.next(), new BlueFilter());
+              this.model.setFilter(scan.next(), model.getFilter("blue"));
               break;
             case "brighten-luma":
-              this.model.setFilter(scan.next(), new BrightenLuma());
+              this.model.setFilter(scan.next(), model.getFilter("brighten-luma"));
               break;
             case "brighten-intensity":
-              this.model.setFilter(scan.next(), new BrightenIntensity());
+              this.model.setFilter(scan.next(), model.getFilter("brighten-intensity"));
               break;
             case "brighten-value":
-              this.model.setFilter(scan.next(), new BrightenValue());
+              this.model.setFilter(scan.next(), model.getFilter("brighten-value"));
               break;
             case "darken-luma":
-              this.model.setFilter(scan.next(), new DarkenLuma());
+              this.model.setFilter(scan.next(), model.getFilter("darken-luma"));
               break;
             case "darken-intensity":
-              this.model.setFilter(scan.next(), new DarkenIntensity());
+              this.model.setFilter(scan.next(), model.getFilter("darken-intensity"));
               break;
             case "darken-value":
-              this.model.setFilter(scan.next(), new DarkenValue());
+              this.model.setFilter(scan.next(), model.getFilter("darken-value"));
               break;
             case "green":
-              this.model.setFilter(scan.next(), new GreenFilter());
+              this.model.setFilter(scan.next(), model.getFilter("green"));
               break;
             case "red":
-              this.model.setFilter(scan.next(), new RedFilter());
+              this.model.setFilter(scan.next(), model.getFilter("red"));
               break;
             case "multiply":
-              this.model.setFilter(scan.next(), new Multiply());
+              this.model.setFilter(scan.next(), model.getFilter("multiply"));
               break;
             case "difference":
-              this.model.setFilter(scan.next(), new Difference());
+              this.model.setFilter(scan.next(), model.getFilter("difference"));
               break;
             case "screen":
-              this.model.setFilter(scan.next(), new Screen());
+              this.model.setFilter(scan.next(), model.getFilter("screen"));
               break;
             default:
-              this.model.setFilter(scan.next(), new Normal());
+              this.model.setFilter(scan.next(), model.getFilter("normal"));
               break;
           }
           break;
@@ -205,9 +178,10 @@ public class ImageProcessorController implements IImageProcessorController {
           this.model.addLayer(scan.next());
           break;
         case "add-image-to-layer":
-          this.model.addImage(scan.nextInt(), scan.nextInt(),
-                  loadPPM(scan.next()), this.model.getLayer(scan.next()));
-          //FIXME: all these need catch blocks for the exceptions.
+          tryRender("type layer name to add image to \n");
+          curLayer = scan.next();
+          tryRender("type image path to add \n");
+          this.loadPPM(scan.next());
           break;
         default:
           tryRender("Invalid command entered. Please try again.");
@@ -225,19 +199,41 @@ public class ImageProcessorController implements IImageProcessorController {
    */
   private void loadProject(String filePath) {
     Scanner sc;
-    int width;
-    int height;
-    int maxRGB;
-    IImageProcessorModel model;
-    IFilter filter;
-    List<ILayer> orderLayers = new ArrayList<ILayer>();
-    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
-    IPixel[][] pixels;
 
     try {
       sc = new Scanner(new FileInputStream(filePath));
     } catch (FileNotFoundException e) {
       this.tryRender("File " + filePath + " not found!");
+      return;
+    }
+
+    StringBuilder builder = new StringBuilder();
+    while (sc.hasNextLine()) {
+      String s = sc.nextLine();
+      if (!s.equals("") && s.charAt(0) != '#') {
+        builder.append(s + System.lineSeparator());
+      }
+    }
+
+    sc = new Scanner(builder.toString());
+    String token;
+    token = sc.next();
+    if (!token.equals("C1")) {
+      this.tryRender("Invalid Collage file: Collage file should begin with C1");
+      return;
+    }
+
+    model.loadProjectHelp(builder.toString());
+  }
+
+  private void loadPPM(String imagePath) {
+    Scanner sc;
+
+    try {
+      sc = new Scanner(new FileInputStream(imagePath));
+      tryRender("Image loaded successfully");
+    } catch (FileNotFoundException e) {
+      tryRender("File " + imagePath + " not found!");
       return;
     }
     StringBuilder builder = new StringBuilder();
@@ -247,135 +243,15 @@ public class ImageProcessorController implements IImageProcessorController {
         builder.append(s + System.lineSeparator());
       }
     }
-
     sc = new Scanner(builder.toString());
-
     String token;
-
-    token = sc.next();
-    if (!token.equals("C1")) {
-      this.tryRender("Invalid Collage file: Collage file should begin with C1");
-    }
-    width = sc.nextInt();
-    height = sc.nextInt();
-    maxRGB = sc.nextInt();
-    while (sc.hasNext()) {
-      String name = sc.next();
-      try {
-        filter = filterHelp(sc.next()); //FIXME: fix naming scheme of filters
-      } catch (IllegalArgumentException e) {
-        this.tryRender("Invalid filter name");
-        return;
-      }
-      pixels = new Pixel[height][width];
-      for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-          int r = sc.nextInt();
-          int g = sc.nextInt();
-          int b = sc.nextInt();
-          pixels[i][j] = new Pixel(r, g, b, 255);
-        }
-      }
-      ILayer hold = new Layer(name, filter, height, width);
-      hold.setCanvas(pixels);
-      orderLayers.add(hold);
-      nameLayers.put(name, hold);
-    }
-    //rename current model to project
-    //Layers
-    //create new model interface and class, take project as a field of new model
-    //model.newProject(height, width, nameLayers, orderLayers);
-    this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers);
-
-    this.view = new ImageProcessorView(this.model);
-  }
-
-  private IImage loadPPM(String imagePath) {
-    Scanner sc;
-    int width;
-    int height;
-    int maxValue;
-    Pixel[][] pixels;
-
-
-    try {
-      sc = new Scanner(new FileInputStream(imagePath));
-      tryRender("Image loaded successfully");
-    } catch (FileNotFoundException e) {
-      tryRender("File " + imagePath + " not found!");
-      return null;
-    }
-    StringBuilder builder = new StringBuilder();
-    while (sc.hasNextLine()) {
-      String s = sc.nextLine();
-      if (!s.equals("") && s.charAt(0) != '#') {
-        builder.append(s + System.lineSeparator());
-      }
-    }
-
-    sc = new Scanner(builder.toString());
-
-    String token;
-
     token = sc.next();
     if (!token.equals("P3")) {
       tryRender("Invalid PPM file: plain RAW file should begin with P3");
     }
-    width = sc.nextInt();
-    System.out.println("Width of image: " + width);
-    height = sc.nextInt();
-    System.out.println("Height of image: " + height);
-    maxValue = sc.nextInt();
-    pixels = new Pixel[height][width];
-
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        int r = sc.nextInt();
-        int g = sc.nextInt();
-        int b = sc.nextInt();
-        pixels[i][j] = new Pixel(r, g, b, 255);
-      }
-    }
-    return new PPMImage(pixels, height, width);
+    model.loadPPMHelp(builder.toString(), curLayer);
   }
 
-  /**
-   * This method should load a project.
-   *
-   * @param name the name of the filter.
-   */
-  private IFilter filterHelp(String name) {
-    switch (name) {
-      case "blue":
-        return new BlueFilter();
-      case "brighten-luma":
-        return new BrightenLuma();
-      case "brighten-intensity":
-        return new BrightenIntensity();
-      case "brighten-value":
-        return new BrightenValue();
-      case "darken-luma":
-        return new DarkenLuma();
-      case "darken-intensity":
-        return new DarkenIntensity();
-      case "darken-value":
-        return new DarkenValue();
-      case "green":
-        return new GreenFilter();
-      case "normal":
-        return new Normal();
-      case "red":
-        return new RedFilter();
-      case "multiply":
-        return new Multiply();
-      case "difference":
-        return new Difference();
-      case "screen":
-        return new Screen();
-      default:
-        return null;
-    }
-  }
 
   /**
    * This method will output the project as its separate components.
@@ -440,6 +316,7 @@ public class ImageProcessorController implements IImageProcessorController {
 
   //FIXME: figure out if we need to restrict the file type.
   private PPMImage loadImage(String imagePath) throws IOException {
+
     BufferedImage image = ImageIO.read(new File(imagePath));
     int width = image.getWidth();
     int height = image.getHeight();

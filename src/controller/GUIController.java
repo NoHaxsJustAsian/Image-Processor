@@ -44,11 +44,11 @@ public class GUIController implements Features {
    */
   public void loadProject() {
     Scanner sc;
-
+    File f = view.loadProject();
     try {
-      sc = new Scanner(new FileInputStream(view.loadProject()));
+      sc = new Scanner(new FileInputStream(f));
     } catch (FileNotFoundException e) {
-      this.tryRenderMessage("File " + view.loadProject().getAbsolutePath() + " not found!");
+      this.tryRenderMessage("File " + f.getAbsolutePath() + " not found!");
       return;
     }
 

@@ -23,6 +23,15 @@
     - Changed savePPM, and offloaded any model referencing to savePPMHelp in the model.
     - Changed saveProject, as it was incorrect, and now it saves the image properly. 
 
+  - ImageProcessorController
+    - Removed filterHelp, put getFilter into model to decouple the model from the controller. It helps remove one needed IFilter interface import.
+    - Changed all uses of IFilters, to utilize the model's method of getFilter, to decouple the model from the controller.
+    - Changed loadProject, and offloaded any model referencing to loadProjectHelp in the model.
+    - Changed loadPPM, and offloaded any model referencing to loadPPMHelp in the model.
+    - Changed loadImage, and offloaded any model referencing to loadImageHelp in the model.
+    - Changed savePPM, and offloaded any model referencing to savePPMHelp in the model.
+    - Changed the way add-image-to-layer command works, it asks for the layer first and then the filepath.
+
 
 
 
@@ -180,7 +189,7 @@ save-project <path>
 save-image <path>
 add-layer <layer-name>
 set-filter <layer-name> <filter-name>
-add-image-to-layer <x-offset> <y-offset> <layer-name> <path> 
+add-image-to-layer <layer-name> <path> 
 
 # All filters <filter-name>
 normal
