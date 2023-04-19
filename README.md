@@ -3,16 +3,25 @@
   - IImageProcessorModel
     - Added filter return method, getFilter into the interface.
     - Added loadProjectHelp, to call all necessary methods to load in a model when given a string which contains all of the data contained in a file. 
+    - Added loadPPMHelp, to call all necessary methods to load in a model when given a string which contains all of the data contained in a file for a PPM Image.
+    - Added loadImageHelp, to call all necessary methods to load in a model when given a string which contains all of the data contained in a file for a Image that is not a PPM.
+    - Added savePPMHelp, to call all necessary methods to save a final image which contains all of the data contained in a file for a PPM Image and outputs it.
 
   - ImageProcessorModel
     - Added filter return method, getFilter, to decouple the model from the controller.
     - Added loadProjectHelp, to decouple the model from the controller.
-
+    - Added loadPPMHelp, to decouple the model from the controller.
+    - Added loadImageHelp, to decouple the model from the controller.
+    - Added savePPMHelp, to decouple the model from the controller.
 ## Controller
   - GUIController.java
     - Removed filterHelp, put getFilter into model to decouple the model from the controller. It helps remove one needed IFilter interface import. 
     - Changed all uses of IFilters, to utilize the model's method of getFilter, to decouple the model from the controller. 
     - Changed loadProject, and offloaded any model referencing to loadProjectHelp in the model.
+    - Changed loadPPM, and offloaded any model referencing to loadPPMHelp in the model.
+    - Changed loadImage, and offloaded any model referencing to loadImageHelp in the model.
+    - Changed savePPM, and offloaded any model referencing to savePPMHelp in the model.
+    - Changed saveProject, as it was incorrect, and now it saves the image properly. 
 
 
 
@@ -52,16 +61,13 @@
     - addLayerButton
     - Changed our original saveImage, to savePPM, as it saved a ppm, then constructed a new method,
     - called, saveImage, which can save any type of image, including ppms.
-    - Changed our original addImage, to addPPM, as it loaded in a ppm, then constructed a 
-    - new method, called, addImage, which can load any type of image, including ppms.
+    - Changed our original addImage, to addPPM, as it loaded in a ppm, then constructed a new method, called, addImage, which can load any type of image, including ppms.
     - Debugged
   - ImageProcessorController
     - Added switch case operations for new filters, multiply, difference, and screen filters. 
     - handle add-image to render png and jpg files 
-    - Changed our original saveImage, to savePPM, as it loaded a ppm, then constructed a new
-    - method, called, saveImage, which can take in any type of image, including ppms.
-    - Changed our original addImage, to addPPM, as it loaded in a ppm, then constructed a 
-    - new method, called, addImage, which can load any type of image, including ppms.
+    - Changed our original saveImage, to savePPM, as it loaded a ppm, then constructed a new method, called, saveImage, which can take in any type of image, including ppms.
+    - Changed our original addImage, to addPPM, as it loaded in a ppm, then constructed a new method, called, addImage, which can load any type of image, including ppms.
 
 # assignment2 part2
 ## Controller

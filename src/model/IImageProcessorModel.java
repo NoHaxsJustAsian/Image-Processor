@@ -79,19 +79,37 @@ public interface IImageProcessorModel extends IImageProcessorState {
   /**
    * This method will return a BufferedImage of the final canvas.
    */
-  public BufferedImage compressImage();
+  BufferedImage compressImage();
   
   /**
    * This method will return the filter when given the name of the filter.
    * @param name name of filter.
    * @return IFilter
    */
-  public IFilter getFilter(String name);
+  IFilter getFilter(String name);
 
   /**
-   * This method helps load the project in the controller.
+   * This method helps load the project from the controller in the model. 
    * @param string all the inputs of a file.
    */
-  public void loadProjectHelp(String totalInput);
+  void loadProjectHelp(String totalInput);
 
+  /**
+   * This method helps load a PPM Image in the model from a file given by the controller.
+   * @param curLayer current layer being loaded.
+   * @param totalInput all the inputs of a file.
+   */
+  void loadPPMHelp(String totalInput, String curLayer);
+
+  /**
+   * This method helps load an Image in the model from a file given by the controller.
+   * @param totalInput all the inputs of a file.
+   * @param curLayer current layer being loaded.
+   */
+  void loadImageHelp(BufferedImage image, String curLayer);
+
+  /**
+   * This method will help save the final image as a PPM.
+   */
+  String savePPMHelp();
 }

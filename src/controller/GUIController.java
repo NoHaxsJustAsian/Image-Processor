@@ -13,9 +13,6 @@ import javax.swing.JOptionPane;
 import model.IImageProcessorModel;
 import view.GUIView;
 
-import model.IPixel;
-import model.PPMImage;
-import model.Pixel;
 
 
 /**
@@ -74,28 +71,33 @@ public class GUIController implements Features {
     model.loadProjectHelp(builder.toString());
   }
 
-  //FIXME: THIS IS COMPLTELTY WRONG.
+
   /**
    * This method saves a project to a file.
    */
   @Override
   public void saveProject() {
-    File file = view.saveFile();
+    File f = view.saveFile();
 
-    IPixel[][] finalPixels = model.saveCanvas();
-
-    PrintWriter writer;
+    PrintWriter writer = null;
     try {
-      writer = new PrintWriter(file);
+      writer = new PrintWriter(f);
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-
-    for (int i = 0; i < model.getHeight(); i++) {
-      for (int j = 0; j < model.getWidth(); j++) {
-        writer.println(finalPixels[i][j].getRed()
-                + " " + finalPixels[i][j].getGreen()
-                + " " + finalPixels[i][j].getBlue());
+    writer.println("C1");
+    writer.println(model.getWidth() + " " + model.getHeight());
+    writer.println(model.getMaxValue());
+    for (int x = 0; x < model.getLayerCount(); x++) {
+      writer.println(model.getLayer(x).getName()
+              + " "
+              + model.getLayer(x).getFilter().getName());
+      for (int i = 0; i < model.getHeight(); i++) {
+        for (int j = 0; j < model.getWidth(); j++) {
+          writer.println(model.getLayer(x).getPixel(i, j).getRed()
+                  + " " + model.getLayer(x).getPixel(i, j).getGreen()
+                  + " " + model.getLayer(x).getPixel(i, j).getBlue());
+        }
       }
     }
     writer.close();
@@ -107,7 +109,6 @@ public class GUIController implements Features {
   @Override
   public void savePPM() {
     File f = view.saveFile();
-    IPixel[][] finalPixels = model.saveCanvas();
 
     PrintWriter writer;
     try {
@@ -115,16 +116,7 @@ public class GUIController implements Features {
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    writer.println("P3");
-    writer.println(model.getWidth() + " " + model.getHeight());
-    writer.println(model.getMaxValue());
-    for (int i = 0; i < model.getHeight(); i++) {
-      for (int j = 0; j < model.getWidth(); j++) {
-        writer.println(finalPixels[i][j].getRed()
-                + " " + finalPixels[i][j].getGreen()
-                + " " + finalPixels[i][j].getBlue());
-      }
-    }
+    writer.println(model.savePPMHelp());
     writer.close();
   }
 
@@ -339,12 +331,7 @@ public class GUIController implements Features {
   @Override
   public void addPPM(String curLayer) {
     Scanner sc;
-    int width;
-    int height;
-    int maxValue;
-    Pixel[][] pixels;
     File f = view.addImageToLayer();
-
     try {
       sc = new Scanner(new FileInputStream(f));
       tryRenderMessage("Image loaded successfully");
@@ -359,31 +346,14 @@ public class GUIController implements Features {
         builder.append(s + System.lineSeparator());
       }
     }
-
     sc = new Scanner(builder.toString());
-
     String token;
-
     token = sc.next();
     if (!token.equals("P3")) {
       tryRenderMessage("Invalid PPM file: plain RAW file should begin with P3");
     }
-    width = sc.nextInt();
-    System.out.println("Width of image: " + width);
-    height = sc.nextInt();
-    System.out.println("Height of image: " + height);
-    maxValue = sc.nextInt();
-    pixels = new Pixel[height][width];
-
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        int r = sc.nextInt();
-        int g = sc.nextInt();
-        int b = sc.nextInt();
-        pixels[i][j] = new Pixel(r, g, b, 255);
-      }
-    }
-    model.addImage(0, 0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
+    
+    model.loadPPMHelp(builder.toString(), curLayer);
   }
 
   /**
@@ -418,19 +388,7 @@ public class GUIController implements Features {
       tryRenderMessage("File " + f.getAbsolutePath() + " not found!");
       return;
     }
-    int width = image.getWidth();
-    int height = image.getHeight();
-    Pixel[][] pixels = new Pixel[height][width];
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        int rgb = image.getRGB(j, i);
-        int r = (rgb >> 16) & 0xFF;
-        int g = (rgb >> 8) & 0xFF;
-        int b = (rgb & 0xFF);
-        pixels[i][j] = new Pixel(r, g, b, 255);
-      }
-    }
-    model.addImage(0, 0, new PPMImage(pixels, height, width), model.getLayer(curLayer));
+    model.loadImageHelp(image, curLayer);
     view.addImageToGUI(model.compressImage());
     tryRenderMessage("Image loaded successfully");
   }

@@ -19,7 +19,6 @@ import model.filters.IFilter;
 import model.filters.Normal;
 import model.filters.RedFilter;
 
-
 /**
  * Represents the model for this program.
  */
@@ -29,7 +28,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
   private int maxValue;
   private HashMap<String, ILayer> nameLayers;
   private List<ILayer> orderLayers;
-
 
   /**
    * Represents constructor for this model.
@@ -41,7 +39,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param orderLayers List of layers.
    */
   public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
-                             List<ILayer> orderLayers, int maxValue) {
+      List<ILayer> orderLayers, int maxValue) {
     if (height < 0 || width < 0 || nameLayers == null || orderLayers == null) {
       throw new IllegalArgumentException("invalid arguments");
     }
@@ -62,7 +60,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param orderLayers List of layers.
    */
   public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
-                             List<ILayer> orderLayers) {
+      List<ILayer> orderLayers) {
     this(height, width, nameLayers, orderLayers, 255);
   }
 
@@ -163,7 +161,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will return the position of a layer in the project given both their layer position.
+   * This method will return the position of a layer in the project given both
+   * their layer position.
    *
    * @param i layer position.
    * @param j layer position.
@@ -174,30 +173,31 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will return the position of a layer in the project given their names.
+   * This method will return the position of a layer in the project given their
+   * names.
    *
    * @param a name of layer.
    * @param b name of layer.
-   * @throws IllegalArgumentException if the layers do not exist or if they are already in position.
+   * @throws IllegalArgumentException if the layers do not exist or if they are
+   *                                  already in position.
    */
   @Override
   public void swapLayers(String a, String b) throws IllegalArgumentException {
     if (!this.nameLayers.containsKey(a) || !this.nameLayers.containsKey(b)) {
       throw new IllegalArgumentException("One of the layers does not exist.");
     }
-    //FIXME: check if this is correct.
-    if (this.getLayerPosition(this.getLayer(a).getName())
-            == this.getLayerPosition(this.getLayer(b).getName())) {
+    // FIXME: check if this is correct.
+    if (this.getLayerPosition(this.getLayer(a).getName()) == this.getLayerPosition(this.getLayer(b).getName())) {
       throw new IllegalArgumentException("The layers are already in the same position.");
     }
 
     Collections.swap(this.orderLayers, this.orderLayers.indexOf(this.getLayer(a)),
-            this.orderLayers.indexOf(this.getLayer(b)));
+        this.orderLayers.indexOf(this.getLayer(b)));
   }
 
-
   /**
-   * This method will return the position of a layer in the project given its name.
+   * This method will return the position of a layer in the project given its
+   * name.
    *
    * @param string name of layer.
    * @return int position of layer.
@@ -212,7 +212,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will return the position of a layer in the project given its layer.
+   * This method will return the position of a layer in the project given its
+   * layer.
    *
    * @param name   name of filter.
    * @param filter type of filter.
@@ -227,7 +228,8 @@ public class ImageProcessorModel implements IImageProcessorModel {
   }
 
   /**
-   * This method will return the position of a layer in the project given its layer.
+   * This method will return the position of a layer in the project given its
+   * layer.
    *
    * @param name name of filter.
    * @throws IllegalArgumentException if the layer already exists.
@@ -239,7 +241,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     this.nameLayers.put(name, (new Layer(name, new Normal(), this.height, this.width)));
     this.orderLayers.add(this.nameLayers.get(name));
   }
-
 
   /**
    * This method will be used to add a layer to the project, without a filter.
@@ -282,7 +283,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     layer.addImage(image, x, y);
   }
 
-
   /**
    * This image will produce the final canvas for all layers for PPM.
    *
@@ -320,7 +320,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     return orderLayers.size();
   }
 
-
   /**
    * This method will return the list of filters in the project.
    *
@@ -349,6 +348,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the filter when given the name of the filter.
+   * 
    * @param name name of filter.
    * @return IFilter
    */
@@ -390,7 +390,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     int height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" "), lineNum[1].length()));
     int maxValue = Integer.parseInt(lineNum[2]);
 
-    for(int i = 3; i > lineNum.length; i=i+2+height) {
+    for (int i = 3; i > lineNum.length; i = i + 2 + height) {
       String name = lineNum[i];
       IFilter filter = this.getFilter(lineNum[i + 1]);
       IPixel pixels[][] = new Pixel[height][width];
@@ -413,5 +413,70 @@ public class ImageProcessorModel implements IImageProcessorModel {
     this.maxValue = maxValue;
     this.nameLayers = nameLayers;
     this.orderLayers = orderLayers;
+  }
+
+  /**
+   * This method will help the load a PPM Image.
+   */
+  public void loadPPMHelp(String totalInput, String curLayer) {
+    int width;
+    int height;
+    int maxValue;
+    IPixel[][] pixels;
+    String[] lineNum = totalInput.split("\n");
+
+    width = Integer.parseInt(lineNum[1].substring(0, lineNum[1].indexOf(" ")));
+    height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" "), lineNum[1].length()));
+    maxValue = Integer.parseInt(lineNum[2]);
+    pixels = new Pixel[height][width];
+
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        String[] rgb = lineNum[i + 2 + j].split(" ");
+        int r = Integer.parseInt(rgb[0]);
+        int g = Integer.parseInt(rgb[1]);
+        int b = Integer.parseInt(rgb[2]);
+        pixels[i][j] = new Pixel(r, g, b, 255);
+      }
+    }
+    addImage(0, 0, new PPMImage(pixels, height, width), getLayer(curLayer));
+  }
+
+  /**
+   * This method will help the load a image that is not PPM.
+   */
+  public void loadImageHelp(BufferedImage image, String curLayer) {
+    int width = image.getWidth();
+    int height = image.getHeight();
+    Pixel[][] pixels = new Pixel[height][width];
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        int rgb = image.getRGB(j, i);
+        int r = (rgb >> 16) & 0xFF;
+        int g = (rgb >> 8) & 0xFF;
+        int b = (rgb & 0xFF);
+        pixels[i][j] = new Pixel(r, g, b, 255);
+      }
+    }
+    addImage(0, 0, new PPMImage(pixels, height, width), getLayer(curLayer));
+  }
+  
+  /**
+   * This method will help save the final image as a PPM.
+   */
+  public String savePPMHelp() {
+    StringBuilder sb = new StringBuilder();
+    IPixel[][] finalPixels = this.saveCanvas();
+    sb.append("P3" + "\n");
+    sb.append(this.width + " " + this.height + "\n");
+    sb.append(this.maxValue + "\n");
+    for (int i = 0; i < this.getHeight(); i++) {
+      for (int j = 0; j < this.getWidth(); j++) {
+        sb.append(finalPixels[i][j].getRed()
+                + " " + finalPixels[i][j].getGreen()
+                + " " + finalPixels[i][j].getBlue() + "\n");
+      }
+    }
+    return sb.toString();
   }
 }
