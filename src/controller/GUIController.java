@@ -6,22 +6,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
-
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import model.IImageProcessorModel;
-import model.ILayer;
+import view.GUIView;
+
 import model.IPixel;
-import model.ImageProcessorModel;
-import model.Layer;
 import model.PPMImage;
 import model.Pixel;
-import view.GUIView;
+
 
 /**
  * Represents the controller for the GUI view. This controller will be used to control the GUI view.
@@ -52,13 +47,6 @@ public class GUIController implements Features {
    */
   public void loadProject() {
     Scanner sc;
-    int width;
-    int height;
-    int maxRGB;
-    IFilter filter;
-    List<ILayer> orderLayers = new ArrayList<ILayer>();
-    HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
-    IPixel[][] pixels;
 
     try {
       sc = new Scanner(new FileInputStream(view.loadProject()));
@@ -76,39 +64,14 @@ public class GUIController implements Features {
     }
 
     sc = new Scanner(builder.toString());
-
     String token;
     token = sc.next();
     if (!token.equals("C1")) {
       this.tryRenderMessage("Invalid Collage file: Collage file should begin with C1");
       return;
     }
-    width = sc.nextInt();
-    height = sc.nextInt();
-    maxRGB = sc.nextInt();
-    while (sc.hasNext()) {
-      String name = sc.next();
-      try {
-        filter = model.getFilter(sc.next()); //FIXME: fix naming scheme of filters
-      } catch (IllegalArgumentException e) {
-        this.tryRenderMessage("Invalid filter name");
-        return;
-      }
-      pixels = new Pixel[height][width];
-      for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-          int r = sc.nextInt();
-          int g = sc.nextInt();
-          int b = sc.nextInt();
-          pixels[i][j] = model.constructPixels(r, g, b);
-        }
-      }
-      ILayer hold = new Layer(name, filter, height, width);
-      hold.setCanvas(pixels);
-      orderLayers.add(hold);
-      nameLayers.put(name, hold);
-    }
-    this.model = new ImageProcessorModel(height, width, nameLayers, orderLayers, maxRGB);
+
+    model.loadProjectHelp(builder.toString());
   }
 
   //FIXME: THIS IS COMPLTELTY WRONG.

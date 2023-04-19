@@ -414,11 +414,4 @@ public class ImageProcessorModel implements IImageProcessorModel {
     this.nameLayers = nameLayers;
     this.orderLayers = orderLayers;
   }
-
-  /**
-   * This method will help construct pixels.
-   */
-  public IPixel constructPixels(int r, int g, int b) {
-    return new Pixel(r, g, b, 255);
-  }
 }

@@ -2,12 +2,10 @@
 ## Model
   - IImageProcessorModel
     - Added filter return method, getFilter into the interface.
-    - Added constructPixel method, which returns a pixel when given rgb values.
     - Added loadProjectHelp, to call all necessary methods to load in a model when given a string which contains all of the data contained in a file. 
 
   - ImageProcessorModel
     - Added filter return method, getFilter, to decouple the model from the controller.
-    - Added constructPixel method, to decouple the model from the controller.
     - Added loadProjectHelp, to decouple the model from the controller.
 
 ## Controller

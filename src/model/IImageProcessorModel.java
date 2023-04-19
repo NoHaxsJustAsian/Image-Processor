@@ -89,15 +89,6 @@ public interface IImageProcessorModel extends IImageProcessorState {
   public IFilter getFilter(String name);
 
   /**
-   * This method will construct and return a pixer given rgb values.
-   * @param r red value.
-   * @param g green value.
-   * @param b blue value.
-   * @return IPixel
-   */
-  public IPixel constructPixels(int r, int g, int b);
-
-  /**
    * This method helps load the project in the controller.
    * @param string all the inputs of a file.
    */
