@@ -97,7 +97,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     imageLabel = new JLabel();
     //FRAME
-    this.setSize(800, 800);
+    this.setSize(1000, 1000);
     this.setTitle("Image Processor");
     this.setLocation(200, 200);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +110,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     JPanel imagePane = new JPanel();
     this.add(imagePane, BorderLayout.WEST);
     imagePane.setBorder(BorderFactory.createTitledBorder("Buffered Image"));
-    imagePane.setPreferredSize(new Dimension(250, 500));
+    imagePane.setPreferredSize(new Dimension(1000, 1000));
     JPanel buttonPane = new JPanel();
     imagePane.add(imageLabel);
     this.add(buttonPane, BorderLayout.EAST);

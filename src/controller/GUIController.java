@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 import model.IImageProcessorModel;
 import view.GUIView;
@@ -363,11 +362,7 @@ public class GUIController implements Features {
    * @param msg is the given message as a String.
    */
   public void tryRenderMessage(String msg) {
-    try {
       this.view.renderMessage(msg);
-    } catch (Exception e) {
-      JOptionPane.showMessageDialog(null, "Message could not be rendered");
-    }
   }
 
 
