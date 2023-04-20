@@ -181,7 +181,7 @@ public class ImageProcessorController implements IImageProcessorController {
           tryRender("type layer name to add image to \n");
           curLayer = scan.next();
           tryRender("type image path to add \n");
-          this.loadPPM(scan.next());
+          this.loadPPM(scan.next(), scan.nextInt(), scan.nextInt());
           break;
         default:
           tryRender("Invalid command entered. Please try again.");
@@ -226,7 +226,7 @@ public class ImageProcessorController implements IImageProcessorController {
     model.loadProjectHelp(builder.toString());
   }
 
-  private void loadPPM(String imagePath) {
+  private void loadPPM(String imagePath, int x, int y) {
     Scanner sc;
 
     try {
@@ -249,7 +249,7 @@ public class ImageProcessorController implements IImageProcessorController {
     if (!token.equals("P3")) {
       tryRender("Invalid PPM file: plain RAW file should begin with P3");
     }
-    model.loadPPMHelp(builder.toString(), curLayer);
+    model.loadPPMHelp(builder.toString(), curLayer, x, y);
   }
 
 
