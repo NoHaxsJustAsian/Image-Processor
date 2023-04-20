@@ -329,9 +329,10 @@ public class GUIController implements Features {
    * @param curLayer the current layer.
    */
   @Override
-  public void addPPM(String curLayer) {
+  public void addPPM(String curLayer, int x, int y) {
     Scanner sc;
     File f = view.addImageToLayer();
+
     try {
       sc = new Scanner(new FileInputStream(f));
       tryRenderMessage("Image loaded successfully");
@@ -353,7 +354,7 @@ public class GUIController implements Features {
       tryRenderMessage("Invalid PPM file: plain RAW file should begin with P3");
     }
     
-    model.loadPPMHelp(builder.toString(), curLayer);
+    model.loadPPMHelp(builder.toString(), curLayer, x, y);
   }
 
   /**
@@ -374,11 +375,11 @@ public class GUIController implements Features {
    * This method saves the image to a file.
    * Works for ANY file type.
    */
-  public void addImage(String curLayer) {
+  public void addImage(String curLayer, int x, int y) {
     BufferedImage image;
     File f = view.addImageToLayer();
     if (f.getAbsolutePath().endsWith(".ppm")) {
-      addPPM(curLayer);
+      addPPM(curLayer, x, y);
 
       return;
     }
@@ -388,7 +389,7 @@ public class GUIController implements Features {
       tryRenderMessage("File " + f.getAbsolutePath() + " not found!");
       return;
     }
-    model.loadImageHelp(image, curLayer);
+    model.loadImageHelp(image, curLayer, x, y);
     view.addImageToGUI(model.compressImage());
     tryRenderMessage("Image loaded successfully");
   }

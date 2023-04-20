@@ -93,9 +93,12 @@ public interface Features {
   void addLayer(String s);
 
   /**
-   * This method adds an image to the layer.
+   * This method adds a PPM image to the layer.
+   * @param curLayer the current layer.
+   * @param x the x coordinate.
+   * @param y the y coordinate.
    */
-  void addPPM(String curLayer);
+  void addPPM(String curLayer, int x, int y);
 
   /**
    * This method loads a project.
@@ -109,8 +112,11 @@ public interface Features {
 
   /**
    * This loads an image.
+   * @param curLayer the current layer.
+   * @param x the x coordinate.
+   * @param y the y coordinate.
    */
-  void addImage(String curLayer);
+  void addImage(String curLayer, int x, int y);
 
   /**
    * This method makes a new project.

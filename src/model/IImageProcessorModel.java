@@ -90,7 +90,7 @@ public interface IImageProcessorModel extends IImageProcessorState {
 
   /**
    * This method helps load the project from the controller in the model. 
-   * @param string all the inputs of a file.
+   * @param totalInput all the inputs of a file.
    */
   void loadProjectHelp(String totalInput);
 
@@ -98,15 +98,19 @@ public interface IImageProcessorModel extends IImageProcessorState {
    * This method helps load a PPM Image in the model from a file given by the controller.
    * @param curLayer current layer being loaded.
    * @param totalInput all the inputs of a file.
+   * @param x x position of image.
+   * @param y y position of image.
    */
-  void loadPPMHelp(String totalInput, String curLayer);
+  void loadPPMHelp(String totalInput, String curLayer, int x, int y);
 
   /**
    * This method helps load an Image in the model from a file given by the controller.
-   * @param totalInput all the inputs of a file.
+   * @param image image of the file.
    * @param curLayer current layer being loaded.
+   * @param x x position of image.
+   * @param y y position of image.
    */
-  void loadImageHelp(BufferedImage image, String curLayer);
+  void loadImageHelp(BufferedImage image, String curLayer, int x, int y);
 
   /**
    * This method will help save the final image as a PPM.

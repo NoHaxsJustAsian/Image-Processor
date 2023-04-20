@@ -415,7 +415,11 @@ public class GUIView extends JFrame implements IImageProcessorView {
       f.addLayer(this.addLayerHelp());
     });
 
-    addImageButton.addActionListener(e -> f.addImage(curLayer));
+    addImageButton.addActionListener(e -> {
+        int x = Integer.parseInt(JOptionPane.showInputDialog("Enter x displacement"));
+        int y = Integer.parseInt(JOptionPane.showInputDialog("Enter y displacement"));
+      f.addImage(curLayer, x, y);
+    });
   }
 
 }

@@ -6,6 +6,8 @@
     - Added loadPPMHelp, to call all necessary methods to load in a model when given a string which contains all of the data contained in a file for a PPM Image.
     - Added loadImageHelp, to call all necessary methods to load in a model when given a string which contains all of the data contained in a file for a Image that is not a PPM.
     - Added savePPMHelp, to call all necessary methods to save a final image which contains all of the data contained in a file for a PPM Image and outputs it.
+    - Changed loadImageHelp to take in x and y int values to utilize as displacement.
+    - Changed loadPPMHelp to take in x and y int values to utilize as displacement.
 
   - ImageProcessorModel
     - Added filter return method, getFilter, to decouple the model from the controller.
@@ -13,15 +15,18 @@
     - Added loadPPMHelp, to decouple the model from the controller.
     - Added loadImageHelp, to decouple the model from the controller.
     - Added savePPMHelp, to decouple the model from the controller.
+    - Changed loadImageHelp to take in x and y int values to utilize as displacement.
+    - Changed loadPPMHelp to take in x and y int values to utilize as displacement.
+    - 
 ## Controller
   - GUIController.java
     - Removed filterHelp, put getFilter into model to decouple the model from the controller. It helps remove one needed IFilter interface import. 
     - Changed all uses of IFilters, to utilize the model's method of getFilter, to decouple the model from the controller. 
     - Changed loadProject, and offloaded any model referencing to loadProjectHelp in the model.
-    - Changed loadPPM, and offloaded any model referencing to loadPPMHelp in the model.
-    - Changed loadImage, and offloaded any model referencing to loadImageHelp in the model.
+    - Changed loadPPM, and offloaded any model referencing to loadPPMHelp in the model and to allow for displacement.
+    - Changed loadImage, and offloaded any model referencing to loadImageHelp in the model and to allow for displacement.
     - Changed savePPM, and offloaded any model referencing to savePPMHelp in the model.
-    - Changed saveProject, as it was incorrect, and now it saves the image properly. 
+    - Changed saveProject, as it was incorrect, and now it saves the image properly.
 
   - ImageProcessorController
     - Removed filterHelp, put getFilter into model to decouple the model from the controller. It helps remove one needed IFilter interface import.
@@ -32,8 +37,9 @@
     - Changed savePPM, and offloaded any model referencing to savePPMHelp in the model.
     - Changed the way add-image-to-layer command works, it asks for the layer first and then the filepath.
 
-
-
+## View
+- GUIView.java
+  - Changed addImageButton, to also ask for x and y displacement int values on button press. 
 
 
 

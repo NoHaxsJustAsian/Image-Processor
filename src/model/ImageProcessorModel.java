@@ -454,7 +454,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will help the load a image that is not PPM.
    */
-  public void loadImageHelp(BufferedImage image, String curLayer) {
+  public void loadImageHelp(BufferedImage image, String curLayer, int x, int y) {
     int width = image.getWidth();
     int height = image.getHeight();
     Pixel[][] pixels = new Pixel[height][width];
@@ -467,7 +467,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-    addImage(0, 0, new PPMImage(pixels, height, width), getLayer(curLayer));
+    addImage(x, y, new PPMImage(pixels, height, width), getLayer(curLayer));
   }
   
   /**
