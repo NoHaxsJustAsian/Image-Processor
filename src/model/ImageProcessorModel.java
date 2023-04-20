@@ -427,7 +427,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
   /**
    * This method will help the load a PPM Image.
    */
-  public void loadPPMHelp(String totalInput, String curLayer) {
+  public void loadPPMHelp(String totalInput, String curLayer, int x, int y) {
     int width;
     int height;
     int maxValue;
@@ -448,7 +448,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-    addImage(0, 0, new PPMImage(pixels, height, width), getLayer(curLayer));
+    addImage(x, y, new PPMImage(pixels, height, width), getLayer(curLayer));
   }
 
   /**
