@@ -18,11 +18,9 @@ import view.ImageProcessorView;
 public class Main {
 
   /**
-   * This is the main method.
+   * This is the main method to run the program with either the GUI or the text based view.
    *
    * @param args input for the controller.
-   * @throws IOException if controller is unable to
-   *                     successfully read input or transmit output.
    */
   public static void main(String[] args) {
     Readable a = new InputStreamReader(System.in);

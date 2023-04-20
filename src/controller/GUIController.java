@@ -380,7 +380,7 @@ public class GUIController implements Features {
     File f = view.addImageToLayer();
     if (f.getAbsolutePath().endsWith(".ppm")) {
       addPPM(curLayer, x, y);
-
+      view.addImageToGUI(model.compressImage());
       return;
     }
     try {
