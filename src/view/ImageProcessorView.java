@@ -5,7 +5,8 @@ import java.io.IOException;
 import model.IImageProcessorModel;
 
 /**
- * Represents a view class for the ImageProcessor.
+ * Represents a view class for the ImageProcessor. It is responsible for displaying images
+ * using the provided model.
  */
 
 public class ImageProcessorView implements IImageProcessorView {
