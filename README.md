@@ -59,6 +59,8 @@ The ImageProcessorController implements an interface for an Image Processor Cont
 reading commands from an input source, and executing those commands using a model and a view. The available commands include creating a
 new project, loading and saving projects, and applying various filters to images.
 
+The IImageProcessorView interface is responsible for displaying images using the provided model. It includes a method called, renderMessage(), which can be used to transmit a message to the display destination. If transmission fails, an IOException is thrown.
+
 The ImageProcessorView class is responsible for displaying images using the provided model. It has two constructors, one that takes a
 model object and uses the console as the display destination, and another that takes a model object and an Appendable object as the
 display destination. It also has a method renderMessage() that can be used to transmit a message to the display destination. If
