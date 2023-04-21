@@ -1,7 +1,7 @@
 package controller;
 
 /**
- * Represents the controller interface for this program.
+ * Represents the controller interface for this program. This interface will be used to start the
  */
 public interface IImageProcessorController {
 
