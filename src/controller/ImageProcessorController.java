@@ -272,7 +272,7 @@ public class ImageProcessorController implements IImageProcessorController {
     }
     PrintWriter writer;
     try {
-      writer = new PrintWriter(new File(filePath)); //FIXME: fix PrintWriter
+      writer = new PrintWriter(new File(filePath));
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }

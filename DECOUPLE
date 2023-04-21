@@ -1,2 +1,16 @@
 What files do you need to send along for only the controllers to compile? This list must include the interfaces and implementations for the controller itself.
 For each file, briefly explain why that file is necessary for the controller to work.
+
+
+For the controllers to compile, the following files are needed:
+- GUIController
+    - model.IImageProcessorModel
+        - This is needed because the controller needs to be able to access the interface of a model, which must contain the methods listed in the interface. This interface of the model includes every method necessary for the controller to work, model wise. 
+    - view.GUIView
+        - This is needed because the controller needs to be able to access the GUIview, which is specific to the controller. The reason this is specific, is that not every method contained in its text counterpart can be utilized with the GUIController. Because of this, we chose to not utlize an interface, to ensure the correct view was being used. 
+
+- ImageProcessorController
+    - model.IImageProcessorModel
+        - This is needed because the controller needs to be able to access the interface of a model, which must contain the methods listed in the interface. This interface of the model includes every method necessary for the controller to work, model wise.
+    - view.IImageProcessorView
+        - This is needed because the controller needs to be able to access the interface of a view, which must contain the methods listed in the interface. This interface of the view includes every method necessary for the controller to work, view wise.
