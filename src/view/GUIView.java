@@ -68,8 +68,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
   //Layer Section
-
-  //private JPanel layerPane;
   private JButton addLayerButton;
 
   private JButton selectLayerButton;
@@ -78,9 +76,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
   //Buffered Image Section
-
-  //private JPanel imagePane;
-  //private JScrollPane imageScrollPane;
   private JLabel imageLabel;
 
 
@@ -94,8 +89,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   public GUIView() {
     super("Image Processor");
-
     imageLabel = new JLabel();
+
     //FRAME
     this.setSize(1000, 600);
     this.setTitle("Image Processor");
@@ -124,14 +119,12 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
     JPanel selectedLayerBox = new JPanel();
     selectedLayerBox.setBorder(BorderFactory.createTitledBorder("Selected Image"));
-    //FIXME: fix grid layout for selected image
     selectedLayerBox.setLayout(new GridLayout(2, 2));
     this.add(selectedLayerBox);
 
 
     JPanel compositeImageBox = new JPanel();
     compositeImageBox.setBorder(BorderFactory.createTitledBorder("Composite Image"));
-    //FIXME: fix grid layout for composite image
     compositeImageBox.setLayout(new GridLayout(2, 2));
     this.add(compositeImageBox);
 
@@ -317,7 +310,6 @@ public class GUIView extends JFrame implements IImageProcessorView {
    */
   public File addImageToLayer() {
     File f = null;
-    //FIXME: add a function to add this to a specific layer.
     final JFileChooser fc = new JFileChooser(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter("Image",
             "ppm", "jpg", "png");

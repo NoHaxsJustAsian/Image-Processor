@@ -190,7 +190,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
     if (!this.nameLayers.containsKey(a) || !this.nameLayers.containsKey(b)) {
       throw new IllegalArgumentException("One of the layers does not exist.");
     }
-    // FIXME: check if this is correct.
     if (this.getLayerPosition(this.getLayer(a).getName()) == this.getLayerPosition(
             this.getLayer(b).getName())) {
       throw new IllegalArgumentException("The layers are already in the same position.");
@@ -449,6 +448,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
+    addImage(x, y, new PPMImage(pixels, height, width), getLayer(curLayer));
   }
 
   /**

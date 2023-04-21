@@ -673,7 +673,6 @@ public class ImageProcessorModelTest {
 
   @Test
   public void addLayer() {
-    //FIXME: this test is not working
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
 
     ILayer first = new Layer("1", normal, 200, 200);
