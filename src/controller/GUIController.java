@@ -7,11 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
 import javax.imageio.ImageIO;
 
 import model.IImageProcessorModel;
 import view.GUIView;
-
 
 
 /**
@@ -352,7 +352,7 @@ public class GUIController implements Features {
     if (!token.equals("P3")) {
       tryRenderMessage("Invalid PPM file: plain RAW file should begin with P3");
     }
-    
+
     model.loadPPMHelp(builder.toString(), curLayer, x, y);
   }
 
@@ -362,7 +362,7 @@ public class GUIController implements Features {
    * @param msg is the given message as a String.
    */
   public void tryRenderMessage(String msg) {
-      this.view.renderMessage(msg);
+    this.view.renderMessage(msg);
   }
 
 
@@ -393,7 +393,7 @@ public class GUIController implements Features {
    * This method makes a new project.
    *
    * @param height the height of the project.
-   * @param width the width of the project.
+   * @param width  the width of the project.
    */
   @Override
   public void newProject(int height, int width, int maxValue) {

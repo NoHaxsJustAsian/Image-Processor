@@ -43,7 +43,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param orderLayers List of layers.
    */
   public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
-      List<ILayer> orderLayers, int maxValue) {
+                             List<ILayer> orderLayers, int maxValue) {
     if (height < 0 || width < 0 || nameLayers == null || orderLayers == null) {
       throw new IllegalArgumentException("invalid arguments");
     }
@@ -64,7 +64,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
    * @param orderLayers List of layers.
    */
   public ImageProcessorModel(int height, int width, HashMap<String, ILayer> nameLayers,
-      List<ILayer> orderLayers) {
+                             List<ILayer> orderLayers) {
     this(height, width, nameLayers, orderLayers, 255);
   }
 
@@ -191,12 +191,13 @@ public class ImageProcessorModel implements IImageProcessorModel {
       throw new IllegalArgumentException("One of the layers does not exist.");
     }
     // FIXME: check if this is correct.
-    if (this.getLayerPosition(this.getLayer(a).getName()) == this.getLayerPosition(this.getLayer(b).getName())) {
+    if (this.getLayerPosition(this.getLayer(a).getName()) == this.getLayerPosition(
+            this.getLayer(b).getName())) {
       throw new IllegalArgumentException("The layers are already in the same position.");
     }
 
     Collections.swap(this.orderLayers, this.orderLayers.indexOf(this.getLayer(a)),
-        this.orderLayers.indexOf(this.getLayer(b)));
+            this.orderLayers.indexOf(this.getLayer(b)));
   }
 
   /**
@@ -352,7 +353,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
 
   /**
    * This method will return the filter when given the name of the filter.
-   * 
+   *
    * @param name name of filter.
    * @return IFilter
    */
@@ -378,7 +379,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
         return new Normal();
       case "red":
         return new RedFilter();
-        case "multiply":
+      case "multiply":
         return new Multiply();
       case "difference":
         return new Difference();
@@ -397,13 +398,14 @@ public class ImageProcessorModel implements IImageProcessorModel {
     HashMap<String, ILayer> nameLayers = new HashMap<String, ILayer>();
     String[] lineNum = totalInput.split("\n");
     int width = Integer.parseInt(lineNum[1].substring(0, lineNum[1].indexOf(" ")));
-    int height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" "), lineNum[1].length()));
+    int height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" "),
+            lineNum[1].length()));
     int maxValue = Integer.parseInt(lineNum[2]);
 
     for (int i = 3; i > lineNum.length; i = i + 2 + height) {
       String name = lineNum[i];
       IFilter filter = this.getFilter(lineNum[i + 1]);
-      IPixel pixels[][] = new Pixel[height][width];
+      IPixel[][] pixels = new Pixel[height][width];
       for (int j = 0; j < height; j++) {
         for (int k = 0; k < width; k++) {
           String[] rgb = lineNum[i + 2 + j].split(" ");
@@ -447,23 +449,26 @@ public class ImageProcessorModel implements IImageProcessorModel {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-//    String[] lineNum = totalInput.split("\n");
-//
-//    width = Integer.parseInt(lineNum[1].substring(0, lineNum[1].indexOf(" ")));
-//    height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" ") + 1));
-//    maxValue = Integer.parseInt(lineNum[2]);
-//    pixels = new Pixel[height][width];
-//
-//    for (int i = 0; i < height; i++) {
-//      for (int j = 0; j < width; j++) {
-//        String[] rgb = lineNum[i + 2 + j].split(" ");
-//        int r = Integer.parseInt(rgb[0]);
-//        int g = Integer.parseInt(rgb[1]);
-//        int b = Integer.parseInt(rgb[2]);
-//        pixels[i][j] = new Pixel(r, g, b, 255);
-//      }
-//    }
+
+    /*
+    String[] lineNum = totalInput.split("\n");
+
+    width = Integer.parseInt(lineNum[1].substring(0, lineNum[1].indexOf(" ")));
+    height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" ") + 1));
+    maxValue = Integer.parseInt(lineNum[2]);
+    pixels = new Pixel[height][width];
+
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        String[] rgb = lineNum[i + 2 + j].split(" ");
+        int r = Integer.parseInt(rgb[0]);
+        int g = Integer.parseInt(rgb[1]);
+        int b = Integer.parseInt(rgb[2]);
+        pixels[i][j] = new Pixel(r, g, b, 255);
+      }
+    }
     addImage(x, y, new PPMImage(pixels, height, width), getLayer(curLayer));
+    */
   }
 
   /**
@@ -484,7 +489,7 @@ public class ImageProcessorModel implements IImageProcessorModel {
     }
     addImage(x, y, new PPMImage(pixels, height, width), getLayer(curLayer));
   }
-  
+
   /**
    * This method will help save the final image as a PPM.
    */

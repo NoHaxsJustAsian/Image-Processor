@@ -68,17 +68,17 @@ public class GUIView extends JFrame implements IImageProcessorView {
 
 
   //Layer Section
-  
+
   //private JPanel layerPane;
   private JButton addLayerButton;
-  
+
   private JButton selectLayerButton;
   private JComboBox<String> layerList;
   ArrayList<String> layerNames = new ArrayList<String>();
 
 
   //Buffered Image Section
-  
+
   //private JPanel imagePane;
   //private JScrollPane imageScrollPane;
   private JLabel imageLabel;
@@ -396,8 +396,7 @@ public class GUIView extends JFrame implements IImageProcessorView {
     newProjectButton.addActionListener(e -> {
       newProjectHelp();
       f.newProject(height, width, maxValue);
-    }
-    );
+    });
     selectLayerButton.addActionListener(e -> {
       curLayer = layerList.getSelectedItem().toString();
     });
@@ -416,8 +415,8 @@ public class GUIView extends JFrame implements IImageProcessorView {
     });
 
     addImageButton.addActionListener(e -> {
-        int x = Integer.parseInt(JOptionPane.showInputDialog("Enter x displacement"));
-        int y = Integer.parseInt(JOptionPane.showInputDialog("Enter y displacement"));
+      int x = Integer.parseInt(JOptionPane.showInputDialog("Enter x displacement"));
+      int y = Integer.parseInt(JOptionPane.showInputDialog("Enter y displacement"));
       f.addImage(curLayer, x, y);
     });
   }
