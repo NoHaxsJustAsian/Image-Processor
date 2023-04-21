@@ -6,7 +6,6 @@ import java.io.IOException;
  * Represents the interface which the user uses to interact with the model of the image processor.
  */
 public interface Features {
-  //File Functions
 
   /**
    * This method saves a project.
@@ -84,8 +83,6 @@ public interface Features {
    * This method applies a screen filter to an image.
    */
   void screen(String curLayer);
-
-  //Layer Functions
 
   /**
    * This method adds a layer to the project.

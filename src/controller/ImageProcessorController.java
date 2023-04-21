@@ -14,7 +14,8 @@ import view.IImageProcessorView;
 
 
 /**
- * This class implements the IImageProcessor Controller.
+ * This class implements the IImageProcessor Controller. This controller reads and executes text
+ * based commands.
  */
 public class ImageProcessorController implements IImageProcessorController {
 
