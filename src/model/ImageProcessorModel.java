@@ -449,26 +449,6 @@ public class ImageProcessorModel implements IImageProcessorModel {
         pixels[i][j] = new Pixel(r, g, b, 255);
       }
     }
-
-    /*
-    String[] lineNum = totalInput.split("\n");
-
-    width = Integer.parseInt(lineNum[1].substring(0, lineNum[1].indexOf(" ")));
-    height = Integer.parseInt(lineNum[1].substring(lineNum[1].indexOf(" ") + 1));
-    maxValue = Integer.parseInt(lineNum[2]);
-    pixels = new Pixel[height][width];
-
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        String[] rgb = lineNum[i + 2 + j].split(" ");
-        int r = Integer.parseInt(rgb[0]);
-        int g = Integer.parseInt(rgb[1]);
-        int b = Integer.parseInt(rgb[2]);
-        pixels[i][j] = new Pixel(r, g, b, 255);
-      }
-    }
-    addImage(x, y, new PPMImage(pixels, height, width), getLayer(curLayer));
-    */
   }
 
   /**

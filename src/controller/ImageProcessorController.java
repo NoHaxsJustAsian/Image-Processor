@@ -14,35 +14,16 @@ import javax.imageio.ImageIO;
 import model.IImageProcessorModel;
 import view.IImageProcessorView;
 
-import model.IPixel;
-import model.PPMImage;
-import model.Pixel;
 
 /**
  * This class implements the IImageProcessor Controller.
  */
 public class ImageProcessorController implements IImageProcessorController {
 
-  private int width;
-  private int height;
   private IImageProcessorModel model;
   private IImageProcessorView view;
   private final Readable object;
   private String curLayer;
-
-
-
-  /**
-   * This is a method for checking for quit game command is prompted.
-   *
-   * @param input is the input.
-   * @return boolean if quit.
-   */
-  private boolean isQuit(String input) {
-    return input.equals("q") || input.equals("Q");
-  }
-
-
 
   /**
    * Represents a controller that reads and execute commands.
@@ -291,48 +272,16 @@ public class ImageProcessorController implements IImageProcessorController {
     if (filePath == null || !filePath.endsWith(".ppm")) {
       throw new IllegalArgumentException("invalid file path");
     }
-
-    IPixel[][] finalPixels = model.saveCanvas();
-
     PrintWriter writer;
     try {
       writer = new PrintWriter(new File(filePath)); //FIXME: fix PrintWriter
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    writer.println("P3");
-    writer.println(model.getWidth() + " " + model.getHeight());
-    writer.println(model.getMaxValue());
-    for (int i = 0; i < model.getHeight(); i++) {
-      for (int j = 0; j < model.getWidth(); j++) {
-        writer.println(finalPixels[i][j].getRed()
-                + " " + finalPixels[i][j].getGreen()
-                + " " + finalPixels[i][j].getBlue());
-      }
-    }
+    writer.println(model.savePPMHelp());
     writer.close();
   }
 
-
-  //FIXME: figure out if we need to restrict the file type.
-  private PPMImage loadImage(String imagePath) throws IOException {
-
-    BufferedImage image = ImageIO.read(new File(imagePath));
-    int width = image.getWidth();
-    int height = image.getHeight();
-    Pixel[][] pixels = new Pixel[height][width];
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        int rgb = image.getRGB(j, i);
-        int r = (rgb >> 16) & 0xFF;
-        int g = (rgb >> 8) & 0xFF;
-        int b = (rgb & 0xFF);
-        pixels[i][j] = new Pixel(r, g, b, 255);
-      }
-    }
-    tryRender("Image loaded successfully");
-    return new PPMImage(pixels, height, width);
-  }
 
   private void saveImage(String filePath, String fileType) throws IllegalArgumentException {
     if (filePath == null || fileType == null) {
@@ -348,7 +297,6 @@ public class ImageProcessorController implements IImageProcessorController {
       } catch (IOException e) {
         tryRender("File " + filePath + " not found! / INVALID");
       }
-
     }
   }
 }
