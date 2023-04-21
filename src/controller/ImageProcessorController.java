@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
-
 
 import model.IImageProcessorModel;
 import view.IImageProcessorView;
