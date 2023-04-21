@@ -1,6 +1,5 @@
-# README Format
 ## Overall Description
-This program is a simple image processor that allows the user to load in images, apply filters to them, and save them.
+This program is a simple image processor that allows the user to load in images, apply filters to them, and save them allowing for manipualation of multiple layers of images. 
 The program is designed to be modular, and extensible, allowing for the addition of new filters, and new image types.
 The program is also designed to be decoupled, allowing for the model, view, and controller to be changed without affecting the other components.
 In the GUI version, saving and loading projects is done interactively through the use of a file chooser, which allows the user to select a file to save to, or load from.
@@ -9,14 +8,12 @@ The features that are not implemented in the text based version are the ability 
 
 ## Requirements/Dependencies
 Java 11 or higher JRE
-
 JUnit 4 for running tests
 
 The program is designed to be run from the command line, and takes in a single argument, which is the path to the configuration file.
 The specific set of commands that the program takes can be found in the USEME files attach to this repository.
 
 ## Design Code
-
 Inheritance Summary:
 This project contains an Image interface and its implementation AImage class which is an abstract class for PPMImage class,
 an IImageProcessorState interface which contains non-mutable methods extended by a IImageProcessorModel interface which
@@ -67,7 +64,11 @@ model object and uses the console as the display destination, and another that t
 display destination. It also has a method renderMessage() that can be used to transmit a message to the display destination. If
 transmission fails, an IOException is thrown.
 
-ImageUtil is a tool used to read image files from the computer's files, and to write a given Image into a file.
+The Features interface is an interface that contains methods for the features of the program. It includes methods neccessary to run a GUIController
+in our program. It is specifically utilized in the GUIView, to allow for the use of the functions of the buttons located in the GUIController without
+requiring a specific implementation of the GUIController. 
+
+The GUIController, is our implementation of the Features iterface, and is responsible for the functionality of the buttons in the GUIView. 
 
 The Image
 
