@@ -1,4 +1,4 @@
-+## README Format
+# README Format
 ## Overall Description
 This program is a simple image processor that allows the user to load in images, apply filters to them, and save them.
 The program is designed to be modular, and extensible, allowing for the addition of new filters, and new image types.
@@ -15,10 +15,8 @@ JUnit 4 for running tests
 The program is designed to be run from the command line, and takes in a single argument, which is the path to the configuration file.
 The specific set of commands that the program takes can be found in the USEME files attach to this repository.
 
-## Design of your code
+## Design Code
 
-
-# assignment2 part1
 Inheritance Summary:
 This project contains an Image interface and its implementation AImage class which is an abstract class for PPMImage class,
 an IImageProcessorState interface which contains non-mutable methods extended by a IImageProcessorModel interface which
@@ -71,11 +69,12 @@ transmission fails, an IOException is thrown.
 
 ImageUtil is a tool used to read image files from the computer's files, and to write a given Image into a file.
 
+The Image
 
 
 
 
-# assignment2 part4
+# assignment2 part4 changes/notes
 ## Model
   - IImageProcessorModel
     - Added filter return method, getFilter into the interface.
@@ -118,18 +117,7 @@ ImageUtil is a tool used to read image files from the computer's files, and to w
 - GUIView.java
   - Changed addImageButton, to also ask for x and y displacement int values on button press. 
 
-
-
-
-
-
-
-
-
-
-
-
-# assignment2 part3
+# assignment2 part3 changes/notes
 ## Model
   - ImageProcesssorModel
     - Decoupled
@@ -161,7 +149,8 @@ ImageUtil is a tool used to read image files from the computer's files, and to w
     - Changed our original saveImage, to savePPM, as it loaded a ppm, then constructed a new method, called, saveImage, which can take in any type of image, including ppms.
     - Changed our original addImage, to addPPM, as it loaded in a ppm, then constructed a new method, called, addImage, which can load any type of image, including ppms.
 
-# assignment2 part2
+
+# assignment2 part2 changes/notes
 ## Controller
   - Feature
     - Represents the interface which the user uses to interact with the model of the image processor The interface defines methods related to file functions such as
@@ -180,7 +169,8 @@ ImageUtil is a tool used to read image files from the computer's files, and to w
     - The constructor initializes the GUI view by setting up the JFrame, the panels, and the buttons. It sets the layout of the GUI using BorderLayout and adds the           panels to the JFrame. It also initializes the buttons and adds them to the GUI view.
 
 
-# assignment2 part1
+
+# assignment2 part1 changes/notes
 Inheritance Summary:
 This project contains an Image interface and its implementation AImage class which is an abstract class for PPMImage class, 
 an IImageProcessorState interface which contains non-mutable methods extended by a IImageProcessorModel interface which 
