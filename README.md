@@ -68,10 +68,13 @@ The Features interface is an interface that contains methods for the features of
 in our program. It is specifically utilized in the GUIView, to allow for the use of the functions of the buttons located in the GUIController without
 requiring a specific implementation of the GUIController. 
 
-The GUIController, is our implementation of the Features iterface, and is responsible for the functionality of the buttons in the GUIView. 
+The GUIController, is our implementation of the Features iterface, and is responsible for the functionality of the buttons in the GUIView. It includes methods for
+creating a new project, loading and saving projects, and applying various filters to images. It also includes methods for the actions for the buttons in the GUIView, 
+including, but not limited to, the ability to create a new project, load and save projects, and apply various filters to images. 
 
-The Image
-
+The GUIView is responsible for displaying images using the provided model and a Features interface, which is implemented by the GUIController. It creates all of the 
+neccessary panels utilziing java Swing, and adds them to the JFrame. It also creates the buttons and adds them to the panels. It also creates the menu bar and adds it to the JFrame.
+It also adds all the functions, to specific buttons to the JFrame, and adds the JFrame to the screen. It also has a method renderMessage() that can be used to transmit a message to the display destination. It also creates various dropdowns for use to select layers in the model. 
 
 
 
